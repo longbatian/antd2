@@ -34,10 +34,12 @@ class ActivityPage extends Component{
             }else if(names === 'goldEggsnew.php'){
                 heights = 1665;
             }else if(names==='zhijun.php'){
+
                 heights=3270
             }
 
             this.setState({
+
                 src: 'http://jc.cx5201314.com/activitys/' + src,
                 height: heights,
             })
