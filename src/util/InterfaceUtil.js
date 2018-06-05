@@ -1,7 +1,7 @@
 // import React from 'react';
 // var u='http://192.168.1.49/index.php/index/';
 // var u='http://192.168.1.49/';
-let u='http://www.scjuchuang.com/';
+let u='http://jc.cx5201314.com/';
 let rl='apis/index.php/index/';
 let urls=[
     'index/other','index/search','Cart/check_cart','Cart/check_cart','Cart/addcart', //5
