@@ -1,0 +1,72 @@
+.containBoxs{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  -webkit-box-shadow: 0 6px 5px #ddd;
+  -moz-box-shadow: 0 6px 5px  #ddd;
+  box-shadow: 0 6px 5px  #ddd;
+  padding: 10px 0;
+  z-index: 13;
+}
+.containBoxs>div{
+  width: 1200px;
+  margin: auto;
+}
+
+.logo_c{
+  float: left;
+  width: 25%;
+}
+.containBoxs .head_car{
+  margin: 0 0 0 60px;
+}
+.headLogoB{
+  width:140px;
+}
+.containBoxs .ant-btn-primary span{
+  color: #fff;
+}
+.containBoxs .logo_b{
+  width: 45%;
+}
+.containBoxs .ant-input-lg{
+  height: 42px;
+  border-radius: 0;
+}
+.containBoxs .ant-btn-lg{
+  padding: 0 22px;
+  border-radius: 0;
+}
+  .sousuokuang2{
+  top: 100%;
+  left: 0px;
+    position: absolute;
+    width: 420px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    text-indent: 10px;
+    z-index: 13;
+}
+.hover_search{
+  height: 42px;
+  border:1px solid #50a3ef;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 15px;
+  line-height: 1.5;
+  width: 420px;
+}
+.ant-input-search.ant-input-search-enter-button > .ant-input{
+  color: #333;
+}
+.sousuokuang2 li{
+  cursor: pointer;
+  padding: 5px 0;
+}
+.sousuokuang2 li:hover{
+  background: #f2f2f2;
+}
+

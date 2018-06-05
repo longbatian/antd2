@@ -1,0 +1,212 @@
+/*轮播*/
+/*轮播分类*/
+.index_lunbo_ul_fenlei{
+  width: 200px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  z-index: 12;
+  padding-left: 10px;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.index_lunbo_ul_fenlei:hover li{
+  border-right:1px solid #4fa3ef;
+}
+
+.index_lunbo_ul_fenlei>li{
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px  dashed #ffffff;
+  font-size: 14px;
+  height: 60px;
+  line-height: 60px;
+  /*padding-left: 10px;*/
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-right: 1px solid #e5e5e5;
+}
+
+.index_lunbo_ul_fenlei>li>di{
+  border-bottom: 1px dashed #e9e9e9;
+  /*height: 100%;*/
+}
+.index_lunbo_ul_fenlei>li:hover{
+  border-bottom: 1px solid #4fa3ef!important;
+  border-top: 1px solid #4fa3ef!important;
+  border-left: 1px solid #4fa3ef!important;
+  border-right: 0px solid transparent;
+}
+.index_lunbo_ul_fenlei>li:hover>div{
+  border-bottom: 1px  dashed transparent;
+}
+.index_lunbo_ul_fenlei>li:hover .index_lunbo_ul_zilei{
+  display: block;
+}
+.index_lunbo_ul_fenlei_img{
+  float: right;
+  margin-top: 25px;
+  margin-right: 10px;
+}
+.index_lunbo_div_guanggao{
+  background-color: #ffffff;
+  width: 200px;
+  height: 480px;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+}
+.index_lunbo_div_guanggao_con{
+  margin-left: 5px;
+  margin-top: 5px;
+  width: 190px;
+}
+.index_lunbo_div_guanggao_con_img{
+  width: 190px;
+  height: 140px;
+}
+.index_lunbo_div_guanggao_con_ul li{
+  height: 25px;
+  font-size: 13px;
+  line-height: 25px;
+}
+.index_lunbo_div_guanggao_con_ul li:hover{
+  color: #ff8601;
+}
+.index_lunbo_div_guanggao_con_ul li:first-child{
+  color: #ff8601;
+}
+.index_lunbo_div_guanggao_con_div{
+  border-bottom: 1px solid #e4e4e5;
+}
+/*轮播效果*/
+.index_lunbo{
+  background-color: #cff2ff;
+  border-bottom: 1px solid transparent;
+  height: 500px;
+}
+.index_lunbo_div{
+  position: absolute;
+  width: 100%;
+  height: 500px;
+}
+.index_lunbo_div .slick-dots li button{
+  background-color: #b3b3b3;
+  height: 5px;
+}
+.index_lunbo_div .slick-active button{
+  background-color: #188ae7!important;
+}
+.index_lunbo_div_img{
+  height: 100%;
+  display: block;
+  height: 500px;
+}
+.index_lunbo_div_img1{
+  position: absolute;
+  top: 225px;
+  left: 200px;
+  z-index: 999;
+}
+.index_lunbo_div_img2{
+  position: absolute;
+  top: 225px;
+  right: 200px;
+}
+
+/*子类*/
+.index_lunbo_ul_zilei{
+  position: absolute;
+  width: 801px;
+  min-height: 480px;
+  background-color: #f7fcff;
+  left: 198px;
+  top: 0;
+  border: 1px solid #4fa3ef;
+  z-index: -1;
+  display: none;
+}
+.borderRight{
+  border-bottom:1px solid #4fa3ef!important;
+  border-top:1px solid #4fa3ef!important;
+  border-right: 0px solid #4fa3ef!important;
+  background-color: #f7fcff;
+}
+
+.index_lunbo_ul_zilei_dl{
+  width: 760px;
+  margin: 0 20px;
+  padding: 8px 0 5px;
+  line-height: 1;
+  border-bottom: 1px dashed #bfbfbf;
+}
+.index_lunbo_ul_zilei_dl dt{
+  text-align: left;
+  color: #188ae7;
+  font-size: 14px;
+  cursor: pointer;
+}
+.index_lunbo_ul_zilei_dl dd{
+  text-align: left;
+}
+
+
+.guanggao_current{
+  border-bottom: 2px solid #188ae7;
+}
+.zuixiaji{
+  display: inline-block;
+  cursor: pointer;
+  margin: 3px 0;
+  padding: 0 15px;
+  border-right: 1px solid #ddd;
+}
+.zuixiaji:hover{
+  color: #188ae7;
+}
+.dashed2{
+  height: 100%;
+  /*border-bottom:1px dashed #ddd;*/
+  border-bottom:1px dashed #ddd;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*width: 100%;*/
+  margin-right: 10px;
+  cursor: pointer;
+}
+.index_lunbo_div_guanggao_con_ul li{
+  cursor: pointer;
+}
+.guanggao{
+  cursor: pointer;
+}
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 500px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+.louceng_con_lunbo .ant-carousel .slick-slide {
+  height: 300px;
+}
+.ant-carousel .slick-slide img{
+  width: 100%;
+  /*height: 500px;*/
+}
+.louceng3_con_div_con1_lunbo .ant-carousel .slick-slide {
+  height: 235px;
+}
+.news_zuo_head_div1 .ant-carousel .slick-slide {
+  height: 225px;
+}
+.index_lunbo_ul_fenlei>li.borderRight{
+  border-left: 1px solid #4fa3ef;
+}

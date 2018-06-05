@@ -1,0 +1,68 @@
+.personal_jifen_title{
+  width: 948px;
+  height: 125px;
+  margin-left: 20px;
+  background-color: #fafafa;
+  border: 1px solid #dfdfdf;
+}
+.personal_jifen_title_div1{
+  width: 225px;
+  border-right: 1px solid #dfdfdf;
+  margin-top: 35px;
+  text-align: center;
+}
+.personal_jifen_title_div1_p{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.personal_jifen_title_div1_p1{
+  font-size: 20px;
+  font-weight: bold;
+  color: #b5b5b6;
+  margin-bottom: 0px;
+}
+.personal_jifen_title_div2{
+  width: 490px;
+  text-align: center;
+  margin-top: 55px;
+}
+.personal_jifen_title_div2_a{
+  padding: 10px 20px;
+  background-color: #fe8502;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.personal_Jifen_con1_table{
+  margin-left: 18px;
+  text-align: center;
+  font-size: 12px;
+  table-layout: fixed;
+  width: 100px;
+  border: 1px solid #e1e1e1;
+  padding-bottom: 20px;
+  border-collapse: collapse;
+}
+.personal_Jifen_con1_table td{
+  color: #888888;
+  padding: 10px 5px;
+  font-size: 14px;
+  text-align: center;
+}
+.personal_Jifen_con1_table tr th{
+  padding: 10px 5px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  color: #666666;
+  text-align: center;
+}
+.personal_Jifen_con1_table tr{
+  border-bottom: 1px solid #f5f5f5;
+  width: 948px;
+}
+.jiantou{
+  margin-top: -5px;
+}
+.personal_Wodejifen_title1{
+  margin-top: -13px;
+}

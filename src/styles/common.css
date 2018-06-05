@@ -1,0 +1,350 @@
+body,div,span,ul,ol,li,dt,dl,h1,h2,h3,h4,h5,h6,a,hr,label,form,input,select,textarea,img,p {
+  font-family:微软雅黑;margin: 0;padding: 0;}
+/*通栏*/
+body{
+  min-width: 1200px;
+  overflow: auto;
+  color:#333;
+}
+.contain{
+  width: 1200px;
+  margin: 0 auto;
+}
+.container{
+  width: 100%;
+}
+
+
+/*字体*/
+.font12{
+  font-size: 12px;
+}
+.font14{
+  font-size: 14px;
+}
+.font16{
+  font-size: 16px;
+}
+.font18{
+  font-size: 18px;
+}
+.font20{
+  font-size: 20px;
+}
+/*加粗*/
+.bold{
+  font-weight: bold;
+}
+
+
+/*外上边距*/
+.marginTop5{
+  margin-top: 5px;
+}
+.marginTop10{
+  margin-top: 10px;
+}
+.marginTop20{
+  margin-top: 20px;
+}
+/*外下边距*/
+.marginBottom5{
+  margin-bottom: 5px;
+}
+.marginBottom10{
+  margin-bottom: 10px;
+}
+.marginBottom20{
+  margin-bottom: 20px;
+}
+/*外左边距*/
+.marginLeft5{
+  margin-left: 5px;
+}
+.marginLeft10{
+  margin-left: 10px;
+}
+.marginLeft20{
+  margin-left: 20px;
+}
+/*外右边距*/
+.marginRight5{
+  margin-right: 5px;
+}
+.marginRight10{
+  margin-right: 10px;
+}
+.marginRight20{
+  margin-right: 20px;
+}
+/*内边距*/
+.paddingRight5{
+  padding-right: 5px;
+}
+.paddingBottom20{
+  padding-bottom: 20px;
+}
+
+
+/*浮动*/
+.floatleft{
+  float: left;
+}
+.floatRight{
+  float: right;
+}
+/*清除浮动*/
+.clear{
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.timeDiv{
+  display: inline-block;
+}
+/*隐藏*/
+.display{
+  display: none;
+}
+.fenlei div.display2{
+  display: block;
+  z-index: 9;
+  top: 10px;
+}
+
+/*下边框*/
+.bordorBottom{
+  border-bottom: 1px solid #cccccc;
+}
+/*上边框*/
+.bordorTop{
+  border-top: 1px solid #cccccc;
+}
+/*左边框*/
+.bordorLeft{
+  border-left: 1px solid #cccccc;
+}
+/*右边框*/
+.bordorRight{
+  border-right: 1px solid #cccccc;
+}
+
+
+/*hover显示手的形状*/
+.cursor{
+  cursor: pointer;
+}
+
+/*颜色*/
+.gray{
+  color: #999999;
+}
+.red{
+  color: #CC0000!important;
+}
+.orange{
+  color: #f68c00!important;
+}
+.orange1{
+  color: #ff6767!important;
+}
+.blue{
+  color: #188ae7!important;
+}
+.red1{
+  color: #ff0000;
+}
+.div{
+  padding: 20px 0;
+  background-color: #F1F1F1;
+
+}
+.white{
+  background-color: #ffffff;
+}
+.white1{
+  color: #ffffff;
+}
+.black{
+  color: #000000;
+}
+
+
+/*去掉a的下划线*/
+a{
+  text-decoration: none;
+}
+
+
+/*去掉ul li自带样式*/
+ul li{
+  list-style: none;
+}
+
+
+/*字体加粗*/
+.fontWeight{
+  font-weight: bold;
+}
+/*虚线*/
+.dashed{
+  border: 1px dashed #e1e1e1;
+}
+
+/*字体样式*/
+.fontFamily{
+  font-family: '宋体';
+}
+
+/*超出隐藏并且省略号显示*/
+.hid{
+  word-break:keep-all;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+/*相对定位*/
+.relative{
+  position: relative;
+}
+
+
+/*线*/
+.xian{
+  height: 20px;
+  background-color: transparent;
+}
+.shu{
+  border-right: 1px solid #e2e2e2;
+  height: 14px;
+  width: 1px;
+  margin-top: 18px;
+  margin-left: 20px;
+}
+/*分页*/
+.personal_xiangqing_title_div3_span3{
+  margin-right: 230px;
+}
+/*文字居中*/
+.center{
+  text-align: center;
+}
+/*收藏的小图比例*/
+.shoucang_img{
+  width: 50px;
+  height: 27px;
+}
+/*划掉*/
+.text_del{
+  text-decoration:line-through;
+}
+
+
+/*加入购物车成功*/
+.buycar_ok{
+  background-color: #f68b00;
+  opacity: 0.7;
+  width: 100%;
+  height: 55px;
+  line-height: 55px;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+.buycar_no{
+  width: 260px;
+  height: 160px;
+  position: fixed;
+  top: 45%;
+  left: 45%;
+  border: 1px solid #cccccc;
+  z-index: 9999;
+}
+.buycar_no_title{
+  background-color: #f8f8f8;
+  height: 45px;
+  line-height: 45px;
+  text-indent: 20px;
+}
+.buycar_no_con{
+  height: 113px;
+  background-color: #ffffff;
+}
+.buycar_no_con_span1{
+  background-color: #188ae7;
+  width: 30px;
+
+  text-align: center;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.buycar_no_con_p1{
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 21px;
+}
+.buycar_no_con_p{
+  padding-top: 25px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.buycar_no_cha{
+  float: right;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+.personalCon1_table_div{
+  border: 1px solid #ffffff;
+  height: 152px;
+  text-align: center;
+}
+.tuijian_border{
+  /*margin-top: 20px;*/
+  margin-bottom: 20px;
+}
+.tipsImg{
+  width: 16px;
+  height: 16px;
+}
+
+.timeDiv span{
+  color: #188ae7;
+}
+.customerServiceHotline{
+  margin-top: 35px;
+}
+.allImages{
+  width: 100%;
+}
+.bgLingQuHead{
+  display: block;
+  width: 100%;
+  height: 270px;
+  background: url("../images/youhuiquan/banner.png") no-repeat;
+  background-position: center center;
+}
+.memberCentre{
+  width: 1000px;
+  float: right;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.memberCentre>div{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+

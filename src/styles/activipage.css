@@ -1,0 +1,23 @@
+.iframes{
+    width: 100%;
+    min-height: 1643px;
+}
+#topdiv2s{
+    display: none;
+    background: rgba(246,139,0, .7);
+    position: fixed;
+    margin: auto;
+    height: 55px;
+    width: 200px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 55px;
+    color: #fff;
+    z-index: 50;
+    font-size: 18px;
+    font-weight: bold;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}

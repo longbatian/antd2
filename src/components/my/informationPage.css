@@ -1,0 +1,95 @@
+.ifmtpBoxs{
+	width: 1200px;
+	margin: auto;
+	padding: 20px 0;
+}
+.contentBox2{
+	background: #F1F1F1;
+}
+.ifmtpHead{
+	padding: 10px 10px;
+	box-sizing: border-box;
+	background: #fff;
+	margin-bottom: 10px;
+
+}
+.ifmtpHead p{
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+}
+.ifmtpBoxs .personal_xiangqing_title{
+	padding: 20px 0;
+}
+.infmConD{
+	padding:0 20px;
+}
+.infmConD>span{
+	display: inline-block;
+	width: 70px;
+	vertical-align: top;
+	margin-top: 10px;
+}
+.infmConD3>span{
+	width: 180px;
+	text-align: right;
+	margin-bottom: 30px;
+}
+/*.infmConD3{*/
+	/*margin-bottom: 30px;*/
+/*}*/
+.infmConD .personal_Jibenxinxi_title_span{
+	width: 300px;
+	vertical-align: top;
+}
+.infmConD .personal_Jibenxinxi_title_span2{
+	width: 600px;
+	vertical-align: top;
+	overflow: hidden;
+	display: inline-block;
+	margin-top: 3px;
+	margin-left: 15px;
+}
+.infmConD .ant-upload.ant-upload-select,.infmConD .ant-upload-list{
+	float: left;
+}
+.infmConD .ant-upload-list-item{
+	margin: 0 10px;
+}
+.ant-checkbox-wrapper + .ant-checkbox-wrapper{
+	margin: 0;
+}
+.infmConD2{
+	padding: 10px 20px;
+	margin:0 10px;
+	background-color: #f7f7f7;
+}
+.infmConD2 .ant-checkbox-wrapper{
+	width: 125px;
+}
+.inforButtonBox{
+	text-align: center;
+	background: #fff;
+	padding: 0 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+.dingdan_div{
+  border: 1px solid #e0e0e0;
+}
+.dingdan_div_p{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.dingdan_div_div{
+  background-color: #fef5e5;
+  border: 1px solid #fef5e5;
+  width: 1160px;
+  margin-left: 20px;
+}
+.dingdan_div_p_span{
+  width: 100px;
+  display: inline-block;
+  text-align: right;
+  color: #666666;
+}
+.dingdan_div_p_span1{
+  background: url("../../images/buycar/zffsBg1.png") no-repeat;
+  display: inline-block;
+  width: 122px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  padding-right: 20px;
+}
+.dingdan_div_p_span1_img{
+  margin-top: -2px;
+}
+.dingdan_div_div_p{
+  font-weight: bold;
+  font-size: 18px;
+}
+.dingdan_div_p_span2{
+  background: url("../../images/buycar/zffsBg1.png") no-repeat;
+  display: inline-block;
+  width: 125px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  padding-right: 10px;
+  cursor: pointer;
+}
+.dingdan_div_p_span3{
+  cursor: pointer;
+  background: url("../../images/buycar/zffsBg2.png") no-repeat;
+}
+.dingdan_div_div1{
+  width: 1160px;
+  border-top: 1px solid #cccccc;
+  margin-left: 20px;
+  text-align: center;
+}
+.dingdan_div_div1_div{
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  background-color: #fe0100;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.dingdan_p_span{
+  background-color: #188ae7;
+  padding: 2px 5px;
+  display: inline-block;
+  color: #ffffff;
+}
+.payImgs{
+  display: block;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+}

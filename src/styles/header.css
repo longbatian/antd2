@@ -1,0 +1,240 @@
+#header .head_box{
+   background: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+  height: 40px;
+  font-size: 12px;
+  line-height: 40px;
+}
+.header_top div{
+  float: left;
+  width: 500px;
+}
+.header_top ul li{
+  float: left;
+}
+.gray{
+  color: #4d4d4d;
+}
+
+/*--logo+搜索框---*/
+.head_logo{
+  margin-top: 15px;
+  height: 110px;
+}
+.head_logo .logo_a{
+  width: 300px;
+  padding-top: 5px;
+}
+.head_logo .logo_b{
+  width: 520px;
+  padding-left: 1px;
+  padding-top: 20px;
+}
+.logo_b .h_search{
+  /*border: 1px solid #50a3ef;*/
+  /*border-right: none;*/
+  /*line-height: 24px;*/
+  /*padding: 5px 2px;*/
+  /*font-size: 14px;*/
+  /*height: 42px;*/
+  /*width: 420px;*/
+  /*outline: none;*/
+  /*text-indent: 10px;*/
+  height: 42px;
+}
+.logo_b .h_btn{
+  background: #198aea;
+  color: #fff;
+  width: 80px;
+  height: 42px;
+  line-height: 24px;
+  border: none;
+
+  letter-spacing: 2px;
+}
+.logo_b  .ant-btn > i,.logo_b  .ant-btn > span{
+  color: #fff;
+}
+.ant-btn-primary span{
+  color: #fff;
+}
+.logo_b .ant-input{
+  border-radius: 0;
+  font-size: 15px;
+}
+.logo_b .ant-btn-lg{
+  border-radius: 0;
+  font-size: 15px;
+  padding: 0 22px;
+  height: 42px;
+}
+.head_logo_div{
+  padding-top: 10px;
+  height: 30px;
+  width: 500px;
+  font-size: 12px;
+
+}
+.head_logo_div span{
+  color: #ff8601;
+  font-size: 12px;
+}
+
+
+/*------药品分类--------*/
+.container_btn{
+  background-color: #188ae7;
+  height: 40px;
+}
+.header_allfenlei{
+  background-color: #004278;
+  height: 40px;
+  width: 200px;
+  line-height: 40px;
+  text-align: center;
+}
+.header_allfenlei_div{
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+/*---------菜单栏分类-------*/
+.header_cd ul li{
+  float: left;
+  text-align: center;
+  color: #ffffff!important;
+  height: 40px;
+  line-height: 40px;
+  border-right: 1px solid #3a9be7;
+  font-size: 16px;
+  padding: 0 25px;
+  cursor: pointer;
+}
+.header_cd ul li:hover{
+  background-color: #1478cd;
+}
+.header_cd ul li.btn_Header{
+  background-color: #1478cd;
+}
+.header_cd ul li a{
+ color: #ffffff;
+}
+.header_cd ul{
+  margin-bottom: 0px;
+}
+/*聚创社区*/
+.header_allfenlei_img{
+  margin-top: -4px;
+}
+/*------购物车-------*/
+.head_car{
+  margin: 20px 0 0 20px;
+  width: 160px;
+  height: 42px;
+  line-height: 42px;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  cursor: pointer;
+}
+.head_car_img{
+  margin-top: -4px;
+}
+
+/*在线客服*/
+.head_tel{
+  width: 120px;
+  margin-left: 75px;
+  margin-top: 15px;
+}
+.head_tel div p{
+  margin-bottom: 5px;
+}
+.head_tel_img{
+  margin-top: 3px;
+}
+
+
+.head_shouji{
+  position: absolute;
+  bottom: -163px;
+  left: 140px;
+}
+.head_rexian_ul{
+  position: absolute;
+  /*bottom: -170px;*/
+  left: 230px;
+  top: 100%;
+  background-color: #ffffff;
+  width: 180px;
+  text-align: center;
+  border: 1px solid #c3c3c3;
+  border-top: none;
+  z-index: 999;
+  overflow: hidden;
+  padding: 0 15px 6px;
+  min-width: 185px;
+}
+.header_top ul.head_rexian_ul>li{
+  border-bottom: 1px dashed #c3c3c3;
+  color: #188ae7;
+  float: none;
+  text-align: left;
+  white-space:nowrap;
+}
+.head_rexian_current{
+  background-color: #ffffff;
+}
+.head_rexian{
+  padding: 0 10px;
+}
+
+
+/*头部搜索框*/
+.sousuokuang{
+  position: absolute;
+  top: 61px;
+  left: 1px;
+  width: 420px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  text-indent: 10px;
+  z-index: 1000;
+}
+.logo_b .ant-input{
+  border-color: #40a9ff;
+}
+.sousuokuang li{
+  padding: 5px 0;
+  cursor: pointer;
+}
+.sousuokuang li:hover{
+  background-color: #cccccc;
+}
+.shoujiban{
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  background-color: #ffffff;
+  width: 300px!important;
+  border: 1px solid #cccccc;
+  z-index: 999;
+}
+.shoujiban span{
+  display: inline-block;
+  width: 130px;
+  text-align: center;
+  margin-top: 10px;
+}
+.shoujiban span:nth-of-type(1){
+  margin-left: 15px;
+}
+.head_shoujiban{
+  padding: 0 5px;
+}
+
+
+.header_fenlei .fenlei{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}

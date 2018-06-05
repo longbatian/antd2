@@ -1,0 +1,144 @@
+.personal_Youhuiquan_title_a{
+  background-color: #fe8502;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 5px;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+.personal_Youhuiquan_title_select{
+  text-align: center;
+  border: none;
+  background-color: #f5f5f5;
+  margin-left: 10px;
+  float: left;
+  padding: 5px;
+  outline: none;
+}
+.personal_Youhuiquan_title_div{
+  background-color: #f5f5f5;
+  width: 948px;
+  margin-left: 20px;
+}
+.personal_Youhuiquan_title_div span{
+  padding: 5px;
+  margin-left: 10px;
+}
+.personal_Youhuiquan_title_div_span{
+  padding: 0px 5px!important;
+  background-color: #ffffff;
+  border: 1px solid #cbcbcb;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 5px;
+  height: 23px;
+}
+.personal_Youhuiquan_title_div1{
+  margin-left: 20px;
+}
+.personal_Youhuiquan_title_div1 ul li {
+  width: 230px;
+  height: 265px;
+  float: left;
+  margin-right: 9px;
+  text-align: center;
+  background-image: url("../../images/personal/youhuiquanbg1.png");
+  position: relative;
+  margin-top: 20px;
+}
+.personal_Youhuiquan_title_div1_li{
+  background-image: url("../../images/personal/youhuiquanbg2.png")!important;
+}
+.personal_Youhuiquan_title_div1_p{
+  margin-top: 20px;
+}
+.personal_Youhuiquan_title_div1_p_span{
+  vertical-align: top;
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffffff;
+  display: inline-block;
+
+}
+.personal_Youhuiquan_title_div1_p_span1{
+  vertical-align: top;
+
+  font-size: 60px;
+  color: #ffffff;
+  display: inline-block;
+  /*margin-top: 10px;*/
+  font-weight: bold;
+}
+.personal_Youhuiquan_title_div1_p_span2{
+  display: inline-block;
+  position: absolute;
+  width: 210px;
+  border-bottom: 1px solid #ffffff;
+  top: 100px;
+  left: 10px;
+}
+.personal_Youhuiquan_title_div1_p_span3{
+  display: inline-block;
+  position: absolute;
+  top: 110px;
+  left: 25px;
+  color: #fff;
+}
+.personal_Youhuiquan_title_div1_p_span4{
+  display: inline-block;
+  position: absolute;
+  top: 155px;
+  left: 80px;
+  color: #24;
+}
+.personal_Youhuiquan_title_div1_p_span5{
+  display: inline-block;
+  position: absolute;
+  top: 181px;
+  left: 5px;
+  color: #c8c9ca;
+
+}
+.personal_Youhuiquan_title_div1_p_span6{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  color: #258fff;
+  cursor: pointer;
+}
+
+.personal_Youhuiquan_title_div1_p_a{
+  display: inline-block;
+  position: absolute;
+  top: 215px;
+  left: 73px;
+  border: 1px solid #258fff;
+  color: #258fff;
+  padding: 5px 20px;
+  border-radius: 17px;
+}
+.personal_Youhuiquan_title_div1_p_img{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.personal_Youhuiquan_title_div1_p_img1{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.personal_Youhuiquan_title_div1_p_img2{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.personal_Youhuiquan_title_a2{
+  padding: 5px 20px;
+  background-color: #188ae7;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-left: 5px;
+}

@@ -1,0 +1,57 @@
+.personalDianzihetong_title{
+  text-align: center;
+  font-size: 24px;
+  padding-top: 10px;
+}
+.personalDianzihetong p{
+  margin-left: 20px;
+  text-indent: 40px;
+  margin-bottom: 0;
+  line-height: 25px;
+  margin-right: 20px;
+}
+.personalDianzihetong_title_biaoti1{
+  font-size: 18px;
+  font-weight: bold;
+}
+.personalDianzihetong_con{
+  margin-right: 450px;
+}
+.personalDianzihetong_con1{
+  margin-right: 550px;
+}
+.personalDianzihetong_inp{
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  outline-color: #ffffff;
+}
+.personalDianzihetong_btn{
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  outline-color: #ff0000;
+  margin: 0 auto;
+}
+.text{
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 15px;
+}
+.qianyue{
+  text-indent: 0px!important;
+}
+.qianyue1{
+  text-indent: 0px!important;
+  margin-top: 92px;
+}
+.personalDianzihetong_img{
+  width: 220px;
+  height: 220px;
+  position: absolute;
+  left: 95px;
+  top: -130px;
+}

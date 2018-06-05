@@ -1,0 +1,185 @@
+.zhongyao_bg{
+  background-image: url("../../images/zhongyao/bg.png");
+  padding-bottom: 20px;
+}
+.zhongyao_title{
+  background-color: #3c1707;
+  height: 55px;
+  line-height: 55px;
+  font-size: 16px;
+}
+.zhongyao_title span{
+  color: #d3c3a5;
+  margin-left: 30px;
+  cursor: pointer;
+}
+.zhongyao_M23{
+  margin-left: -23px;
+}
+
+
+
+/*排行榜*/
+.zhongyao_rank{
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+}
+.zhongyao_rank_title{
+  background-color: #ebebeb;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+.zhongyao_rank ul li{
+  width: 185px;
+  margin-left: 8px;
+  border-bottom: 1px dashed #ccc;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.zhongyao_rank ul li span{
+  font-size: 12px;
+  margin-left: 5px;
+}
+.zhongyao_rank_con_zheng{
+  width: 69px;
+  height: 69px;
+  border: 1px solid #ccc;
+}
+.zhongyao_rank_ul_li{
+  height: 35px;
+}
+.zhongyao_rank_ul_li span{
+  line-height: 2px;
+}
+.zhongyao_rank_ul_yuan{
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-top: -3px;
+  text-align: center;
+}
+.zhongyao_rank_ul{
+  margin-bottom: 0px;
+}
+.zhongyao_rank_ul_li1{
+  height: 200px;
+}
+.zhongyao_rank_ul_rank{
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  background-color: #ff0014;
+  width: 15px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+}
+
+.touming{
+  height: 80px;
+  width: 100%;
+  background-color: transparent;
+}
+.zhongyao_rank_ul_li_current{
+  height: 80px!important;
+}
+.zhongyao_rank_ul_img_current{
+  width: 55px;
+  height: 55px;
+}
+.zhongyao_rank_ul_span_current{
+  float: left;
+  width: 60px;
+  margin-top: 20px!important;
+  margin-left: 20px!important;
+}
+
+
+
+
+/*右侧内容*/
+.zhongyao_right{
+  width: 990px;
+}
+.zhongyao_yangsheng_con{
+  border-top: 2px solid #dd4322;
+}
+.zhongyao_yangsheng_con_span{
+  color: #dd4322;
+  margin-top: 10px;
+}
+.zhongyao_yangsheng_con_img{
+  width: 306px;
+  height: 565px;
+}
+.zhongyao_yangsheng_con_img1{
+  width: 430px;
+  margin-left: 2px;
+  height: 355px;
+}
+.zhongyao_yangsheng_con_img2{
+  margin-left: 2px;
+  width: 250px;
+  height: 176px;
+}
+.zhongyao_yangsheng_con_img3{
+  width: 339px;
+  margin-left: 2px;
+  height: 210px;
+}
+.zhongyao_yangsheng_con_p span{
+  color: #ab5143;
+  float: left;
+  margin-left: 30px;
+  font-weight: bold;
+  font-family: '宋体';
+  font-size: 16px;
+  display: inline-block;
+  width: 70px;
+}
+.zhongyao_yangsheng_con_div{
+  position: absolute;
+  top: 290px;
+  left: 45px;
+}
+.zhongyao_yangsheng_con_div1{
+  position: absolute;
+  top: 400px;
+  left: 45px;
+}
+.zhongyao_yangsheng_con_div2{
+  position: absolute;
+  top: 310px;
+  left: 45px;
+}
+.marginLeft2{
+  margin-left: 2px;
+}
+.marginTop2{
+  margin-top: 2px;
+}
+
+
+.width110{
+  width: 110px;
+}
+.width69{
+  width: 66px;
+  height: 67px;
+  margin-left: 1px;
+}
+.width165{
+  width: 160px;
+  height: 20px;
+  padding-top: 6px;
+}
+.width100{
+  width: 90px;
+  height: 20px;
+  padding-top: 6px;
+}
