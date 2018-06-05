@@ -1071,9 +1071,9 @@ class Chanpinzhongxin extends React.Component {
      * */
     getCollection(id, is_f) {
         let is_fs = is_f > 0 ? 0 : id;
-        var arry2 = this.state.splist;
+        let arry2 = this.state.splist;
         // alert(typeof(id))
-        for (var i = 0, len = arry2.length; i < len; i++) {
+        for (let i = 0, len = arry2.length; i < len; i++) {
             if (arry2[i].id == id) {
                 arry2[i].is_f = is_fs;
             }
@@ -1656,18 +1656,19 @@ class Chanpinzhongxin extends React.Component {
                         <ul className='chanpinzhongxin_right_con_ul'>
                             {this.state.splist.map(function (item) {
                                 // console.log(item)
+                                let islimit=item.activity_xgsl>99999?``:item.activity_xgsl;
                                 let hprice = item.hprice ?
-                                    <div>价格：<span className='shangpinxiangqing_sp_xinxi_jiage_span'>
+                                    <div>价格：<span className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
                                                     {item.prices}
                                                     </span>
                                         活动：<span className='red fontS1'>{item.hprice}</span>
                                         <span
-                                            className='red font13 bold'>({item.activity_remark} {item.activity_xgsl})</span>
+                                            className='red font13 bold'>( {item.activity_remark} {islimit} )</span>
                                     </div> :
                                     <div>价格：<span className='red fontS1'>{item.prices}</span></div>;
                                 let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                                     : 'chanpinzhongxin_sp_img_shoucang';
-
+                                let maxNum=item.kcs>1000?`充裕`:item.kcs;
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.zxdw} data={item.id}/>
@@ -1697,7 +1698,7 @@ class Chanpinzhongxin extends React.Component {
                                             className='marginLeft20'>件装量：{item.jzl}</span>
                                             <div className='clear'/>
                                         </div>
-                                        <div><span>库存：{item.kcs}</span><span
+                                        <div><span>库存：{maxNum}</span><span
                                             className='marginLeft20 zhongbaozhuang'>中包装：{item.zxdw}</span>
                                             <div className='clear'/>
                                         </div>

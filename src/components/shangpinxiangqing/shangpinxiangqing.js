@@ -6,6 +6,7 @@ import Rank from '../zhongyao/zhongyao2';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
 import $ from 'jquery';
+import BigorSmallPage from './BigorSmallPage';
 import '../../styles/shangpinxiangqing/shangpinxiangqing.css'
 
 
@@ -17,8 +18,10 @@ class Shangpinxiangqing extends React.Component {
         super(props); //调用父类的构造方法；
         this.username = CoojiePage.getCoojie('username');
         this.token = CoojiePage.getCoojie('token');
+        this.user_id = CoojiePage.getCoojie('user_id');
         this.state = {
             spxq: [],
+            spxq2:[],
             com: [],
             lujin: InterfaceUtil.getImgUrl(),
             checked: '',
@@ -34,28 +37,34 @@ class Shangpinxiangqing extends React.Component {
             combination: [],
             arrTitle: [],
             arr2: {},
+
         }
     }
 
     //收藏的切换
-    colorOrder(e, flag) {
+    colorOrder(e, flag,i) {
         const that = this;
-        // console.log(d);
         let flags=flag !== 0 ? 10 : 5;
-        var spid = InterfaceUtil.getHashParameters().id;
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
+        let spid = InterfaceUtil.getHashParameters().id;
+
         $.ajax({
             url: InterfaceUtil.getUrl(flags),
             type: "post",
             data: {
-                "username": username, "token": token, "user_id": user_id, "sp_id": spid, 'id': flag
+                "username": that.username, "token": that.token, "user_id": that.user_id, "sp_id": spid, 'id': flag
             },
             dataType: "json",
             success: function (data) {
                 if (data.status === 1) {
-                    that.ajaxSpXq()
+                    let datas = that.state.spxq;
+                    if (data.data === 0) {
+                        datas[i].is_f = 0;
+                    } else {
+                        datas[i].is_f = data.data;
+                    }
+                    that.setState({
+                        spxq: datas,
+                    })
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -325,14 +334,16 @@ class Shangpinxiangqing extends React.Component {
                     if (data.data.combination.length !== 0) {
                         that.setState({
                             spxq: data.data.info,
+                            spxq2:  data.data.info,
                             arrTilte: [],
                             combination: data.data.combination,
                             arr2: data.data.combination,
-                        })
+                        });
                         that.calculationMoney(data.data.combination);
                     } else {
                         that.setState({
                             spxq: data.data.info,
+                            spxq2:  data.data.info,
                             combination: [],
                             arrTilte: [],
                             arr2: []
@@ -508,15 +519,16 @@ class Shangpinxiangqing extends React.Component {
                                 {/*商品图片*/}
                                 <div className='shangpinxiangqing_sp_img marginRight20 floatleft relative'
                                      data={item.is_f}>
-                                    <img src={datas.lujin + item.image} alt="" className='spxq_img'/>
+                                    <BigorSmallPage {...this.state.spxq[i]}/>
+                                    {/*<img src={datas.lujin + item.image} alt="" className='spxq_img'/>*/}
                                     {/*<div className='shangpinxiangqing_sp_img_shoucang display cursor' onClick={(e) => {*/}
                                     {/*this.color(e)*/}
                                     {/*}}>*/}
                                     {/*<img src={require("../../images/shangpingxiangqing/xin.png")}*/}
                                     {/*className='marginRight10' alt=""/>收藏*/}
                                     {/*</div>*/}
-                                    <div className={Collection2} onClick={(e) => {
-                                        this.colorOrder(e, item.is_f)
+                                    <div className={Collection2} data={item.is_f} onClick={(e) => {
+                                        this.colorOrder(e, item.is_f,i)
                                     }}>
                                         <img src={require("../../images/shangpingxiangqing/xinBai.png")}
                                              className='marginRight10' alt=""/>收藏

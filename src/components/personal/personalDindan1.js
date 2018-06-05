@@ -23,7 +23,7 @@ class PersonalDindan extends React.Component {
 
     //js事件
     dingdangenzong(e) {
-        var a = e.target.parentNode;
+        let a = e.target.parentNode;
         a.lastChild.className = 'personalCon1_xuanfu1 personalCon1_xuanfu ';
     }
 
@@ -49,9 +49,9 @@ class PersonalDindan extends React.Component {
         if (b == '待付款') {
             document.cookie = "ddzt=" + '1';
 
-            var username = CoojiePage.getCookie('username');
-            var token = CoojiePage.getCookie('token');
-            var user_id = CoojiePage.getCookie('user_id');
+            var username = CoojiePage.getCoojie('username');
+            var token = CoojiePage.getCoojie('token');
+            var user_id = CoojiePage.getCoojie('user_id');
             const that = this;
             //订单ajax
             $.ajax({
@@ -87,9 +87,9 @@ class PersonalDindan extends React.Component {
         else if (b == '待收货') {
             document.cookie = "ddzt=" + '3';
 
-            var username = CoojiePage.getCookie('username');
-            var token = CoojiePage.getCookie('token');
-            var user_id = CoojiePage.getCookie('user_id');
+            var username = CoojiePage.getCoojie('username');
+            var token = CoojiePage.getCoojie('token');
+            var user_id = CoojiePage.getCoojie('user_id');
             const that = this;
             //订单ajax
             $.ajax({
@@ -126,9 +126,9 @@ class PersonalDindan extends React.Component {
         else if (b == '已完成') {
             document.cookie = "ddzt=" + '4';
 
-            var username = CoojiePage.getCookie('username');
-            var token = CoojiePage.getCookie('token');
-            var user_id = CoojiePage.getCookie('user_id');
+            var username = CoojiePage.getCoojie('username');
+            var token = CoojiePage.getCoojie('token');
+            var user_id = CoojiePage.getCoojie('user_id');
             const that = this;
             //订单ajax
             $.ajax({
@@ -163,9 +163,9 @@ class PersonalDindan extends React.Component {
         else if (b == '全部') {
             document.cookie = "ddzt=" + '';
 
-            var username = CoojiePage.getCookie('username');
-            var token = CoojiePage.getCookie('token');
-            var user_id = CoojiePage.getCookie('user_id');
+            var username = CoojiePage.getCoojie('username');
+            var token = CoojiePage.getCoojie('token');
+            var user_id = CoojiePage.getCoojie('user_id');
             const that = this;
             //订单ajax
             $.ajax({
@@ -227,10 +227,10 @@ class PersonalDindan extends React.Component {
             document.cookie = "month=" + '6';
         }
 
-        var username = CoojiePage.getCookie('username');
-        var token = CoojiePage.getCookie('token');
-        var user_id = CoojiePage.getCookie('user_id');
-        var ddzt = CoojiePage.getCookie('ddzt');
+        var username = CoojiePage.getCoojie('username');
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
+        var ddzt = CoojiePage.getCoojie('ddzt');
         const that = this;
         //所有订单
 
@@ -308,10 +308,10 @@ class PersonalDindan extends React.Component {
             document.cookie = "ddzt=" + '9';
         }
 
-        var username = CoojiePage.getCookie('username');
-        var token = CoojiePage.getCookie('token');
-        var user_id = CoojiePage.getCookie('user_id');
-        var month = CoojiePage.getCookie('month');
+        var username = CoojiePage.getCoojie('username');
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
+        var month = CoojiePage.getCoojie('month');
         const that = this;
         //所有订单
         $.ajax({
@@ -476,41 +476,8 @@ class PersonalDindan extends React.Component {
 
     //分页
     fenye(e) {
-
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var ddzt = CoojiePage.getCoojie('ddzt');
-        var month = CoojiePage.getCoojie('month');
-        const that = this;
-        //订单ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(35),
-            type: "post",
-            data: {
-                "username": username,
-                "token": token,
-                "page": e,
-                "limit": 5,
-                "user_id": user_id,
-                "ddzt": ddzt,
-                "month": month
-            },
-            dataType: "json",
-            success: function (data) {
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
-            }
-        });
+        this.ajaxPersonDingDan(e);
     }
-
     componentDidMount() {
         this.ajaxPersonDingDan();
     }
@@ -519,18 +486,19 @@ class PersonalDindan extends React.Component {
         this.ajaxPersonDingDan();
     }
 
-    ajaxPersonDingDan() {
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var ddzt = CoojiePage.getCoojie('ddzt');
+    ajaxPersonDingDan(e) {
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let user_id = CoojiePage.getCoojie('user_id');
+        let ddzt = CoojiePage.getCoojie('ddzt');
         const that = this;
+        e=!e?1:e;
         //订单ajax
         $.ajax({
             url: InterfaceUtil.getUrl(35),
             type: "post",
             data: {
-                "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": ddzt
+                "username": username, "token": token, "page": e, "limit": 5, "user_id": user_id, "ddzt": ddzt
             },
             dataType: "json",
             success: function (data) {
@@ -579,19 +547,19 @@ class PersonalDindan extends React.Component {
                             this.color(e)
                         }}>全部
                         </li>
-                        <div className='shu floatleft'></div>
+                        <div className='shu floatleft'/>
                         <li className='shoucang_head cursor' onClick={(e) => {
                             this.color(e)
                         }}>待付款&nbsp;&nbsp;&nbsp;{this.state.ddzt0}</li>
-                        <div className='shu floatleft'></div>
+                        <div className='shu floatleft'/>
                         <li className='shoucang_head cursor' onClick={(e) => {
                             this.color(e)
                         }}>待收货&nbsp;&nbsp;&nbsp;{this.state.ddzt1}</li>
-                        <div className='shu floatleft'></div>
+                        <div className='shu floatleft'/>
                         <li className='shoucang_head cursor' onClick={(e) => {
                             this.color(e)
                         }}>已完成&nbsp;&nbsp;&nbsp;{this.state.ddzt2}</li>
-                        <div className='clear'></div>
+                        <div className='clear'/>
                     </ul>
                 </div>
                 <div className='bgWhite'>

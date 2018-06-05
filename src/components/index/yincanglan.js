@@ -97,9 +97,10 @@ class Yincanglan extends React.Component{
     var user_type=CoojiePage.getCoojie('user_type');
     var id=CoojiePage.getCoojie('user_id');
     this.ajaxBuyCarYinCang(id,user_type);
-    this.pubsub_token=PubSub.subscribe('PubSubmessage', (topic,message)=> {
+
+      PubSub.subscribe('PubSubmessage',() =>{
           this.ajaxBuyCarYinCang(id,user_type);
-    })
+      });
     //  广告位
 
   }
@@ -136,7 +137,7 @@ class Yincanglan extends React.Component{
       })
   }
     componentWillUnmount(){
-        PubSub.unsubscribe(this.pubsub_token);
+        PubSub.unsubscribe('PubSubmessage')
     }
   render(){
     return(

@@ -14,7 +14,6 @@ const Search = Input.Search;
 class HoversearchPage extends Component{
     constructor(props){
       super(props);
-      this.pubsub_token=null;
       this.loginPage=new LoginPage();
       this.state={
         car:'0',
@@ -93,9 +92,10 @@ class HoversearchPage extends Component{
     var user_type=CoojiePage.getCoojie('user_type');
     var id=CoojiePage.getCoojie('user_id');
     this.bycarNumber(id,user_type);
-    this.pubsub_token=PubSub.subscribe('PubSubmessage', function (topic,message) {
-      this.bycarNumber(id,user_type);
-    }.bind(this));
+
+      PubSub.subscribe('PubSubmessage',() =>{
+          this.bycarNumber(id,user_type);
+      });
     var _this=this;
     window.onscroll = function() {
       var a=$('.louceng_top');
@@ -202,7 +202,8 @@ class HoversearchPage extends Component{
     }
   }
   componentWillUnmount(){
-    PubSub.unsubscribe(this.pubsub_token);
+    // PubSub.unsubscribe(this.pubsub_token);
+      PubSub.unsubscribe('PubSubmessage')
     window.onscroll = '';
 
   }

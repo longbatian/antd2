@@ -109,17 +109,20 @@ class Headcon extends React.Component {
             }
         });
         this.bycarNumber(id, user_type);
-        this.pubsub_token = PubSub.subscribe('PubSubmessage', function (topic, message) {
+        // this.pubsub_token = PubSub.subscribe('PubSubmessage', function () {
+        //     this.bycarNumber(id, user_type);
+        // }.bind(this));
+        PubSub.subscribe('PubSubmessage',() =>{
             this.bycarNumber(id, user_type);
-        }.bind(this));
+        });
     }
 
     componentWillUnmount() {
-        PubSub.unsubscribe(this.pubsub_token);
+        PubSub.unsubscribe('PubSubmessage')
     }
 
     bycarNumber(id, user_type) {
-        var that = this;
+        let that = this;
         $.ajax({
             url: InterfaceUtil.getUrl(0),
             type: "post",
@@ -241,4 +244,3 @@ class Headcon extends React.Component {
 }
 
 export default withRouter(Headcon);
-// export default Headcon
