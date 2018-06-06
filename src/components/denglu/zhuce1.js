@@ -685,9 +685,12 @@ class Zhuce extends React.Component {
             </div>
             <div className='zhuce_con_form_p1 relative'>
               <span className='floatleft zhuce_con_form_p_span1 '/>
-              <span> <input className="jieshou6" type="checkbox" name="jieshou" value="接受"
+              <p>
+                  <input className="jieshou6" type="checkbox" name="jieshou" value="接受"
                             onChange={this.handleChange.bind(this, 'jieshou')}/>
-                <span>我已阅读并接受</span> <Link to="/Dianzihetong"> 《用户协议》</Link></span>
+                <span>我已阅读并接受</span>
+                  <Link to="/Dianzihetong" target='_target'> 《用户协议》</Link>
+              </p>
               <span className='red1 font14  tishi tishi2'/>
               <div className='clear'/>
             </div>
@@ -725,13 +728,6 @@ class Zhuce extends React.Component {
       </div>
     );
   }
-
-  componentDidMount() {
-    // (function(AAA){
-    //   ReactDOM.render(<City/>, AAA);
-    // })(document.getElementById("aaa"));
-  }
 }
 
 export default withRouter(Zhuce);
-// export default Zhuce;

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import InterfaceUtil from '../../util/InterfaceUtil';
-import './bigorSmallPage.css';
-import $ from 'jquery';
+import ReactImageZoom from 'react-image-zoom';
 
 class BigorSmallPage extends Component{
     constructor(props) {
@@ -11,19 +10,14 @@ class BigorSmallPage extends Component{
         }
     }
     render() {
-        console.log(this.props)
         let datas = this.props;
+        const props = {width: 346, height: 346, zoomWidth: 500, img: this.state.lujin + datas.image};
         return (
             <div>
-                <img src={this.state.lujin + datas.image} alt="" className='spxq_img'/>
+                <ReactImageZoom {...props} />
             </div>
     )
     }
-    componentDidUpdate (){
-
-
-    }
-
 
     }
   //  {/*<img src={this.state.lujin + datas.image} alt="" className='spxq_img'/>*/}

@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link,HashRouter } from "react-router-dom";
-// import createBrowserHistory from 'history/createBrowserHistory'
+import { BrowserRouter as Router, Route, Link,HashRouter,Switch} from "react-router-dom";
 
-// const history = createBrowserHistory()
-
-// import './index.css';
-// import App from './App';
 import Denglu from './pages/denglu';
 import Index1 from './pages/index1';
 import registerServiceWorker from './registerServiceWorker';
@@ -32,16 +27,17 @@ import HelpZx from './pages/helpZx';
 import Xiangqing from "./pages/personalXiangqing"; //详情
 import NewXq from './pages/newXQ';
 import NewZX from './pages/newZX';
+import Header from './pages/Header1'
 import InformationPage from "./components/my/InformationPage"; //新用户填写信息
 
 ReactDOM.render((
     <HashRouter>
         <div>
             <Route exact path="/" component={Index1}/>
-            <Route path="/Denglu" component={Denglu} />
+            <Route path="/Denglu" component={Denglu}/>
           	<Route path="/Index" component={Index1} />
-          	<Route path="/Chanpinzhongxin" component={Chanpinzhongxin} />
-            <Route  path="/Shangpinxiangqing" component={Shangpinxiangqing} />
+            <Route path="/Chanpinzhongxin" component={Chanpinzhongxin} />
+            <Route path="/Shangpinxiangqing" component={Shangpinxiangqing} />
             <Route path="/Zhuce" component={Zhuce} />
             <Route  path="/Zhaohui" component={Zhaohui} />
             <Route path="/Personal" component={Personal} />

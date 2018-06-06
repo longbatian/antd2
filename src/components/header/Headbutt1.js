@@ -38,7 +38,7 @@ class Headbutt extends React.Component{
         <div className="header_cd floatleft">
           <ul>
             <li>
-              <Link to="/#">
+              <Link to="/Index">
               首页
               </Link>
             </li>

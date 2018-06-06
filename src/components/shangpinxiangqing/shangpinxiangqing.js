@@ -21,7 +21,6 @@ class Shangpinxiangqing extends React.Component {
         this.user_id = CoojiePage.getCoojie('user_id');
         this.state = {
             spxq: [],
-            spxq2:[],
             com: [],
             lujin: InterfaceUtil.getImgUrl(),
             checked: '',
@@ -334,7 +333,6 @@ class Shangpinxiangqing extends React.Component {
                     if (data.data.combination.length !== 0) {
                         that.setState({
                             spxq: data.data.info,
-                            spxq2:  data.data.info,
                             arrTilte: [],
                             combination: data.data.combination,
                             arr2: data.data.combination,
@@ -343,7 +341,6 @@ class Shangpinxiangqing extends React.Component {
                     } else {
                         that.setState({
                             spxq: data.data.info,
-                            spxq2:  data.data.info,
                             combination: [],
                             arrTilte: [],
                             arr2: []

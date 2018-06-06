@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Input,Button,Select,Pagination,Modal   } from 'antd';
+import {Link} from 'react-router-dom';
 import '../../styles/personal/personalDianzihetong.css';
 
 const confirm = Modal.confirm;
@@ -56,6 +57,13 @@ class PersonalDianzihetong extends React.Component {
 
 
   render() {
+      let myDate = new Date();
+      let years= myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+      let month=  myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+      let date=  myDate.getDate();        //获取当前日(1-31)
+      month=month>10?month:`0`+month;
+      date=date>10?date:`0`+date;
+      let todate=years+`年`+month+`月`+date+`日`;
     return (
       <div className=' width988 floatRight'>
         {/*电子合同标题*/}
@@ -220,13 +228,21 @@ class PersonalDianzihetong extends React.Component {
           <p>3、未尽事宜，双方可致电或在线协商解决，协商不成可向甲方所在当地法院提供诉讼；</p>
           <p>4、本协议对甲乙双方具有同等的法律效力，乙方有权利在线打印本协议。</p>
           <p className='fontWeight'>本协议在乙方实施网上交易后生效。</p>
-          <p className='qianyue1'><span className='personalDianzihetong_con'>甲方：四川聚创医药贸易有限公司</span><span>乙方：</span></p>
+          <p className='qianyue1'><span className='personalDianzihetong_con'>甲方：四川聚创医药贸易有限公司</span>
+              <span>乙方：</span></p>
           <p className='qianyue relative'>
-            <span className='personalDianzihetong_con1'>2017年12月04日</span>
-            <span>2017年12月04日</span>
+            <span className='personalDianzihetong_con1'>{todate}</span>
+            <span>{todate}</span>
             <img src={require("../../images/personal/jldz.png")} className='personalDianzihetong_img' />
           </p>
-          <p className='text'><button className='personalDianzihetong_btn'>确定签约</button></p>
+          <p className='text'>
+              <Link to='/Zhuce'>
+                  <button className='personalDianzihetong_btn'>
+                      确定签约
+                  </button>
+              </Link>
+
+          </p>
 
         </div>
       </div>

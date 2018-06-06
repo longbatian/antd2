@@ -4,6 +4,7 @@ import {Pagination} from 'antd';
 import Tuijian from '../common/tuijian';
 // import $ from '../../js/jquery.min';
 import InterfaceUtil from '../../util/InterfaceUtil';
+import LoginPage from '../../util/LoginPage';
 import CoojiePage from '../../util/CoojiePage';
 import {withRouter, Link} from "react-router-dom";
 
@@ -13,6 +14,7 @@ import $ from 'jquery';
 class Chanpinzhongxin extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
+        this.loginPage=new LoginPage();
         this.state = {
             class: [],
             jx: [],
@@ -788,9 +790,9 @@ class Chanpinzhongxin extends React.Component {
         let pxtype = this.state.pxtype;
         const that = this;
         //商品列表
-        console.log('username=' + username + '&token=' + token + '&page=1&limit=20&jylx=' + jylx +
-            '&sid=' + sid + '&pid=' + pid + '&jx=' + jx + '&xq=' + xq + '&sid=' + b + '&pxnum=' + pxnum + '&pxtype=' + pxtype +
-            '&title=' + title + '&scqy=' + scqy + '&zjzx=' + zjzx);
+        // console.log('username=' + username + '&token=' + token + '&page=1&limit=20&jylx=' + jylx +
+        //     '&sid=' + sid + '&pid=' + pid + '&jx=' + jx + '&xq=' + xq + '&sid=' + b + '&pxnum=' + pxnum + '&pxtype=' + pxtype +
+        //     '&title=' + title + '&scqy=' + scqy + '&zjzx=' + zjzx);
         $.ajax({
             url: InterfaceUtil.getUrl(8),
             type: "post",
@@ -967,11 +969,7 @@ class Chanpinzhongxin extends React.Component {
         var a = e.target;
         var b = a.parentNode.lastChild;
         b = b.getAttribute('data')
-        // if (b == '0') {
-        //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang';
-        // } else {
-        //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current';
-        // }
+
 
     }
 
@@ -979,11 +977,6 @@ class Chanpinzhongxin extends React.Component {
         var a = e.target;
         var b = a.parentNode.lastChild;
         b = b.getAttribute('data')
-        // if (b == '0') {
-        //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang display';
-        // } else {
-        //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current ';
-        // }
     }
 
     img2(e) {
@@ -1000,18 +993,8 @@ class Chanpinzhongxin extends React.Component {
         if (a.children.length != 0) {
             var b = a.parentNode.lastChild;
             b = b.getAttribute('data')
-            // if (b == '0') {
-            //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang display';
-            // } else {
-            //   a.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current ';
-            // }
+
         } else {
-            // var c = e.target.parentNode.parentNode.lastChild.getAttribute('data');
-            // if (c == '0') {
-            //   a.parentNode.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang display';
-            // } else {
-            //   a.parentNode.parentNode.lastChild.className = 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current ';
-            // }
         }
 
     }
@@ -1409,10 +1392,12 @@ class Chanpinzhongxin extends React.Component {
                 console.log(textStatus);
             }
         });
+
     }
 
     componentWillReceiveProps() {
         this.ajaxProductList();
+        this.loginPage.openNewWindow();
     }
 
     changeVal(e, id) {
