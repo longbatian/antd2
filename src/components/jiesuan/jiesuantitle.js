@@ -168,6 +168,7 @@ class Jiesuan extends React.Component {
             },
             dataType: "json",
             success: function (data) {
+
                 if (data.data.length == 0) {
 
                 } else {

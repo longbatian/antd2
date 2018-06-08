@@ -58,7 +58,7 @@ class PersonalDindan extends React.Component {
                 url: InterfaceUtil.getUrl(35),
                 type: "post",
                 data: {
-                    "username": username, "&token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 1
+                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 1
                 },
                 dataType: "json",
                 success: function (data) {
@@ -96,7 +96,7 @@ class PersonalDindan extends React.Component {
                 url: InterfaceUtil.getUrl(35),
                 type: "post",
                 data: {
-                    "username": username, "&token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 3
+                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 3
                     // "username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id+"&ddzt=3"
                 },
                 dataType: "json",
@@ -135,7 +135,7 @@ class PersonalDindan extends React.Component {
                 url: InterfaceUtil.getUrl(35),
                 type: "post",
                 data: {
-                    "username": username, "&token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 4
+                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 4
                 },
                 dataType: "json",
                 success: function (data) {
@@ -172,7 +172,7 @@ class PersonalDindan extends React.Component {
                 url: InterfaceUtil.getUrl(35),
                 type: "post",
                 data: {
-                    "username": username, "&token": token, "page": 1, "limit": 5, "user_id": user_id
+                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id
                     // "username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id
                 },
                 dataType: "json",

@@ -112,14 +112,14 @@ class PersonalWodejifen extends React.Component {
             cons:data.data.cons,
           });
           that.refs.dingdan.className='display'
-        }           
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     // 状态码
                     console.log(XMLHttpRequest.status);
                     // 状态
                     console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
+                    // 错误信息
                     console.log(textStatus);
                 }
             });
@@ -130,7 +130,7 @@ class PersonalWodejifen extends React.Component {
     //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
-       
+
 
     //   }
     // };
@@ -172,14 +172,14 @@ class PersonalWodejifen extends React.Component {
             cons:data.data.cons,
           });
           that.refs.jifen.className='display'
-        }             
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     // 状态码
                     console.log(XMLHttpRequest.status);
                     // 状态
                     console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
+                    // 错误信息
                     console.log(textStatus);
                 }
             });
@@ -190,7 +190,7 @@ class PersonalWodejifen extends React.Component {
     //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
-       
+
 
     //   }
     // };
@@ -214,14 +214,14 @@ class PersonalWodejifen extends React.Component {
             cons:data.data.cons,
           });
           that.refs.jifen.className='display'
-        }              
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     // 状态码
                     console.log(XMLHttpRequest.status);
                     // 状态
                     console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
+                    // 错误信息
                     console.log(textStatus);
                 }
             });
@@ -232,7 +232,7 @@ class PersonalWodejifen extends React.Component {
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
     //     console.log(data)
-        
+
 
     //   }
     // };
@@ -309,9 +309,9 @@ class PersonalWodejifen extends React.Component {
             </thead>
             <tbody>
             {
-              this.state.wdjf.map(function (item){
+              this.state.wdjf.map(function (item,i){
                 return(
-              <tr>
+              <tr key={item.residue_jf+i+`wdjff`}>
                 <td>{item.jflx}</td>
                 <td>{item.addtime}</td>
                 <td>589546</td>
@@ -391,9 +391,9 @@ class PersonalWodejifen extends React.Component {
             </thead>
             <tbody>
             {
-              this.state.wdjf.map(function (item){
+              this.state.wdjf.map(function (item,i){
                 return(
-            <tr>
+            <tr key={i+'wdjfs'}>
               <td>兑换礼品</td>
               <td>{item.addtime}</td>
               <td><img src={require("../../images/personal/shang.png")} alt="" className='jiantou'/>{item.xfcount}</td>
@@ -401,7 +401,7 @@ class PersonalWodejifen extends React.Component {
               <td>{item.bz}</td>
             </tr>
                 )
-              },this )
+              })
             }
 
 
@@ -411,14 +411,14 @@ class PersonalWodejifen extends React.Component {
           {/*分页*/}
           <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
             <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination showQuickJumper={true}  defaultCurrent={1} defaultPageSize={15} total={this.state.cons} onChange={(e)=>{this.fenye(e)}}  /></span>
-            <div className='clear'></div>
+            <div className='clear'/>
           </div>
-          <div className='xian'></div>
+          <div className='xian'/>
         </div>
 
         {/*内容3*/}
         <div className='white personal_xiangqing_title con3 display'>
-          <div className='xian'></div>
+          <div className='xian'/>
           {/*总积分*/}
           <div className=' personal_jifen_title '>
             <div className='personal_jifen_title_div1 floatleft'>
@@ -469,9 +469,9 @@ class PersonalWodejifen extends React.Component {
             </thead>
             <tbody>
             {
-              this.state.zjjl.map(function (item){
+              this.state.zjjl.map(function (item,i){
                 return(
-                  <tr>
+                  <tr key={i+'zjjl'}>
                     <td>{item.name}</td>
                     <td>{item.createtime}</td>
                     <td>{item.is_luck}</td>

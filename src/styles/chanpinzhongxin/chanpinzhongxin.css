@@ -150,6 +150,7 @@
 /*右侧内容*/
 .chanpinzhongxin_right_con_div_ul {
   margin-bottom: 0;
+  overflow: hidden;
 }
 
 .chanpinzhongxin_right_con {
@@ -531,4 +532,12 @@
 .inStockBox{
   padding-top: 11px;
   padding-bottom: 10px;
+}
+.chanpinzhongxin_right_con_div ul li.isInStock{
+  width: 75px;
+  border: 0;
+  text-align: left;
+  text-indent: 1px;
+  padding:0 5px ;
+  font-size: 10px;
 }

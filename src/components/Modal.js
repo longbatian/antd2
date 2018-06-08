@@ -77,7 +77,8 @@ class Modal1 extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.state.lujin+this.props.data} alt=""  className='personalCon1_top_head_img' onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}/>
+        <img src={require('../images/favicon.ico')} alt=""  className='personalCon1_top_head_img'
+             onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}/>
         <Modal
           visible={this.state.visible}
           title="更换头像"

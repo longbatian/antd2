@@ -40,6 +40,7 @@ export default class InterfaceUtil{
     }
     static getHashParameters(){
         let url = document.location.href;
+        url= decodeURI(url)
         let arr = (url || '').replace(/^\#/, '').split('&');
         let params = {};
         for (let i = 0; i < arr.length; i++) {

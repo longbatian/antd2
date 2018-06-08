@@ -1,6 +1,6 @@
 import React from 'react';
 import Rank from '../zhongyao/zhongyao2';
-import {Pagination} from 'antd';
+import {Pagination, Switch} from 'antd';
 import Tuijian from '../common/tuijian';
 // import $ from '../../js/jquery.min';
 import InterfaceUtil from '../../util/InterfaceUtil';
@@ -14,7 +14,7 @@ import $ from 'jquery';
 class Chanpinzhongxin extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
-        this.loginPage=new LoginPage();
+        this.loginPage = new LoginPage();
         this.state = {
             class: [],
             jx: [],
@@ -45,6 +45,7 @@ class Chanpinzhongxin extends React.Component {
             scqy: '',//生产企业
             page: 1,//页数
             pxnum: 1,
+            is_kc:'',
         }
     }
 
@@ -347,7 +348,7 @@ class Chanpinzhongxin extends React.Component {
             type: "post",
             data: {
                 'username': username,
-                '&token': token
+                'token': token
             },
             dataType: "json",
             success: function (data) {
@@ -427,7 +428,7 @@ class Chanpinzhongxin extends React.Component {
             url: InterfaceUtil.getUrl(9),
             type: "post",
             data: {
-                'username': username, '&token': token, '&pid': b
+                'username': username, 'token': token, 'pid': b
             },
             dataType: "json",
             success: function (data) {
@@ -780,7 +781,8 @@ class Chanpinzhongxin extends React.Component {
             scqy = data.scqy,
             page = data.page,
             zjzx = data.zjzx,
-            pxnum = data.pxnum;
+            pxnum = data.pxnum,
+            is_kc=data.is_kc;
         var b = $('.zilei').attr('data');
         var c = $('.jixing').attr('data');
         var d = $('.xiaoqi').attr('data');
@@ -798,8 +800,8 @@ class Chanpinzhongxin extends React.Component {
             type: "post",
             data: {
                 'username': username, 'token': token, 'page': page, 'limit': 20, 'jylx': jylx,
-                'sid': sid, 'pid': pid, 'jx': jx, 'xq': xq, 'sid': b, 'pxnum': pxnum, 'pxtype': pxtype,
-                'title': title, 'scqy': scqy, 'zjzx': zjzx
+                'sid': sid, 'pid': pid, 'jx': jx, 'xq': xq, 'pxnum': pxnum, 'pxtype': pxtype,
+                'title': title, 'scqy': scqy, 'zjzx': zjzx,is_kc:is_kc
             },
             dataType: "json",
             success: function (data) {
@@ -979,25 +981,6 @@ class Chanpinzhongxin extends React.Component {
         b = b.getAttribute('data')
     }
 
-    img2(e) {
-        var a = e.target;
-        if (a.children.length != 0) {
-
-        } else {
-
-        }
-    }
-
-    img3(e) {
-        var a = e.target;
-        if (a.children.length != 0) {
-            var b = a.parentNode.lastChild;
-            b = b.getAttribute('data')
-
-        } else {
-        }
-
-    }
 
     //跳转
     xiangqing(e) {
@@ -1294,21 +1277,22 @@ class Chanpinzhongxin extends React.Component {
     }
 
     ajaxProductList() {
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var jylx = CoojiePage.getCoojie('jylx');
-        var user_id = CoojiePage.getCoojie('user_id');
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let jylx = CoojiePage.getCoojie('jylx');
+        let user_id = CoojiePage.getCoojie('user_id');
         //获取地址栏的值
-        var did = InterfaceUtil.getHashParameters().did;
-        var pid = InterfaceUtil.getHashParameters().pid;
-        var sid = InterfaceUtil.getHashParameters().sid;
-        var c = InterfaceUtil.getHashParameters().jx;
-        var d = InterfaceUtil.getHashParameters().xq;
-        var e = InterfaceUtil.getHashParameters().title;
-        var f = InterfaceUtil.getHashParameters().scqy;
-        var zjzx = InterfaceUtil.getHashParameters().zjzx;
-        var pxnum = InterfaceUtil.getHashParameters().pxnum,
-            pxtype = this.state.pxtype;
+        let did = InterfaceUtil.getHashParameters().did;
+        let pid = InterfaceUtil.getHashParameters().pid;
+        let sid = InterfaceUtil.getHashParameters().sid;
+        let c = InterfaceUtil.getHashParameters().jx;
+        let d = InterfaceUtil.getHashParameters().xq;
+        let e = InterfaceUtil.getHashParameters().title;
+        let f = InterfaceUtil.getHashParameters().scqy;
+        let zjzx = InterfaceUtil.getHashParameters().zjzx;
+        let pxnum = InterfaceUtil.getHashParameters().pxnum,
+            pxtype = this.state.pxtype,
+            is_kc=this.state.is_kc;
         $('.header_cd').find('li').removeClass();
         if (zjzx == "1") {
             $('.header_cd').find('li').eq(2).addClass('btn_Header');
@@ -1356,6 +1340,7 @@ class Chanpinzhongxin extends React.Component {
             title_fenlei: title_fenlei,
             zjzx: zjzx,
             page: 1,
+            is_kc:'',
         }, () => {
             if (e != null || !e) {
 
@@ -1370,7 +1355,7 @@ class Chanpinzhongxin extends React.Component {
                 'username': username, 'token': token, 'page': 1, 'limit': 20, 'jylx':
                 jylx, 'pid': pid, 'did': did, 'sid': sid,
                 'member_id': user_id, 'jx': c, 'xq': d, 'title': e
-                , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'zjzx': zjzx
+                , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'zjzx': zjzx,is_kc:is_kc
             },
             dataType: "json",
             success: function (data) {
@@ -1413,6 +1398,19 @@ class Chanpinzhongxin extends React.Component {
         if (show) {
             this.setState({splist: arr});
         }
+    }
+
+    /**
+     * checked
+     */
+    changeSwitch(checked) {
+        // console.log(`switch to ${checked}`);
+        let iskc=checked?1:2;
+        this.setState({
+            is_kc:iskc
+        },() =>{
+            this.ajaxProductLists();
+        })
     }
 
     render() {
@@ -1633,17 +1631,21 @@ class Chanpinzhongxin extends React.Component {
                                     }}>
                                     <span className='chanpinzhongxin_right_con_div_li4_span'>大图</span>
                                 </li>
-
-                                <div className='clear'></div>
+                                <li className='isInStock'>
+                                    <Switch checkedChildren="有货"
+                                            onChange={(e) => this.changeSwitch(e)}
+                                            unCheckedChildren="无货"/>
+                                </li>
                             </ul>
                         </div>
                         {/*商品信息*/}
                         <ul className='chanpinzhongxin_right_con_ul'>
                             {this.state.splist.map(function (item) {
                                 // console.log(item)
-                                let islimit=item.activity_xgsl>99999?``:item.activity_xgsl;
+                                let islimit = item.activity_xgsl > 99999 ? `` : item.activity_xgsl;
                                 let hprice = item.hprice ?
-                                    <div>价格：<span className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
+                                    <div>价格：<span
+                                        className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
                                                     {item.prices}
                                                     </span>
                                         活动：<span className='red fontS1'>{item.hprice}</span>
@@ -1653,7 +1655,7 @@ class Chanpinzhongxin extends React.Component {
                                     <div>价格：<span className='red fontS1'>{item.prices}</span></div>;
                                 let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                                     : 'chanpinzhongxin_sp_img_shoucang';
-                                let maxNum=item.kcs>1000?`充裕`:item.kcs;
+                                let maxNum = item.kcs > 1000 ? `充裕` : item.kcs;
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.zxdw} data={item.id}/>
@@ -1815,13 +1817,13 @@ class Chanpinzhongxin extends React.Component {
                                             this.fenye(e)
                                         }}/>
                         </div>
-                        <div className='clear'></div>
+                        <div className='clear'/>
                     </div>
                 </div>
                 {/*底部内容*/}
-                <div className='clear'></div>
+                <div className='clear'/>
                 <div className='contain chanpinzhongxin_bottom'>
-                    <div className='xian'></div>
+                    <div className='xian'/>
                     <div className="chanpinzhongxin_bottom_div">
                         <span className='floatleft marginRight20'>您是不是要找:</span>
                         <div className='floatleft'>
@@ -1858,7 +1860,7 @@ class Chanpinzhongxin extends React.Component {
                     <Tuijian data='6'/>
                 </div>
 
-                <div className='clear'></div>
+                <div className='clear'/>
             </div>
         );
     }

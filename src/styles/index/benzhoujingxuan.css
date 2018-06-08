@@ -564,6 +564,9 @@
   background-repeat: no-repeat;
   text-indent: 70px;
 }
+.louceng_bt{
+  overflow: hidden;
+}
 .louceng_bt a{
   color:#333;
 }

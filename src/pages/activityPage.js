@@ -40,7 +40,7 @@ class ActivityPage extends Component{
 
             this.setState({
 
-                src: 'http://new.scjuchuang.com/activitys/' + src,
+                src: 'http://www.scjuchuang.com/activitys/' + src,
                 height: heights,
             })
         }

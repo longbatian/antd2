@@ -42,7 +42,8 @@ class HeadTop extends React.Component{
     document.cookie = "token="+";expires=" + exp.toGMTString();
     document.cookie = "user_type="+";expires=" + exp.toGMTString();
     document.cookie = "jylx="+";expires=" + exp.toGMTString();
-    this.props.history.push('/Index');
+    // this.props.history.push('/Index');
+      window.location.reload();
   }
 
   huiyuan(e){

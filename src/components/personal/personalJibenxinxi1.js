@@ -59,12 +59,11 @@ class PersonalJibenxinxi extends Component {
         var old = a[0].value;
         var new1 = a[1].value;
         var new2 = a[2].value;
-        console.log(new1.length);
         if (old == '') {
             tishi[0].className = 'xiugaimima_div_p3 red'
             tishi[0].innerText = '旧密码不能为空'
         }
-        else if (new1 == '') {
+        else if (new1 === ''||new1 === ' ') {
             tishi[0].className = 'xiugaimima_div_p3 red'
             tishi[0].innerText = '新密码不能为空'
         }
@@ -72,7 +71,7 @@ class PersonalJibenxinxi extends Component {
             tishi[0].className = 'xiugaimima_div_p3 red'
             tishi[0].innerText = '密码长度为6到15位'
         }
-        else if (new2 == '') {
+        else if (new2 === '') {
             tishi[0].className = 'xiugaimima_div_p3 red'
             tishi[0].innerText = '两次密码不一致'
         }
@@ -95,13 +94,13 @@ class PersonalJibenxinxi extends Component {
                 },
                 dataType: "json",
                 success: function (data) {
-                    if (data.status == 0) {
+                    if (data.status === 0) {
                         tishi[0].className = 'xiugaimima_div_p3 red'
                         tishi[0].innerText = '旧密码错误'
                     } else {
-                        // alert(data.info);
-                        var a = document.getElementsByClassName('xiugaimima')
-                        var b = document.getElementsByClassName('xiugaimima_div')
+                        alert(data.info);
+                        let a = document.getElementsByClassName('xiugaimima')
+                        let b = document.getElementsByClassName('xiugaimima_div')
                         a[0].className = 'xiugaimima display'
                         b[0].className = 'xiugaimima_div display'
                         tishi[0].className = 'xiugaimima_div_p3 red display'
@@ -242,9 +241,7 @@ class PersonalJibenxinxi extends Component {
                     </div>
 
                     {/*修改密码*/}
-                    <div className='xiugaimima display'>
-
-                    </div>
+                    <div className='xiugaimima display'/>
                     <div className='xiugaimima_div display'>
                         <p className='xiugaimima_div_p'>修改密码</p>
                         <p className='xiugaimima_div_p2'><span

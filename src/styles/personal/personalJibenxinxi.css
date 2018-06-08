@@ -131,6 +131,7 @@
   height: 861px;
   background-color: #000000;
   opacity: 0.4;
+  z-index: 8;
 }
 .xiugaimima_div{
   width: 470px;
@@ -139,6 +140,7 @@
   margin-left: 269px;
   position: absolute;
   top: 100px;
+  z-index: 9;
 }
 .xiugaimima_div_p{
   height: 45px;

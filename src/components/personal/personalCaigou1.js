@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Tuijian from '../common/tuijian';
-import { Input,Button,Select,Pagination,Modal   } from 'antd';
+import {Input, Button, Select, Pagination, Modal} from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
 import '../../styles/personal/personalCaigou.css'
@@ -13,446 +13,481 @@ const confirm = Modal.confirm;
 
 //查询事件
 function handleChange(value) {
-  console.log(`selected ${value}`);
+    console.log(`selected ${value}`);
 }
+
 //分页
 function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
+    console.log('Page: ', pageNumber);
 }
 
 class PersonalCaigou extends React.Component {
 
-  constructor(props){
-    super(props); //调用父类的构造方法；
-    this.state={
-      zncg:[],
-      lujin:'http://www.scjuchuang.com/',
-      checked:'',
-      cons:''
-    }
-  }
-  state = {
-    loading: false,
-    visible: false,
-  }
-
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  }
-  handleOk = () => {
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 3000);
-  }
-  handleCancel = () => {
-    this.setState({ visible: false });
-  }
-  //全选
-  quanxuan(e){
-    var a =$('.quanxuan').eq(0).prop('checked');
-    if(a==true){
-      $('.shoucang_inp').prop('checked',true);
-      $('.quanxuan1').eq(0).prop('checked',true);
-    }else if(a==false){
-      $('.shoucang_inp').prop('checked',false);
-      $('.quanxuan1').eq(0).prop('checked',false);
-      return;
-    }
-  }
-  quanxuan1(e){
-    var a =$('.quanxuan1').eq(0).prop('checked');
-    if(a==true){
-      $('.shoucang_inp').prop('checked',true);
-      $('.quanxuan').eq(0).prop('checked',true);
-    }else if(a==false){
-      $('.shoucang_inp').prop('checked',false);
-      $('.quanxuan').eq(0).prop('checked',false);
-      return;
-    }
-  }
-
-  //加入购物车
-  buycar3(e){
-    var a =$('.caigou_tr');
-    var value =$('.shoucang_inp');
-    var id=[];
-    var num=[];
-    for(var i=0;i<a.length;i++){
-      var val=value.eq(i).prop('checked');
-      if(val==true){
-        var b=a.eq(i).attr('data');
-        var c=a.eq(i).attr('data-index');
-        id.push(b);
-        num.push(c);
-      }
-    }
-
-    // 请求
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
+    constructor(props) {
+        super(props); //调用父类的构造方法；
+        this.state = {
+            zncg: [],
+            lujin: 'http://www.scjuchuang.com/',
+            checked: '',
+            cons: ''
         }
-      }
-      return "";
     }
-    var username=getCookie('username');
-    var token=getCookie('token');
-    const that = this;
-    //智能采购
-    $.ajax({
-                url: InterfaceUtil.getUrl(32),
-                type: "post",
-                data: {
-    "username":username,"token":token,"goods_id":id,"goods_sl":num
-              },
-                dataType: "json",
-                success: function(data){
-         if(data.data=='1'){
-          var ok =document.getElementsByClassName('buycar_ok');
-          ok[0].className='buycar_ok';
-          var timer1 =window.setTimeout(function(){
-            ok[0].className='buycar_ok display';
-          },3000);
-        }else{
-          if(data.info!='token过期'){
-            var no =document.getElementsByClassName('buycar_no');
-            var no_span =document.getElementsByClassName('buycar_no_con_span');
-            no[0].className='buycar_no';
-            no_span[0].innerText=data.info;
-          }else{
-            window.location.href='#/Denglu';
-          }
+
+    state = {
+        loading: false,
+        visible: false,
+    }
+
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+    handleOk = () => {
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({loading: false, visible: false});
+        }, 3000);
+    }
+    handleCancel = () => {
+        this.setState({visible: false});
+    }
+
+    //全选
+    quanxuan(e) {
+        var a = $('.quanxuan').eq(0).prop('checked');
+        if (a == true) {
+            $('.shoucang_inp').prop('checked', true);
+            $('.quanxuan1').eq(0).prop('checked', true);
+        } else if (a == false) {
+            $('.shoucang_inp').prop('checked', false);
+            $('.quanxuan1').eq(0).prop('checked', false);
+            return;
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
+    }
+
+    quanxuan1(e) {
+        var a = $('.quanxuan1').eq(0).prop('checked');
+        if (a == true) {
+            $('.shoucang_inp').prop('checked', true);
+            $('.quanxuan').eq(0).prop('checked', true);
+        } else if (a == false) {
+            $('.shoucang_inp').prop('checked', false);
+            $('.quanxuan').eq(0).prop('checked', false);
+            return;
+        }
+    }
+
+    //加入购物车
+    buycar3(e) {
+        var a = $('.caigou_tr');
+        var value = $('.shoucang_inp');
+        var id = [];
+        var num = [];
+        for (var i = 0; i < a.length; i++) {
+            var val = value.eq(i).prop('checked');
+            if (val == true) {
+                var b = a.eq(i).attr('data');
+                var c = a.eq(i).attr('data-index');
+                id.push(b);
+                num.push(c);
+            }
+        }
+
+        // 请求
+        function getCookie(cookieName) {
+            var strCookie = document.cookie;
+            var arrCookie = strCookie.split("; ");
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (cookieName == arr[0]) {
+                    return arr[1];
                 }
-            });
-    // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
-    // ajax.open('post',InterfaceUtil.getUrl(32),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-
-    //   }
-    // };
-    id=JSON.stringify(id)
-    num=JSON.stringify(num)
-      console.log(id,num)
-    // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&goods_sl="+num);
-  }
-  buycar4(e){
-    var id =e.target.parentNode.parentNode.getAttribute('data');
-    var num =e.target.parentNode.parentNode.getAttribute('data-index');
-
-    // 请求
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
+            }
+            return "";
         }
-      }
-      return "";
-    }
-    var username=getCookie('username');
-    var token=getCookie('token');
-    var user_id=getCookie('user_id');
-    const that = this;
-    //智能采购
-    $.ajax({
-                url: InterfaceUtil.getUrl(11),
-                type: "post",
-                data: {
-    "username":username,"token":token,"goods_id":id,"spsl":num,"user_id":user_id
-              },
-                dataType: "json",
-                success: function(data){
-           if(data.data=='1'){
-          var ok =document.getElementsByClassName('buycar_ok');
-          ok[0].className='buycar_ok';
-          var timer1 =window.setTimeout(function(){
-            ok[0].className='buycar_ok display';
-          },3000);
-        }else{
-          if(data.info!='token过期'){
-            var no =document.getElementsByClassName('buycar_no');
-            var no_span =document.getElementsByClassName('buycar_no_con_span');
-            no[0].className='buycar_no';
-            no_span[0].innerText=data.info;
-          }else{
-            window.location.href='#/Denglu';
-          }
-        }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
+
+        var username = getCookie('username');
+        var token = getCookie('token');
+        const that = this;
+        //智能采购
+        id = JSON.stringify(id)
+        num = JSON.stringify(num)
+        $.ajax({
+            url: InterfaceUtil.getUrl(32),
+            type: "post",
+            data: {
+                "username": username, "token": token, "goods_id": id, "goods_sl": num
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.data == '1') {
+                    var ok = document.getElementsByClassName('buycar_ok');
+                    ok[0].className = 'buycar_ok';
+                    var timer1 = window.setTimeout(function () {
+                        ok[0].className = 'buycar_ok display';
+                    }, 3000);
+                } else {
+                    if (data.info != 'token过期') {
+                        var no = document.getElementsByClassName('buycar_no');
+                        var no_span = document.getElementsByClassName('buycar_no_con_span');
+                        no[0].className = 'buycar_no';
+                        no_span[0].innerText = data.info;
+                    } else {
+                        window.location.href = '#/Denglu';
+                    }
                 }
-            });
-    // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartadd",false);
-    // ajax.open('post',InterfaceUtil.getUrl(11),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        });
+        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
+        // ajax.open('post',InterfaceUtil.getUrl(32),false);
+        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        // ajax.onreadystatechange = function() {
+        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
+        //     var data=ajax.responseText;
+        //     data=JSON.parse(data);
 
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&spsl="+num+"&user_id="+user_id);
-  }
-  //分页
-  fenye(e){
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
-        }
-      }
-      return "";
+        //   }
+        // };
+
+
+        // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&goods_sl="+num);
     }
-    var username=getCookie('username');
-    var token=getCookie('token');
-    var user_id=getCookie('user_id');
-    var jylx=getCookie('jylx');
-    const that = this;
-    //智能采购
-    $.ajax({
-                url: InterfaceUtil.getUrl(33),
-                type: "post",
-                data: {
-    "username":username,"token":token,"user_id":user_id,"jylx":jylx,"page":e,"limit":12
-              },
-                dataType: "json",
-                success: function(data){
-             if(data.data.list.length==0){
 
-        }else{
-          that.setState({
-            zncg:data.data.list,
-            cons:data.data.cons
-          });
-          that.refs.shoucang.className='display'
-        }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
+    buycar4(e) {
+        var id = e.target.parentNode.parentNode.getAttribute('data');
+        var num = e.target.parentNode.parentNode.getAttribute('data-index');
+
+        // 请求
+        function getCookie(cookieName) {
+            var strCookie = document.cookie;
+            var arrCookie = strCookie.split("; ");
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (cookieName == arr[0]) {
+                    return arr[1];
                 }
-            });
-    // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
-    // ajax.open('post',InterfaceUtil.getUrl(33),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-    //     console.log(data)
-
-
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page="+e+"&limit=12");
-  }
-
-  componentDidMount(){
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
+            }
+            return "";
         }
-      }
-      return "";
+
+        var username = getCookie('username');
+        var token = getCookie('token');
+        var user_id = getCookie('user_id');
+        const that = this;
+        //智能采购
+        $.ajax({
+            url: InterfaceUtil.getUrl(11),
+            type: "post",
+            data: {
+                "username": username, "token": token, "goods_id": id, "spsl": num, "user_id": user_id
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.data == '1') {
+                    var ok = document.getElementsByClassName('buycar_ok');
+                    ok[0].className = 'buycar_ok';
+                    var timer1 = window.setTimeout(function () {
+                        ok[0].className = 'buycar_ok display';
+                    }, 3000);
+                } else {
+                    if (data.info != 'token过期') {
+                        var no = document.getElementsByClassName('buycar_no');
+                        var no_span = document.getElementsByClassName('buycar_no_con_span');
+                        no[0].className = 'buycar_no';
+                        no_span[0].innerText = data.info;
+                    } else {
+                        window.location.href = '#/Denglu';
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        });
+        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartadd",false);
+        // ajax.open('post',InterfaceUtil.getUrl(11),false);
+        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        // ajax.onreadystatechange = function() {
+        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
+        //     var data=ajax.responseText;
+        //     data=JSON.parse(data);
+
+        //   }
+        // };
+        // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&spsl="+num+"&user_id="+user_id);
     }
-    var username=getCookie('username');
-    var token=getCookie('token');
-    var user_id=getCookie('user_id');
-    var jylx=getCookie('jylx');
-    const that = this;
-    //智能采购
-    $.ajax({
-                url: InterfaceUtil.getUrl(33),
-                type: "post",
-                data: {
-   "username":username,"token":token,"user_id":user_id,"jylx":jylx,"page":1,"limit":12
-              },
-                dataType: "json",
-                success: function(data){
-                  console.log(data)
-            if(data.data.list.length==0){
 
-              }else{
-                that.setState({
-                  zncg:data.data.list,
-                  cons:data.data.cons
-                });
-                that.refs.shoucang.className='display'
-              }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
+    //分页
+    fenye(e) {
+        function getCookie(cookieName) {
+            var strCookie = document.cookie;
+            var arrCookie = strCookie.split("; ");
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (cookieName == arr[0]) {
+                    return arr[1];
                 }
-            });
-    // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
-    // ajax.open('post',InterfaceUtil.getUrl(33),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-    //     console.log(data)
+            }
+            return "";
+        }
+
+        var username = getCookie('username');
+        var token = getCookie('token');
+        var user_id = getCookie('user_id');
+        var jylx = getCookie('jylx');
+        const that = this;
+        //智能采购
+        $.ajax({
+            url: InterfaceUtil.getUrl(33),
+            type: "post",
+            data: {
+                "username": username, "token": token, "user_id": user_id, "jylx": jylx, "page": e, "limit": 12
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.data.list.length == 0) {
+
+                } else {
+                    that.setState({
+                        zncg: data.data.list,
+                        cons: data.data.cons
+                    });
+                    that.refs.shoucang.className = 'display'
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        });
+        // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
+        // ajax.open('post',InterfaceUtil.getUrl(33),false);
+        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        // ajax.onreadystatechange = function() {
+        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
+        //     var data=ajax.responseText;
+        //     data=JSON.parse(data);
+        //     console.log(data)
 
 
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page=1&limit=12");
-  }
+        //   }
+        // };
+        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page="+e+"&limit=12");
+    }
 
-  render() {
-    return (
-      <div className=' width988 floatRight'>
-        {/*最近订单标题*/}
-        <div className='personal_Wodejifen_title marginBottom20 margin13'>
-          <p className='marginLeft20 fontFamily fontWeight floatleft font20 '>智能采购</p>
-          <ul>
-            <li className='orange'>智能采购</li>
-            {/*<div className='shu floatleft'></div>*/}
-            {/*<li>采购计划</li>*/}
-            {/*<div className='shu floatleft'></div>*/}
-            {/*<li>求购信息</li>*/}
-          </ul>
-        </div>
+    componentDidMount() {
+        function getCookie(cookieName) {
+            var strCookie = document.cookie;
+            var arrCookie = strCookie.split("; ");
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (cookieName == arr[0]) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }
 
-        {/*内容*/}
-        <div className='white personal_xiangqing_title'>
-          {/*输入框*/}
-          <div className='personal_Dindan_con_inp'>
-            <div className="example-input floatRight marginRight20 ">
-              <Select defaultValue='全部' style={{ width: 200 }} onChange={handleChange}>
-                <option value="全部">全部</option>
-                <option value="近一周">近一周</option>
-                <option value="近一月">近一月</option>
-                <option value="近三月">近三月</option>
-                <option value="近半年">近半年</option>
-                <option value="近一年">近一年</option>
-                <option value="一年以前">一年以前</option>
-              </Select>
-              <Button icon="search" style={{ marginLeft: 10 }}>查询</Button>
+        var username = getCookie('username');
+        var token = getCookie('token');
+        var user_id = getCookie('user_id');
+        var jylx = getCookie('jylx');
+        const that = this;
+        //智能采购
+        $.ajax({
+            url: InterfaceUtil.getUrl(33),
+            type: "post",
+            data: {
+                "username": username, "token": token, "user_id": user_id, "jylx": jylx, "page": 1, "limit": 12
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.data.list.length == 0) {
+
+                } else {
+                    that.setState({
+                        zncg: data.data.list,
+                        cons: data.data.cons
+                    });
+                    that.refs.shoucang.className = 'display'
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // 状态码
+                console.log(XMLHttpRequest.status);
+                // 状态
+                console.log(XMLHttpRequest.readyState);
+                // 错误信息
+                console.log(textStatus);
+            }
+        });
+        // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
+        // ajax.open('post',InterfaceUtil.getUrl(33),false);
+        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        // ajax.onreadystatechange = function() {
+        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
+        //     var data=ajax.responseText;
+        //     data=JSON.parse(data);
+        //     console.log(data)
+
+
+        //   }
+        // };
+        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page=1&limit=12");
+    }
+
+    render() {
+        return (
+            <div className=' width988 floatRight'>
+                {/*最近订单标题*/}
+                <div className='personal_Wodejifen_title marginBottom20 margin13'>
+                    <p className='marginLeft20 fontFamily fontWeight floatleft font20 '>智能采购</p>
+                    <ul>
+                        <li className='orange'>智能采购</li>
+                        {/*<div className='shu floatleft'></div>*/}
+                        {/*<li>采购计划</li>*/}
+                        {/*<div className='shu floatleft'></div>*/}
+                        {/*<li>求购信息</li>*/}
+                    </ul>
+                </div>
+
+                {/*内容*/}
+                <div className='white personal_xiangqing_title'>
+                    {/*输入框*/}
+                    <div className='personal_Dindan_con_inp'>
+                        <div className="example-input floatRight marginRight20 ">
+                            <Select defaultValue='全部' style={{width: 200}} onChange={handleChange}>
+                                <option value="全部">全部</option>
+                                <option value="近一周">近一周</option>
+                                <option value="近一月">近一月</option>
+                                <option value="近三月">近三月</option>
+                                <option value="近半年">近半年</option>
+                                <option value="近一年">近一年</option>
+                                <option value="一年以前">一年以前</option>
+                            </Select>
+                            <Button icon="search" style={{marginLeft: 10}}>查询</Button>
+                        </div>
+                        <div className='clear'></div>
+                    </div>
+                    {/*全选删除*/}
+                    <div className='personal_zhanneixin_top marginLeft20'>
+                        <p>
+                            <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"
+                                                                                                 onClick={(e) => {
+                                                                                                     this.quanxuan(e)
+                                                                                                 }}
+                                                                                                 className='quanxuan'/></span>
+                            <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
+                            <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
+                                this.buycar3(e)
+                            }}>加入购物车</span>
+                        </p>
+                    </div>
+                    {/*输入框*/}
+                    <table className='personal_Caigou_table marginTop20'>
+                        <thead>
+                        <tr>
+                            <th width="90px">商品</th>
+                            <th width="167px">商品名称</th>
+                            <th width="166px">生产厂家</th>
+                            <th width="90px">规格</th>
+                            <th width="75px">参与活动</th>
+                            <th width="50px">单位</th>
+                            <th width="80px">当前价格</th>
+                            <th width="85px">采购次数</th>
+                            <th width="145px">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.zncg.map(function (item) {
+                                return (
+                                    <tr data={item.id} data-index={item.zxdw} className='caigou_tr'>
+                                        <td>
+                                            <input type="checkbox" className='marginRight5 shoucang_inp'/>
+                                            <img src={this.state.lujin + item.image} alt="" className='xiangqing_img'/>
+                                        </td>
+                                        <td className='hid'>{item.title}</td>
+                                        <td className='hid'>{item.scqy}</td>
+                                        <td className='hid'>{item.sku}</td>
+                                        <td>否</td>
+                                        <td>{item.bzdw}</td>
+                                        <td>{item.prices}</td>
+                                        <td>{item.c}</td>
+                                        <td>
+                                            <div className='personal_Caigou_table_btn' onClick={(e) => {
+                                                this.buycar4(e)
+                                            }}>加入购物车
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            }, this)
+                        }
+                        <tr rowSpan={9} className='shoucang' ref='shoucang'>
+                            <td colSpan={9}>
+                                <p className='font20'>亲，您还没有收藏哦~</p>
+                                <p className='personalCon1_table_tr_p'><a href=""
+                                                                          className='personalCon1_table_td'>去产品中心</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div className='personal_zhanneixin_top marginTop20 marginLeft20'>
+                        <p>
+                            <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"
+                                                                                                 className='quanxuan1'
+                                                                                                 onClick={(e) => {
+                                                                                                     this.quanxuan1(e)
+                                                                                                 }}/></span>
+                            <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
+                            <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
+                                this.buycar3(e)
+                            }}>加入购物车</span>
+                        </p>
+                    </div>
+                    {/*分页*/}
+                    <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
+                        <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination
+                            showQuickJumper={true} defaultCurrent={1} defaultPageSize={12} total={this.state.cons}
+                            onChange={(e) => {
+                                this.fenye(e)
+                            }}/></span>
+                        <div className='clear'></div>
+                    </div>
+                    <div className='xian'></div>
+                </div>
+
+                {/*推荐*/}
+                <Tuijian data='5'/>
             </div>
-            <div className='clear'></div>
-          </div>
-          {/*全选删除*/}
-          <div className='personal_zhanneixin_top marginLeft20'>
-            <p>
-              <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"onClick={(e)=>{this.quanxuan(e)}} className='quanxuan'/></span>
-              <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-              <span className='personal_zhanneixin_top_span4 cursor'onClick={(e)=>{this.buycar3(e)}}>加入购物车</span>
-            </p>
-          </div>
-          {/*输入框*/}
-          <table className='personal_Caigou_table marginTop20'>
-          <thead>
-          <tr>
-            <th width="90px">商品</th>
-            <th width="167px">商品名称</th>
-            <th width="166px">生产厂家</th>
-            <th width="90px">规格</th>
-            <th width="75px">参与活动</th>
-            <th width="50px">单位</th>
-            <th width="80px">当前价格</th>
-            <th width="85px">采购次数</th>
-            <th width="145px">操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          {
-            this.state.zncg.map(function (item){
-              return(
-            <tr data={item.id} data-index={item.zxdw} className='caigou_tr'>
-              <td>
-                <input type="checkbox" className='marginRight5 shoucang_inp'/>
-                <img src={this.state.lujin+item.image} alt="" className='xiangqing_img'/>
-              </td>
-              <td className='hid'>{item.title}</td>
-              <td className='hid'>{item.scqy}</td>
-              <td className='hid'>{item.sku}</td>
-              <td>否</td>
-              <td>{item.bzdw}</td>
-              <td>{item.prices}</td>
-              <td>{item.c}</td>
-              <td><div className='personal_Caigou_table_btn' onClick={(e)=>{this.buycar4(e)}}>加入购物车</div></td>
-            </tr>
-              )
-            },this )
-          }
-          <tr rowSpan={9}  className='shoucang' ref='shoucang'>
-            <td colSpan={9}>
-              <p className='font20'>亲，您还没有收藏哦~</p>
-              <p className='personalCon1_table_tr_p'><a href=""  className='personalCon1_table_td'>去产品中心</a></p>
-            </td>
-          </tr>
-            </tbody>
-          </table>
-          <div className='personal_zhanneixin_top marginTop20 marginLeft20'>
-            <p>
-              <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox" className='quanxuan1' onClick={(e)=>{this.quanxuan1(e)}}/></span>
-              <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-              <span className='personal_zhanneixin_top_span4 cursor' onClick={(e)=>{this.buycar3(e)}}>加入购物车</span>
-            </p>
-          </div>
-          {/*分页*/}
-          <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
-            <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination showQuickJumper={true}  defaultCurrent={1} defaultPageSize={12} total={this.state.cons} onChange={(e)=>{this.fenye(e)}}  /></span>
-            <div className='clear'></div>
-          </div>
-          <div className='xian'></div>
-        </div>
+        );
+    }
 
-        {/*推荐*/}
-        <Tuijian data='5'/>
-      </div>
-    );
-  }
-  componentDidUpdate(){
+    componentDidUpdate() {
 
-  }
+    }
 }
 
 
