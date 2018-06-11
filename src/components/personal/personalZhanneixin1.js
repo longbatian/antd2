@@ -260,7 +260,7 @@ class PersonalZhanneixin extends React.Component {
 
                     // if (id.length === 0) return;
                     let ids = JSON.stringify(id);
-                    console.log(ids)
+                    // console.log(ids)
                     let username = CoojiePage.getCoojie('username');
                     let token = CoojiePage.getCoojie('token');
                     const that = this;
