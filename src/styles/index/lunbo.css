@@ -99,13 +99,21 @@
 }
 .index_lunbo_div .slick-dots li button{
   background-color: #b3b3b3;
-  height: 5px;
+  height: 20px;
+}
+.index_lunbo_div .ant-carousel .slick-dots li button{
+  width: 30px;
+}
+.index_lunbo_div .ant-carousel .slick-dots li.slick-active button{
+  width: 35px;
+}
+.index_lunbo_div .ant-carousel .slick-dots{
+  bottom: 22px;
 }
 .index_lunbo_div .slick-active button{
   background-color: #188ae7!important;
 }
 .index_lunbo_div_img{
-  height: 100%;
   display: block;
   height: 500px;
 }

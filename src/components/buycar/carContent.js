@@ -789,7 +789,10 @@ class Gouwuche2 extends React.Component {
 
                                 </div>
                                 <div className='car_title_div2 hid'>
-                                    {item.title}
+                                    <Link to={`/Shangpinxiangqing?&id=`+item.id}>
+                                        {item.title}
+                                    </Link>
+
                                 </div>
                                 <div className='car_title_div3 hid'>
                                     {item.sku}

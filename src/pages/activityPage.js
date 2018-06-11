@@ -12,7 +12,7 @@ class ActivityPage extends Component{
         this.loginPage=new LoginPage();
         this.state = {
             src: '',
-            height: 3190,
+            height: 1500,
         }
         }
         componentDidMount(){
@@ -34,12 +34,9 @@ class ActivityPage extends Component{
             }else if(names === 'goldEggsnew.php'){
                 heights = 1665;
             }else if(names==='zhijun.php'){
-
                 heights=3270
             }
-
             this.setState({
-
                 src: 'http://www.scjuchuang.com/activitys/' + src,
                 height: heights,
             })

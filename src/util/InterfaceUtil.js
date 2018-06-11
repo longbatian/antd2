@@ -3,6 +3,7 @@
 // var u='http://192.168.1.49/';
 let u='http://jc.cx5201314.com/';
 let rl='apis/index.php/index/';
+let imgu='http://www.scjuchuang.com/'
 let urls=[
     'index/other','index/search','Cart/check_cart','Cart/check_cart','Cart/addcart', //5
     'user/collection_goods_add','user_order/cartdelete','Cart/cart_list','goods/goods_list','goods/goods_search_type', //10
@@ -36,7 +37,7 @@ export default class InterfaceUtil{
      */
     static getImgUrl(){
         // return 'http://192.168.1.49/';
-        return u;
+        return imgu;
     }
     static getHashParameters(){
         let url = document.location.href;

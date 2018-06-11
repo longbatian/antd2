@@ -11,62 +11,6 @@ import '../../styles/personal/personalZhanneixin.css'
 
 const confirm = Modal.confirm;
 
-//确认框
-function showConfirm() {
-    var id = [];
-    confirm({
-        title: '温馨提示',
-        content: '你确认删除该条留言',
-        okText: '确定',
-        cancelText: '取消',
-        onOk() {
-            return new Promise((resolve, reject) => {
-                setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-            }).catch(() => {
-                var a = $('.shoucang_inp');
-                for (var i = 0; i < a.length; i++) {
-                    var xuanzhong = a[i].checked;
-                    if (xuanzhong == true) {
-                        var id1 = $('.zhanneixin_li').attr('data');
-                        id.push(id1);
-                    }
-                }
-
-                var username = CoojiePage.getCoojie('username');
-                var token = CoojiePage.getCoojie('token');
-                var user_id = CoojiePage.getCoojie('user_id');
-                const that = this;
-                //站内信
-                $.ajax({
-                    url: InterfaceUtil.getUrl(47),
-                    type: "post",
-                    data: {
-                        "username": username, "token": token, "id": id
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == 1) {
-                            // location.reload();
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
-                    }
-                });
-
-
-            });
-        },
-        onCancel() {
-        },
-    });
-}
-
 class PersonalZhanneixin extends React.Component {
 
     constructor(props) {
@@ -167,114 +111,6 @@ class PersonalZhanneixin extends React.Component {
     }
 
     xianshiletter(e) {
-        // var b = document.getElementsByClassName('personal_xiangqing_title');
-        // var c = document.getElementsByClassName('personal_zhanneixin_top_div');
-        // var d = b[0].offsetHeight;
-        // if (e.target.children.length == 1) {
-        //     e.target.parentNode.parentNode.firstChild.className = 'personal_zhanneixin_top_div';
-        //     e.target.parentNode.parentNode.firstChild.style.height = d + 'px';
-        //     var a = e.target.parentNode.parentNode.firstChild.nextSibling.className = 'personal_zhanneixin_top_div1';
-        //     var id = e.target.parentNode.parentNode.getAttribute('data');
-        //
-        //     //获取cookie中的值
-        //     function getCookie(cookieName) {
-        //         var strCookie = document.cookie;
-        //         var arrCookie = strCookie.split("; ");
-        //         for (var i = 0; i < arrCookie.length; i++) {
-        //             var arr = arrCookie[i].split("=");
-        //             if (cookieName == arr[0]) {
-        //                 return arr[1];
-        //             }
-        //         }
-        //         return "";
-        //     }
-        //
-        //     var username = getCookie('username');
-        //     var token = getCookie('token');
-        //     const that = this;
-        //     //站内信
-        //     $.ajax({
-        //         url: InterfaceUtil.getUrl(49),
-        //         type: "post",
-        //         data: {
-        //             "username": username, "token": token, "id": id
-        //         },
-        //         dataType: "json",
-        //         success: function (data) {
-        //             if (data.status == 1) {
-        //                 // e.target.parentNode.parentNode.firstChild.innerText = '已读'
-        //                 // e.target.parentNode.parentNode.firstChild.className = 'personal_zhanneixin_top_span1 floatleft aaaa';
-        //             }
-        //         },
-        //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //             // 状态码
-        //             console.log(XMLHttpRequest.status);
-        //             // 状态
-        //             console.log(XMLHttpRequest.readyState);
-        //             // 错误信息
-        //             console.log(textStatus);
-        //         }
-        //     });
-        //     // ajax.open('post',"http://192.168.1.49/index.php/index/user/get_znx_info",false);
-        //     // ajax.open('post',InterfaceUtil.getUrl(49),false);
-        //     // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        //     // ajax.onreadystatechange = function() {
-        //     //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     //     var data=ajax.responseText;
-        //     //     data=JSON.parse(data);
-        //     //     console.log(data);
-        //
-        //
-        //     //   }
-        //     // };
-        //     // ajax.send();
-        // } else if (e.target.children.length == 0) {
-        //     e.target.parentNode.parentNode.parentNode.firstChild.className = 'personal_zhanneixin_top_div';
-        //     e.target.parentNode.parentNode.parentNode.firstChild.style.height = d + 'px';
-        //     var a = e.target.parentNode.parentNode.parentNode.firstChild.nextSibling.className = 'personal_zhanneixin_top_div1';
-        //     var id = e.target.parentNode.parentNode.parentNode.getAttribute('data');
-        //
-        //
-        //     var username = CoojiePage.getCoojie('username');
-        //     var token = CoojiePage.getCoojie('token');
-        //     const that = this;
-        //     //站内信
-        //     $.ajax({
-        //         url: InterfaceUtil.getUrl(49),
-        //         type: "post",
-        //         data: {
-        //             "username": username, "token": token, "id": id
-        //         },
-        //         dataType: "json",
-        //         success: function (data) {
-        //             if (data.status == 1) {
-        //                 // e.target.parentNode.parentNode.firstChild.innerText = '已读'
-        //                 // e.target.parentNode.parentNode.firstChild.className = 'personal_zhanneixin_top_span1 floatleft aaaa';
-        //             }
-        //         },
-        //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //             // 状态码
-        //             console.log(XMLHttpRequest.status);
-        //             // 状态
-        //             console.log(XMLHttpRequest.readyState);
-        //             // 错误信息
-        //             console.log(textStatus);
-        //         }
-        //     });
-        //     // ajax.open('post',"http://192.168.1.49/index.php/index/user/get_znx_info",false);
-        //     // ajax.open('post',InterfaceUtil.getUrl(49),false);
-        //     // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        //     // ajax.onreadystatechange = function() {
-        //     //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     //     var data=ajax.responseText;
-        //     //     data=JSON.parse(data);
-        //     //     console.log(data);
-        //
-        //
-        //     //   }
-        //     // };
-        //     // ajax.send("username="+username+"&token="+token+"&id="+id);
-        // }
 
     }
 
@@ -316,20 +152,8 @@ class PersonalZhanneixin extends React.Component {
                 console.log(textStatus);
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/get_znx",false);
-        // ajax.open('post',InterfaceUtil.getUrl(47),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
 
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&page="+e+"&limit=5&user_id="+user_id);
     }
-
     componentDidMount() {
 
         let username = CoojiePage.getCoojie('username');
@@ -417,6 +241,58 @@ class PersonalZhanneixin extends React.Component {
         }
 
     }
+    showConfirm() {
+        let id = [];
+        confirm({
+            title: '温馨提示',
+            content: '你确认删除该条留言',
+            okText: '确定',
+            cancelText: '取消',
+            onOk() {
+                    let a = $('.shoucang_inp');
+                    for (let i = 0; i < a.length; i++) {
+                        let xuanzhong = a[i].checked;
+                        if (xuanzhong === true) {
+                            let id1 = $('.zhanneixin_li').attr('data');
+                            id.push(id1);
+                        }
+                    }
+
+                    // if (id.length === 0) return;
+                    let ids = JSON.stringify(id);
+                    console.log(ids)
+                    let username = CoojiePage.getCoojie('username');
+                    let token = CoojiePage.getCoojie('token');
+                    const that = this;
+                    //站内信
+                    $.ajax({
+                        url: InterfaceUtil.getUrl(47),
+                        type: "post",
+                        data: {
+                            "username": username, "token": token, id:ids
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            if (data.status === 1) {
+
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            // 状态码
+                            console.log(XMLHttpRequest.status);
+                            // 状态
+                            console.log(XMLHttpRequest.readyState);
+                            // 错误信息
+                            console.log(textStatus);
+                        }
+                    });
+            },
+            onCancel() {
+            },
+        });
+    }
+
     render() {
         const { visible } = this.state;
         let data = this.state;
@@ -459,7 +335,7 @@ class PersonalZhanneixin extends React.Component {
                                            this.quanxuan(e)
                                        }}/></p>
                             <span className='personal_zhanneixin_top_span1'>全选</span>
-                            <span className='personal_zhanneixin_top_span2 cursor' onClick={showConfirm}>删除</span>
+                            <span className='personal_zhanneixin_top_span2 cursor' onClick={()=>this.showConfirm()}>删除</span>
                         </div>
                     </div>
                     {/*消息*/}
@@ -535,7 +411,7 @@ class PersonalZhanneixin extends React.Component {
                                            this.quanxuan1(e)
                                        }}/></span>
                             <span className='personal_zhanneixin_top_span1'>全选</span>
-                            <span className='personal_zhanneixin_top_span2 cursor' onClick={showConfirm}>删除</span>
+                            <span className='personal_zhanneixin_top_span2 cursor' onClick={() =>this.showConfirm()}>删除</span>
                         </p>
                     </div>
                     {/*分页*/}

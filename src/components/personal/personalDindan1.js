@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import React from 'react';
 import {Input, Button, Select, Pagination, Timeline,} from 'antd';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -16,7 +16,8 @@ class PersonalDindan extends React.Component {
         this.state = {
             dingdan: [],
             ddzt: [],
-            cons: 1
+            cons: 1,
+            page:1
         }
     }
 
@@ -260,29 +261,12 @@ class PersonalDindan extends React.Component {
                 console.log(textStatus);
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);
-        // ajax.open('post',InterfaceUtil.getUrl(35),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     if(data.data.length==0){
 
-        //     }else{
-        //       that.setState({
-        //         dingdan:data.data.list,
-        //       });
-        //     }
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&page=1"+"&limit=5&timev="+a+"&orderno="+b+"&ddzt="+ddzt);
     }
 
-    qufukuan(e) {
-        var id = e.target.parentNode.parentNode.firstChild.getAttribute('value');
-        document.cookie = "order_id=" + id;
+    qufukuan(e,id) {
+        sessionStorage.setItem("orderno",id);
+        this.props.history.push('/Dingdan')
     }
 
     //下拉框
@@ -346,25 +330,7 @@ class PersonalDindan extends React.Component {
                 console.log(textStatus);
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);
-        // ajax.open('post',InterfaceUtil.getUrl(35),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     if(data.data.length==0){
 
-        //     }else{
-        //       that.setState({
-        //         dingdan:data.data.list,
-        //         cons:data.data.cons,
-        //       });
-        //     }
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&page=1"+"&limit=5&ddzt="+a+"&timev="+month);
     }
 
     //取消订单
@@ -372,8 +338,8 @@ class PersonalDindan extends React.Component {
         var zhi = e.target.innerText;
         var id = e.target.parentNode.firstChild.value;
         if (zhi == '取消订单') {
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
+            let username = CoojiePage.getCoojie('username');
+            let token = CoojiePage.getCoojie('token');
             const that = this;
             //订单ajax
             $.ajax({
@@ -384,7 +350,7 @@ class PersonalDindan extends React.Component {
                 },
                 dataType: "json",
                 success: function (data) {
-                    if (data.status == 1) {
+                    if (data.status === 1) {
                         that.ajaxPersonDingDan();
                     }
                 },
@@ -397,19 +363,6 @@ class PersonalDindan extends React.Component {
                     console.log(textStatus);
                 }
             });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/order/close_order",false);
-            // ajax.open('post',InterfaceUtil.getUrl(37),false);
-            // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            // ajax.onreadystatechange = function() {
-            //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-            //     var data=ajax.responseText;
-            //     data=JSON.parse(data);
-            //    if(data.status==1){
-            //      that.ajaxPersonDingDan();
-            //    }
-            //   }
-            // };
-            // ajax.send("username="+username+"&token="+token+"&orderno="+id);
         } else if (zhi == '再次购买') {
 
             var username = CoojiePage.getCoojie('username');
@@ -447,36 +400,18 @@ class PersonalDindan extends React.Component {
                     console.log(textStatus);
                 }
             });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartaddall",false);
-            // ajax.open('post',InterfaceUtil.getUrl(38),false);
-            // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            // ajax.onreadystatechange = function() {
-            //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-            //     var data=ajax.responseText;
-            //     data=JSON.parse(data);
-            //     // console.log(data);
-            //     if(data.data=='1'){
-            //       var ok =document.getElementsByClassName('buycar_ok');
-            //       ok[0].className='buycar_ok';
-            //       var timer1 =window.setTimeout(function(){
-            //         ok[0].className='buycar_ok display';
-            //       },3000);
-            //     }else{
-            //       var no =document.getElementsByClassName('buycar_no');
-            //       var no_span =document.getElementsByClassName('buycar_no_con_span');
-            //       no[0].className='buycar_no';
-            //       no_span[0].innerText=data.info;
-            //     }
-            //   }
-            // };
-            // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&order_id="+id);
         }
 
     }
 
     //分页
     fenye(e) {
-        this.ajaxPersonDingDan(e);
+        this.setState({
+            page:e
+        },() =>{
+            this.ajaxPersonDingDan();
+        })
+
     }
     componentDidMount() {
         this.ajaxPersonDingDan();
@@ -486,13 +421,13 @@ class PersonalDindan extends React.Component {
         this.ajaxPersonDingDan();
     }
 
-    ajaxPersonDingDan(e) {
+    ajaxPersonDingDan() {
         let username = CoojiePage.getCoojie('username');
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
         let ddzt = CoojiePage.getCoojie('ddzt');
         const that = this;
-        e=!e?1:e;
+        let e =this.state.page;
         //订单ajax
         $.ajax({
             url: InterfaceUtil.getUrl(35),
@@ -623,18 +558,15 @@ class PersonalDindan extends React.Component {
                                     } else if (item.ddzt == '待付款') {
                                         dingdanState = '取消订单';
                                         dingdanClassName = 'dingdan_goumai';
-                                        personalCon1_table = <Link to="/Dingdan" className=''>
-                                        <span className='personalCon1_table_tr_span1'
+                                        personalCon1_table = <span className='personalCon1_table_tr_span1'
                                               onClick={(e) => {
-                                                  this.qufukuan(e)
+                                                  this.qufukuan(e,item.orderno)
                                               }}>去付款</span>
-                                        </Link>
                                     } else if (item.ddzt == '出货中') {
-                                        personalCon1_table = <Link to="/Dingdan" className=''>
-                      <span className='personalCon1_table_tr_span1'
+                                        personalCon1_table = <span className='personalCon1_table_tr_span1'
                             onClick={(e) => {
-                                this.qufukuan(e)
-                            }}>收货</span></Link>;
+                                this.qufukuan(e,item.orderno)
+                            }}>收货</span>;
 
                                     }
                                     return (
@@ -739,30 +671,9 @@ class PersonalDindan extends React.Component {
 
         //根据状态显示对应操作
         var a = document.getElementsByClassName('dingdan_ddzt');
-        // for(var i =0;i<a.length;i++){
-        //   var b=a[i].innerText.trim();
-        //   if(b=='待收货'){
-        //     $('.personalCon1_table_tr_span1').eq(i).text('收货')
-        //     $('.personalCon1_table_tr_span1').eq(i).removeClass('bgWhite1')
-        //   }else if(b=='待付款'){
-        //     $('.dingdan_goumai').eq(i).text('取消订单');
-        //     $('.dingdan_goumai').eq(i).removeClass('orange');
-        //     $('.personalCon1_table_tr_span1').eq(i).removeClass('bgWhite1');
-        //     $('.personalCon1_table_tr_span1').eq(i).text('去付款')
-        //   }else if(b=='已取消'){
-        //     $('.personalCon1_table_tr_span1').eq(i).addClass('bgWhite1')
-        //     $('.personalCon1_table_tr_span1').eq(i).text('')
-        //   }else if(b=='已完成'){
-        //     $('.personalCon1_table_tr_span1').eq(i).addClass('bgWhite1')
-        //     $('.personalCon1_table_tr_span1').eq(i).text('')
-        //   }else if(b=='出货中'){
-        //     $('.personalCon1_table_tr_span1').eq(i).text('收货')
-        //   }else{
-        //
-        //   }
-        // }
+
     }
 }
 
 
-export default PersonalDindan;
+export default withRouter(PersonalDindan);

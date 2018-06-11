@@ -87,32 +87,7 @@ class Lunbo extends React.Component {
       }
 
     })
-    // try {
-    //   window.ajax = new ActiveXObject('Msxml2.XMLHTTP');
-    // } catch (e) {
-    //   try {
-    //     window.ajax = new ActiveXObject('Microsoft.XMLHTTP');
-    //   } catch (e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/index",false);
-    // ajax.open('post', InterfaceUtil.getUrl(23), false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // ajax.onreadystatechange = function () {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data = ajax.responseText;
-    //     data = JSON.parse(data);
-    //     if (data.data.length == 0) {
 
-    //     } else {
-    //       that.setState({
-    //         fenlei: data.data
-    //       });
-    //     }
-    //   }
-    // };
-    // ajax.send('type=1');
     //  banner
     $.ajax({
       // url:'http://192.168.1.49/index.php/index/user/user_reg',
@@ -140,37 +115,7 @@ class Lunbo extends React.Component {
       }
 
     })
-    // try {
-    //   window.ajax = new ActiveXObject('Msxml2.XMLHTTP');
-    // } catch (e) {
-    //   try {
-    //     window.ajax = new ActiveXObject('Microsoft.XMLHTTP');
-    //   } catch (e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/index/banners",false);
-    // ajax.open('post', InterfaceUtil.getUrl(28), false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // ajax.onreadystatechange = function () {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data = ajax.responseText;
-    //     // console.log(data)
-    //     data = JSON.parse(data);
-    //     if (data.data.length == 0) {
 
-    //     } else {
-    //       that.setState({
-    //         banner: data.data.banner,
-    //         hy: data.data.hy,
-    //         news: data.data.news,
-    //         adv: data.data.adv,
-    //         adv1: data.data.adv1
-    //       });
-    //     }
-    //   }
-    // };
-    // ajax.send('user_type=' + user_type);
 
   }
   /**
@@ -201,11 +146,12 @@ class Lunbo extends React.Component {
         {/*轮播*/}
         <div className='index_lunbo_div'>
 
-          <Carousel autoplay >
+          <Carousel autoplay>
+
             {
-              this.state.banner.map(function (item, i) {
+              _state.banner.map(function (item, i) {
                 // console.log(item)
-                var imgUrl={
+                let imgUrl={
                   background:"url("+this.state.lujin + item.image+")",
                   backgroundPosition:"center center",
                 }
@@ -223,7 +169,6 @@ class Lunbo extends React.Component {
               }, this)
             }
           </Carousel>
-
         </div>
         {/*版心的内容*/}
         <div className='contain relative'>
@@ -244,7 +189,7 @@ class Lunbo extends React.Component {
                   <span className='floatRight'>更多>></span>
                 </Link>
 
-                <div className='clear'></div>
+                <div className='clear'/>
               </div>
               <ul className='index_lunbo_div_guanggao_con_ul display'>
                 {

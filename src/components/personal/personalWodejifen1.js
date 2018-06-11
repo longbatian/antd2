@@ -491,7 +491,11 @@ class PersonalWodejifen extends React.Component {
 
           {/*分页*/}
           <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
-            <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination showQuickJumper={true}  defaultCurrent={1} defaultPageSize={15} total={this.state.cons} onChange={(e)=>{this.fenye(e)}}  /></span>
+            <span className='floatRight personal_zhanneixin_title_div3_span3'>
+                <Pagination showQuickJumper={true}
+                            defaultCurrent={1} defaultPageSize={15} total={this.state.cons}
+                            onChange={(e)=>{this.fenye(e)}}  />
+            </span>
             <div className='clear'></div>
           </div>
           <div className='xian'></div>

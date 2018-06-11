@@ -312,7 +312,7 @@ class Denglu1 extends React.Component {
                 <p className='denglu_footer_ul_p'>找回密码</p>
                 <p className='denglu_footer_ul_p2'>自助找回账号密码</p>
               </li></Link>
-              <div className='clear'></div>
+              <div className='clear'/>
             </ul>
             <p className='center marginTop20 denglu_banquan1'>《互联网药品信息服务资格证》证书号：（川）-非经营性2015-0039 |《互联网药品交易服务资格证》 证书号：蜀ICP备15031161号</p>
             <p className='center denglu_banquan'>版权所有：四川聚创医药有限公司</p>
@@ -325,6 +325,4 @@ class Denglu1 extends React.Component {
 }
 
 
-// export default withRouter(Denglu1);
 export default withRouter(Denglu1);
-// export default withRouter(connect()(Denglu));

@@ -208,10 +208,9 @@ class HoversearchPage extends Component{
 
   }
   bycarNumber(id,user_type){
-    var that=this;
+    let that=this;
     $.ajax({
-      // url:'http://192.168.1.49/index.php/index/user/user_reg',
-      url: InterfaceUtil.getUrl(21),
+      url: InterfaceUtil.getUrl(0),
       type: 'post',
       dataType: 'json',
       data: {
@@ -221,7 +220,6 @@ class HoversearchPage extends Component{
       beforeSend: function (xhr) {
       },
       success: function (data, textStatus, jqXHR) {
-        var data=data;
         // data=JSON.parse(data);
         // console.log(data);
         if(data.data.length==0){
@@ -239,28 +237,6 @@ class HoversearchPage extends Component{
       }
 
     })
-    // ajax.open('post',"http://192.168.1.49/index.php/index/index/other",false);
-    // ajax.open('post',InterfaceUtil.getUrl(0),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-    //     // console.log(data);
-    //     if(data.data.length==0){
-
-    //     }else{
-    //       if (data.data.cart_number!=undefined){
-    //         // console.log('aaaa')
-    //         that.setState({
-    //           car:data.data.cart_number,
-    //         });
-    //       }
-
-    //     }
-    //   }
-    // };
-    // ajax.send("&member_id="+id+"&user_type="+user_type);
   }
   headConBlur(){
     setTimeout(function () {

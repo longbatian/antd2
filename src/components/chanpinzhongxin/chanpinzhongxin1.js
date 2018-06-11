@@ -1405,7 +1405,7 @@ class Chanpinzhongxin extends React.Component {
      */
     changeSwitch(checked) {
         // console.log(`switch to ${checked}`);
-        let iskc=checked?1:2;
+        let iskc=checked?1:'';
         this.setState({
             is_kc:iskc
         },() =>{
@@ -1632,9 +1632,8 @@ class Chanpinzhongxin extends React.Component {
                                     <span className='chanpinzhongxin_right_con_div_li4_span'>大图</span>
                                 </li>
                                 <li className='isInStock'>
-                                    <Switch checkedChildren="有货"
-                                            onChange={(e) => this.changeSwitch(e)}
-                                            unCheckedChildren="无货"/>
+                                   <span>只显示有货：</span>
+                                    <Switch size="small" onChange={(e) => this.changeSwitch(e)}/>
                                 </li>
                             </ul>
                         </div>
@@ -1661,7 +1660,7 @@ class Chanpinzhongxin extends React.Component {
                                         <input type="hidden" value={item.zxdw} data={item.id}/>
                                         <div className='chanpinzhongxin_right_con_ul_div relative'>
                                             <img src={this.state.lujin + item.image} alt=""
-                                                 className=' chanpinzhongxin_right_con_ul_img'
+                                                 className='chanpinzhongxin_right_con_ul_img'
                                                  onMouseMove={(e) => {
                                                      this.img(e)
                                                  }} onMouseOut={(e) => {

@@ -394,8 +394,13 @@
   margin-top: 10px;
 }
 .ant-tabs:not(.ant-tabs-vertical) > .ant-tabs-content > .ant-tabs-tabpane{
-  height: 890px;
+  height: 1086px;
   border: 1px solid #e1e1e1;
+  overflow-y: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding:0 20px;
 }
 .bestBoxs2{
   width: 100%;

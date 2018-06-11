@@ -4,7 +4,7 @@ body,div,span,ul,ol,li,dt,dl,h1,h2,h3,h4,h5,h6,a,hr,label,form,input,select,text
 body{
   min-width: 1200px;
   overflow: auto;
-  color:#333;
+  color:#333!important;
 }
 .contain{
   width: 1200px;

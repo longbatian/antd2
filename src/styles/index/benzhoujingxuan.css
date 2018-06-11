@@ -112,6 +112,9 @@
   float: left;
   overflow: hidden;
 }
+.louceng_con_lunbo .ant-carousel .slick-dots li button{
+  height: 8px;
+}
 .louceng_con_img1{
   height: 300px;
   width: 400px;

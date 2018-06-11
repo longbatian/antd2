@@ -228,7 +228,7 @@ class PersonalDianzihetong extends React.Component {
           <p>3、未尽事宜，双方可致电或在线协商解决，协商不成可向甲方所在当地法院提供诉讼；</p>
           <p>4、本协议对甲乙双方具有同等的法律效力，乙方有权利在线打印本协议。</p>
           <p className='fontWeight'>本协议在乙方实施网上交易后生效。</p>
-          <p className='qianyue1'><span className='personalDianzihetong_con'>甲方：四川聚创医药贸易有限公司</span>
+          <p className='qianyue1'><span className='personalDianzihetong_con'>甲方：四川聚创医药有限公司</span>
               <span>乙方：</span></p>
           <p className='qianyue relative'>
             <span className='personalDianzihetong_con1'>{todate}</span>

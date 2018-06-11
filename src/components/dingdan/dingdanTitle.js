@@ -68,59 +68,16 @@ class Dingdan extends React.Component{
     }
 
     componentDidMount(){
-        var token=CoojiePage.getCoojie('token');
-        var user_id=CoojiePage.getCoojie('user_id');
-        var username=CoojiePage.getCoojie('username');
-        var cid=CoojiePage.getCoojie('cid');
-        var yhqid=CoojiePage.getCoojie('yhqid');
-        var bz=CoojiePage.getCoojie('bz');
+        let token=CoojiePage.getCoojie('token');
+        // let user_id=CoojiePage.getCoojie('user_id');
+        let username=CoojiePage.getCoojie('username');
+        // let cid=CoojiePage.getCoojie('cid');
+        // let yhqid=CoojiePage.getCoojie('yhqid');
+        // let bz=CoojiePage.getCoojie('bz');
         window.scrollTo(0,0);
-        var orderno=CoojiePage.getCoojie('order_id');
+        let orderno=sessionStorage.getItem("orderno");
         const that = this;
         //智能采购
-        cid=JSON.stringify(cid)
-        if(orderno==''){
-            $.ajax({
-                url: InterfaceUtil.getUrl(17),
-                type: "post",
-                data: {
-                    "token":token,"member_id":user_id,"username":username,"yhqid":yhqid,"cid":cid,"bz":bz
-                },
-                dataType: "json",
-                success: function(data){
-                    // console.log(data,1)
-                    if(data.status===1){
-                        that.setState({
-                            chuangjian:data.data,
-                            shdz:data.data.userinfo.shdz,
-                        },()=>{
-                            function delCookie(name)
-                            {
-                                var exp = new Date();
-                                exp.setTime(exp.getTime() - 1);
-                                var cval=CoojiePage.getCoojie(name);
-                                if(cval!=null)
-                                    document.cookie= name + "="+cval+";expires="+exp.toGMTString();
-                            }
-                            delCookie('yhqid');
-                            delCookie('cid');
-                        });
-                    }else {
-                        alert(data.info);
-                        that.props.history.push('/Buycar')
-                    }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
-                }
-            });
-
-        }else{
             $.ajax({
                 url: InterfaceUtil.getUrl(18),
                 type: "post",
@@ -147,6 +104,7 @@ class Dingdan extends React.Component{
                                 document.cookie= name + "="+cval+";expires="+exp.toGMTString();
                         }
                         delCookie('order_id');
+                        sessionStorage.setItem("orderno",'');
                     });
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -159,7 +117,7 @@ class Dingdan extends React.Component{
                 }
             });
 
-        }
+
 
     }
     showModal = () => {
@@ -271,7 +229,9 @@ class Dingdan extends React.Component{
                     <p className='blue dingdan_div_p'>感谢您在本网站购买商品，您的订单已成功提交</p>
                     <div className='dingdan_div_div'>
                         <p className='red marginTop10 marginLeft20 marginBottom10'>温馨提示</p>
-                        <p className='marginLeft20 marginBottom10 dingdan_div_div_p'>为保证您所选的商品库存，请尽快付款，未付款的订单系统会在<span className='red'>48小时</span>以后自动取消</p>
+                        <p className='marginLeft20 marginBottom10 dingdan_div_div_p'>
+                            为保证您所选的商品库存，请尽快付款，未付款的订单系统会在
+                            <span className='red'>48小时</span>以后自动取消</p>
                         <p className='marginLeft20 marginBottom10'>为了您的货款安全，请不要将货款转到公司指定以外的账户</p>
                     </div>
                     <p className='marginLeft20 marginTop10'><span className='dingdan_div_p_span'>订单编号：</span><span>

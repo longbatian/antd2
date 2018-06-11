@@ -68,7 +68,8 @@ class InformationPage extends Component {
                     data: {
                         "username": _this.username, "token": _this.token, 'shr': values.userName,
                         'shdz': values.address, 'shdh': values.phonenumber, 'shyb': values.zipCode,
-                        'jynr': checkboxs,yljgxkzbh:values.yljgxkzbh,yyzzh:values.yyzzh,sfzh:values.sfzh
+                        'jynr': checkboxs, yljgxkzbh: values.yljgxkzbh, yyzzh: values.yyzzh, sfzh: values.sfzh,
+                        dwmc:values.dwmc,
                         // userName: "165456", address: "1", phonenumber: "1", zipCode: "1"
                     },
                     dataType: "json",
@@ -77,7 +78,7 @@ class InformationPage extends Component {
                         if (data.status === 1) {
                             window.scrollTo(0, 0);
                             _this.props.history.push('/Index');
-                        }else {
+                        } else {
                             alert(data.info)
                         }
                     },
@@ -105,14 +106,14 @@ class InformationPage extends Component {
             },
             dataType: "json",
             success: function (data) {
-                var obj=data.data;
-                var keys=[];//定义一个数组用来接受key
-                var values=[];//定义一个数组用来接受value
-                for(var key in obj){
+                var obj = data.data;
+                var keys = [];//定义一个数组用来接受key
+                var values = [];//定义一个数组用来接受value
+                for (var key in obj) {
                     keys.push(key);
                     values.push(obj[key]);//取得value
-                    if(obj[key]==='null'||obj[key]===null){
-                        obj[key]=''
+                    if (obj[key] === 'null' || obj[key] === null) {
+                        obj[key] = ''
                     }
                 }
                 if (data.status === 1) {
@@ -139,6 +140,7 @@ class InformationPage extends Component {
             }
         });
     }
+
     shangchuan(e) {
         let files = e.target.files;
         let aabb = e.target.getAttribute('data');
@@ -188,6 +190,7 @@ class InformationPage extends Component {
                 )}
             </Col>
         }) : null;
+        let dwmcs=data.dwmc?`${data.dwmc}`:``;
         return <div>
             <Head/>
             <div className='contentBox2'>
@@ -198,40 +201,56 @@ class InformationPage extends Component {
                         <p className=''>基本信息</p>
                     </div>
                     {/*内容*/}
-
-                    <div className='white personal_xiangqing_title'>
-                        {/*<div className='xian'></div>*/}
-                        {/*基本信息*/}
-                        <div className='marginLeft20 personal_Jibenxinxi_title'>
-                            <p className='personal_Jibenxinxi_title_p'>
-                                会员基本信息 - 资料审核通过后只能进行密码修改</p>
-                        </div>
-                        <div className='personal_Jibenxinxi_title_con'>
-                            <p className='personal_Jibenxinxi_title_p1'>
-                                <span>会员账号：</span>
-                                <span className='personal_Jibenxinxi_title_span'>
+                    <Form onSubmit={(e) => this.handleSubmit(e)}>
+                        <div className='white personal_xiangqing_title'>
+                            {/*<div className='xian'></div>*/}
+                            {/*基本信息*/}
+                            <div className='marginLeft20 personal_Jibenxinxi_title'>
+                                <p className='personal_Jibenxinxi_title_p'>
+                                    会员基本信息 - 资料审核通过后只能进行密码修改</p>
+                            </div>
+                            <div className='personal_Jibenxinxi_title_con'>
+                                <p className='personal_Jibenxinxi_title_p1'>
+                                    <span>会员账号：</span>
+                                    <span className='personal_Jibenxinxi_title_span'>
                     {this.state.jbxx.username}
                 </span>
-                                <span className='marginLeft10'>
+                                    <span className='marginLeft10'>
                 {this.state.jbxx.shzt}
                 </span>
-                            </p>
-                            <p className='personal_Jibenxinxi_title_p1'><span>会员类型：
+                                </p>
+                                <p className='personal_Jibenxinxi_title_p1'><span>会员类型：
                 </span>
-                                <span className='personal_Jibenxinxi_title_span'>
+                                    <span className='personal_Jibenxinxi_title_span'>
                     {this.state.jbxx.mjtp}
                     </span>
-                            </p>
-                            <p className='personal_Jibenxinxi_title_p1'>
-                                <span>会员密码：</span>
-                                <input type="password"
-                                       style={{background: '#f7f7f7'}}
-                                       className='personal_Jibenxinxi_title_inp'
-                                       disabled value={'111111'}/>
-                            </p>
+                                </p>
+                                <p className='personal_Jibenxinxi_title_p1'>
+                                    <span>会员密码：</span>
+                                    <input type="password"
+                                           style={{background: '#f7f7f7'}}
+                                           className='personal_Jibenxinxi_title_inp'
+                                           disabled value={'111111'}/>
+                                </p>
+                                <div className='infmConD'>
+                                    <span>单位名称：</span>
+                                    <div className='personal_Jibenxinxi_title_span'>
+                                        {/*<Input placeholder="收货人姓名" />*/}
+                                        <FormItem>
+                                            {/*`${item.id}`*/}
+                                            {getFieldDecorator('dwmc', {
+                                                rules: [{ message: '请输入单位名称!'}],
+                                                initialValue: `${dwmcs}`
+                                            })(
+                                                <Input placeholder="单位名称"/>
+                                            )}
+                                        </FormItem>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                    <Form onSubmit={(e) => this.handleSubmit(e)}>
+
                         <div className='white personal_xiangqing_title'>
                             {/*<div className='xian'></div>*/}
                             {/*收货信息*/}
@@ -327,7 +346,7 @@ class InformationPage extends Component {
                                         <FormItem>
                                             {getFieldDecorator('yyzzh', {
                                                 rules: [{required: true, message: '请输入营业执照号码'}],
-                                                initialValue:`${data.yyzzh}`
+                                                initialValue: `${data.yyzzh}`
                                             })(
                                                 <Input placeholder="请输入营业执照号码"/>
                                             )}
@@ -352,7 +371,7 @@ class InformationPage extends Component {
                                     <div className='personal_Jibenxinxi_title_span'>
                                         <FormItem>
                                             {getFieldDecorator('yljgxkzbh', {
-                                                initialValue:`${data.yljgxkzbh}`
+                                                initialValue: `${data.yljgxkzbh}`
                                             })(
                                                 <Input placeholder="医疗机构执业许可证号"/>
                                             )}
@@ -376,7 +395,7 @@ class InformationPage extends Component {
                                         {/*<Input placeholder="收货人姓名" />*/}
                                         <FormItem>
                                             {getFieldDecorator('sfzh', {
-                                                initialValue:`${data.sfzh}`
+                                                initialValue: `${data.sfzh}`
                                             })(
                                                 <Input placeholder="请输入采购人身份证号码"/>
                                             )}

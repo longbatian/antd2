@@ -221,7 +221,7 @@ class PersonalJibenxinxi extends Component {
                     <div className='marginLeft20 personal_Jibenxinxi_title'>
                         <p className='personal_Jibenxinxi_title_p'>会员基本信息 - 资料审核通过后只能进行密码修改</p>
                     </div>
-                    <div className='personal_Jibenxinxi_title_con'>
+                    <div className='personal_Jibenxinxi_title_con4'>
                         <p className='personal_Jibenxinxi_title_p1'>
                             <span>会员账号：</span>
                             <span className='personal_Jibenxinxi_title_span'>{data.username}</span>
@@ -270,7 +270,7 @@ class PersonalJibenxinxi extends Component {
                     <div className='marginLeft20 personal_Jibenxinxi_title'>
                         <p className='personal_Jibenxinxi_title_p'>收货信息</p>
                     </div>
-                    <div className='marginLeft20 personal_Jibenxinxi_title_con paddingBottom20 relative'>
+                    <div className='personal_Jibenxinxi_title_con4'>
                         <p className='personal_Jibenxinxi_title_p1'><span>收&nbsp;货&nbsp;&nbsp;人：</span>
                             <span className='personal_Jibenxinxi_title_span'>{data.shr}</span></p>
                         <p className='personal_Jibenxinxi_title_p1'><span>收货地址：</span>
@@ -359,7 +359,7 @@ class PersonalJibenxinxi extends Component {
                         <p className='personal_Jibenxinxi_title_p'>经营范围</p>
                     </div>
 
-                    <div className='marginLeft20 personal_Jibenxinxi_title_con paddingBottom20'>
+                    <div className=' personal_Jibenxinxi_title_con4'>
                         <div className='personal_Jibenxinxi_title_con_p2 marginLeft10'>
                             {
                                 this.state.jynr.map(function (item, i) {
@@ -378,8 +378,7 @@ class PersonalJibenxinxi extends Component {
                     <div className='marginLeft20 personal_Jibenxinxi_title'>
                         <p className='personal_Jibenxinxi_title_p'>证件资料上传</p>
                     </div>
-                    <div
-                        className='marginLeft20 personal_Jibenxinxi_title_conxiugaimima_div_p_span2 paddingBottom20'>
+                    <div className=' personal_Jibenxinxi_title_con4'>
                         <p className='relative'>
                             <span className='personal_Jibenxinxi_title_con_span2'>营业执照：</span>
 

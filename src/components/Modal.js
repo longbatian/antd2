@@ -77,27 +77,28 @@ class Modal1 extends React.Component {
   render() {
     return (
       <div>
-        <img src={require('../images/favicon.ico')} alt=""  className='personalCon1_top_head_img'
-             onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}/>
-        <Modal
-          visible={this.state.visible}
-          title="更换头像"
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Button key="back" size="large" onClick={this.handleCancel}>取消</Button>,
-            <Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleOk}>
-              确定
-            </Button>,
-          ]}
-        >
-          <p className='relative'>
-            <input type="file" className='shangchuan_inp1 aaaa' accept="image/png, image/jpeg, image/jpg" id='shangchuan' data="user_photo"  onInput={(e)=>{this.shangchuan(e)}}/>
-            <label htmlFor="shangchuan" className='shangchuan_btn cursor'>上传图片</label>
-          </p>
-          <p className='marginTop10 avatar-uploader_p1'>仅支持JPG、gif、png、jpeg格式，且文件小于4M</p>
-        </Modal>
-        <div className='personalCon1_top_head_bg1 display'onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}>更换头像</div>
+        <img src={require('../images/morenhead.png')} alt=""  className='personalCon1_top_head_img'
+             // onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}
+        />
+        {/*<Modal*/}
+          {/*visible={this.state.visible}*/}
+          {/*title="更换头像"*/}
+          {/*onOk={this.handleOk}*/}
+          {/*onCancel={this.handleCancel}*/}
+          {/*footer={[*/}
+            {/*<Button key="back" size="large" onClick={this.handleCancel}>取消</Button>,*/}
+            {/*<Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleOk}>*/}
+              {/*确定*/}
+            {/*</Button>,*/}
+          {/*]}*/}
+        {/*>*/}
+          {/*<p className='relative'>*/}
+            {/*<input type="file" className='shangchuan_inp1 aaaa' accept="image/png, image/jpeg, image/jpg" id='shangchuan' data="user_photo"  onInput={(e)=>{this.shangchuan(e)}}/>*/}
+            {/*<label htmlFor="shangchuan" className='shangchuan_btn cursor'>上传图片</label>*/}
+          {/*</p>*/}
+          {/*<p className='marginTop10 avatar-uploader_p1'>仅支持JPG、gif、png、jpeg格式，且文件小于4M</p>*/}
+        {/*</Modal>*/}
+        {/*/!*<div className='personalCon1_top_head_bg1 display'onMouseOver={(e)=>{this.head(e)}} onMouseOut={(e)=>{this.head1(e)}} onClick={this.showModal}>更换头像</div>*!/*/}
       </div>
     );
   }

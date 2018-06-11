@@ -49,16 +49,19 @@ class personalBox extends React.Component {
     }
 
     //去付款
-    qufukuan1(e) {
-        var id = e.target.parentNode.parentNode.getAttribute('data');
+    qufukuan1(e,id) {
+        // var id = e.target.parentNode.parentNode.getAttribute('data');
         // console.log(id);
-        document.cookie = "order_id=" + id;
+        sessionStorage.setItem("orderno",id);
+        // console.log(sessionStorage.getItem("orderno"));
+        this.props.history.push('/Dingdan');
     }
 
     //查看订单
     xiangqing1(e) {
         var a = e.target.parentNode.parentNode.parentNode.firstChild.innerText;
         var order_id = a;
+        sessionStorage.setItem("orderno",order_id);
         document.cookie = "order_id=" + order_id;
     }
 
@@ -398,11 +401,10 @@ class personalBox extends React.Component {
                             <tbody>
                             {
                                 this.state.dingdan9.map(function (item, i) {
-                                    let orderState = item.ddzt == '待付款' ? <Link to="/Dingdan" className='gray'>
+                                    let orderState = item.ddzt == '待付款' ?
                                         <span className='personalCon1_current' onClick={(e) => {
-                                            this.qufukuan1(e)
-                                        }}>去付款</span>
-                                    </Link> : <span className='nulls'></span>
+                                            this.qufukuan1(e,item.orderno)
+                                        }}>去付款</span> : <span className='nulls'></span>
                                     return (
                                         <tr key={item.index}>
                                             <td className='orange hid'>{item.orderno}</td>

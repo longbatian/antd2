@@ -21,6 +21,9 @@
   float: left;
   font-weight: bold;
 }
+.car_title_div2 a{
+  color: #333;
+}
 .car_title_div3{
   width: 115px;
   text-align: center;

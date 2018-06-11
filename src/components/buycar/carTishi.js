@@ -334,10 +334,10 @@ class Gouwuche3 extends React.Component {
     }
 
     componentDidMount() {
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var member_id = CoojiePage.getCoojie('user_id');
-        var jylx = CoojiePage.getCoojie('jylx');
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let member_id = CoojiePage.getCoojie('user_id');
+        let jylx = CoojiePage.getCoojie('jylx');
         // carTishiMoney
         var _this = this;
         $.ajax({

@@ -270,7 +270,7 @@ class Shangpinxiangqing extends React.Component {
             success: function (data) {
                 if (data.data == '1') {
 
-                    window.location.href = '/Buycar';
+                    // window.location.href = '/Buycar';
                     // window.location.href=;
                     _this.props.history.push('/Buycar')
                 } else {
@@ -454,15 +454,15 @@ class Shangpinxiangqing extends React.Component {
     }
 
     render() {
-        let data = this.state.spxq.length == 1 ? this.state.spxq : null;
-        let spxq = this.state.spxq.length == 1 ? (this.state.spxq)[0].title : null;
+        let data = this.state.spxq.length === 1 ? this.state.spxq : null;
+        let spxq = this.state.spxq.length === 1 ? (this.state.spxq)[0].title : null;
         let tab1, tab2, tab3;
         let datas = this.state;
-        if (data) {
 
-            tab1 = data[0].shhbzh ? data[0].shhbzh : null;
-            tab2 = data[0].spjj ? data[0].spjj : null;
-            tab3 = data[0].sms ? data[0].sms : null;
+        if (data) {
+            tab1 = data[0].spjj ? data[0].spjj : null;
+            tab2 = data[0].sms ? data[0].sms : null;
+            tab3 = data[0].shhbzh ? data[0].shhbzh : null;
         }
         let _data = this.state.combination;
         let _isShowBestBoxs = _data.length === 0 ? 'display' : '';
@@ -510,6 +510,7 @@ class Shangpinxiangqing extends React.Component {
                             <span className='font20 orange'>{item.prices}</span>;
                         let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                             : 'chanpinzhongxin_sp_img_shoucang';
+                        let isKcs=item.kcs>1000?`充裕`:item.kcs;
                         return (
                             <div className='contain marginTop20' key={item.id + '_isActivity'}>
 
@@ -517,13 +518,7 @@ class Shangpinxiangqing extends React.Component {
                                 <div className='shangpinxiangqing_sp_img marginRight20 floatleft relative'
                                      data={item.is_f}>
                                     <BigorSmallPage {...this.state.spxq[i]}/>
-                                    {/*<img src={datas.lujin + item.image} alt="" className='spxq_img'/>*/}
-                                    {/*<div className='shangpinxiangqing_sp_img_shoucang display cursor' onClick={(e) => {*/}
-                                    {/*this.color(e)*/}
-                                    {/*}}>*/}
-                                    {/*<img src={require("../../images/shangpingxiangqing/xin.png")}*/}
-                                    {/*className='marginRight10' alt=""/>收藏*/}
-                                    {/*</div>*/}
+
                                     <div className={Collection2} data={item.is_f} onClick={(e) => {
                                         this.colorOrder(e, item.is_f,i)
                                     }}>
@@ -575,7 +570,7 @@ class Shangpinxiangqing extends React.Component {
                                         <div>
                                             {/*（已售{item.goods_ys}）*/}
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>库存数量：{item.kcs}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>库存数量：{isKcs}</span>
                                             <span
                                                 className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>效期：{item.vstime}</span>
                                         </div>
@@ -609,7 +604,7 @@ class Shangpinxiangqing extends React.Component {
                                             <span>支付方式：</span>
                                             <span><img src={require("../../images/shangpingxiangqing/zaixianzhifu.png")}
                                                        alt=""/></span>
-                                            <span> 在线支付（微信、支付宝、银联、网银） </span>
+                                            <span> 在线支付（微信、支付宝） </span>
                                             <span><img
                                                 src={require("../../images/shangpingxiangqing/yinghangkazhifu.png")}
                                                 alt=""/></span>

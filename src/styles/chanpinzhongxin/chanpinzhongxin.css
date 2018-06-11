@@ -534,10 +534,14 @@
   padding-bottom: 10px;
 }
 .chanpinzhongxin_right_con_div ul li.isInStock{
-  width: 75px;
+  width: 200px;
   border: 0;
   text-align: left;
   text-indent: 1px;
   padding:0 5px ;
-  font-size: 10px;
+}
+.isInStock>span:first-child{
+  margin-top: 1px;
+  margin-left: 3px;
+  cursor: default;
 }
