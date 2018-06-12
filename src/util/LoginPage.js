@@ -8,7 +8,7 @@ export default class LoginPage {
      */
     ajaxLogin(flag,_props){
       if(flag===-2){
-        alert('有另一个账号把您挤出登录状态')
+          alert('您的登录已过期，请重新登录');
           _props.history.push('/Denglu');
       }
       return;

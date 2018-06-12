@@ -36,10 +36,12 @@ class ActivityPage extends Component{
             }else if(names==='zhijun.php'){
                 heights=3270
             }
+            var domain = window.location.host
             this.setState({
-                src: 'http://www.scjuchuang.com/activitys/' + src,
+                src: 'http://'+domain+"/activitys/" + src,
                 height: heights,
             })
+
         }
 
     render() {

@@ -345,7 +345,7 @@ class InformationPage extends Component {
                                         {/*<Input placeholder="收货人姓名" />*/}
                                         <FormItem>
                                             {getFieldDecorator('yyzzh', {
-                                                rules: [{required: true, message: '请输入营业执照号码'}],
+                                                rules: [{ message: '请输入营业执照号码'}],
                                                 initialValue: `${data.yyzzh}`
                                             })(
                                                 <Input placeholder="请输入营业执照号码"/>

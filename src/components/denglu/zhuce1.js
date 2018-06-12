@@ -66,7 +66,7 @@ class Zhuce extends React.Component {
         {
           errMessage: '用户名长度在3-15位之间',
           test: (value) => {
-            return value.length >= 3 && value.length <= 15;
+            return value.length >= 6 && value.length <= 15;
           }
         },
         {

@@ -805,9 +805,11 @@ class Chanpinzhongxin extends React.Component {
             },
             dataType: "json",
             success: function (data) {
+
                 if (data.data.length == 0) {
 
                 } else {
+
                     that.setState({
                         splist: data.data.list,
                         cons: data.data.cons,
@@ -1414,7 +1416,7 @@ class Chanpinzhongxin extends React.Component {
     }
 
     render() {
-
+        let data=this.state;
         return (
             <div className='contain chanpinzhongxin'>
 
@@ -1429,26 +1431,26 @@ class Chanpinzhongxin extends React.Component {
                                 <span className='floatleft'>筛选：</span>
                                 <ul className='floatleft chanpinzhongxin_right_head_ul'>
                                     <li className='bbb fenlei display'
-                                        data={this.state.fenleiID}>分类：{this.state.title_fenlei}<span
+                                        data={data.fenleiID}>分类：{data.title_fenlei}<span
                                         onClick={(e) => {
                                             this.cha(e)
                                         }} className='cursor'>×</span></li>
                                     <li className='bbb zilei display'
-                                        data={this.state.zileiID}>子类：{this.state.title_zilei}<span
+                                        data={data.zileiID}>子类：{data.title_zilei}<span
                                         onClick={(e) => {
                                             this.cha(e)
                                         }} className='cursor'>×</span></li>
                                     <li className='bbb jixing display'
-                                        data={this.state.jixingID}>剂型：{this.state.title_jixing}<span
+                                        data={data.jixingID}>剂型：{data.title_jixing}<span
                                         onClick={(e) => {
                                             this.cha(e)
                                         }} className='cursor'>×</span></li>
                                     <li className='bbb xiaoqi display'
-                                        data={this.state.xiaoqiID}>效期：{this.state.title_xiaoqi}<span
+                                        data={data.xiaoqiID}>效期：{data.title_xiaoqi}<span
                                         onClick={(e) => {
                                             this.cha(e)
                                         }} className='cursor'>×</span></li>
-                                    {/*<li className='bbb productName display' data={this.state.factory}>产品名：{this.state.productName}<span*/}
+                                    {/*<li className='bbb productName display' data={data.factory}>产品名：{this.state.productName}<span*/}
                                     {/*onClick={(e) => {*/}
                                     {/*this.cha(e)*/}
                                     {/*}} className='cursor'>×</span></li>*/}
@@ -1474,7 +1476,7 @@ class Chanpinzhongxin extends React.Component {
                                 }}>更多</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul'>
                                     {
-                                        this.state.class.map(function (item) {
+                                        data.class.map(function (item) {
                                             return (
                                                 <li key={item.id + 'fenlei1'} className='fenlei1' onClick={(e) => {
                                                     this.blue(e)
@@ -1493,7 +1495,7 @@ class Chanpinzhongxin extends React.Component {
                                 }}>更多</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul height40 kuangjia'>
                                     {
-                                        this.state.class_z.map(function (item) {
+                                        data.class_z.map(function (item) {
                                             return (
                                                 <li key={item.id + 'class_z'} className='zilei1' onClick={(e) => {
                                                     this.blue1(e)
@@ -1512,7 +1514,7 @@ class Chanpinzhongxin extends React.Component {
                                 }}>更多</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul height40 kuangjia'>
                                     {
-                                        this.state.jx.map(function (item, i) {
+                                        data.jx.map(function (item, i) {
                                             return (
                                                 <li key={item.jx + i} className='jixing1' onClick={(e) => {
                                                     this.blue2(e)
@@ -1528,7 +1530,7 @@ class Chanpinzhongxin extends React.Component {
                                 <span className='floatleft'>效期：</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul'>
                                     {
-                                        this.state.xq.map(function (item) {
+                                        data.xq.map(function (item) {
                                             return (
                                                 <li key={item.xq + 'Prxq'} className='xiaoqi1' onClick={(e) => {
                                                     this.blue3(e)
