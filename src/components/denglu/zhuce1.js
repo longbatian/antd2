@@ -64,7 +64,7 @@ class Zhuce extends React.Component {
           }
         },
         {
-          errMessage: '用户名长度在3-15位之间',
+          errMessage: '用户名长度在6-15位之间',
           test: (value) => {
             return value.length >= 6 && value.length <= 15;
           }
@@ -238,7 +238,7 @@ class Zhuce extends React.Component {
       value: '',
       validata: [
         {
-          errMessage: '用户名长度在3-16位之间',
+          errMessage: '用户名长度在6-16位之间',
           test: (value) => {
             if (value == '') {
               return 1;
@@ -315,9 +315,9 @@ class Zhuce extends React.Component {
       $('.tishi').eq(1).text('请填写用户名');
       $('.xingxing').removeClass('display');
       $('.xingxing').eq(0).addClass('display');
-    } else if (text == '用户名长度在3-15位之间') {
+    } else if (text == '用户名长度在6-15位之间') {
       $('.tishi').text('');
-      $('.tishi').eq(1).text('用户名长度在3-15位之间');
+      $('.tishi').eq(1).text('用户名长度在6-15位之间');
       $('.xingxing').removeClass('display');
       $('.xingxing').eq(0).addClass('display');
     } else if (text == '用户名格式不正确') {
@@ -376,9 +376,9 @@ class Zhuce extends React.Component {
     } else if (text == 'QQ号格式不正确') {
       $('.tishi').text('');
       $('.tishi').eq(8).text('QQ号格式不正确');
-    } else if (text == '用户名长度在3-16位之间') {
+    } else if (text == '用户名长度在6-16位之间') {
       $('.tishi').text('');
-      $('.tishi').eq(9).text('推荐人用户名长度在3-15位之间');
+      $('.tishi').eq(9).text('推荐人用户名长度在6-15位之间');
     } else if (text == '推荐人用户名格式不正确') {
       $('.tishi').text('');
       $('.tishi').eq(9).text('推荐人用户名格式不正确');
@@ -574,7 +574,7 @@ class Zhuce extends React.Component {
                 <p>互联网药品交易服务资格证</p>
                 <p className='denglu_title_ul_p'>川B 20160006</p>
               </li>
-              <div className='clear'></div>
+              <div className='clear'/>
             </ul>
           </div>
         </div>

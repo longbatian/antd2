@@ -115,17 +115,17 @@ class FooterCon extends React.Component {
               <dl className='marginTop5'>
                 <dt>关于聚创</dt>
                 <dd>
-                  <a href="http://www.scjuchuang.com/mien.html" target="view_window">
+                  <a href="http://new.scjuchuang.com/mien.html" target="view_window">
                     员工风采
                   </a>
                 </dd>
                 <dd>
-                  <a href="http://www.scjuchuang.com/commonweal.html" target="view_window">
+                  <a href="http://new.scjuchuang.com/commonweal.html" target="view_window">
                     聚创公益
                   </a>
                 </dd>
                 <dd>
-                  <a href="http://www.scjuchuang.com/guanyuwomen.html" target="view_window">
+                  <a href="http://new.scjuchuang.com/guanyuwomen.html" target="view_window">
                     关于聚创
                   </a>
                 </dd>

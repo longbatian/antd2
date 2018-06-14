@@ -2,8 +2,9 @@
 // var u='http://192.168.1.49/index.php/index/';
 // var u='http://192.168.1.49/';
 let u='http://jc.cx5201314.com/';
+// let u='http://192.168.1.49/';
 let rl='apis/index.php/index/';
-let imgu='http://www.scjuchuang.com/'
+let imgu='http://www.scjuchuang.com/';
 let urls=[
     'index/other','index/search','Cart/check_cart','Cart/check_cart','Cart/addcart', //5
     'user/collection_goods_add','user_order/cartdelete','Cart/cart_list','goods/goods_list','goods/goods_search_type', //10
@@ -41,7 +42,7 @@ export default class InterfaceUtil{
     }
     static getHashParameters(){
         let url = document.location.href;
-        url= decodeURI(url)
+        url= decodeURI(url);
         let arr = (url || '').replace(/^\#/, '').split('&');
         let params = {};
         for (let i = 0; i < arr.length; i++) {

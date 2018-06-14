@@ -85,7 +85,7 @@ class HoversearchPage extends Component{
     if (!e||e==''){
       alert('搜索不能为空');
     } else {
-      this.props.history.push('/Chanpinzhongxin?&title=' + e)
+        this.props.history.push('/Chanpinzhongxin?&zjzx=2&title=' +encodeURI(e))
     }
   }
   componentDidMount(){

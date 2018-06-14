@@ -202,7 +202,7 @@ class Shangpinxiangqing extends React.Component {
     }
 
     houtui(e) {
-        this.props.history.back();
+        this.props.history.goBack()
     }
 
 //加入购物车
