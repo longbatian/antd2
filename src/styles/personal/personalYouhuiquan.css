@@ -81,10 +81,7 @@
   left: 10px;
 }
 .personal_Youhuiquan_title_div1_p_span3{
-  display: inline-block;
-  position: absolute;
-  top: 110px;
-  left: 25px;
+  display: block;
   color: #fff;
 }
 .personal_Youhuiquan_title_div1_p_span4{
@@ -92,7 +89,7 @@
   position: absolute;
   top: 155px;
   left: 80px;
-  color: #24;
+  /*color: #24;*/
 }
 .personal_Youhuiquan_title_div1_p_span5{
   display: inline-block;

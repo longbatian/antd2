@@ -72,7 +72,7 @@ class Headcon extends React.Component {
             alert('搜索不能为空');
         } else {
             $('.sousuokuang').addClass('display');
-            this.props.history.push('/Chanpinzhongxin?&zjzx=2&title=' +encodeURI(e))
+            this.props.history.push('/Chanpinzhongxin?&title=' +encodeURI(e))
         }
 
     }

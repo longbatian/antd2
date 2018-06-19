@@ -26,7 +26,7 @@
   float: left;
   margin-left: 20px;
   text-align: center;
-  background-image: url("../../images/youhuiquan/bg.png");
+  background: url("../../images/youhuiquan/bg.png") no-repeat;
   position: relative;
   margin-top: 10px;
 }
@@ -68,27 +68,20 @@
   left: 10px;
 }
 .personal_Youhuiquan_title_div1_p_span10{
-  display: inline-block;
-  position: absolute;
-  top: 175px;
-  left: 35px;
   color: #c8c9ca;
+  margin-top: 16px;
 }
 .personal_Youhuiquan_title_div1_p_span11{
-  display: inline-block;
-  position: absolute;
-  top: 155px;
-  left: 90px;
+  display: block;
+  margin-top: 24px;
 }
 .personal_Youhuiquan_title_div1_p_a1 {
   display: inline-block;
-  position: absolute;
-  top: 210px;
-  left: 90px;
   border: 1px solid #258fff;
   color: #258fff;
   padding: 5px 20px;
   border-radius: 17px;
+  margin-top: 10px;
 }
 .personal_Youhuiquan_title_div1_p_span12{
   font-size: 60px;

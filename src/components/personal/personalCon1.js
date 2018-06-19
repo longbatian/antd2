@@ -203,20 +203,26 @@ class personalBox extends React.Component {
                     url: data.data[0].user_photo,
                 });
                 var xq = document.getElementsByClassName('a');
+                let xqs=$('.a');
                 if (data.data[0].z1 != 1) {
-                    xq[0].className = 'zizhixiaoqi_span1 a red'
+                    xqs.eq(0).attr('class','zizhixiaoqi_span1 a red')
+                    // xq[0].className = 'zizhixiaoqi_span1 a red'
                 }
                 if (data.data[0].z2 != 1) {
-                    xq[1].className = 'zizhixiaoqi_span2 a red'
+                    xqs.eq(1).attr('class','zizhixiaoqi_span2 a red')
+                    // xq[1].className = 'zizhixiaoqi_span2 a red'
                 }
                 if (data.data[0].z3 != 1) {
-                    xq[2].className = 'zizhixiaoqi_span2 a red'
+                     xqs.eq(2).attr('class','zizhixiaoqi_span2 a red')
+                    // xq[2].className = 'zizhixiaoqi_span2 a red'
                 }
                 if (data.data[0].z4 != 1) {
-                    xq[3].className = 'zizhixiaoqi_span2 a red'
+                     xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
+                    // xq[3].className = 'zizhixiaoqi_span2 a red'
                 }
                 if (data.data[0].z5 != 1) {
-                    xq[4].className = 'zizhixiaoqi_span2 a red'
+                     xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
+                    // xq[4].className = 'zizhixiaoqi_span2 a red'
                 }
 
             },

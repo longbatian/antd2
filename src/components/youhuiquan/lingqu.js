@@ -1,36 +1,29 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import { Modal, Button } from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
 import '../../styles/youhuiquan/youhuiquan.css'
+import CoojiePage from "../../util/CoojiePage";
 
 class Lingqu extends Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
+        this.times = 1;
         this.state = {
             youhuiquan: [],
+            modal1Visible: false,
+            modal2Visible: false,
+            imgs: '',
         }
     }
 
     lingqu(e,id) {
-        var yhqid = e.target.parentNode.parentNode.getAttribute('data');
-
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
-
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
-        var user_type = getCookie('user_type');
+        let yhqid = e.target.parentNode.parentNode.getAttribute('data');
+        let username = CoojiePage.getCoojie('username');
+        let token =  CoojiePage.getCoojie('token');
+        let user_id =  CoojiePage.getCoojie('user_id');
+        let user_type =  CoojiePage.getCoojie('user_type');
         const that = this;
         //  广告位
         $.ajax({
@@ -45,24 +38,8 @@ class Lingqu extends Component {
 
                 } else {
                     alert(data.info);
-                    if (data.status == '1') {
-                        let arr2=that.state.youhuiquan;
-                        for (let i=0,len=arr2.length;i<len;i++){
-                            // console.log(arr2[i].length)
-                            if(arr2[i].list){
-                                // console.log(arr2[i].list)
-                                let arr3=arr2[i].list;
-                                for(let j=0,lens=arr3.length;j<lens;j++){
-                                    // console.log(arr3[j].id===id)
-                                    if(arr3[j].id===id){
-                                        arr3[j].is_lq=1;
-                                    }
-                                }
-                            }
-                        }
-                        that.setState({
-                            youhuiquan:arr2,
-                        })
+                    if (data.status === '1') {
+                       that.removeClassStates(id);
                     }
                 }
             },
@@ -76,24 +53,27 @@ class Lingqu extends Component {
             }
         });
     }
-
-    componentDidMount() {
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
+    removeClassStates(id){
+        let arr2=this.state.youhuiquan;
+        for (let i=0,len=arr2.length;i<len;i++){
+            if(arr2[i].list){
+                let arr3=arr2[i].list;
+                for(let j=0,lens=arr3.length;j<lens;j++){
+                    if(arr3[j].id===id){
+                        arr3[j].is_lq=1;
+                    }
                 }
             }
-            return "";
         }
-
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
-        var user_type = getCookie('user_type');
+        this.setState({
+            youhuiquan:arr2,
+        })
+    }
+    componentDidMount() {
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let user_id = CoojiePage.getCoojie('user_id');
+        let user_type = CoojiePage.getCoojie('user_type');
         const that = this;
         //  广告位
         $.ajax({
@@ -104,6 +84,7 @@ class Lingqu extends Component {
             },
             dataType: "json",
             success: function (data) {
+                // console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -122,10 +103,108 @@ class Lingqu extends Component {
             }
         });
     }
+    lingquGomai(e,id){
+        this.payFor(id);
 
+    }
+    setModal2Visible(modal2Visible) {
+        this.times=modal2Visible?1:60;
+        this.setState({ modal2Visible });
+    }
+    payFor(id) {
+        let token = CoojiePage.getCoojie('token');
+        let username = CoojiePage.getCoojie('username');
+        let _payId = this.state.zhifu;
+        let _this = this;
+        // console.log(token+'--'+username+'--'+orderno);
+            this.setModal2Visible(true);
+
+            $.ajax({
+                type: "post",
+                url: InterfaceUtil.getUrl(61),
+                data: {
+                    "token": token,
+                    "username": username,
+                    coupon_id: id,
+                },
+                dataType: "json",
+                success: function (data, status) {
+                    if (data.status === 1) {
+                        _this.setState({
+                            imgs: data.data.img,
+                            isOver: !_this.state.isOver
+                        })
+                    } else {
+                        _this.setState({
+                            imgs: ``,
+                        })
+                    }
+                    _this.setTimeOver(data.data.order_v,id)
+                }
+            });
+
+
+    }
+
+    setTimeOver(ids,id) {
+        let token = CoojiePage.getCoojie('token');
+        let username = CoojiePage.getCoojie('username');
+        // let orderno = this.state.chuangjian.orderno;
+        let _this = this;
+        let timesOut = setInterval(function () {
+            $.ajax({
+                type: "post",
+                url: InterfaceUtil.getUrl(62),
+                data: {
+                    "token": token,
+                    "username": username,
+                    orderno_v: ids,
+                },
+                dataType: "json",
+                success: function (data, status) {
+                    // console.log(data)
+                    if (data.status === 1) {
+                        if (data.data === 1) {
+                            // let modal;
+                            clearInterval(timesOut);
+                            _this.setModal2Visible(false);
+
+
+                            const modal = Modal.success({
+                                title: '支付成功！',
+                                content: '',
+                                onOk() {
+                                    _this.removeClassStates(id);
+                                }
+                            });
+                            setTimeout(() => {
+                            modal.destroy();
+                                _this.removeClassStates(id);
+                        }, 3000);
+                        }
+                    } else {
+                        alert(data.info);
+
+                    }
+
+                }
+            });
+            if (_this.times > 59) {
+                clearInterval(timesOut);
+                _this.setModal2Visible(false);
+            }
+            _this.times++;
+        }, 2000);
+
+    }
     render() {
         let data = this.state;
-
+        let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
+            <Button type="primary"
+                    loading={this.state.iconLoading}
+                    onClick={this.enterIconLoading}>
+                二维码加载失败点击重新加载
+            </Button>;
         return (
             <div className='container youhuiquan paddingBottom20'>
                 {/*头部banner*/}
@@ -134,12 +213,22 @@ class Lingqu extends Component {
                     {/*<img className='allImages' src="../../images/youhuiquan/banner.png" alt=""/>*/}
                 </div>
                 {/*内容*/}
+                <Modal
+                    title="目前只支持微信支付"
+                    wrapClassName="vertical-center-modal"
+                    visible={this.state.modal2Visible}
+                    onOk={() => this.setModal2Visible(false)}
+                    onCancel={() => this.setModal2Visible(false)}
+                    footer={[<Button key="back" onClick={() => this.setModal2Visible(false)}>取消支付</Button>, null]}
+                >
+                    {imgs}
+                </Modal>
                 <div className='contain youhuiquan_bg'>
                     {
                         data.youhuiquan.map(function (item, i) {
-                            // console.log(item)
                             let youhuyan = data.youhuiquan[i].list ? data.youhuiquan[i].list.map(function (item, i) {
                                 let isYes = item.is_lq === 1 ? 'youhuiquan_img2 youhuiquan_li relative' : 'youhuiquan_li relative';
+
                                 let isOk = item.is_lq === 1 ?
                                     <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
                                         我的优惠券
@@ -148,24 +237,50 @@ class Lingqu extends Component {
                                                      this.lingqu(e,item.id)
                                                  }}>立即领取</a>;
 
+                                let numbers;
+                                if(item.type===`4`){
+                                    numbers = <div>
+                                        <span className='personal_Youhuiquan_title_div1_p_span12'>{item.give_more}{item.rebate}</span>
+                                        <span className='youhuiquan_span'>折</span>
+                                    </div>
+                                }else if(item.type===`1`){
+                                    numbers = <div>
+                                        <span className='personal_Youhuiquan_title_div1_p_span'>￥</span>
+                                        <span className='personal_Youhuiquan_title_div1_p_span12'>{item.give_more}{item.rebate}</span>
+                                    </div>
+                                }
+                                let moneys;
+                                if(item.is_virtual === 1){
+                                    isOk=item.is_lq === 1 ?
+                                        <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
+                                            我的优惠券
+                                        </Link> : <a className='personal_Youhuiquan_title_div1_p_a1'
+                                                     onClick={(e) => {
+                                                         this.lingquGomai(e,item.id)
+                                                     }}>立即购买</a>
+
+                                    moneys=<div>
+                                        售价: {item.price}
+                                    </div>
+                                }
                                 return (
                                     <li key={item.id+'lin1'} className={isYes} data={item.id} data-index={item.type} data-a={item.is_lq}>
-                                        <p className='personal_Youhuiquan_title_div1_p'>
-                                            <span className='personal_Youhuiquan_title_div1_p_span'>￥</span>
-                                            <span
-                                                className='personal_Youhuiquan_title_div1_p_span12'>{item.give_more}{item.rebate}</span>
-                                            <span className='youhuiquan_span youhuiquan_display'>折</span>
+                                        <div className='personal_Youhuiquan_title_div1_p'>
+                                            {numbers}
+
                                             <span className='personal_Youhuiquan_title_div1_p_span9'></span>
                                             <span className='personal_Youhuiquan_title_div1_p_span3'>优惠券 <span
                                                 className='white1'>【满{item.buy_more}元可以使用】</span></span>
                                             <span
-                                                className='personal_Youhuiquan_title_div1_p_span11'>{item.group_title}可用</span>
+                                                className='personal_Youhuiquan_title_div1_p_span11'>{item.group_title}可用 </span>
                                             <span
                                                 className='personal_Youhuiquan_title_div1_p_span10'>有效期【{item.start_time}-{item.end_time}】</span>
+                                            {moneys}
                                             {isOk}
-                                            <img src={require("../../images/youhuiquan/dazhe.png")} alt=""
-                                                 className='personal_Youhuiquan_title_div1_p_img display'/>
-                                        </p>
+
+                                            {/*<img src={require("../../images/youhuiquan/dazhe.png")} alt=""*/}
+                                                 {/*className='personal_Youhuiquan_title_div1_p_img display'/>*/}
+                                        </div>
                                     </li>
                                 )
                             }, this) : null;
@@ -202,27 +317,7 @@ class Lingqu extends Component {
     }
 
     componentDidUpdate() {
-        // var a=document.getElementsByClassName('youhuiquan_li');
-        // for(var i=0;i<a.length;i++){
-        //   var b=a[i].getAttribute('data-index');
-        //   var c=a[i].getAttribute('data-a');
-        //   if(b=='4'){
-        //     var danwei=document.getElementsByClassName('personal_Youhuiquan_title_div1_p_span');
-        //     var zhekou=document.getElementsByClassName('youhuiquan_span');
-        //     var jiage=document.getElementsByClassName('personal_Youhuiquan_title_div1_p_span1');
-        //     var zhe=document.getElementsByClassName('personal_Youhuiquan_title_div1_p_img');
-        //     danwei[i].className='personal_Youhuiquan_title_div1_p_span youhuiquan_display';
-        //     zhekou[i].className='youhuiquan_span';
-        //     jiage[i].className='personal_Youhuiquan_title_div1_p_span1 youhuiquan_zhe';
-        //     zhe[i].className='personal_Youhuiquan_title_div1_p_img';
-        //   }
-        //   if(c=='1'){
-        //     a[i].className='youhuiquan_img2 youhuiquan_li relative'
-        //     // var zi=document.getElementsByClassName('personal_Youhuiquan_title_div1_p_a');
-        //     // zi='我的好券'
-        //       $('.personal_Youhuiquan_title_div1_p_a').eq(0).text('我的好券')
-        //   }
-        // }
+
     }
 }
 

@@ -222,10 +222,12 @@ class Dingdan extends React.Component {
         }, 2000);
 
     }
+
     enterIconLoading = () => {
-        this.setState({ iconLoading: true });
+        this.setState({iconLoading: true});
         this.setTimeOver();
     }
+
     render() {
         let data = this.state.chuangjian;
 
@@ -251,12 +253,22 @@ class Dingdan extends React.Component {
                             <span className='red'>48小时</span>以后自动取消</p>
                         <p className='marginLeft20 marginBottom10'>为了您的货款安全，请不要将货款转到公司指定以外的账户</p>
                     </div>
-                    <p className='marginLeft20 marginTop10'><span className='dingdan_div_p_span'>订单编号：</span><span>
-           {this.state.chuangjian.orderno}</span></p>
-                    <p className='marginLeft20'><span className='dingdan_div_p_span'>商品总金额：
-         </span><span className='red'>￥{this.state.chuangjian.goods_price}</span></p>
-                    <p className='marginLeft20'><span className='dingdan_div_p_span'>应付金额：</span><span
-                        className='red'>￥{this.state.chuangjian.ddsfje}</span></p>
+                    <p className='marginLeft20 marginTop10'>
+                        <span className='dingdan_div_p_span'>订单编号：</span>
+                        <span>
+                         {this.state.chuangjian.orderno}
+                        </span>
+                    </p>
+                    <p className='marginLeft20'>
+                        <span className='dingdan_div_p_span'>
+                            商品总金额：
+                         </span>
+                        <span className='red'>￥{this.state.chuangjian.goods_price}</span></p>
+                    <p className='marginLeft20'>
+                        <span className='dingdan_div_p_span'>应付金额：</span>
+                        <span className='red'>￥{this.state.chuangjian.ddsfje}
+                            </span>
+                    </p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>配送信息：</span>
                         <span className=''>{data.userinfo.shdz}</span>

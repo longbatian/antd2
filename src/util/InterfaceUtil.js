@@ -1,8 +1,8 @@
 // import React from 'react';
 // var u='http://192.168.1.49/index.php/index/';
 // var u='http://192.168.1.49/';
-let u='http://jc.cx5201314.com/';
-// let u='http://192.168.1.49/';
+// let u='http://jc.cx5201314.com/';
+let u='http://192.168.1.49/';
 let rl='apis/index.php/index/';
 let imgu='http://www.scjuchuang.com/';
 let urls=[
@@ -18,7 +18,7 @@ let urls=[
     'user/coupons','user/coupon_counts','user/delete_znx','user/get_znx','user/get_znx_info',//50
     'goods/goods_info','coupon/get_coupon','user/get_coupon','goods/ranking','banners/',//55
     '','user/userzz_update','user/is_username','order/wxpay_img','order/order_status',//60
-    'user/user_info_update',
+    'user/user_info_update','order/wxpay_img_virtual','order/coupon_order_status',
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
