@@ -46,22 +46,19 @@ class InformationPage extends Component {
         let checkboxs = [];
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                for (var i = 1; i < 15; i++) {
+                for (let i = 1; i < 15; i++) {
                     if (values[i]) {
                         checkboxs.push(i);
                     }
                 }
-                // console.log('Received values of form: ', values);
-                // console.log(  "username"+ _this.username, "token"+ _this.token,'shr'+values.userName,
-                //     'shdz'+values.address,'shdh'+values.phonenumber,'shyb'+values.zipCode,
-                //     'jynr'+checkboxs);
+
                 if (checkboxs.length === 0) {
                     alert('至少选择一个经营范围！');
                     return
                 }
-                ;
-                this.setState({loading: true})
+                this.setState({loading: true});
                 checkboxs = JSON.stringify(checkboxs);
+                // console.log(values.contacts)
                 $.ajax({
                     url: InterfaceUtil.getUrl(60),
                     type: "post",
@@ -69,12 +66,11 @@ class InformationPage extends Component {
                         "username": _this.username, "token": _this.token, 'shr': values.userName,
                         'shdz': values.address, 'shdh': values.phonenumber, 'shyb': values.zipCode,
                         'jynr': checkboxs, yljgxkzbh: values.yljgxkzbh, yyzzh: values.yyzzh, sfzh: values.sfzh,
-                        dwmc:values.dwmc,
-                        // userName: "165456", address: "1", phonenumber: "1", zipCode: "1"
+                        dwmc: values.dwmc,lxr:values.contacts,
                     },
                     dataType: "json",
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
                         if (data.status === 1) {
                             window.scrollTo(0, 0);
                             _this.props.history.push('/Index');
@@ -109,7 +105,7 @@ class InformationPage extends Component {
                 var obj = data.data;
                 var keys = [];//定义一个数组用来接受key
                 var values = [];//定义一个数组用来接受value
-                for (var key in obj) {
+                for (let key in obj) {
                     keys.push(key);
                     values.push(obj[key]);//取得value
                     if (obj[key] === 'null' || obj[key] === null) {
@@ -190,7 +186,8 @@ class InformationPage extends Component {
                 )}
             </Col>
         }) : null;
-        let dwmcs=data.dwmc?`${data.dwmc}`:``;
+        let dwmcs = data.dwmc ? `${data.dwmc}` : ``;
+        let contacts = data.lxr ? `${data.lxr}` : ``;
         return <div>
             <Head/>
             <div className='contentBox2'>
@@ -239,10 +236,23 @@ class InformationPage extends Component {
                                         <FormItem>
                                             {/*`${item.id}`*/}
                                             {getFieldDecorator('dwmc', {
-                                                rules: [{ message: '请输入单位名称!'}],
+                                                rules: [{message: '请输入单位名称!'}],
                                                 initialValue: `${dwmcs}`
                                             })(
                                                 <Input placeholder="单位名称"/>
+                                            )}
+                                        </FormItem>
+                                    </div>
+                                </div>
+                                <div className='infmConD'>
+                                    <span>联系人：</span>
+                                    <div className='personal_Jibenxinxi_title_span'>
+                                        <FormItem>
+                                            {getFieldDecorator('contacts', {
+                                                rules: [{ required: true,message: '请输入联系人!'}],
+                                                initialValue: `${contacts}`
+                                            })(
+                                                <Input placeholder="联系人"/>
                                             )}
                                         </FormItem>
                                     </div>
@@ -345,7 +355,7 @@ class InformationPage extends Component {
                                         {/*<Input placeholder="收货人姓名" />*/}
                                         <FormItem>
                                             {getFieldDecorator('yyzzh', {
-                                                rules: [{ message: '请输入营业执照号码'}],
+                                                rules: [{message: '请输入营业执照号码'}],
                                                 initialValue: `${data.yyzzh}`
                                             })(
                                                 <Input placeholder="请输入营业执照号码"/>

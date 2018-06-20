@@ -19,9 +19,9 @@ class Denglu1 extends React.Component {
     };
   }
   post(){
-    var _this=this;
-    var psd=$('.denglu_con_kuang_box_p1_psd').val();
-    var username=$('.denglu_con_kuang_box_p1_user').val();
+    let _this=this;
+      let psd=$('.denglu_con_kuang_box_p1_psd').val();
+      let username=$('.denglu_con_kuang_box_p1_user').val();
     if(username===''||!username){
       alert('请输入账号')
       return false;
@@ -43,37 +43,32 @@ class Denglu1 extends React.Component {
           },
           success:function(data,textStatus,jqXHR){
             var zhi=$('.denglu_con_kuang_box_p3_mima').prop('checked');
-            // console.log(data.data.shzt,2323);
-            if(data.info=='登录成功'){
-              if(zhi==true){
-                var exp = new Date();
+            // console.log(data,2323);
+
+            if(data.status===1){
+
+              if(zhi=== true){
+                let exp = new Date();
                 exp.setTime(exp.getTime() +7*24*60*60*1000);
                 document.cookie = "user_id="+data.data.id+";expires=" + exp.toGMTString();
                 document.cookie = "username="+data.data.username+";expires=" + exp.toGMTString();
                 document.cookie = "token="+data.data.token+";expires=" + exp.toGMTString();
                 document.cookie = "user_type="+data.data.user_type+";expires=" + exp.toGMTString();
                 document.cookie = "jylx="+data.data.jylx+";expires=" + exp.toGMTString();
-                  if(data.data.shzt===1){
-                      _this.props.history.push('/InformationPage');
-                  }else {
-                      _this.props.history.push('/Index');
-                  }
+
               }else{
                 document.cookie="user_id="+data.data.id;
                 document.cookie="username="+data.data.username;
                 document.cookie="token="+data.data.token;
                 document.cookie="user_type="+data.data.user_type;
                 document.cookie="jylx="+data.data.jylx;
-                if(data.data.shzt===1){
-                    _this.props.history.push('/InformationPage');
-                }else {
-                    _this.props.history.push('/Index');
-                }
-                // location.push('/Index');
-                // this.props.history.push("/Index");
-                // console.log(_this.props)
-                // _this.props.history.push('/Index');
+
               }
+                if(data.data.shzt===2){
+                    _this.props.history.push('/Index');
+                }else {
+                    _this.props.history.push('/InformationPage');
+                }
             }else{
               alert(data.info)
             }

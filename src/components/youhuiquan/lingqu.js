@@ -38,7 +38,7 @@ class Lingqu extends Component {
 
                 } else {
                     alert(data.info);
-                    if (data.status === '1') {
+                    if (data.status === 1) {
                        that.removeClassStates(id);
                     }
                 }
@@ -54,6 +54,7 @@ class Lingqu extends Component {
         });
     }
     removeClassStates(id){
+        // console.log(id)
         let arr2=this.state.youhuiquan;
         for (let i=0,len=arr2.length;i<len;i++){
             if(arr2[i].list){

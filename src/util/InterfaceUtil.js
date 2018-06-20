@@ -1,8 +1,8 @@
 // import React from 'react';
 // var u='http://192.168.1.49/index.php/index/';
 // var u='http://192.168.1.49/';
-// let u='http://jc.cx5201314.com/';
-let u='http://192.168.1.49/';
+let u='http://jc.cx5201314.com/';
+// let u='http://192.168.1.49/';
 let rl='apis/index.php/index/';
 let imgu='http://www.scjuchuang.com/';
 let urls=[
