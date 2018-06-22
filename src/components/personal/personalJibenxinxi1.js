@@ -136,7 +136,6 @@ class PersonalJibenxinxi extends Component {
             dataType: "json",
             success: function (data) {
                 // if(data.data.shzt=)
-                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {

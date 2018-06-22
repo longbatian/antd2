@@ -247,8 +247,10 @@ class Jiesuan extends React.Component {
                     {/*清单列表*/}
                     {
                         this.state.sp.map(function (item, i) {
+                            let activity_price=item.activity_price?item.activity_price:item.prices;
+
                             return (
-                                <div className='jiesuan_div_div2'>
+                                <div key={item.id+`sp`+i} className='jiesuan_div_div2'>
                                     <div className='jiesuan_div_div1_div'><img src={this.state.lujin + item.image}
                                                                                className='jiesuan_div_div1_div_img'
                                                                                alt=""/></div>
@@ -257,7 +259,7 @@ class Jiesuan extends React.Component {
                                     <div className='jiesuan_div_div1_div3 hid'>{item.scqy}</div>
                                     <div className='jiesuan_div_div1_div4'>{item.bzdw}</div>
                                     <div className='jiesuan_div_div1_div5'>{item.vstime}</div>
-                                    <div className='jiesuan_div_div1_div6'>{item.prices}</div>
+                                    <div className='jiesuan_div_div1_div6'>{activity_price}</div>
                                     <div className='jiesuan_div_div1_div7'>{item.spsl}</div>
                                     <div className='jiesuan_div_div1_div8'>{item.hj}</div>
                                 </div>
