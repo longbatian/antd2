@@ -115,37 +115,11 @@ class Zhongyao2 extends React.Component {
             rank2:data.data.slice(3),
           });
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
-    // try {
-    //   window.ajax = new ActiveXObject("Msxml2.XMLHTTP");
-    // } catch(e) {
-    //   try {
-    //     window.ajax = new ActiveXObject("Microsoft.XMLHTTP");
-    //   } catch(e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/goods/ranking",false);
-    // ajax.open('post',InterfaceUtil.getUrl(53),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
 
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&type=1");
-    //  总销量排行
+
+
         $.ajax({
                 url: InterfaceUtil.getUrl(53),
                 type: "post",
@@ -162,14 +136,6 @@ class Zhongyao2 extends React.Component {
                             rank4:data.data.slice(3),
                           });
                         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
 

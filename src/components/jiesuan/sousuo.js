@@ -60,12 +60,7 @@ class Jiesuan1 extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
     }
@@ -88,7 +83,7 @@ class Jiesuan1 extends React.Component {
             },
             dataType: "json",
             success: function(data){
-                console.log(data,1)
+
                 if(data.status === 1){
                     sessionStorage.setItem("orderno",data.data.orderno);
                     PubSub.publish('PubSubmessage', data.status);
@@ -99,12 +94,7 @@ class Jiesuan1 extends React.Component {
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
     }

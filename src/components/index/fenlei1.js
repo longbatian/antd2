@@ -78,7 +78,6 @@ class Fenlei11 extends React.Component {
     // if (a != 0) {
     //    pid = pid
     //   console.log('1'+pid)
-    console.log(this.props.history)
     this.props.history.push('/Chanpinzhongxin?&zjzx=2?&pid=' + pid)
     //   // window.location.href = '#/Chanpinzhongxin?pid=' + pid;
     // } else {
@@ -152,14 +151,6 @@ class Fenlei11 extends React.Component {
             fenlei: data.data
           });
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
                 }
             });
     // ajax.open('post', InterfaceUtil.getUrl(23), false);

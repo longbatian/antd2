@@ -13,12 +13,12 @@ const confirm = Modal.confirm;
 
 //tab切换
 function callback(key) {
-    console.log(key);
+
 }
 
 //查询事件
 function handleChange(value) {
-    console.log(`selected ${value}`);
+
 }
 
 //确认框
@@ -36,7 +36,7 @@ function showConfirm() {
             var arr = $('.shoucang_inp');
             for (var i = 0; i < arr.length; i++) {
                 var a = $('.shoucang_inp').eq(i).prop('checked');
-                console.log(a, i);
+
                 if (a == true) {
                     var id = $('.spid').eq(i).val();
 
@@ -68,7 +68,7 @@ function showConfirm() {
 
 //分页
 function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
+
 }
 
 class PersonalWodejifen extends React.Component {
@@ -103,7 +103,7 @@ class PersonalWodejifen extends React.Component {
                 var arr = $('.shoucang_inp');
                 for (var i = 0; i < arr.length; i++) {
                     var a = $('.shoucang_inp').eq(i).prop('checked');
-                    console.log(a, i);
+
                     if (a == true) {
                         var id = $('.spid').eq(i).val();
 
@@ -212,14 +212,6 @@ class PersonalWodejifen extends React.Component {
                         // window.location.href='#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
@@ -262,14 +254,6 @@ class PersonalWodejifen extends React.Component {
                         // window.location.href='#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartadd",false);
@@ -309,14 +293,6 @@ class PersonalWodejifen extends React.Component {
                 if (data.status === 1) {
                     that.ajax2();
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods_delete",false);
@@ -352,14 +328,6 @@ class PersonalWodejifen extends React.Component {
                 if (data.status === 1) {
                     that.ajax2()
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods_delete",false);
@@ -422,14 +390,6 @@ class PersonalWodejifen extends React.Component {
                     });
                     that.refs.dingdan.className = 'display'
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods",false);
@@ -480,14 +440,6 @@ class PersonalWodejifen extends React.Component {
                     // }
 
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods",false);

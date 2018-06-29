@@ -7,15 +7,6 @@ import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
 import {PubSub} from 'pubsub-js';
 
-//查询事件
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
-//分页
-function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
-}
 
 class PersonalXiangqing extends React.Component {
 
@@ -54,7 +45,7 @@ class PersonalXiangqing extends React.Component {
                     PubSub.publish('PubSubmessage', data.status);
                 }
                 if (data.data == '1') {
-                   CoojiePage.setBuyCarOk()
+                    CoojiePage.setBuyCarOk()
                 } else {
                     if (data.info != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
@@ -66,14 +57,6 @@ class PersonalXiangqing extends React.Component {
                         // window.location.href='#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartaddall",false);
@@ -136,22 +119,14 @@ class PersonalXiangqing extends React.Component {
                         // window.location.href='#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
 
     componentDidMount() {
         let username = CoojiePage.getCoojie('username');
-        let token =  CoojiePage.getCoojie('token');
-        let order_id =  CoojiePage.getCoojie('order_id');
+        let token = CoojiePage.getCoojie('token');
+        let order_id = CoojiePage.getCoojie('order_id');
         const that = this;
         //我的收藏
         $.ajax({
@@ -162,7 +137,7 @@ class PersonalXiangqing extends React.Component {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data.data.cons)
+
                 if (data.data.length == 0) {
 
                 } else {
@@ -170,7 +145,7 @@ class PersonalXiangqing extends React.Component {
                         ddxq: data.data.order_info,
                         ddsj: data.data.order,
                         sphj: data.data.order[0].ddprice,
-                        cons:data.data.cons
+                        cons: data.data.cons
                     }, () => {
                         var a = document.getElementsByClassName('xiangqing_ddzt');
                         var b = a[0].innerText;
@@ -180,14 +155,6 @@ class PersonalXiangqing extends React.Component {
                         }
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         $.ajax({
@@ -208,23 +175,16 @@ class PersonalXiangqing extends React.Component {
 
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
     }
+
 //分页
     fenye(e) {
         var username = CoojiePage.getCoojie('username');
-        var token =  CoojiePage.getCoojie('token');
-        var user_id =  CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         var order_id = CoojiePage.getCoojie('order_id');
         const that = this;
         //订单ajax
@@ -232,8 +192,8 @@ class PersonalXiangqing extends React.Component {
             url: InterfaceUtil.getUrl(43),
             type: "post",
             data: {
-                "username": username, "token": token, "order_id": order_id,page:e,
-                limit:5
+                "username": username, "token": token, "order_id": order_id, page: e,
+                limit: 5
             },
             dataType: "json",
             success: function (data) {
@@ -247,21 +207,15 @@ class PersonalXiangqing extends React.Component {
                     //    that.refs.dingdan.className = 'display'
                 }
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
-    dingdanxiangqingJiesuan(id){
-        sessionStorage.setItem("orderno",id);
+
+    dingdanxiangqingJiesuan(id) {
+        sessionStorage.setItem("orderno", id);
         this.props.history.push('/Dingdan')
     }
+
     render() {
         return (
             <div className=' width988 floatRight'>
@@ -290,8 +244,8 @@ class PersonalXiangqing extends React.Component {
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
 
                                                 <span
-                                                className='personal_xiangqing_con_span1 fontFamily display'
-                                                onClick={() => this.dingdanxiangqingJiesuan(item.orderno)}
+                                                    className='personal_xiangqing_con_span1 fontFamily display'
+                                                    onClick={() => this.dingdanxiangqingJiesuan(item.orderno)}
                                                 >
                                                     去付款
                                                 </span>
@@ -330,20 +284,21 @@ class PersonalXiangqing extends React.Component {
                                                     this.state.orderno.map(function (item, i) {
                                                         return (
                                                             <Timeline.Item>
-                        <span className='wlxx_span'>
-                        {item.createtime}\
-                            {item.wldw}
-                        </span>
+                                                                <span className='wlxx_span'>
+                                                                {item.createtime}\{item.wldw}
+                                                                </span>
                                                             </Timeline.Item>
                                                         )
                                                     }, this)
                                                 }
 
                                             </Timeline>
-                                            <Timeline className='ZWwlxx display'>
-                                                <Timeline.Item><span
-                                                    className='wlxx_span'> 暂无物流信息</span></Timeline.Item>
-                                            </Timeline>
+
+
+                                            {/*<Timeline className='ZWwlxx display'>*/}
+                                                {/*<Timeline.Item><span*/}
+                                                    {/*className='wlxx_span'> 暂无物流信息</span></Timeline.Item>*/}
+                                            {/*</Timeline>*/}
                                         </div>
                                         <div className='clear'></div>
                                     </div>
@@ -471,11 +426,11 @@ class PersonalXiangqing extends React.Component {
     }
 
     componentDidUpdate() {
-        var ZWwlxx = document.getElementsByClassName('ZWwlxx');
-        var wlxx = document.getElementsByClassName('wlxx');
-        if (wlxx[0].children.length == 0) {
-            ZWwlxx[0].className = 'ant-timeline ZWwlxx '
-        }
+        // var ZWwlxx = document.getElementsByClassName('ZWwlxx');
+        // var wlxx = document.getElementsByClassName('wlxx');
+        // if ($('.wlxx').children.length == 0) {
+        //     ZWwlxx[0].className = 'ant-timeline ZWwlxx '
+        // }
     }
 }
 

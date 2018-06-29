@@ -334,6 +334,9 @@
   background-color: #ffffff;
   text-align: left;
 }
+.personal_xiangqing_title_con_div1 .wlxx{
+  padding: 15px 0;
+}
 .personalCon1_xuanfu li{
   margin-left: 20px;
   width: 460px;
@@ -345,17 +348,20 @@
 .personalCon1_xuanfu_li{
   text-align: center;
 }
+.personalCon1_table_tr .ant-timeline-item-head-blue{
+  margin-top: 12px;
+}
 .personalCon1_xuanfu_li1{
   border-bottom: none!important;
 }
 .ant-timeline-item-head{
-  top: 13px;
-  border-color: #fde9e8!important;
-  background-color: #f68c00;
+  /*top: 13px;*/
+  /*border-color: #fde9e8!important;*/
+  /*background-color: #f68c00;*/
 }
 .ant-timeline-item-head-blue{
-  background-color: #ccc;
-  border-color: #fff!important;
+  /*background-color: #ccc;*/
+  /*border-color: #fff!important;*/
 }
 .ant-timeline{
   box-shadow: 0px 1px 10px 1px #b7daf7;

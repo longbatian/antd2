@@ -12,8 +12,8 @@ const AddMaintainPerson = Form.create()(React.createClass({
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values);
-        console.log('Received values of form: ', values);
+        // console.log(values);
+        // console.log('Received values of form: ', values);
         var managerJson={
           "phone": values.phone,
           "email": values.email,

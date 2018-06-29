@@ -8,11 +8,11 @@ import $ from 'jquery'
 const confirm = Modal.confirm;
 //查询事件
 function handleChange(value) {
-  console.log(`selected ${value}`);
+
 }
 //分页
 function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
+
 }
 //确认框
 function showConfirm() {
@@ -24,7 +24,7 @@ function showConfirm() {
     onOk() {
       return new Promise((resolve, reject) => {
         setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
+      }).catch();
     },
     onCancel() {},
   });
@@ -113,28 +113,9 @@ class PersonalWodejifen extends React.Component {
           });
           that.refs.dingdan.className='display'
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
-    // ajax.open('post',"http://192.168.1.49/index.php/index/user/jfls_log",false);
-    // ajax.open('post',InterfaceUtil.getUrl(41),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
 
-
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&page="+e+"&limit=15&user_id="+user_id);
   }
 
   componentDidMount(){
@@ -173,14 +154,6 @@ class PersonalWodejifen extends React.Component {
           });
           that.refs.jifen.className='display'
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/user/jfls_log",false);
@@ -215,14 +188,6 @@ class PersonalWodejifen extends React.Component {
           });
           that.refs.jifen.className='display'
         }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
     // ajax.open('post',InterfaceUtil.getUrl(42),false);

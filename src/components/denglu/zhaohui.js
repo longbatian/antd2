@@ -28,14 +28,6 @@ class Zhaohui extends React.Component {
                 success: function(data){
                       alert(data.info)
         if(data.status===1) that.props.history.push('/Denglu');
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/user/goback_password",false);

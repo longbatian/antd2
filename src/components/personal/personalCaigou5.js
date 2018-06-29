@@ -6,11 +6,11 @@ import { Input,Button,Select,Pagination,Timeline   } from 'antd';
 
 //查询事件
 function handleChange(value) {
-  console.log(`selected ${value}`);
+
 }
 //分页
 function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
+
 }
 
 class PersonalZhanneixin extends React.Component {
@@ -28,12 +28,7 @@ class PersonalZhanneixin extends React.Component {
     var a=e.target.parentNode;
     a.lastChild.className='personalCon1_xuanfu1 personalCon1_xuanfu display'
   }
-  number1(e){
-    console.log(e.target.innerText);
-  }
-  number2(e){
-    console.log(e.target);
-  }
+
 
   render() {
     return (

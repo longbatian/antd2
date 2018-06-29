@@ -92,14 +92,6 @@ class PersonalZhanneixin extends React.Component {
                         znx: data.data.list,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -142,14 +134,6 @@ class PersonalZhanneixin extends React.Component {
                     });
                     that.refs.dingdan.className = 'display'
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -178,14 +162,6 @@ class PersonalZhanneixin extends React.Component {
                         cons: data.data.cons,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/get_znx",false);
@@ -215,7 +191,7 @@ class PersonalZhanneixin extends React.Component {
                 dataType: "json",
                 success: function (data) {
                     if (data.status === 1) {
-                       console.log(data);
+
                         datas[i].status=2;
                         _this.setState({
                             textLetter:`${datas[i].content}`,
@@ -223,14 +199,6 @@ class PersonalZhanneixin extends React.Component {
                             textTitle:datas[i].title
                         })
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
         }else {
@@ -273,18 +241,10 @@ class PersonalZhanneixin extends React.Component {
                         },
                         dataType: "json",
                         success: function (data) {
-                            console.log(data)
+
                             if (data.status === 1) {
 
                             }
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            // 状态码
-                            console.log(XMLHttpRequest.status);
-                            // 状态
-                            console.log(XMLHttpRequest.readyState);
-                            // 错误信息
-                            console.log(textStatus);
                         }
                     });
             },

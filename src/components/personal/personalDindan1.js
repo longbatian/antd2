@@ -72,14 +72,6 @@ class PersonalDindan extends React.Component {
                         });
                         that.refs.dingdan.className = 'display'
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
             // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);
@@ -111,14 +103,6 @@ class PersonalDindan extends React.Component {
                         });
                         that.refs.dingdan.className = 'display'
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
 
@@ -149,14 +133,6 @@ class PersonalDindan extends React.Component {
                         });
                         that.refs.dingdan.className = 'display'
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
             // ajax.send("username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id+"&ddzt=4");
@@ -187,14 +163,6 @@ class PersonalDindan extends React.Component {
                         });
                         that.refs.dingdan.className = 'display'
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
             // ajax.send("username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id);
@@ -251,14 +219,6 @@ class PersonalDindan extends React.Component {
                         dingdan: data.data.list,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -320,14 +280,6 @@ class PersonalDindan extends React.Component {
                         cons: data.data.cons,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -353,14 +305,6 @@ class PersonalDindan extends React.Component {
                     if (data.status === 1) {
                         that.ajaxPersonDingDan();
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
         } else if (zhi == '再次购买') {
@@ -390,14 +334,6 @@ class PersonalDindan extends React.Component {
                         no[0].className = 'buycar_no';
                         no_span[0].innerText = data.info;
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
         }
@@ -457,14 +393,6 @@ class PersonalDindan extends React.Component {
                     that.refs.dingdan.className = 'display'
                 }
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);

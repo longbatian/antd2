@@ -6,14 +6,7 @@ import React from 'react';
 import { Input,Button,Select,Pagination,Modal   } from 'antd';
 const confirm = Modal.confirm;
 
-//查询事件
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-//分页
-function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
-}
+
 //确认框
 function showConfirm() {
   confirm({
@@ -24,7 +17,7 @@ function showConfirm() {
     onOk() {
       return new Promise((resolve, reject) => {
         setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
+      }).catch();
     },
     onCancel() {},
   });

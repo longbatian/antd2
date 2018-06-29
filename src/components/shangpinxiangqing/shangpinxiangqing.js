@@ -65,14 +65,6 @@ class Shangpinxiangqing extends React.Component {
                         spxq: datas,
                     })
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -237,14 +229,6 @@ class Shangpinxiangqing extends React.Component {
                         that.props.history.push('/Denglu');
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         PubSub.publish('PubSubmessage', '');
@@ -282,14 +266,6 @@ class Shangpinxiangqing extends React.Component {
                         _this.props.history.push('/Denglu')
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -347,14 +323,6 @@ class Shangpinxiangqing extends React.Component {
                         })
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -501,11 +469,11 @@ class Shangpinxiangqing extends React.Component {
                 {
                     datas.spxq.map(function (item, i) {
                         // console.log(item);
-
+                        let islimit = item.activity_xgsl > 99999 ? `` : item.activity_xgsl;
                         let isActivity = item.hprice ? <span key={i + 'isActivity'}>
                           <span className='font20 orange'>{item.hprice}</span>
                           <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.prices}</span>
-                            <span className='red font13 bold'>({item.activity_remark} {item.activity_xgsl})</span>
+                            <span className='red font13 bold'>( {item.activity_remark} {islimit})</span>
                         </span> :
                             <span className='font20 orange'>{item.prices}</span>;
                         let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'

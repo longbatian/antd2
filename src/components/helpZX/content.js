@@ -19,7 +19,7 @@ class HelpCon extends React.Component{
   }
   helpContentAjax(){
     //获取地址栏的值
- 
+
     var id=InterfaceUtil.getHashParameters().id;
     if(id==undefined){
       id='';
@@ -41,15 +41,7 @@ class HelpCon extends React.Component{
             con:data.data.content,
             conTitle:data.data.title,
           });
-        }             
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
+        }
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/help/helplist",false);
@@ -60,7 +52,7 @@ class HelpCon extends React.Component{
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
     //     console.log(data);
-        
+
     //   }
     // };
     // ajax.send("&id="+id);

@@ -67,7 +67,7 @@ class Modal1 extends React.Component {
       var data = xhr.responseText;    //得到返回值
       // alert(data);
       data = JSON.parse(data);
-      console.log(data);
+
     }
     // xhr.open("post", 'http://192.168.1.49/index.php/index/user/userzz_update', true);
     xhr.open("post", InterfaceUtil.getUrl(56), true);

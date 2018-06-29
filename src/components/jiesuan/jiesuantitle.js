@@ -53,14 +53,6 @@ class Jiesuan extends React.Component {
                         //   a[0].className='jiesuan_div_div3_div display'
                         // }
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
             // er_id="+member_id+"&username="+username+"&token="+token+"&jylx="+jylx+"&cid="+cid+"&page=1"+"&limit="+this.state.cons);
@@ -102,14 +94,6 @@ class Jiesuan extends React.Component {
                         //   a[0].className='jiesuan_div_div3_div display'
                         // }
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
             // ajax.open('post',"http://192.168.1.49/index.php/index/Order/orderdetail",false);
@@ -190,14 +174,6 @@ class Jiesuan extends React.Component {
                         a[0].className = 'jiesuan_div_div3_div display'
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/Order/orderdetail",false);

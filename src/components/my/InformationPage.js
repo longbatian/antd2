@@ -77,14 +77,6 @@ class InformationPage extends Component {
                         } else {
                             alert(data.info)
                         }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
                     }
                 });
             }
@@ -124,15 +116,6 @@ class InformationPage extends Component {
                 } else {
                     that.props.history.push('/Denglu');
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }

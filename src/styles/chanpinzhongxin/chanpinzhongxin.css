@@ -259,7 +259,12 @@
   text-align: center;
   border: 1px solid #cccccc;
 }
+.hotImg{
+  position: absolute;
+  left: 0;
+  top: 0;
 
+}
 .chanpinzhongxin_right_con_ul_span1 {
   background-image: url("../../images/chanpinzhongxin/jia.png");
   background-repeat: no-repeat;
@@ -411,6 +416,7 @@
 }
 
 .chanpinzhongxin_bottom_span {
+  display: inline-block;
   margin-right: 5px;
   margin-left: 5px;
 }

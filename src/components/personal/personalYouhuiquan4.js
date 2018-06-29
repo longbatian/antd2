@@ -6,7 +6,7 @@ import { Pagination,Icon,button,Modal } from 'antd';
 
 //分页
 function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
+
 }
 
 
@@ -22,13 +22,13 @@ class PersonalYouhuiquan extends React.Component {
     });
   }
   handleOk = (e) => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
   }
   handleCancel = (e) => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });

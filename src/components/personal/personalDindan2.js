@@ -255,7 +255,7 @@ class PersonalDindan extends React.Component {
         if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
           var data=ajax.responseText;
           data=JSON.parse(data);
-          console.log(data.data);
+
           if(data.data.length==0){
 
           }else{
@@ -276,7 +276,7 @@ class PersonalDindan extends React.Component {
   time1(){
     var a =$('.ant-select-selection-selected-value').attr('title');
     var b =$('.dingdanbianhao').prop('value');
-    console.log(a,b);
+
     // if(a=='全部信息'){
     //   var a=''
     // }else if(a=='已读信息'){
@@ -360,7 +360,6 @@ class PersonalDindan extends React.Component {
       if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
         var data=ajax.responseText;
         data=JSON.parse(data);
-        console.log(data.data);
         if(data.data.length==0){
 
         }else{

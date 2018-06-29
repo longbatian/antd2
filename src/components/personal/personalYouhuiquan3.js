@@ -6,7 +6,7 @@ import { Pagination,Icon } from 'antd';
 
 //分页
 function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
+
 }
 
 

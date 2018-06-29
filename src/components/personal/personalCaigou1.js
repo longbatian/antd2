@@ -13,13 +13,10 @@ const confirm = Modal.confirm;
 
 //查询事件
 function handleChange(value) {
-    console.log(`selected ${value}`);
+
 }
 
-//分页
-function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
-}
+
 
 class PersonalCaigou extends React.Component {
 
@@ -140,12 +137,7 @@ class PersonalCaigou extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
@@ -211,12 +203,7 @@ class PersonalCaigou extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartadd",false);
@@ -271,12 +258,7 @@ class PersonalCaigou extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
@@ -321,7 +303,7 @@ class PersonalCaigou extends React.Component {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.data.list.length == 0) {
 
                 } else {
@@ -333,12 +315,7 @@ class PersonalCaigou extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);

@@ -60,30 +60,35 @@ class PersonalJibenxinxi extends Component {
         var new1 = a[1].value;
         var new2 = a[2].value;
         if (old == '') {
-            tishi[0].className = 'xiugaimima_div_p3 red'
-            tishi[0].innerText = '旧密码不能为空'
+            tishi[0].className = 'xiugaimima_div_p3 red';
+            tishi[0].innerText = '旧密码不能为空';
+            return;
         }
         else if (new1 === ''||new1 === ' ') {
-            tishi[0].className = 'xiugaimima_div_p3 red'
-            tishi[0].innerText = '新密码不能为空'
+            tishi[0].className = 'xiugaimima_div_p3 red';
+            tishi[0].innerText = '新密码不能为空';
+            return;
         }
         else if (new1.length < 6 || new1.length > 15) {
-            tishi[0].className = 'xiugaimima_div_p3 red'
-            tishi[0].innerText = '密码长度为6到15位'
+            tishi[0].className = 'xiugaimima_div_p3 red';
+            tishi[0].innerText = '密码长度为6到15位';
+            return;
         }
         else if (new2 === '') {
-            tishi[0].className = 'xiugaimima_div_p3 red'
-            tishi[0].innerText = '两次密码不一致'
+            tishi[0].className = 'xiugaimima_div_p3 red';
+            tishi[0].innerText = '两次密码不一致';
+            return;
         }
         else if (new1 != new2) {
-            tishi[0].className = 'xiugaimima_div_p3 red'
-            tishi[0].innerText = '两次密码不一致'
+            tishi[0].className = 'xiugaimima_div_p3 red';
+            tishi[0].innerText = '两次密码不一致';
+            return;
         }
 
         if (new1 == new2) {
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
+            let username = CoojiePage.getCoojie('username');
+            let token = CoojiePage.getCoojie('token');
             const that = this;
             //我的收藏
             $.ajax({
@@ -105,14 +110,6 @@ class PersonalJibenxinxi extends Component {
                         b[0].className = 'xiugaimima_div display'
                         tishi[0].className = 'xiugaimima_div_p3 red display'
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
         }
@@ -148,14 +145,6 @@ class PersonalJibenxinxi extends Component {
                         jynr: data.data.jynr,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -188,14 +177,6 @@ class PersonalJibenxinxi extends Component {
                     } else {
                         alert(data.info)
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
                 }
             });
         });
@@ -324,7 +305,7 @@ class PersonalJibenxinxi extends Component {
                                             )}
                                         </FormItem>
                                         <FormItem
-                                            label="收货地址："
+                                            label="收货电话："
                                             labelCol={{span: 6}}
                                             wrapperCol={{span: 15}}
                                         >

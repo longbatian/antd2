@@ -42,7 +42,7 @@ class Louceng1 extends React.Component {
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-                console.log(data)
+
                 // console.log(data)
                 // data=JSON.parse(data);
                 if (data.data.length == 0) {

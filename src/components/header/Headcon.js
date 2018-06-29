@@ -97,14 +97,6 @@ class Headcon extends React.Component {
                 that.setState({
                     top: data.data.top,
                 });
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
         this.bycarNumber(id, user_type);
@@ -145,14 +137,6 @@ class Headcon extends React.Component {
                     }
 
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }

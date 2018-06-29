@@ -98,14 +98,6 @@ class personalBox extends React.Component {
                 if (data.status === 1) {
                     that.ajax2()
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -158,14 +150,6 @@ class personalBox extends React.Component {
                         // window.location.href='#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -225,14 +209,6 @@ class personalBox extends React.Component {
                     // xq[4].className = 'zizhixiaoqi_span2 a red'
                 }
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -254,14 +230,6 @@ class personalBox extends React.Component {
                     });
                     that.refs.dingdan.className = 'display'
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -295,14 +263,6 @@ class personalBox extends React.Component {
                     });
                     that.refs.shoucang.className = 'display'
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -431,20 +391,6 @@ class personalBox extends React.Component {
                             </span>
                                                 {/*订单跟踪*/}
                                                 <div className='personalCon1_xuanfu display'>
-                                                    {/*<ul>*/}
-                                                    {/*{*/}
-                                                    {/*this.state.orderno.map(function (item){*/}
-                                                    {/*return(*/}
-                                                    {/*<li className=''> 2017-12-07 13:30:30 您的订单商家已开票。</li>*/}
-                                                    {/*)*/}
-                                                    {/*},this )*/}
-                                                    {/*}*/}
-                                                    {/**/}
-                                                    {/*/!*<li>【已付款】 2017-12-07 13:30:30 您的订单商家正在积极备货中。</li>*!/*/}
-                                                    {/*/!*<li className='personalCon1_xuanfu_li'>查看全部订单</li>*!/*/}
-                                                    {/*/!*<li className='personalCon1_xuanfu_li1'>【已提交】 2017-12-07 13:30:30 您的订单已提交，请尽快完成付款。</li>*!/*/}
-                                                    {/*</ul>*/}
-
                                                     {/*订单跟踪*/}
                                                     <Timeline className='wlxx'>
                                                         {

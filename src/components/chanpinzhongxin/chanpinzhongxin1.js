@@ -363,14 +363,6 @@ class Chanpinzhongxin extends React.Component {
                         xq: data.data.xq
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -465,14 +457,6 @@ class Chanpinzhongxin extends React.Component {
                         e[0].className = 'floatRight chanpinzhongxin_right_head_span1'
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -566,14 +550,6 @@ class Chanpinzhongxin extends React.Component {
                     dataType: "json",
                     success: function (data) {
 
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
                     }
                 });
                 $.ajax({
@@ -593,14 +569,6 @@ class Chanpinzhongxin extends React.Component {
                                 cons: data.data.cons
                             });
                         }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
                     }
                 });
             });
@@ -815,14 +783,6 @@ class Chanpinzhongxin extends React.Component {
                         cons: data.data.cons,
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
     }
@@ -884,14 +844,6 @@ class Chanpinzhongxin extends React.Component {
                     });
                 }
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -921,14 +873,6 @@ class Chanpinzhongxin extends React.Component {
                     dataType: "json",
                     success: function (data) {
                         that.getCollection(b, 0);
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
                     }
                 });
 
@@ -953,14 +897,6 @@ class Chanpinzhongxin extends React.Component {
                         // data = JSON.parse(data);
                         that.getCollection(spid, spid);
 
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 状态码
-                        console.log(XMLHttpRequest.status);
-                        // 状态
-                        console.log(XMLHttpRequest.readyState);
-                        // 错误信息
-                        console.log(textStatus);
                     }
                 });
             }
@@ -1015,14 +951,6 @@ class Chanpinzhongxin extends React.Component {
             dataType: "json",
             success: function (data) {
                 alert(data.info);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1092,14 +1020,6 @@ class Chanpinzhongxin extends React.Component {
                         that.props.history.push('/Denglu')
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1145,14 +1065,6 @@ class Chanpinzhongxin extends React.Component {
                         // window.location.href = '#/Denglu';
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1241,14 +1153,6 @@ class Chanpinzhongxin extends React.Component {
                         // e[0].className = 'floatRight chanpinzhongxin_right_head_span2 display'
                     }
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1263,14 +1167,6 @@ class Chanpinzhongxin extends React.Component {
                 that.setState({
                     top: data.data.top
                 });
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1369,14 +1265,6 @@ class Chanpinzhongxin extends React.Component {
                         cons: data.data.cons
                     });
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
             }
         });
 
@@ -1657,10 +1545,15 @@ class Chanpinzhongxin extends React.Component {
                                 let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                                     : 'chanpinzhongxin_sp_img_shoucang';
                                 let maxNum = item.kcs > 1000 ? `充裕` : item.kcs;
+                                let hot_img=item.hot_img?<div className="hotImg">
+                                    <img src={this.state.lujin+item.hot_img} alt=""/>
+                                </div>:null;
+                                console.log(item.hot_img)
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.zxdw} data={item.id}/>
                                         <div className='chanpinzhongxin_right_con_ul_div relative'>
+                                            {hot_img}
                                             <img src={this.state.lujin + item.image} alt=""
                                                  className='chanpinzhongxin_right_con_ul_img'
                                                  onMouseMove={(e) => {
@@ -1672,8 +1565,7 @@ class Chanpinzhongxin extends React.Component {
                                             }}/>
                                             <div className={Collection2} data={item.id} onClick={(e) => {
                                                 this.color10(e, item.is_f)
-                                            }}
-                                            >
+                                            }}>
                                                 <img src={require("../../images/shangpingxiangqing/xinBai.png")}
                                                      className='marginRight5'
                                                      alt=""/>收藏
