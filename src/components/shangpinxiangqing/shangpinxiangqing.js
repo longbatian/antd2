@@ -507,7 +507,7 @@ class Shangpinxiangqing extends React.Component {
                                             {isActivity}
                                         </div>
                                         <div>促&emsp;销：<span
-                                            className='shangpinxiangqing_sp_xinxi_jiage_baoyou'>包邮</span> 购买满500元包邮
+                                            className='shangpinxiangqing_sp_xinxi_jiage_baoyou'>包邮</span>
                                         </div>
                                     </div>
 

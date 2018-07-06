@@ -12,7 +12,7 @@ class ActivityPage extends Component {
         this.loginPage = new LoginPage();
         this.state = {
             src: '',
-            height: 1500,
+            height: 750,
         }
     }
 
@@ -56,7 +56,7 @@ class ActivityPage extends Component {
     render() {
         let heights = this.state.height;
         let height = {'height': heights};
-        return <div style={{height: '100%'}}>
+        return <div className="iframesBoxs" style={{height: '100%'}}>
             <Header/>
             <iframe className='iframes'
                     style={height}

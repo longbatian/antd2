@@ -88,20 +88,15 @@ class Fenlei11 extends React.Component {
   }
 
   chaxun1(e,sid) {
-    // var pid = e.target.getAttribute('data-sid');
-    var index=e.target.parentNode.parentNode.getAttribute('data');
-    var pid = $('.aaa1').eq(index).attr('data-class');
+    let index=e.target.parentNode.parentNode.getAttribute('data');
+      let pid = $('.aaa1').eq(index).attr('data-class');
     this.props.history.push('/Chanpinzhongxin?&zjzx=2&pid=' + pid + '&sid=' + sid)
-    // window.location.href = '#/Chanpinzhongxin?&pid=' + pid + '&sid=' + sid;
   }
 
   chaxun2(e,did) {
-    // var did = e.target.getAttribute('data-did');
-    var index = e.target.parentNode.parentNode.parentNode.getAttribute('data');
-    var sid = e.target.parentNode.parentNode.firstChild.getAttribute('data-sid');
-    var pid = $('.aaa1').eq(index).attr('data-class');
-    // console.log(pid + '&sid=' + sid + '&did=' + did)
-    // window.location.href = '#/Chanpinzhongxin?&pid=' + pid + '&sid=' + sid + '&did=' + did;
+      let index = e.target.parentNode.parentNode.parentNode.getAttribute('data');
+      let sid = e.target.parentNode.parentNode.firstChild.getAttribute('data-sid');
+      let pid = $('.aaa1').eq(index).attr('data-class');
     this.props.history.push( '/Chanpinzhongxin?&zjzx=2&pid=' + pid + '&sid=' + sid + '&did=' + did)
   }
 
@@ -153,22 +148,7 @@ class Fenlei11 extends React.Component {
         }
                 }
             });
-    // ajax.open('post', InterfaceUtil.getUrl(23), false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // ajax.onreadystatechange = function () {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data = ajax.responseText;
-    //     data = JSON.parse(data);
-    //     if (data.data.length == 0) {
 
-    //     } else {
-    //       that.setState({
-    //         fenlei: data.data
-    //       });
-    //     }
-    //   }
-    // };
-    // ajax.send('type=1');
   }
 
   render() {
@@ -202,7 +182,7 @@ class Fenlei11 extends React.Component {
                       this.state.fenlei[i].d.map(function (item, j) {
                         return (
                           <dl key={item.id} className='index_lunbo_ul_zilei_dl'>
-                            <dt className='disanji' data-sid={item.id} onClick={(e) => {
+                            <dt className='disanji' data-w={item.id} onClick={(e) => {
                               this.chaxun1(e,item.id)
                             }}
                             >{item.title}</dt>

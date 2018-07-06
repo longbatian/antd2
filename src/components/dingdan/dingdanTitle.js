@@ -73,9 +73,6 @@ class Dingdan extends React.Component {
         let token = CoojiePage.getCoojie('token');
         // let user_id=CoojiePage.getCoojie('user_id');
         let username = CoojiePage.getCoojie('username');
-        // let cid=CoojiePage.getCoojie('cid');
-        // let yhqid=CoojiePage.getCoojie('yhqid');
-        // let bz=CoojiePage.getCoojie('bz');
         window.scrollTo(0, 0);
         let orderno = sessionStorage.getItem("orderno");
         const that = this;
@@ -150,6 +147,7 @@ class Dingdan extends React.Component {
                 dataType: "json",
                 success: function (data, status) {
                     if (data.status === 1) {
+                        // console.log(data)
                         _this.setState({
                             imgs: data.data,
                             isOver: !_this.state.isOver
@@ -225,8 +223,7 @@ class Dingdan extends React.Component {
 
     render() {
         let data = this.state.chuangjian;
-
-        let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
+let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
             <Button type="primary"
                     loading={this.state.iconLoading}
                     onClick={this.enterIconLoading}>

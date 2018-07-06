@@ -45,7 +45,7 @@ class Chanpinzhongxin extends React.Component {
             scqy: '',//生产企业
             page: 1,//页数
             pxnum: 1,
-            is_kc:'',
+            is_kc: '',
         }
     }
 
@@ -741,7 +741,7 @@ class Chanpinzhongxin extends React.Component {
     ajaxProductLists() {
         //ajax
         let data = this.state;
-        var pid = data.fenleiID,
+        let pid = data.fenleiID,
             jx = data.jixingID,
             xq = data.xiaoqiID,
             sid = data.zileiID,
@@ -750,13 +750,13 @@ class Chanpinzhongxin extends React.Component {
             page = data.page,
             zjzx = data.zjzx,
             pxnum = data.pxnum,
-            is_kc=data.is_kc;
-        var b = $('.zilei').attr('data');
-        var c = $('.jixing').attr('data');
-        var d = $('.xiaoqi').attr('data');
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var jylx = CoojiePage.getCoojie('jylx');
+            is_kc = data.is_kc;
+        let b = $('.zilei').attr('data');
+        let c = $('.jixing').attr('data');
+        let d = $('.xiaoqi').attr('data');
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let jylx = CoojiePage.getCoojie('jylx');
         let pxtype = this.state.pxtype;
         const that = this;
         //商品列表
@@ -769,7 +769,7 @@ class Chanpinzhongxin extends React.Component {
             data: {
                 'username': username, 'token': token, 'page': page, 'limit': 20, 'jylx': jylx,
                 'sid': sid, 'pid': pid, 'jx': jx, 'xq': xq, 'pxnum': pxnum, 'pxtype': pxtype,
-                'title': title, 'scqy': scqy, 'zjzx': zjzx,is_kc:is_kc
+                'title': title, 'scqy': scqy, 'zjzx': zjzx, is_kc: is_kc
             },
             dataType: "json",
             success: function (data) {
@@ -1190,7 +1190,7 @@ class Chanpinzhongxin extends React.Component {
         let zjzx = InterfaceUtil.getHashParameters().zjzx;
         let pxnum = InterfaceUtil.getHashParameters().pxnum,
             pxtype = this.state.pxtype,
-            is_kc=this.state.is_kc;
+            is_kc = this.state.is_kc;
         $('.header_cd').find('li').removeClass();
         if (zjzx == "1") {
             $('.header_cd').find('li').eq(2).addClass('btn_Header');
@@ -1238,7 +1238,7 @@ class Chanpinzhongxin extends React.Component {
             title_fenlei: title_fenlei,
             zjzx: zjzx,
             page: 1,
-            is_kc:'',
+            is_kc: '',
         }, () => {
             if (e != null || !e) {
 
@@ -1253,7 +1253,7 @@ class Chanpinzhongxin extends React.Component {
                 'username': username, 'token': token, 'page': 1, 'limit': 20, 'jylx':
                 jylx, 'pid': pid, 'did': did, 'sid': sid,
                 'member_id': user_id, 'jx': c, 'xq': d, 'title': e
-                , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'zjzx': zjzx,is_kc:is_kc
+                , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'zjzx': zjzx, is_kc: is_kc
             },
             dataType: "json",
             success: function (data) {
@@ -1295,16 +1295,16 @@ class Chanpinzhongxin extends React.Component {
      */
     changeSwitch(checked) {
         // console.log(`switch to ${checked}`);
-        let iskc=checked?1:'';
+        let iskc = checked ? 1 : '';
         this.setState({
-            is_kc:iskc
-        },() =>{
+            is_kc: iskc
+        }, () => {
             this.ajaxProductLists();
         })
     }
 
     render() {
-        let data=this.state;
+        let data = this.state;
         return (
             <div className='contain chanpinzhongxin'>
 
@@ -1338,15 +1338,8 @@ class Chanpinzhongxin extends React.Component {
                                         onClick={(e) => {
                                             this.cha(e)
                                         }} className='cursor'>×</span></li>
-                                    {/*<li className='bbb productName display' data={data.factory}>产品名：{this.state.productName}<span*/}
-                                    {/*onClick={(e) => {*/}
-                                    {/*this.cha(e)*/}
-                                    {/*}} className='cursor'>×</span></li>*/}
-                                    {/*<li className='bbb factory display' data={this.state.factory}>药品厂家：{this.state.factory}<span*/}
-                                    {/*onClick={(e) => {*/}
-                                    {/*this.cha(e)*/}
-                                    {/*}} className='cursor'>×</span></li>*/}
-                                    <div className='clear'></div>
+
+                                    <div className='clear'/>
                                 </ul>
                                 <span className='floatRight relative marginRight20 cursor' onClick={(e) => {
                                     this.cha1(e)
@@ -1355,7 +1348,7 @@ class Chanpinzhongxin extends React.Component {
                        className='chanpinzhongxin_right_head_li_img'/>
                   清除条件
                 </span>
-                                <div className='clear'></div>
+                                <div className='clear'/>
                             </li>
                             <li>
                                 <span className='floatleft'>分类：</span>
@@ -1499,15 +1492,6 @@ class Chanpinzhongxin extends React.Component {
                                     <span className='chanpinzhongxin_span'>厂家</span>
                                 </li>
 
-                                {/*<li className='chanpinzhongxin_right_con_div_li2 chanpinzhongxin_right_con_div_li ' onClick={(e) => {*/}
-                                {/*this.paixu(e)*/}
-                                {/*}}>*/}
-                                {/*<span>活动</span>*/}
-                                {/*</li>*/}
-                                {/*<li className='chanpinzhongxin_right_con_div_li2 chanpinzhongxin_right_con_div_li' style={{width: 80}}*/}
-                                {/*>*/}
-                                {/*<span>只显示有货</span>*/}
-                                {/*</li>*/}
 
                                 <li className='chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li4'
                                     onClick={(e) => {
@@ -1522,7 +1506,7 @@ class Chanpinzhongxin extends React.Component {
                                     <span className='chanpinzhongxin_right_con_div_li4_span'>大图</span>
                                 </li>
                                 <li className='isInStock'>
-                                   <span>只显示有货：</span>
+                                    <span>只显示有货：</span>
                                     <Switch size="small" onChange={(e) => this.changeSwitch(e)}/>
                                 </li>
                             </ul>
@@ -1545,10 +1529,10 @@ class Chanpinzhongxin extends React.Component {
                                 let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                                     : 'chanpinzhongxin_sp_img_shoucang';
                                 let maxNum = item.kcs > 1000 ? `充裕` : item.kcs;
-                                let hot_img=item.hot_img?<div className="hotImg">
-                                    <img src={this.state.lujin+item.hot_img} alt=""/>
-                                </div>:null;
-                                console.log(item.hot_img)
+                                let hot_img = item.hot_img ? <div className="hotImg">
+                                    <img src={this.state.lujin + item.hot_img} alt=""/>
+                                </div> : null;
+                                // console.log(item.hot_img)
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.zxdw} data={item.id}/>

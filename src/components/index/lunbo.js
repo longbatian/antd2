@@ -58,7 +58,7 @@ class Lunbo extends React.Component {
     }
 
     var user_type = getCookie('user_type');
-    var token = getCookie('token');
+    let token = getCookie('token');
     var jylx = getCookie('jylx');
     const that = this;
     //搜索条件ajax
@@ -132,7 +132,7 @@ class Lunbo extends React.Component {
     const _state=this.state;
     const a = [];
     if (this.state.redirect) {
-      return <Redirect push to="/NewXq" target="_blank"/>; //or <Redirect push to="/sample?a=xxx&b=yyy" /> 传递更多参数
+      return <Redirect push to="/NewXq"/>; //or <Redirect push to="/sample?a=xxx&b=yyy" /> 传递更多参数
     }
 
     let adv=_state.adv.length>0?_state.adv.map((item,i)=>{

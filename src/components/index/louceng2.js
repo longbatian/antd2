@@ -60,39 +60,10 @@ class Louceng2 extends React.Component {
           });
 
         }
-        
+
       }
 
     })
-    // try {
-    //   window.ajax = new ActiveXObject('Msxml2.XMLHTTP');
-    // } catch (e) {
-    //   try {
-    //     window.ajax = new ActiveXObject('Microsoft.XMLHTTP');
-    //   } catch (e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/index/brand",false);
-    // ajax.open('post', InterfaceUtil.getUrl(26), false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // ajax.onreadystatechange = function () {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data = ajax.responseText;
-    //     data = JSON.parse(data);
-    //     if (data.data.length == 0) {
-
-    //     } else {
-    //       that.setState({
-    //         pinpai: data.data.brand_img,
-    //         banner2: data.data.adv_top.image
-    //       });
-
-    //     }
-    //   }
-    // };
-    // ajax.send();
-
 
     //新闻
     $.ajax({
@@ -123,43 +94,11 @@ class Louceng2 extends React.Component {
           });
 
         }
-        
+
       }
 
     })
-    // try {
-    //   window.ajax = new ActiveXObject('Msxml2.XMLHTTP');
-    // } catch (e) {
-    //   try {
-    //     window.ajax = new ActiveXObject('Microsoft.XMLHTTP');
-    //   } catch (e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/index/news",false);
-    // ajax.open('post', InterfaceUtil.getUrl(27), false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // ajax.onreadystatechange = function () {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data = ajax.responseText;
-    //     data = JSON.parse(data);
-    //     // console.log(data.data)
-    //     if (data.data.length == 0) {
 
-    //     } else {
-    //       that.setState({
-    //         banner1: data.data.news_img,
-    //         news1: data.data.news,
-    //         news3: data.data.news1,
-    //         news2: data.data.news2.content,
-    //         video_title: data.data.video.video_content,
-    //         video_src: data.data.video.video_src
-    //       });
-
-    //     }
-    //   }
-    // };
-    // ajax.send();
   }
 
   getNews(id) {
