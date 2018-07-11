@@ -55,7 +55,6 @@ class Denglu1 extends React.Component {
                 document.cookie = "token="+data.data.token+";expires=" + exp.toGMTString();
                 document.cookie = "user_type="+data.data.user_type+";expires=" + exp.toGMTString();
                 document.cookie = "jylx="+data.data.jylx+";expires=" + exp.toGMTString();
-
               }else{
                 document.cookie="user_id="+data.data.id;
                 document.cookie="username="+data.data.username;

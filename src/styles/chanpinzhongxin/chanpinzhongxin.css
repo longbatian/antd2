@@ -313,6 +313,7 @@
 .chanpinzhongxin_right_con_ul p,.chanpinzhongxin_right_con_ul>li>div {
   margin:0 0 0 10px;
   font-size: 12px;
+  min-height: 16px;
 }
 
 .chanpinzhongxin_right_con_ul {
@@ -323,6 +324,7 @@
 .chanpinzhongxin_right_con_ul li {
   border: 1px solid #e0e0e0;
   width: 237.5px;
+  height: 418px;
   margin-top: 10px;
   background-color: #f5f5f5;
   float: left;
