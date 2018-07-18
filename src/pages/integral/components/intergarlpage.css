@@ -1,0 +1,41 @@
+.textover {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.iglHead {
+  width: 1200px;
+  margin: auto;
+  padding: 20px 0 6px;
+  overflow: hidden;
+}
+.iglHead .iglHeadLeft {
+  float: left;
+  font-size: 22px;
+  color: #F68F0A;
+}
+.iglHead .iglHeadLeft span {
+  padding: 8px 15px;
+  margin-left: 15px;
+  border-left: 1px solid #F68F0A;
+}
+.iglHead .iglHeadRig {
+  float: right;
+  display: flex;
+  padding-top: 40px;
+}
+.iglHead .iglHeadRig li {
+  flex: 1;
+  color: #333;
+  white-space: nowrap;
+  padding: 10px 15px;
+}
+.iglHead .iglHeadRig li a {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+.iglHead .iglHeadRig li a:hover {
+  color: #F68F0A;
+}
+/*# sourceMappingURL=intergarlpage.css.map */
