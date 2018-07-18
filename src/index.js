@@ -27,7 +27,7 @@ import HelpZx from './pages/helpZx';
 import Xiangqing from "./pages/personalXiangqing"; //详情
 import NewXq from './pages/newXQ';
 import NewZX from './pages/newZX';
-import Header from './pages/Header1'
+import Integralpage from './pages/Integralpage';//积分商城
 import InformationPage from "./components/my/InformationPage"; //新用户填写信息
 
 ReactDOM.render((
@@ -59,6 +59,7 @@ ReactDOM.render((
             <Route  path="/InformationPage" component={InformationPage} />
             <Route  path="/NewXq" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
+            <Route  path="/Integral" component={Integralpage} />
         </div>
     </HashRouter>
 ), document.getElementById('root'));

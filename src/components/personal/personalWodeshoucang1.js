@@ -281,6 +281,7 @@ class PersonalWodejifen extends React.Component {
         var token = CoojiePage.getCoojie('token');
         const that = this;
         //智能采购
+        id = JSON.stringify(id)
         $.ajax({
             url: InterfaceUtil.getUrl(1),
             type: "post",
@@ -295,18 +296,7 @@ class PersonalWodejifen extends React.Component {
                 }
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods_delete",false);
-        // ajax.open('post',InterfaceUtil.getUrl(10),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
 
-        //   }
-        // };
-        id = JSON.stringify(id)
-        // ajax.send("username="+username+"&token="+token+"&id="+id);
     }
 
     quxiaoshoucang1(e) {
@@ -442,16 +432,7 @@ class PersonalWodejifen extends React.Component {
                 }
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods",false);
-        // ajax.open('post',InterfaceUtil.getUrl(36),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
 
-        // };
-        // ajax.send("username="+username+"&token="+token+"&page=1&limit=10&user_id="+user_id+"&jylx="+jylx);
     }
 
     render() {

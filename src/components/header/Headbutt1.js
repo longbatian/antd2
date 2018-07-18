@@ -42,9 +42,10 @@ class Headbutt extends React.Component{
               首页
               </Link>
             </li>
-            <li><Link to="/Chanpinzhongxin?&zjzx=2">产品中心</Link></li>
-            <li><Link to="/Chanpinzhongxin?&zjzx=1">注射专区</Link></li>
+            <li><Link to="/Chanpinzhongxin?&zjzx=2">药店专区</Link></li>
+            <li><Link to="/Chanpinzhongxin?&zjzx=1">诊所专区</Link></li>
             <li><Link to="/Chanpinzhongxin">采购直通车</Link></li>
+            <li><Link to="/Integral">积分商城</Link></li>
             {/*<li>聚创金融</li>*/}
             {/*<li>特惠专区</li>*/}
             {/*<li>积分商城</li>*/}

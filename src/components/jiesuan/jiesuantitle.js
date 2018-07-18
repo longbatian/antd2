@@ -176,18 +176,7 @@ class Jiesuan extends React.Component {
                 }
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/Order/orderdetail",false);
-        // ajax.open('post',InterfaceUtil.getUrl(29),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data);
 
-        //   }
-        // };
-        // ajax.send();
     }
 
     render() {

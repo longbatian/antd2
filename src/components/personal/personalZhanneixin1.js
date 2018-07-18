@@ -393,17 +393,7 @@ class PersonalZhanneixin extends React.Component {
 
 
     componentDidUpdate() {
-        //将状态转化成已读未读显示在页面上
-        // var a = document.getElementsByClassName('aaaa');
-        // for (var i = 0; i < a.length; i++) {
-        //     if (a[i].innerHTML == '1') {
-        //         a[i].innerHTML = '未读';
-        //         a[i].className = 'personal_zhanneixin_top_span1 floatleft aaaa red';
-        //     } else if (a[i].innerHTML == '2') {
-        //         a[i].innerHTML = '已读';
-        //         a[i].className = 'personal_zhanneixin_top_span1 floatleft aaaa';
-        //     }
-        // }
+
     }
 }
 

@@ -98,23 +98,7 @@ class Gouwuche3 extends React.Component {
                 console.log(textStatus);
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
-        // ajax.open('post',InterfaceUtil.getUrl(3),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data);
-        //     if(data.data.length==0){
 
-        //     }else{
-
-        //     }
-        //   }
-        // };
-
-        // ajax.send("username="+username+"&token="+token+"&cid="+cid+"&is_check="+is_check);
         $('.shangpingshuliang').text("已选择" + $('.car_content input:checked').length + "件商品");
     }
 
@@ -238,53 +222,6 @@ class Gouwuche3 extends React.Component {
             },
         });
 
-
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartdelete",false);
-        // ajax.open('post',InterfaceUtil.getUrl(6),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data);
-        //     if(data.data.length==0){
-
-        //     }else{
-
-        //     }
-        //   }
-        // };
-
-
-        // ajax.send("username="+username+"&token="+token+"&cid="+cid);
-        // location.reload();
-        // try {
-        //   window.ajax = new ActiveXObject("Msxml2.XMLHTTP");
-        // } catch(e) {
-        //   try {
-        //     window.ajax = new ActiveXObject("Microsoft.XMLHTTP");
-        //   } catch(e1) {
-        //     window.ajax = new XMLHttpRequest();
-        //   }
-        // }
-        // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/cart_list",false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data);
-        //     if(data.data.length==0){
-        //
-        //     }else{
-        //       that.setState({
-        //         sp:data.data.list.plist,
-        //         cons:data.data.cont,
-        //       })
-        //     }
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&member_id="+member_id+"&jylx="+jylx+"&page=1&limit=10");
     }
 
     okAjax(cid) {

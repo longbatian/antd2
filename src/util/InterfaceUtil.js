@@ -11,7 +11,7 @@ let urls=[
     'user/collection_goods_delete','user_order/cartadd','cart/goods_rand','user/api_login_user','user/user_reg', //15
     'user/get_user_city','user/goback_password','order/create_order','order/orderinfo_pay','help/helptitle', //20
     'help/helplist','index/hot','index/week','index','index/drugstore', //25
-    'index/floor','index/brand','index/news','index/banners','Order/orderdshangpinxiangqing_sp_xinxi_jiageetail', //30
+    'index/floor','index/brand','index/news','index/banners','Order/orderdetail', //30
     'news/news_info','news/newlist','user_order/addcartall','user/zncg_list','user/index',//35
     'user_order/getorder','user/collection_goods','order/close_order','user_order/cartaddall','user/changepassword',//40
     'user/userinfo','user/jfls_log','user/luck_log','user_order/getorderinfo','order/order_wl',//45

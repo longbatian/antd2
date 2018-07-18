@@ -261,19 +261,7 @@ class PersonalCaigou extends React.Component {
 
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
-        // ajax.open('post',InterfaceUtil.getUrl(33),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data)
 
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page="+e+"&limit=12");
     }
 
     componentDidMount() {
@@ -318,19 +306,7 @@ class PersonalCaigou extends React.Component {
 
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/zncg_list",false);
-        // ajax.open('post',InterfaceUtil.getUrl(33),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-        //     console.log(data)
 
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&user_id="+user_id+"&jylx="+jylx+"&page=1&limit=12");
     }
 
     render() {

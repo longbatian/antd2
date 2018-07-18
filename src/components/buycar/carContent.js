@@ -99,17 +99,7 @@ class Gouwuche2 extends React.Component {
                     }
                 }
             });
-            // ajax.open('post',InterfaceUtil.getUrl(4),true);
-            // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            // ajax.onreadystatechange = function() {
-            //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-            //     var data=ajax.responseText;
-            //     data=JSON.parse(data);
-            //     // console.log(data);
 
-            //   }
-            // };
-            // ajax.send("username="+username+"&token="+token+"&member_id="+user_id+"&jylx="+jylx+"&spsl="+c+"&goods_id="+id);
 
         }
 
