@@ -26,7 +26,7 @@
       flex: 1;
       color: #333;
       white-space: nowrap;
-      padding: 10px 15px;
+      padding: 10px;
       a {
         color: #333;
         font-size: 16px;
@@ -42,57 +42,190 @@
   width: 994px;
   height: 610px;
   margin: 0 auto;
+  background: url("../../../images/interl/01.png") no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  padding: 50px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .prize__container {
-  width: 400px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   border: 1px solid #eeeeee;
-  margin: 30px 0 0 0;
+
 }
 
 .container__area {
   width: 100%;
-  padding: 10px;
+  height: 100%;
+  padding: 20px;
   box-sizing: border-box;
   position: relative;
 }
 
 .begin__btn {
-  width: 100px;
-  height: 40px;
+  width: 426px;
+  height: 228px;
   border-radius: 4px;
-  background-color: aliceblue;
   color: #999999;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  margin:-20px 0 0 -50px;
+  margin:-114px 0 0 -213px;
   left: calc(50% );
   top: calc(50%);
   cursor: pointer;
+  background: url("../../../images/interl/11.png") no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  img{
+    //width: 100%;
+    width: 220px;
+    height: 82px;
+    display: block;
+  }
+  span{
+    color: red;
+    display: block;
+    margin-top: 8px;
+    font-size: 16px;
+    width:100%;
+  }
 }
 
 .area__row {
   width: 100%;
-  height: 100px;
-  margin-bottom: 2px;
+  height: 25%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .row__item {
-  width: 90px;
-  height: 90px;
+  width: 25%;
+  height: 100%;
+  padding: 1px;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  //background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
+  div{
+    width: 100%;
+    height: 100%;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .row__item-active {
-  background-color: aquamarine;
+  div{
+    background-color: #fff;
+  }
+  img{
+    opacity: .4;
+    background-color: #fff;
+  }
+}
+.wid1200{
+  overflow: hidden;
+  width: 1200px;
+  margin: auto;
+}
+.wid1050{
+  overflow: hidden;
+  width: 1050px;
+  margin:40px auto 0;
+}
+.intFotBox{
+  .wid1050;
+  .intFotBoxLef{
+    float: left;
+    width: 49.5%;
+    background: #fff;
+    img{
+      width: 100%;
+    }
+    li{
+      margin-top: 15px;
+      overflow: hidden;
+      span{
+        display: block;
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        background: #FFCD46;
+        text-align: center;
+        line-height: 22px;
+        float: left;
+      }
+      p{
+        margin-left: 24px;
+
+      }
+    }
+  }
+  .intFotBoxRig{
+    float: right;
+    width: 49.5%;
+    background: #fff;
+    h1{
+      color: #D3233B;
+      font-size: 20px;
+      margin-top: 5px;
+      line-height: 40px;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+
+}
+.intFotBoxRig,.intFotBoxLef{
+  padding: 25px;
+  height: 390px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.intredboxs{
+  background: #D3233B;
+  color:#fff;
+  padding:15px 10px;
+  height: 280px;
+  li{
+    display: flex;
+    background: rgba(255,255,255,.2);
+    padding: 3px 10px;
+    margin-top: 12px;
+    span:first-child,span:nth-child(2){
+      width:30%
+    }
+    span:last-child{
+      width: 40%;
+      text-align: right;
+    }
+  }
+}
+.intBg{
+  padding-top: 270px;
+  background: url("../../../images/interl/02.png") no-repeat top center;
+  padding-bottom: 40px;
+}
+.ingInfo{
+  .wid1050;
+  text-align: right;
+  margin-top: 15px;
+}
+.boderBottom{
+  border-bottom: 1px solid #000000;
 }

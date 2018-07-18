@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './intergarlpage.css';
 
 
 class Integralpage extends React.Component {
@@ -10,7 +9,7 @@ class Integralpage extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className='boderBottom'>
             <div className="iglHead">
                 <div className="iglHeadLeft">
                     <img src={require('../../../images/head/logo.png')} alt=""/>

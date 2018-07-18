@@ -1,16 +1,24 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
-import './components/intergarlpage.css'
+
 
 // Item组件--所有格子的操作都可以在此进行，如果这些操作都能与"activedId"关联就更好了
 class RowItem extends Component {
     render() {
         const {content, activedId} = this.props;
+        // var Win = require('../../' + popWinPath + '.js')
+        //
+        // console.log('Win', Win, popWinPath)
         return (
-            <div className={activedId === content ? 'row__item row__item-active' : 'row__item'}
-                 id={`row_item_${content}`}>
-                {content}
+            <div className={activedId === content.id ? 'row__item row__item-active' : 'row__item'}
+                 id={`row_item_${content.id}`}>
+                <div>
+                    <img src={content.imgUrl}/>
+
+                </div>
+
+
             </div>
         )
     }
@@ -21,7 +29,61 @@ class Integralpage extends React.Component {
         super()
         this.state = {
             // 九宫格内容list
-            list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            list: [
+                {
+                    id: 0,
+                    imgUrl: require('../../images/interl/03.png')
+                },
+                {
+                    id: 1,
+                    imgUrl: require('../../images/interl/04.png')
+                },
+                {
+                    id: 2,
+                    imgUrl: require('../../images/interl/07.png')
+                },
+                {
+                    id: 3,
+                    imgUrl: require('../../images/interl/03.png')
+                },
+                {
+                    id: 4,
+                    imgUrl: require('../../images/interl/03.png')
+                },
+                {
+                    id: 5,
+                    imgUrl: require('../../images/interl/07.png')
+                },
+                {
+                    id: 6,
+                    imgUrl: require('../../images/interl/08.png')
+                },
+                {
+                    id: 7,
+                    imgUrl: require('../../images/interl/08.png')
+                },
+                {
+                    id: 8,
+                    imgUrl: require('../../images/interl/07.png')
+                },
+                {
+                    id: 9,
+                    imgUrl: require('../../images/interl/04.png')
+                },
+                {
+                    id: 10,
+                    imgUrl: require('../../images/interl/09.png')
+                },
+                {
+                    id: 11,
+                    imgUrl: require('../../images/interl/07.png')
+                },
+                {
+                    id: 12,
+                    imgUrl: require('../../images/interl/05.png')
+                }
+
+            ],
             // 被选中的格子的ID
             activedId: '',
             // 中奖ID
@@ -54,15 +116,15 @@ class Integralpage extends React.Component {
 
     handlePlay() {
         // 随机获取一个中奖ID
-        // let prize = Math.floor(Math.random() * 12)
-        let prize = 1
-        console.log(prize)
+        let prize = Math.floor(Math.random() * 12);
+        // let prize = 5;
+        console.log(prize);
         this.setState({
             prizeId: prize,
             activedId: 0
         })
         // 随机算出一个动画执行的最小次数，这里可以随机变更数值，按自己的需求来
-        let times = this.state.list.length * Math.floor(Math.random() * 5 + 4)
+        let times = this.state.list.length * Math.floor(Math.random() * 8 + 4)
         this.setState({
             times: times
         })
@@ -114,8 +176,15 @@ class Integralpage extends React.Component {
                 <div className="prize">
                     <div className="prize__container">
                         <div className="container__area">
-                            <div className="begin__btn" onClick={() => this.handleBegin()}>
-                                点击开始
+                            <div className="begin__btn">
+                                <div>
+                                    <img
+                                        src={require('../../images/interl/10.png')}
+                                        alt="" onClick={() => this.handleBegin()}
+                                    />
+                                    <span>抽奖消耗200积分/次</span>
+                                </div>
+
                             </div>
                             <div className="area__row">
                                 <RowItem content={list[0]} activedId={activedId}/>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link,HashRouter,Switch} from "react-router-dom";
-
 import Denglu from './pages/denglu';
 import Index1 from './pages/index1';
 import registerServiceWorker from './registerServiceWorker';
@@ -29,7 +28,9 @@ import NewXq from './pages/newXQ';
 import NewZX from './pages/newZX';
 import Integralpage from './pages/Integralpage';//积分商城
 import InformationPage from "./components/my/InformationPage"; //新用户填写信息
-
+import InterlpageHead from './pages/integral/components/InterlpageHead';
+import IntegralHome from './pages/integral/IntegralHome/IntegralHome';
+import Footer from './pages/footer'
 ReactDOM.render((
     <HashRouter>
         <div>
@@ -59,7 +60,15 @@ ReactDOM.render((
             <Route  path="/InformationPage" component={InformationPage} />
             <Route  path="/NewXq" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
-            <Route  path="/Integral" component={Integralpage} />
+            <Route  path="/Integral" >
+                <div>
+                    <Route component={InterlpageHead}/>
+                    <Route path="/Integral/lottery" component={Integralpage}/>
+                    <Route path="/Integral/Home" component={IntegralHome}/>
+                    <Route component={Footer}/>
+                </div>
+
+            </Route>
         </div>
     </HashRouter>
 ), document.getElementById('root'));
