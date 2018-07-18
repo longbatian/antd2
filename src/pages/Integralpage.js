@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import InterfaceUtil from './../util/InterfaceUtil';
 import $ from 'jquery';
 import InterlpageHead from './integral/components/InterlpageHead';
+import LotteryCon from './integral/LotteryPage';
 
 import Footer from './footer'
 class Integralpage extends React.Component {
@@ -13,6 +14,7 @@ class Integralpage extends React.Component {
     render(){
         return  <div>
             <InterlpageHead/>
+            <LotteryCon/>
 
             <Footer/>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './intergarlpage.css'
+import './intergarlpage.css';
+
 
 class Integralpage extends React.Component {
     constructor(props) {
