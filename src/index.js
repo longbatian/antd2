@@ -30,6 +30,7 @@ import Integralpage from './pages/Integralpage';//积分商城
 import InformationPage from "./components/my/InformationPage"; //新用户填写信息
 import InterlpageHead from './pages/integral/components/InterlpageHead';
 import IntegralHome from './pages/integral/IntegralHome/IntegralHome';
+import IntergralUs from './pages/integral/intergralUs/IntergralUs';
 import Footer from './pages/footer'
 ReactDOM.render((
     <HashRouter>
@@ -65,6 +66,7 @@ ReactDOM.render((
                     <Route component={InterlpageHead}/>
                     <Route path="/Integral/lottery" component={Integralpage}/>
                     <Route path="/Integral/Home" component={IntegralHome}/>
+                    <Route path="/Integral/Us" component={IntergralUs}/>
                     <Route component={Footer}/>
                 </div>
 

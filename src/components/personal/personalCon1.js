@@ -327,7 +327,7 @@ class personalBox extends React.Component {
                     </div>
                     {/*资质效期*/}
                     <div className='zizhixiaoqi marginTop10 marginBottom20'>
-                        <p>
+                        <div>
                             <span className='zizhixiaoqi_span'>资质效期</span>
                             <span className='font12'>药品经营许可证：</span><span
                             className='zizhixiaoqi_span1 a'>{this.state.zzxq.zzxq1} </span>
@@ -339,8 +339,8 @@ class personalBox extends React.Component {
                             className='zizhixiaoqi_span2 a'>{this.state.zzxq.zzxq4} </span>
                             <span className='font12'>合同：</span><span
                             className='zizhixiaoqi_span2 a'>{this.state.zzxq.zzxq5} </span>
-                            <div className='clear'></div>
-                        </p>
+                            <div className='clear'/>
+                        </div>
                     </div>
                     {/*最近订单*/}
                     <div className='personalCon1_top1 marginBottom20'>
@@ -348,9 +348,9 @@ class personalBox extends React.Component {
                         <div className='personalCon1_top1_con'>
                             <div className='personal_line floatleft'></div>
                             <span className='floatleft personal_line_p'>最近订单</span>
-                            <Link to="/Dindan" className='black'><a
-                                className='floatRight personal_line_p1'>查看更多>></a></Link>
-                            <div className='clear'></div>
+                            <Link to="/Dindan" className='black'>
+                                <span
+                                className='floatRight personal_line_p1'>查看更多>></span></Link>
                         </div>
                         <table className='personalCon1_table'>
                             <thead>
@@ -372,7 +372,7 @@ class personalBox extends React.Component {
                                             this.qufukuan1(e,item.orderno)
                                         }}>去付款</span> : <span className='nulls'></span>
                                     return (
-                                        <tr key={item.index}>
+                                        <tr key={i}>
                                             <td className='orange hid'>{item.orderno}</td>
                                             <td>{item.addtime}</td>
                                             <td>{item.ddprice}</td>
@@ -396,7 +396,9 @@ class personalBox extends React.Component {
                                                         {
                                                             this.state.dingdan9[i].wl.map(function (item, i) {
                                                                 return (
-                                                                    <Timeline.Item><span> {item.createtime} {item.wldw}</span></Timeline.Item>
+                                                                    <Timeline.Item
+                                                                        key={i}>
+                                                                        <span> {item.createtime} {item.wldw}</span></Timeline.Item>
                                                                 )
                                                             }, this)
                                                         }
@@ -437,9 +439,9 @@ class personalBox extends React.Component {
                         <div className='personalCon1_top1_con'>
                             <div className='personal_line floatleft'></div>
                             <span className='floatleft personal_line_p'>我的收藏</span>
-                            <Link to="/Wodeshoucang" className='black'><a
-                                className='floatRight personal_line_p1'>查看更多>></a></Link>
-                            <div className='clear'></div>
+                            <Link to="/Wodeshoucang" className='black'>
+                                <span
+                                className='floatRight personal_line_p1'>查看更多>></span></Link>
                         </div>
                         <table className='personalCon1_table'>
                             <thead>

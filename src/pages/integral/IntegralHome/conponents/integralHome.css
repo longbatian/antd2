@@ -79,7 +79,7 @@
 }
 .ithHeadrigrig div {
   border-left: 1px dashed #ddd;
-  padding: 5px 55px 5px 70px ;
+  padding: 5px 55px 5px 70px;
   text-align: center;
 }
 .ithHeadrigrig div p:first-child {
@@ -106,7 +106,7 @@
   background: #fff;
 }
 .ithHeadrigImg img {
-  width: 100% ;
+  width: 100%;
   height: 100%;
 }
 .ithconBoxs {
@@ -120,12 +120,223 @@
   padding: 15px 0;
   overflow: hidden;
 }
+.ithconbox .ithconboxDiv {
+  float: left;
+  width: 350px;
+  height: 190px;
+  margin-left: 10px;
+  padding: 15px 50px;
+}
 .ithconbox .ithconshopping {
   float: left;
   width: 350px;
   height: 190px;
+  margin-left: 10px;
+  padding: 15px 50px;
   background: url("../../../../images/interl/intergralhome/03.png") no-repeat;
   background-size: 100% 100%;
-  padding: 15px 50px;
+}
+.ithconbox .ithconshopping h2 {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.ithconbox .ithconshopping a {
+  display: inline-block;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #333;
+  padding: 3px 15px;
+}
+.ithconbox .ithconshopping a span {
+  display: inline-block;
+  padding-left: 2px;
+}
+.ithconbox .ithconSignin {
+  background: url("../../../../images/interl/intergralhome/04.png") no-repeat;
+  background-size: 100% 100%;
+}
+.ithconhua {
+  margin-left: 730px;
+  margin-right: 10px;
+}
+.ithconhua h1 {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  padding: 0 0 3px;
+  border-bottom: 1px solid #e1e1e1;
+}
+.ithconhua li {
+  overflow: hidden;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 10px 0;
+}
+.ithconhua li .ithconhuaLef {
+  float: left;
+  color: red;
+  font-size: 16px;
+  border: 1px solid #e1e1e1;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-weight: 600;
+}
+.ithconhua li .ithconhuaRig {
+  float: left;
+  margin-left: 30px;
+}
+.ithconhua li .ithconhuaRig p {
+  font-size: 12px;
+  margin: 0;
+}
+.ithconhua li .ithconhuaRig p span {
+  color: #FFAA15;
+}
+.ithconhua li h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.ithconhua a {
+  float: right;
+  margin-right: 30px;
+  display: inline-block;
+  color: #333;
+  border: 1px solid #333;
+  padding: 8px 15px;
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 15px;
+}
+.fL {
+  float: left;
+}
+.fR {
+  float: right;
+}
+.ithscollTit {
+  width: 1200px;
+  margin: auto;
+  margin-top: 15px;
+  background: #fff;
+  overflow: hidden;
+  padding-left: 10px;
+}
+.ithscollTit li {
+  float: left;
+  padding: 15px;
+}
+.ithbox2 {
+  width: 1200px;
+  margin: auto;
+  margin-top: 15px;
+  background: #fff;
+  padding: 0 10px;
+}
+.ith_bg2 {
+  display: inline-block;
+  width: 32px;
+  height: 24px;
+  background: url("../../../../images/interl/intergralhome/10.png") no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+}
+.ithboxTit {
+  padding: 15px;
+  border-bottom: 1px solid #e1e1e1;
+}
+.ithboxTit h2 {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  margin: 0 0 0 8px;
+}
+.ithboxUl {
+  width: 1200px;
+  overflow: hidden;
+  margin-left: -10px;
+  padding: 10px 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ithboxUl li {
+  width: 387px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #e1e1e1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  padding: 10px 0 10px 10px;
+  overflow: hidden;
+}
+.ithboxUl li img {
+  width: 156px;
+  height: 156px;
+  float: left;
+}
+.ithboxUl li .ithboxUlLef {
+  float: left;
+  width: 175px;
+  height: 156px;
+  padding-top: 60px;
+  color: #fff;
+  text-align: center;
+  background: url("../../../../images/interl/intergralhome/11.png") no-repeat;
+  background-size: 100% 100%;
+}
+.ithboxUl li .ithboxUlLef span {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: top;
+  font-size: 24px;
+}
+.ithboxUl li .ithboxUlLef p {
+  line-height: 1;
+  vertical-align: top;
+  display: inline-block;
+  font-size: 50px;
+}
+.ithboxUl li .ithboxUlRig {
+  margin-left: 185px;
+  font-size: 12px;
+}
+.ithboxUl li .ithboxUlRig .ithboxUlRigtit p {
+  height: 40px;
+  color: #888;
+}
+.ithboxUl li .ithboxUlRig .ithboxUlRigtit span {
+  display: inline-block;
+  line-height: 1.5;
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: #fff;
+  background: #4FA3EF;
+  margin-right: 5px;
+}
+.ithboxUl li .ithboxUlRig .ithboxUlRigcon p {
+  margin-bottom: 5px;
+}
+.ithboxUl li .ithboxUlRig .ithboxUlRigcon p .ithboxUlRigconspan {
+  color: #FFAA15;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ithboxUl li .ithboxUlRig .ithboxUlRigcon p:first-child {
+  margin-bottom: 0px;
+}
+.ithboxUl li .ithboxUlRig button {
+  border-radius: 3px;
+  padding: 4px 35px;
+  background: #FE8502;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+}
+.ithxie {
+  text-decoration: line-through;
 }
 /*# sourceMappingURL=integralHome.css.map */

@@ -206,6 +206,7 @@
 .personalCon1_top1_con{
   /*margin-left: 20px;*/
   padding-top: 20px;
+  overflow: hidden;
 }
 .personal_line_p{
   font-weight: bold;

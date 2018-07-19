@@ -1,18 +1,22 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import InterfaceUtil from './../../../util/InterfaceUtil';
+import Greatvaluecoupon from './conponents/Greatvaluecoupon';
+import IthTemplate from './conponents/IthTemplate';
 import './conponents/integralHome.css'
 
 class IntegralHome extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={}
+        this.state = {}
     }
-    componentDidMount(){
+
+    componentDidMount() {
 
     }
-    render(){
-        return  <div>
+
+    render() {
+        return <div>
             <div className="ithHead">
                 <div className="ithHeadBox">
                     <div className="ithHeadrig">
@@ -33,7 +37,7 @@ class IntegralHome extends Component {
                             </div>
                         </div>
                         <div className="ithHeadrigImg">
-                            <img src={require('../../../images/morenhead.png')} alt="" />
+                            <img src={require('../../../images/morenhead.png')} alt=""/>
                         </div>
                     </div>
                 </div>
@@ -45,12 +49,68 @@ class IntegralHome extends Component {
                         <h2>购物</h2>
                         <p>成功下单并收货可获得积分奖励</p>
                         <Link to="Integral/home">
-                            去购物
+                            去购物 <span>></span>
                         </Link>
                     </div>
+                    <div className="ithconshopping ithconSignin">
+                        <h2>每日签到</h2>
+                        <p>连续签到可获得积分奖励</p>
+                        <Link to="Integral/home">
+                            去签到<span>></span>
+                        </Link>
+                    </div>
+                    <div className="ithconhua">
+                        <h1>积分怎么用更划算?</h1>
+                        <ul>
+                            <li>
+                                <div className="ithconhuaLef">
+                                    抽奖
+                                </div>
+                                <div className="ithconhuaRig">
+                                    <h2>小积分抽大奖</h2>
+                                    <p>积分抽奖一次仅用<span>20积分</span></p>
+                                </div>
+                                <Link to="#">
+                                    去抽奖
+                                </Link>
+                            </li>
+                            <li>
+                                <div className="ithconhuaLef">
+                                    购券
+                                </div>
+                                <div className="ithconhuaRig">
+                                    <h2>积分换优惠券</h2>
+                                    <p>积分可以换取超值大额神券 </p>
+                                </div>
+                                <Link to="#">
+                                    去购券
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <ul className="ithscollTit">
+                    <li>
+                        热门兑换
+                    </li>
+                    <li>
+                        家用电器
+                    </li>
+                    <li>
+                        移动电器
+                    </li>
+                    <li>
+                        办公用品
+                    </li>
+                    <li>
+                        户外运动
+                    </li>
+                </ul>
+               <Greatvaluecoupon/>
+               <IthTemplate/>
             </div>
         </div>
     }
 }
+
 export default IntegralHome;
