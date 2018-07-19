@@ -1,0 +1,20 @@
+.itgBoxs {
+  background: #E8E8E8;
+  padding: 20px 0;
+}
+.wit12 {
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+}
+.itgHead {
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+}
+.itgHead .itgHead {
+  float: left;
+  width: 280px;
+  border-right: 1px solid #e1e1e1;
+}
+/*# sourceMappingURL=intergralUs.css.map */
