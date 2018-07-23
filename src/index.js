@@ -32,6 +32,8 @@ import InterlpageHead from './pages/integral/components/InterlpageHead';
 import IntegralHome from './pages/integral/IntegralHome/IntegralHome';
 import IntergralUs from './pages/integral/intergralUs/IntergralUs';
 import ComInfoPage from './pages/integral/comInfo/ComInfoPage';
+import IntergralPay from './pages/integral/intergralPay/IntergralPay';
+import Intergraldatepicker from './pages/integral/intergraldatepicker/Intergraldatepicker';
 import Footer from './pages/footer'
 ReactDOM.render((
     <HashRouter>
@@ -69,6 +71,8 @@ ReactDOM.render((
                     <Route path="/Integral/Home" component={IntegralHome}/>
                     <Route path="/Integral/Us" component={IntergralUs}/>
                     <Route path="/Integral/Info" component={ComInfoPage}/>
+                    <Route path="/Integral/pay" component={IntergralPay}/>
+                    <Route path="/Integral/data" component={Intergraldatepicker}/>
                     <Route component={Footer}/>
                 </div>
 

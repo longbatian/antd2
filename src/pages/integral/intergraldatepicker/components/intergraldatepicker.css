@@ -1,0 +1,30 @@
+.wit12 {
+  width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+}
+.ipd {
+  background: #E8E8E8;
+}
+.ipdHead {
+  width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  overflow: hidden;
+  background: #E8E8E8;
+}
+.ipdHeadLef {
+  float: left;
+  width: 700px;
+  background: #fff;
+  height: 630px;
+}
+.ipdHeadRig {
+  margin-left: 720px;
+  background: #fff;
+  height: 630px;
+  padding: 20px;
+}
+/*# sourceMappingURL=intergraldatepicker.css.map */
