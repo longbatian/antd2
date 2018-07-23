@@ -7,14 +7,126 @@
   margin: auto;
   background: #fff;
 }
+.disI {
+  display: inline-block;
+}
 .itgHead {
   width: 1200px;
   margin: auto;
   background: #fff;
+  padding: 30px 15px;
+  overflow: hidden;
 }
-.itgHead .itgHead {
+.itgHead .itgHeadlef {
   float: left;
   width: 280px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
   border-right: 1px solid #e1e1e1;
+}
+.itgHead .itgHeadlef p {
+  font-size: 18px;
+  color: #666;
+}
+.itgHead .itgHeadrig {
+  margin-left: 600px;
+  text-align: center;
+}
+.itgHead .itgHeadrig a {
+  margin-top: 20px;
+  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  padding: 8px 25px;
+  border-radius: 3px;
+}
+.itgHead .itgHeadrig a:first-child {
+  display: inline-block;
+  background: #FE8502;
+  margin-right: 10px;
+}
+.itgHead .itgHeadrig a:last-child {
+  display: inline-block;
+  background: #4FA3EF;
+}
+.itgtableTit {
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.itgtableTit li {
+  font-size: 16px;
+  float: left;
+  color: #000;
+  font-weight: 600;
+  padding: 15px 40px;
+}
+.itgtableTit li.itg_act {
+  color: #FE8502;
+}
+.itgtableBox {
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+  padding: 10px;
+}
+.itgtable {
+  width: 100%;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+}
+.itgtable tr {
+  border-bottom: 1px solid #e1e1e1;
+}
+.itgtable th {
+  height: 40px;
+  line-height: 40px;
+  background: #F5F5F5;
+  color: #808080;
+}
+.itgtable td {
+  height: 44px;
+  line-height: 44px;
+  color: #666;
+}
+.itgtable td:nth-child(5) {
+  color: #FE8502;
+}
+.itgtablefot {
+  width: 1200px;
+  margin: auto;
+  background: #fff;
+  overflow: hidden;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 20px;
+}
+.itgtablefot li {
+  display: inline-block;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #e1e1e1;
+  margin-left: 6px;
+  min-width: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #666;
+}
+.itgtablefot li.yellow {
+  color: #FE8502;
+  border: none;
 }
 /*# sourceMappingURL=intergralUs.css.map */

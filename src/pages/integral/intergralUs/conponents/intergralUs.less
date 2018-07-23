@@ -1,18 +1,126 @@
-.itgBoxs{
+.itgBoxs {
   background: #E8E8E8;
   padding: 20px 0;
 }
-.wit12{
+
+.wit12 {
   width: 1200px;
   margin: auto;
   background: #fff;
 }
-.itgHead{
+.disI{
+  display: inline-block;
+}
+.itgHead {
   .wit12;
-  .itgHead{
+  padding: 30px 15px;
+  overflow: hidden;
+  .itgHeadlef {
     float: left;
     width: 280px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
     border-right: 1px solid #e1e1e1;
-
+    p{
+      font-size: 18px;
+      color: #666;
+    }
+  }
+  .itgHeadrig{
+    margin-left: 600px;
+    text-align: center;
+    a{
+      margin-top: 20px;
+      line-height: 1.5;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      padding: 8px 25px;
+      border-radius: 3px;
+    }
+    a:first-child{
+      .disI;
+      background: #FE8502;
+      margin-right: 10px;
+    }
+    a:last-child{
+      .disI;
+      background: #4FA3EF;
+    }
   }
 }
+.itgtableTit{
+  .wit12;
+  overflow: hidden;
+  margin-top: 20px;
+  li{
+    font-size: 16px;
+    float: left;
+    color: #000;
+    font-weight: 600;
+    padding: 15px 40px;
+  }
+  li.itg_act{
+    color: #FE8502;
+  }
+}
+.itgtableBox{
+    .wit12;
+  padding: 10px;
+}
+.itgtable{
+  width: 100%;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+  tr{
+    border-bottom: 1px solid #e1e1e1;
+  }
+  th{
+    height: 40px;
+    line-height: 40px;
+    background: #F5F5F5;
+    color: #808080;
+  }
+  td{
+    height: 44px;
+    line-height: 44px;
+    color: #666;
+  }
+  td:nth-child(5){
+    color: #FE8502;
+  }
+}
+.itgtablefot{
+  .wit12;
+  overflow: hidden;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 20px;
+  li{
+    .disI;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e1e1e1;
+    margin-left: 6px;
+    min-width: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #666;
+  }
+  li.yellow{
+    color: #FE8502;
+    border:none;
+  }
+}
+
+
