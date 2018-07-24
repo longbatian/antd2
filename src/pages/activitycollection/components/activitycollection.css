@@ -1,0 +1,226 @@
+.acImg {
+  width: 100%;
+}
+.wid12 {
+  width: 1200px;
+  margin: 20px auto 0;
+}
+.acbox {
+  width: 1200px;
+  margin: 20px auto 0;
+}
+.diI {
+  display: inline-block;
+}
+.baS {
+  background-size: 100% 100%;
+}
+.acul {
+  overflow: hidden;
+  margin-left: -20px;
+  margin-top: 15px;
+}
+.acul li {
+  width: 285px;
+  height: 266px;
+  margin-left: 20px;
+  float: left;
+  background: url("../../../images/activitycollection/02.png") no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  padding: 20px;
+}
+.acul li button {
+  border: 1px solid #50A3EF;
+  color: #50A3EF;
+  border-radius: 20px;
+  padding: 3px 15px;
+  background: #fff;
+  cursor: pointer;
+}
+.acul .acBig {
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+  line-height: 1;
+  padding-bottom: 15px;
+}
+.acul .acBig span {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 30px;
+  margin-top: 5px;
+}
+.acul .acBig p {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  font-size: 66px;
+}
+.acboxTit {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+.acP {
+  text-align: left;
+  padding: 10px 0;
+}
+.acP .acLei {
+  color: #000;
+  display: inline-block;
+  margin-right: 5px;
+}
+.acP .acYuan {
+  color: #fff;
+}
+.acUse {
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+.acTime {
+  color: #666;
+}
+.acLink {
+  text-align: center;
+  margin-top: 20px;
+}
+.acLink a {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid #e1e1e1;
+  color: red;
+}
+.acLink a span {
+  vertical-align: middle;
+}
+.acLink .ac_bg1 {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../../images/activitycollection/03.png") no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.acUl2 {
+  margin-left: -20px;
+  overflow: hidden;
+}
+.acUl2 li {
+  width: 285px;
+  margin-left: 20px;
+  float: left;
+  background: #E6E6E6;
+  overflow: hidden;
+}
+.acUl2 li .acYuan {
+  text-decoration: line-through;
+  font-size: 12px;
+  color: #888;
+}
+.acUl2 li img {
+  width: 100%;
+  height: 265px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 10px solid #E6E6E6;
+}
+.acUl2 li .acUl2Titmoy {
+  background: #0CB570;
+  color: #fff;
+  line-height: 35px;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.acUl2 li p {
+  margin-bottom: 6px;
+}
+.acUl2 li .acul2Con {
+  padding: 10px;
+}
+.acUl2 li .acul2Con .acul2ConTit {
+  color: #188ae7;
+  font-size: 16px;
+}
+.colred {
+  color: red;
+}
+.acbigs {
+  font-size: 18px;
+  margin-right: 6px;
+}
+.acul2ConFot {
+  overflow: hidden;
+}
+.acul2ConFot .acul2ConFotLef {
+  float: left;
+  overflow: hidden;
+  border: 1px solid #ADABB8;
+}
+.acul2ConFot .acul2ConFotLef .acul2ConFotLefspan {
+  float: right;
+  width: 18px;
+  text-align: center;
+  line-height: 18px;
+  border-left: 1px solid #ADABB8;
+}
+.acul2ConFot .acul2ConFotLef span {
+  display: block;
+  float: left;
+  width: 18px;
+  height: 18px;
+}
+.acul2ConFot .acul2ConFotLef span:first-child {
+  border-bottom: 1px solid #ADABB8;
+}
+.acul2ConFot .acul2ConFotLef input {
+  display: block;
+  height: 36px;
+  width: 44px;
+  margin: auto 18px auto auto;
+  border: none;
+  padding-left: 5px;
+}
+.acul2ConFot .acul2ConFotbut {
+  margin-left: 74px;
+  display: block;
+  border: none;
+  height: 38px;
+  background: #0CB570;
+  color: #fff;
+  text-align: center;
+  line-height: 38px ;
+  font-size: 18px;
+  cursor: pointer;
+}
+.acbox2 .acul2ConFotbut {
+  background: #851CE8;
+}
+.acbox3 .acul2ConFotbut {
+  background: #1C77EA;
+}
+.acbox3 .acUl2Titmoy2 {
+  font-size: 14px;
+  background: #666666;
+  color: #fff;
+  padding: 3px 10px;
+  line-height: 1.2;
+}
+.acbox3 .acUl2Titmoy2 span:last-child {
+  color: yellow;
+}
+.acTishi {
+  margin: 10px 0;
+}
+.ac_bg3 {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background: url("../../../images/activitycollection/08.png") no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+/*# sourceMappingURL=activitycollection.css.map */
