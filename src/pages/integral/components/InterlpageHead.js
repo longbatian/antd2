@@ -17,17 +17,17 @@ class Integralpage extends React.Component {
                 </div>
                 <ul className="iglHeadRig">
                     <li>
-                        <Link to={'/Integral'}>积分首页</Link>
+                        <Link to={'/Integral/home'}>积分首页</Link>
                     </li>
                     <li>
-                        <Link to={'/'}>个人中心</Link>
+                        <Link to={'/Integral/us'}>个人中心</Link>
                     </li>
                     <li>
-                        <Link to={'/'}>小积分抽大奖</Link>
+                        <Link to={'/Integral/lottery'}>小积分抽大奖</Link>
                     </li>
-                    <li>
-                        <Link to={'/'}>积分购券</Link>
-                    </li>
+                    {/*<li>*/}
+                        {/*<Link to={'/Integral/pay'}>积分购券</Link>*/}
+                    {/*</li>*/}
                     <li>
                         <Link to={'/'}>积分攻略</Link>
                     </li>

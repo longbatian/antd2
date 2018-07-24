@@ -29,12 +29,14 @@ import NewZX from './pages/newZX';
 import Integralpage from './pages/Integralpage';//积分商城
 import InformationPage from "./components/my/InformationPage"; //新用户填写信息
 import InterlpageHead from './pages/integral/components/InterlpageHead';
+import Activitycollection from './pages/activitycollection/Activitycollection';
 import IntegralHome from './pages/integral/IntegralHome/IntegralHome';
 import IntergralUs from './pages/integral/intergralUs/IntergralUs';
 import ComInfoPage from './pages/integral/comInfo/ComInfoPage';
 import IntergralPay from './pages/integral/intergralPay/IntergralPay';
 import Intergraldatepicker from './pages/integral/intergraldatepicker/Intergraldatepicker';
 import Footer from './pages/footer'
+import Header from './pages/Header1'
 ReactDOM.render((
     <HashRouter>
         <div>
@@ -64,6 +66,15 @@ ReactDOM.render((
             <Route  path="/InformationPage" component={InformationPage} />
             <Route  path="/NewXq" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
+            <Route  path="/all">
+                <div>
+                    <Route component={Header}/>
+                    <Route  path="/all/Allactivity" component={Activitycollection}/>
+                    <Route component={Footer}/>
+                </div>
+            </Route>
+
+
             <Route  path="/Integral" >
                 <div>
                     <Route component={InterlpageHead}/>
