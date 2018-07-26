@@ -1,0 +1,156 @@
+.wid12 {
+  width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+.ovh{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.veM{
+  vertical-align: middle;
+}
+.diI{
+  display: inline-block;
+}
+@y_1: #FFBF00;
+@r_1:#F71A4D;
+.bdbox {
+  background: @y_1;
+  .bdboxul {
+    .wid12;
+    li {
+      background: #fff;
+      padding: 10px;
+      overflow: hidden;
+      .bdboxlef {
+        float: left;
+        width: 580px;
+        img {
+          //width: ;
+          height: 290px;
+        }
+      }
+    }
+    .bdboxrig {
+      margin-left: 600px;
+      .bdboxrigTit{
+        font-size: 22px;
+        padding: 10px 0;
+        border-bottom: 1px solid #333;
+        span{
+          color: #fff;
+          background: @r_1;
+          .veM;
+          .diI;
+          margin-right: 15px;
+          padding: 3px 10px;
+          border-radius: 35px;
+        }
+        h3{
+          color: @r_1;
+          .veM;
+          .diI;
+          margin: 0;
+        }
+      }
+      .bdliCon{
+        margin-top: 6px;
+        span{
+          .diI;
+          .veM;
+          padding-left: 10px;
+
+        }
+        .bd_bg1{
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          background: @y_1;
+        }
+        .bdnames{
+          width:25%;
+          .ovh;
+        }
+        .bdnum{
+          width: 20%;
+        }
+        .bdchang{
+          width: 20%;
+          .ovh;
+        }
+        .bdczd,.bdmoy{
+          width: 15%;
+        }
+      }
+    }
+  }
+  .bdliFot{
+    overflow: hidden;
+    margin-top: 10px;
+    width: 96%;
+    background: @r_1;
+    .bdliFotlef,.bdliFotrig{
+      float: left;
+      width: 50%;
+      padding:5px 10px;
+      overflow: hidden;
+    }
+    .bdliFotlef{
+      color: #fff;
+      border-right: 1px dashed #333;
+      .bd_big{
+        font-size: 30px;
+        margin-right: 10px;
+      }
+      .bd_hen{
+        text-decoration: line-through;
+      }
+
+    }
+    .bdliFotrigInputBox{
+      float: left;
+      margin-top: 2px;
+      border: 1px solid @y_1;
+      input{
+        width: 55px;
+        height: 36px;
+        display: block;
+        border:none;
+        padding-left: 3px;
+        margin-right: 18px;
+
+      }
+      .bdliFotrigInputBoxRig{
+        float: right;
+        width: 18px;
+        border-left: 1px solid @y_1;
+        span{
+          display: block;
+          width: 18px;
+          background: #fff;
+          height: 18px;
+          text-align: center;
+          line-height: 18px;
+        }
+        span:first-child{
+          border-bottom: 1px solid @y_1;
+        }
+      }
+    }
+    .bdliFotrigBut{
+      margin-left: 85px;
+      text-align: center;
+      line-height: 38px;
+      color: @r_1;
+      background: @y_1;
+      margin-top: 2px;
+      border-radius: 3px;
+      font-size: 20px;
+    }
+  }
+  .bdliConBox{
+    height: 146px;
+  }
+}

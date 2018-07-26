@@ -1,0 +1,159 @@
+.wid12 {
+  width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+.ovh {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.veM {
+  vertical-align: middle;
+}
+.diI {
+  display: inline-block;
+}
+.bdbox {
+  background: #FFBF00;
+}
+.bdbox .bdboxul {
+  width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+.bdbox .bdboxul li {
+  background: #fff;
+  padding: 10px;
+  overflow: hidden;
+}
+.bdbox .bdboxul li .bdboxlef {
+  float: left;
+  width: 580px;
+}
+.bdbox .bdboxul li .bdboxlef img {
+  height: 290px;
+}
+.bdbox .bdboxul .bdboxrig {
+  margin-left: 600px;
+}
+.bdbox .bdboxul .bdboxrig .bdboxrigTit {
+  font-size: 22px;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+.bdbox .bdboxul .bdboxrig .bdboxrigTit span {
+  color: #fff;
+  background: #F71A4D;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 15px;
+  padding: 3px 10px;
+  border-radius: 35px;
+}
+.bdbox .bdboxul .bdboxrig .bdboxrigTit h3 {
+  color: #F71A4D;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon {
+  margin-top: 6px;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon span {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon .bd_bg1 {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background: #FFBF00;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon .bdnames {
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon .bdnum {
+  width: 20%;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon .bdchang {
+  width: 20%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bdbox .bdboxul .bdboxrig .bdliCon .bdczd,
+.bdbox .bdboxul .bdboxrig .bdliCon .bdmoy {
+  width: 15%;
+}
+.bdbox .bdliFot {
+  overflow: hidden;
+  margin-top: 10px;
+  width: 96%;
+  background: #F71A4D;
+}
+.bdbox .bdliFot .bdliFotlef,
+.bdbox .bdliFot .bdliFotrig {
+  float: left;
+  width: 50%;
+  padding: 5px 10px;
+  overflow: hidden;
+}
+.bdbox .bdliFot .bdliFotlef {
+  color: #fff;
+  border-right: 1px dashed #333;
+}
+.bdbox .bdliFot .bdliFotlef .bd_big {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.bdbox .bdliFot .bdliFotlef .bd_hen {
+  text-decoration: line-through;
+}
+.bdbox .bdliFot .bdliFotrigInputBox {
+  float: left;
+  margin-top: 2px;
+  border: 1px solid #FFBF00;
+}
+.bdbox .bdliFot .bdliFotrigInputBox input {
+  width: 55px;
+  height: 36px;
+  display: block;
+  border: none;
+  padding-left: 3px;
+  margin-right: 18px;
+}
+.bdbox .bdliFot .bdliFotrigInputBox .bdliFotrigInputBoxRig {
+  float: right;
+  width: 18px;
+  border-left: 1px solid #FFBF00;
+}
+.bdbox .bdliFot .bdliFotrigInputBox .bdliFotrigInputBoxRig span {
+  display: block;
+  width: 18px;
+  background: #fff;
+  height: 18px;
+  text-align: center;
+  line-height: 18px;
+}
+.bdbox .bdliFot .bdliFotrigInputBox .bdliFotrigInputBoxRig span:first-child {
+  border-bottom: 1px solid #FFBF00;
+}
+.bdbox .bdliFot .bdliFotrigBut {
+  margin-left: 85px;
+  text-align: center;
+  line-height: 38px;
+  color: #F71A4D;
+  background: #FFBF00;
+  margin-top: 2px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+.bdbox .bdliConBox {
+  height: 146px;
+}
+/*# sourceMappingURL=newjuchuang.css.map */
