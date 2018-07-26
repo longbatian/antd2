@@ -35,14 +35,15 @@ import IntergralUs from './pages/integral/intergralUs/IntergralUs';
 import ComInfoPage from './pages/integral/comInfo/ComInfoPage';
 import IntergralPay from './pages/integral/intergralPay/IntergralPay';
 import Intergraldatepicker from './pages/integral/intergraldatepicker/Intergraldatepicker';
-import Footer from './pages/footer'
-import Header from './pages/Header1'
+import Redemption from './pages/redemption/Redemption';//换购
+import Bundle from './pages/bundle/Bundle';//换购
+import Footer from './pages/footer'; //尾部
+import Header from './pages/Header1'; //头部
 ReactDOM.render((
     <HashRouter>
         <div>
-            <Route exact path="/" component={Index1}/>
             <Route path="/Denglu" component={Denglu}/>
-          	<Route path="/Index" component={Index1} />
+            <Route exact path="/" component={Index1}/>
             <Route path="/Chanpinzhongxin" component={Chanpinzhongxin} />
             <Route path="/Shangpinxiangqing" component={Shangpinxiangqing} />
             <Route path="/Zhuce" component={Zhuce} />
@@ -70,11 +71,11 @@ ReactDOM.render((
                 <div>
                     <Route component={Header}/>
                     <Route  path="/all/Allactivity" component={Activitycollection}/>
+                    <Route  path="/all/Redemption" component={Redemption}/>
+                    <Route  path="/all/Bundle" component={Bundle}/>
                     <Route component={Footer}/>
                 </div>
             </Route>
-
-
             <Route  path="/Integral" >
                 <div>
                     <Route component={InterlpageHead}/>
