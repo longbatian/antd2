@@ -15,7 +15,7 @@ class Fenlei11 extends React.Component {
 
 
   fenlei(e) {
-    // console.log(e.target.children.length)
+
     // if (e.target.children.length != 0) {
     //
     //   var index = e.target.getAttribute('data');
@@ -77,7 +77,8 @@ class Fenlei11 extends React.Component {
     // var a = e.target.children.length;
     // if (a != 0) {
     //    pid = pid
-    //   console.log('1'+pid)
+    //
+      // .log('1'+pid)
     this.props.history.push('/Chanpinzhongxin?&zjzx=2?&pid=' + pid)
     //   // window.location.href = '#/Chanpinzhongxin?pid=' + pid;
     // } else {
@@ -119,22 +120,11 @@ class Fenlei11 extends React.Component {
     var jylx = getCookie('jylx');
     const that = this;
     //搜索条件ajax
-    // try {
-    //   window.ajax = new ActiveXObject('Msxml2.XMLHTTP');
-    // } catch (e) {
-    //   try {
-    //     window.ajax = new ActiveXObject('Microsoft.XMLHTTP');
-    //   } catch (e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // ajax.open('post',"http://192.168.1.49/index.php/index/index",false);
+
         $.ajax({
                 url: InterfaceUtil.getUrl(23),
                 type: "post",
-                data: {
-                  "type":"1"
-                },
+                data: InterfaceUtil.addTime({}),
                 dataType: "json",
                 success: function(data){
                       var data =data;
@@ -159,17 +149,17 @@ class Fenlei11 extends React.Component {
           {
             this.state.fenlei.map(function (item, i) {
               return (
-                <li key={item.title} className='aaa1 aaa1_current'
+                <li key={item.id} className='aaa1 aaa1_current'
                    data-class={item.id}
                 >
                   <div className='dashed2' onClick={(e) => {
                     this.chaxun(e,item.id)
                   }}>
-                    <img src={this.state.lujin + item.logo} alt=""/>
-                    <span className='marginLeft5'>{item.title}</span>
+                    <img src={this.state.lujin + item.image} alt=""/>
+                    <span className='marginLeft5'>{item.name}</span>
                     <img src={require('../../images/index/xiangyou.png')}
                          className='index_lunbo_ul_fenlei_img' alt=""/>
-                    <div className='clear'></div>
+                    <div className='clear'/>
                   </div>
 
                   <div className='index_lunbo_ul_zilei ' data={i} onMouseMove={(e) => {
@@ -179,23 +169,23 @@ class Fenlei11 extends React.Component {
                   }}>
                     {/*中西成药*/}
                     {
-                      this.state.fenlei[i].d.map(function (item, j) {
+                      this.state.fenlei[i].next.map(function (item, j) {
                         return (
                           <dl key={item.id} className='index_lunbo_ul_zilei_dl'>
                             <dt className='disanji' data-w={item.id} onClick={(e) => {
                               this.chaxun1(e,item.id)
                             }}
-                            >{item.title}</dt>
+                            >{item.name}</dt>
                             <dd className='disanji'>
                               {
-                                this.state.fenlei[i].d[j].d1.map(function (item) {
+                                this.state.fenlei[i].next[j].next.map(function (item) {
 
                                   return (
                                     <span className='zuixiaji' key={item.id}
                                           data-did={item.id} onClick={(e) => {
                                       this.chaxun2(e,item.id)
 
-                                    }}>{item.title}</span>
+                                    }}>{item.name}</span>
                                   )
                                 }, this)
                               }

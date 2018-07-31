@@ -28,20 +28,31 @@ class HelpCon extends React.Component {
         const that = this;
         //  广告位
         $.ajax({
-            url: InterfaceUtil.getUrl(20),
+            url: InterfaceUtil.getUrl(19),
             type: "post",
-            data: {
-                "id": id
-            },
+            data: InterfaceUtil.addTime({}),
             dataType: "json",
             success: function (data) {
                 if (data.data.length == 0) {
 
                 } else {
-                    that.setState({
-                        con: data.data.content,
-                        conTitle: data.data.title,
-                    });
+                    for (let i=0;i<data.data.length;i++){
+                        for (let j=0;j<data.data[i].next.length;j++){
+
+                            if (id==data.data[i].next[j].id){
+
+                                that.setState({
+                                    con: data.data[i].next[j].content,
+                                    conTitle:  data.data[i].next[j].name,
+                                });
+                                return;
+                            }
+                        }
+                    }
+                    // that.setState({
+                    //     con: data.data.content,
+                    //     conTitle: data.data.title,
+                    // });
                 }
             }
         });

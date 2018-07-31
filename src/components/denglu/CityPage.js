@@ -31,8 +31,7 @@ class CityPage extends Component{
         type:'post',
         dataType:'json',
         async:false,
-        data:{
-        },
+        data:InterfaceUtil.addTime({}),
         beforeSend:function(xhr){
         },
         success:function(data,textStatus,jqXHR){
@@ -53,7 +52,7 @@ class CityPage extends Component{
     if(this.state.index.provinceIndex == -1){
       return false;
     }else{
-      return this.state.json[this.state.index.provinceIndex].d.map(function(array, index){
+      return this.state.json[this.state.index.provinceIndex].next.map(function(array, index){
         return (<option key={index} data-index={index} id={array.Id}>{array.name}</option>);
       });
     }
@@ -62,7 +61,7 @@ class CityPage extends Component{
     if(this.state.index.cityIndex == -1){
       return false;
     }else{
-      return this.state.json[this.state.index.provinceIndex].d[this.state.index.cityIndex].d1.map(function(array, index){
+      return this.state.json[this.state.index.provinceIndex].next[this.state.index.cityIndex].next.map(function(array, index){
         return (<option key={index} data-index={index} id={array.Id}>{array.name}</option>);
       });
     }

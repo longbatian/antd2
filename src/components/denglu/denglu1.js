@@ -38,9 +38,8 @@ class Denglu1 extends React.Component {
             } else {
                 let data={
                     username: username,
-                    userpass: psd,
+                    password: psd,
                 };
-
                 $.ajax({
                     // url:'http://192.168.1.49/index.php/index/user/api_login_user',
                     url: InterfaceUtil.getUrl(13),
@@ -51,28 +50,28 @@ class Denglu1 extends React.Component {
                     },
                     success: function (data, textStatus, jqXHR) {
                         var zhi = $('.denglu_con_kuang_box_p3_mima').prop('checked');
-                        console.log(data,2323);
 
-                        if (data.status === 1) {
+
+                        if (data.code === 1) {
 
                             if (zhi === true) {
                                 let exp = new Date();
-                                exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
+                                // exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
                                 document.cookie = "user_id=" + data.data.id + ";expires=" + exp.toGMTString();
                                 document.cookie = "username=" + data.data.username + ";expires=" + exp.toGMTString();
                                 document.cookie = "token=" + data.data.token + ";expires=" + exp.toGMTString();
-                                document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
-                                document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
+                                // document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
+                                // document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
                             } else {
-                                document.cookie = "user_id=" + data.data.id;
+                                document.cookie = "user_id=" + data.data.user_id;
                                 document.cookie = "username=" + data.data.username;
                                 document.cookie = "token=" + data.data.token;
-                                document.cookie = "user_type=" + data.data.user_type;
-                                document.cookie = "jylx=" + data.data.jylx;
+                                // document.cookie = "user_type=" + data.data.user_type;
+                                // document.cookie = "jylx=" + data.data.jylx;
 
                             }
-                            if (data.data.shzt === 2) {
-                                _this.props.history.push('/Index');
+                            if (data.data.status === `1`) {
+                                _this.props.history.push('/');
                             } else {
                                 _this.props.history.push('/InformationPage');
                             }

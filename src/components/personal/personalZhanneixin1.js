@@ -18,12 +18,14 @@ class PersonalZhanneixin extends React.Component {
         this.loginPage = new LoginPage();
         this.username=CoojiePage.getCoojie('username');
         this.token=CoojiePage.getCoojie('token');
+        this.user_id=CoojiePage.getCoojie('user_id');
         this.state = {
             znx: [],
             content: '',
             visible: false,
             textLetter:'',
             textTitle:'',
+            page:1,
         }
     }
 
@@ -79,12 +81,15 @@ class PersonalZhanneixin extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(48),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id,
-                "page": 1, "limit": 10, "status": a
-            },
+            data: InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token,
+                page:1,
+                pageSize:10
+            }),
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -108,39 +113,17 @@ class PersonalZhanneixin extends React.Component {
 
     //分页
     fenye(e) {
-
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        const that = this;
-        //订单ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(48),
-            type: "post",
-            data: {
-                "username": username, "token": token, "page": e, "limit": 5, "user_id": user_id
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        dingdan: data.data.list,
-                        ddzt0: data.data.ddzt.ddzt0,
-                        ddzt1: data.data.ddzt.ddzt1,
-                        ddzt2: data.data.ddzt.ddzt2,
-                        cons: data.data.cons,
-                    });
-                    that.refs.dingdan.className = 'display'
-                }
-            }
+        this.setState({
+            page:e
         });
+        // this.startAjax()
+        this.refs.dingdan.className = 'display'
 
     }
     componentDidMount() {
-
-        let username = CoojiePage.getCoojie('username');
+        this.startAjax();
+    }
+    startAjax(){
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
         const that = this;
@@ -148,24 +131,26 @@ class PersonalZhanneixin extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(48),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "page": 1, "limit": 10
-            },
+            data:InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token,
+                page:that.state.page,
+                pageSize:10
+            }),
             dataType: "json",
             success: function (data) {
-                that.loginPage.ajaxLogin(data.status, that.props);
+                // console.log(data)
+                that.loginPage.ajaxLogin(data.code, that.props);
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
-                        znx: data.data.list,
-                        cons: data.data.cons,
+                        znx: data.data.message_list,
+                        cons: data.data.message_count,
                     });
                 }
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/get_znx",false);
-
     }
     showModalZnx = (e,i) => {
         this.setState({
@@ -185,9 +170,11 @@ class PersonalZhanneixin extends React.Component {
             $.ajax({
                 url: InterfaceUtil.getUrl(49),
                 type: "post",
-                data: {
-                    "username": _this.username, "token": _this.token, "id": datas[i].id
-                },
+                data:InterfaceUtil.addTime({
+                    user_id:_this.user_id,
+                    token:_this.token,
+                    "id": datas[i].id
+                }),
                 dataType: "json",
                 success: function (data) {
                     if (data.status === 1) {

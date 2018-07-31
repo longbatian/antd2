@@ -25,46 +25,68 @@ let imgu='http://web.tyaow.com';
 //     'user/user_info_update','order/wxpay_img_virtual','order/coupon_order_status',
 // ];
 let urls=[
-    'index/other',//0
-    'index/search',//1
+    // 'index/other',//0
+    '/index/sidebar',//0
+    // 'index/search',//1
+    // '/index/search_goods',//1
+    '/index/get_global',//1
     'Cart/check_cart',//2
     'Cart/check_cart',//3
     'Cart/addcart', //4
-    'user/collection_goods_add',//5
+    // 'user/collection_goods_add',//5
+    '/users/goods_collect',//5
     'user_order/cartdelete',//6
-    'Cart/cart_list',//7
-    'goods/goods_list',//8
-    'goods/goods_search_type', //9
-    'user/collection_goods_delete',//10
-    'user_order/cartadd',//11
+    // 'Cart/cart_list',//7
+    '/goods/cart_list',//7
+    // 'goods/goods_list',//8
+    '/goods/goods_list',//8
+    // 'goods/goods_search_type', //9
+    '/goods/goods_rank', //9
+    // 'user/collection_goods_delete',//10
+    '/users/goods_collect_cancel',//10
+    // 'user_order/cartadd',//11
+    '/goods/append_cart',//11
     'cart/goods_rand',//12
     '/users/login'//13
-    ,'user/user_reg', //14
-    'user/get_user_city',//15
-    'user/goback_password',//16
+    // ,'user/user_reg', //14
+    ,'/users/register', //14
+    // 'user/get_user_city',//15
+    '/users/get_area',//15
+    // 'user/goback_password',//16
+    '/users/reset_password',//16
     'order/create_order',//17
     'order/orderinfo_pay',//18
-    'help/helptitle', //19
+    // 'help/helptitle', //19
+    '/index/help_center', //19
     'help/helplist',//20
-    'index/hot',//21
-    'index/week',//22
-    'index',//23
-    'index/drugstore', //24
-    'index/floor',//25
-    'index/brand',//26
+    // 'index/hot',//21
+    '/index/spcarea',//21
+    // 'index/week',//22
+    '/index/recom_goods',//22
+    '/index/goods_type',//23
+    // 'index/drugstore', //24
+    '/index/necessary', //24
+    // 'index/floor',//25
+    '/index/hierarchy',//25
+    // 'index/brand',//26
+    '/index/adv_brand',//26
     'index/news',//27
-    'index/banners',//28
+    '/index/get_banner',//28
     'Order/orderdetail', //29
-    'news/news_info',//30
-    'news/newlist',//31
+    '/index/news_detail',//30
+    // 'news/news_info',//30
+    // 'news/newlist',//31
+    '/index/news_list',//31
     'user_order/addcartall',//32
     'user/zncg_list',//33
     'user/index',//34
     'user_order/getorder',//35
-    'user/collection_goods',//36
+    // 'user/collection_goods',//36
+    '/users/goods_collect_list',//36
     'order/close_order',//37
     'user_order/cartaddall',//38
-    'user/changepassword',//39
+    // 'user/changepassword',//39
+    '/users/modify_password',//39
     'user/userinfo',//40
     'user/jfls_log',//41
     'user/luck_log',//42
@@ -73,21 +95,29 @@ let urls=[
     'user/coupons'//45
     ,'user/coupon_counts',//46
     'user/delete_znx',//47
-    'user/get_znx',//48
-    'user/get_znx_info',//49
-    'goods/goods_info',//50
+    // 'user/get_znx',//48
+    '/index/message',//48
+    // 'user/get_znx_info',//49
+    '/index/message_read',//49
+    // 'goods/goods_info',//50
+    '/goods/goods_info',//50
     'coupon/get_coupon',//51
     'user/get_coupon',//52
-    'goods/ranking',//53
+    // 'goods/ranking',//53
+    '/goods/goods_rank',//53
     'banners/',//54
     '',//55
-    'user/userzz_update',//56
-    'user/is_username',//57
+    // 'user/userzz_update',//56
+    '/users/user_data',//56
+    // 'user/is_username',//57
+    '/users/field_valid',//57
     'order/wxpay_img'//58
     ,'order/order_status',//59
     'user/user_info_update',//60
     'order/wxpay_img_virtual',//61
     'order/coupon_order_status',//62
+    '/index/search_goods',//63
+    '/goods/goods_agent',//64
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
@@ -127,24 +157,50 @@ export default class InterfaceUtil{
         return params[key]
     }
 
-    static md(flag){
+    /**
+     * 加密md5，增加sign属性，并返回
+     * @param flag
+     * @returns {*}
+     */
 
-        let sign_key='scjuchuang_85237790';
-        let a=``;
+    static md(flag){
+        let sign_key=`scjuchuang_85237790`;
+        let a='';
         for(let i in flag){//用javascript的for/in循环遍历对象的属性
             a+=i+`=`+flag[i]+`&`
         }
         a+=`sign_key=`+sign_key;
         let md = forge.md.md5.create();
         md.update(a);
-        flag[`sign`]=md.digest().toHex();
-        // console.log(md.digest().toHex());
-        console.log(flag);
+        flag[`sign`]=md.digest().toHex().toUpperCase();
         return flag;
     }
+
+    /**
+     * 增加时间戳
+     * @param flag
+     */
     static addTime(flag){
         let timestamp = (new Date()).getTime();
         flag[`time_stamp`]=timestamp;
-        this.md(flag)
+        this.md(flag);
+
+        return flag;
+    }
+    static fmtDate(obj){
+        var date = new Date();
+        date.setTime(obj * 1000);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d;
     }
 }

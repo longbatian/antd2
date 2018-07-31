@@ -3,6 +3,7 @@ import {Carousel} from 'antd';
 import {Link,Redirect} from 'react-router-dom';
 // import Fenlei from './fenlei';
 import InterfaceUtil from '../../util/InterfaceUtil';
+import CoojiePage from '../../util/CoojiePage';
 import $ from 'jquery';
 import '../../styles/index/lunbo.css';
 
@@ -57,36 +58,38 @@ class Lunbo extends React.Component {
       return '';
     }
 
-    var user_type = getCookie('user_type');
-    let token = getCookie('token');
-    var jylx = getCookie('jylx');
+    var user_type = CoojiePage.getCoojie('user_type');
+    let token = CoojiePage.getCoojie('token');
+    let user_id = CoojiePage.getCoojie('user_id')
+    var jylx = CoojiePage.getCoojie('jylx');
     const that = this;
     //搜索条件ajax
-    $.ajax({
-      // url:'http://192.168.1.49/index.php/index/user/user_reg',
-      url: InterfaceUtil.getUrl(23),
-      type: 'post',
-      dataType: 'json',
-      data: {
-        "type=1":"",
-
-      },
-      beforeSend: function (xhr) {
-      },
-      success: function (data, textStatus, jqXHR) {
-        var data = data;
-        // data = JSON.parse(data);
-        if (data.data.length == 0) {
-
-        } else {
-          that.setState({
-            fenlei: data.data
-          });
-        }
-
-      }
-
-    })
+    // $.ajax({
+    //   // url:'http://192.168.1.49/index.php/index/user/user_reg',
+    //   url: InterfaceUtil.getUrl(23),
+    //   type: 'post',
+    //   dataType: 'json',
+    //   data: InterfaceUtil.addTime({
+    //       user_id:user_id,
+    //       token:token
+    //   }),
+    //   beforeSend: function (xhr) {
+    //   },
+    //   success: function (data, textStatus, jqXHR) {
+    //     var data = data;
+    //     console.log(data)
+    //     // data = JSON.parse(data);
+    //     if (data.data.length == 0) {
+    //
+    //     } else {
+    //       that.setState({
+    //         fenlei: data.data
+    //       });
+    //     }
+    //
+    //   }
+    //
+    // })
 
     //  banner
     $.ajax({
@@ -94,20 +97,20 @@ class Lunbo extends React.Component {
       url: InterfaceUtil.getUrl(28),
       type: 'post',
       dataType: 'json',
-      data: {
-        user_type: user_type,
-
-      },
+      data: InterfaceUtil.addTime({
+          user_id:user_id,
+          token:token
+      }),
       beforeSend: function (xhr) {
       },
       success: function (data, textStatus, jqXHR) {
         var data = data;
-
-       if(data.status===1){
+          // console.log(data.data.industry)
+       if(data.code===1){
          that.setState({
             banner: data.data.banner,
-            hy: data.data.hy,
-            news: data.data.news,
+            hy: data.data.industry,
+            news: data.data.notice,
             adv: data.data.adv,
           });
        }
@@ -136,7 +139,7 @@ class Lunbo extends React.Component {
     }
 
     let adv=_state.adv.length>0?_state.adv.map((item,i)=>{
-        return<Link key={item.id} to={item.href}>
+        return<Link key={item.id} to={item.url}>
             <img src={_state.lujin + item.image}
                  className='index_lunbo_div_guanggao_con_img' alt=""/>
         </Link>
@@ -150,14 +153,13 @@ class Lunbo extends React.Component {
 
             {
               _state.banner.map(function (item, i) {
-                // console.log(item)
                 let imgUrl={
                   background:"url("+this.state.lujin + item.image+")",
                   backgroundPosition:"center center",
                 }
                 return (
-                  <div className='index_lunbo_div_img' key={item.id}>
-                    <Link to={item.href} className='index_lunbo_div_img'>
+                  <div className='index_lunbo_div_img' key={i}>
+                    <Link to={item.url} className='index_lunbo_div_img'>
                       {/*<img src={this.state.lujin + item.image} className='index_lunbo_div_img'*/}
                                                {/*alt=""/>*/}
                       <i style={imgUrl} className='index_lunbo_div_img'>
@@ -193,10 +195,12 @@ class Lunbo extends React.Component {
               </div>
               <ul className='index_lunbo_div_guanggao_con_ul display'>
                 {
+
                   this.state.hy.map(function (item, i) {
                     return (
                       <li
                         onClick={(e)=>this.getNews(item.id)}
+
                         key={item.id+'lunBoXin'}
                         className='hid'
                       >{item.title}</li>

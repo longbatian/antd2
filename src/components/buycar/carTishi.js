@@ -245,12 +245,7 @@ class Gouwuche3 extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
     }
@@ -273,16 +268,16 @@ class Gouwuche3 extends React.Component {
     componentDidMount() {
         let username = CoojiePage.getCoojie('username');
         let token = CoojiePage.getCoojie('token');
-        let member_id = CoojiePage.getCoojie('user_id');
+        let user_id = CoojiePage.getCoojie('user_id');
         let jylx = CoojiePage.getCoojie('jylx');
         // carTishiMoney
         var _this = this;
         $.ajax({
             url: InterfaceUtil.getUrl(7),
             type: "post",
-            data: {
-                "username": username, "token": token, "member_id": member_id, "jylx": jylx, "page": 1, "limit": 10
-            },
+            data:  InterfaceUtil.addTime({
+                "token": token, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
                 // console.log(data)
@@ -294,13 +289,7 @@ class Gouwuche3 extends React.Component {
                 }
 
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+            error: function () {
             }
         });
     }

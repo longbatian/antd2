@@ -35,21 +35,19 @@ class Headcon extends React.Component {
         } else {
             $('.sousuokuang').removeClass('display');
             const that = this;
-            //  广告位
             $.ajax({
                 type: "post",
-                url: InterfaceUtil.getUrl(1),
-                data: {
-                    "key": a
-                },
+                url: InterfaceUtil.getUrl(63),
+                data: InterfaceUtil.addTime({
+                    name:a
+                }),
                 dataType: "json",
                 success: function (data) {
-                    var data = data;
                     if (data.data.length == 0) {
 
                     } else {
                         that.setState({
-                            xianshi: data.data.search
+                            xianshi: data.data
                         });
                     }
                 }
@@ -87,22 +85,23 @@ class Headcon extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(1),
             type: "post",
-            data: {},
+            data: InterfaceUtil.addTime({
+
+            }),
             dataType: "json",
             success: function (data) {
-                //callback;
-                var data = data;
-                // data=JSON.parse(data);
                 // console.log(data);
-                that.setState({
-                    top: data.data.top,
-                });
+                if(data.data[2].search_default){
+                     var a = data.data[2].search_default.split('|'); // [ab, c, de]
+                    that.setState({
+                        top:a
+                    });
+                }
+
             }
         });
         this.bycarNumber(id, user_type);
-        // this.pubsub_token = PubSub.subscribe('PubSubmessage', function () {
-        //     this.bycarNumber(id, user_type);
-        // }.bind(this));
+
         PubSub.subscribe('PubSubmessage',() =>{
             this.bycarNumber(id, user_type);
         });
@@ -113,26 +112,25 @@ class Headcon extends React.Component {
     }
 
     bycarNumber(id, user_type) {
+        var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
         let that = this;
         $.ajax({
             url: InterfaceUtil.getUrl(0),
             type: "post",
-            data: {
-                'member_id': id,
-                "user_type": user_type
-            },
+            data: InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token
+            }),
             dataType: "json",
             success: function (data) {
-                var data = data;
-
-                // console.log(data);
                 if (data.data.length == 0) {
 
                 } else {
                     if (data.data.cart_number != undefined) {
                         // console.log('aaaa')
                         that.setState({
-                            car: data.data.cart_number,
+                            car: data.data.cart_count,
                         });
                     }
 
@@ -181,9 +179,9 @@ class Headcon extends React.Component {
                             {
                                 this.state.xianshi.map(function (item, i) {
                                     return (
-                                        <li key={i + 'head'} onClick={(e) => {
+                                        <li key={item.id} onClick={(e) => {
                                             this.sousuo1(e)
-                                        }}>{item.title}</li>
+                                        }}>{item.name}</li>
                                     )
                                 }, this)
                             }
@@ -193,13 +191,16 @@ class Headcon extends React.Component {
                             热门：
                             {
                                 this.state.top.map(function (item, i) {
+
                                     return (
-                                        <Link key={item.id + 'head'} to={'/Shangpinxiangqing/?&id=' + item.id}>
-                                            <span className='marginRight10'>{item.title}</span>
-                                        </Link>
+                                        <span className='marginRight10'>{item}</span>
                                     )
                                 }, this)
                             }
+
+                            {/*/!*<Link key={item.id + 'head'} to={'/Shangpinxiangqing/?&id=' + item.id}>*!/*/}
+                            {/*/!*<span className='marginRight10'>{item.name}</span>*!/*/}
+                            {/*// </Link>*/}
                         </div>
                         <span className='clear'></span>
                     </div>

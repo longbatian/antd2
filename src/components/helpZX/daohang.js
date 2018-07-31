@@ -26,11 +26,10 @@ class HelpTitle extends React.Component {
 
     helpCenterAjax() {
         const that = this;
-        //  广告位
         $.ajax({
             url: InterfaceUtil.getUrl(19),
             type: "post",
-            data: {},
+            data: InterfaceUtil.addTime({}),
             dataType: "json",
             success: function (data) {
                 if (data.data.length == 0) {
@@ -39,6 +38,7 @@ class HelpTitle extends React.Component {
                     that.setState({
                         title: data.data
                     });
+
                 }
             }
         });
@@ -57,18 +57,18 @@ class HelpTitle extends React.Component {
                                 <div>
                                     <div className='help_div_div1'>
                                         <img src={require("../../images/helpZx/sanjiao.png")}
-                                             className='marginRight10 marginTop3' alt=""/>{item.names}
+                                             className='marginRight10 marginTop3' alt=""/>{item.name}
                                     </div>
 
                                     <ul className='help_div_ul'>
                                         {
-                                            this.state.title[i].res.map(function (item, i) {
+                                            this.state.title[i].next.map(function (item, i) {
                                                 return (
                                                     <li data={item.id} data-index={item.pid} onClick={(e) => {
                                                         this.bangzhu(e)
                                                     }} className='help_div_ul_li'>
                                                         <Link to={'?&id=' + item.id}>
-                                                            {item.title}
+                                                            {item.name}
                                                         </Link>
 
                                                     </li>
@@ -93,7 +93,7 @@ class HelpTitle extends React.Component {
                         <p>Q Q:2885052533</p>
                     </div>
                 </div>
-                <HelpCon/>
+                <HelpCon />
                 <div className='clear'></div>
             </div>
         )

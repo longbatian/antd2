@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
 
+import CoojiePage from "../../util/CoojiePage";
+
 class Celan extends React.Component{
   constructor(props){
     super(props); //调用父类的构造方法；
@@ -24,20 +26,8 @@ class Celan extends React.Component{
 
   componentDidMount(){
 
-
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
-        }
-      }
-      return "";
-    }
-    var user_type=getCookie('user_type');
-    var member_id=getCookie('user_id');
+      var user_id = CoojiePage.getCoojie('user_id');
+      var token = CoojiePage.getCoojie('token');
     const that=this;
     //  广告位
     $.ajax({
@@ -45,20 +35,21 @@ class Celan extends React.Component{
       url: InterfaceUtil.getUrl(0),
       type: 'post',
       dataType: 'json',
-      data: {
-        user_type: user_type,
-
-      },
+      data: InterfaceUtil.addTime({
+          user_id:user_id,
+          token:token
+      }),
       beforeSend: function (xhr) {
       },
       success: function (data, textStatus, jqXHR) {
         var data=data;
+
         // data=JSON.parse(data);
         if(data.data.length==0){
 
         }else{
           that.setState({
-            celan:data.data.floors,
+            celan:data.data.list,
           });
         }
 
@@ -108,7 +99,7 @@ class Celan extends React.Component{
            key={i+item}
            className='louceng_top'
            onClick={(e)=>{this.louceng(e,i)}} data={i}>
-           <p>{item.title}</p>
+           <p>{item.name}</p>
          </li>
              )
            },this )

@@ -279,15 +279,16 @@ class PersonalWodejifen extends React.Component {
 
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //智能采购
         id = JSON.stringify(id)
         $.ajax({
             url: InterfaceUtil.getUrl(1),
             type: "post",
-            data: {
-                "username": username, "token": token, "id": id
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "goods_id": id
+            }),
             dataType: "json",
             success: function (data) {
                 alert(data.info)
@@ -304,14 +305,15 @@ class PersonalWodejifen extends React.Component {
 
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //智能采购
         $.ajax({
             url: InterfaceUtil.getUrl(10),
             type: "post",
-            data: {
-                "username": username, "token": token, "id": id
-            },
+            data:InterfaceUtil.addTime( {
+                "user_id": user_id, "token": token, "id": id
+            }),
             dataType: "json",
             success: function (data) {
                 alert(data.info)
@@ -411,20 +413,18 @@ class PersonalWodejifen extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(36),
             type: "post",
-            data: {
-                "username": username, "token": token, "page": 1, "limit": 10, "user_id": user_id, "jylx": jylx
-            },
+            data:InterfaceUtil.addTime( {
+                "user_id": user_id, "token": token, "page": 1, "pageSize": 10
+            }),
             dataType: "json",
             success: function (data) {
-
                 that.loginPage.ajaxLogin(data.status);
-                // console.log(data);
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
-                        jylx: data.data.list,
-                        cons: data.data.cons,
+                        jylx: data.data.collect_list,
+                        cons: data.data.collect_count,
                     });
                     that.refs.shoucang.className = 'display shoucang'
                     // }

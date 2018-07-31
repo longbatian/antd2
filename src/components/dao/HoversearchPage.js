@@ -30,7 +30,7 @@ class HoversearchPage extends Component {
             values: val
         })
         var a = e.target.value;
-        // console.log(a)
+
         if (a == '') {
             $('.sousuokuang2').addClass('display')
         } else {
@@ -39,24 +39,21 @@ class HoversearchPage extends Component {
             //  广告位
             $.ajax({
                 // url:'http://192.168.1.49/index.php/index/user/user_reg',
-                url: InterfaceUtil.getUrl(1),
+                url: InterfaceUtil.getUrl(63),
                 type: 'post',
                 dataType: 'json',
-                data: {
-                    key: a,
-
-                },
+                data: InterfaceUtil.addTime({
+                    name:a
+                }),
                 beforeSend: function (xhr) {
                 },
                 success: function (data, textStatus, jqXHR) {
-                    // var data=data;
-                    // data=JSON.parse(data);
-                    // console.log(data.data.search);
+
                     if (data.data.length == 0) {
 
                     } else {
                         that.setState({
-                            xianshi: data.data.search
+                            xianshi: data.data
                         });
                     }
 
@@ -91,12 +88,12 @@ class HoversearchPage extends Component {
     }
 
     componentDidMount() {
-        var user_type = CoojiePage.getCoojie('user_type');
-        var id = CoojiePage.getCoojie('user_id');
-        this.bycarNumber(id, user_type);
+        var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
+        this.bycarNumber(user_id, token);
 
         PubSub.subscribe('PubSubmessage', () => {
-            this.bycarNumber(id, user_type);
+            this.bycarNumber(user_id, token);
         });
         var _this = this;
         window.onscroll = function () {
@@ -104,12 +101,11 @@ class HoversearchPage extends Component {
             let b = $('.celan');
             let c = a.length;
             let scrollClass;
-            // console.log(window.scrollY)
+
             if (window.scrollY < 204) {
-                scrollClass = 'containBoxs display'
+                scrollClass = "containBoxs display";
             } else if (window.scrollY < 800) {
-                // console.log(1)
-                b.eq(0).attr('class', 'celan display')
+                b.eq(0).attr('class', 'celan display');
                 // b[0].className='celan display'
                 scrollClass = 'containBoxs';
             } else if (window.scrollY < 1250) {
@@ -205,28 +201,26 @@ class HoversearchPage extends Component {
 
     }
 
-    bycarNumber(id, user_type) {
+    bycarNumber(id, token) {
         let that = this;
         $.ajax({
             url: InterfaceUtil.getUrl(0),
             type: 'post',
             dataType: 'json',
-            data: {
-                member_id: id,
-                user_type: user_type
-            },
+            data: InterfaceUtil.addTime({
+                user_id:id,
+                token:token
+            }),
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-                // data=JSON.parse(data);
-                // console.log(data);
                 if (data.data.length == 0) {
 
                 } else {
                     if (data.data.cart_number != undefined) {
-                        // console.log('aaaa')
+
                         that.setState({
-                            car: data.data.cart_number,
+                            car: data.data.cart_count,
                         });
                     }
 
@@ -274,9 +268,9 @@ class HoversearchPage extends Component {
                         {
                             this.state.xianshi.map(function (item, i) {
                                 return (
-                                    <li key={i + 'head'} onClick={(e) => {
+                                    <li key={item.id} onClick={(e) => {
                                         this.sousuo1(e)
-                                    }}>{item.title}</li>
+                                    }}>{item.name}</li>
                                 )
                             }, this)
                         }

@@ -452,30 +452,43 @@ class Zhuce extends React.Component {
             url: InterfaceUtil.getUrl(14),
             type: 'post',
             dataType: 'json',
-            data: {
+            data: InterfaceUtil.addTime({
                 username: this.state.username,
-                userpass: this.state.userpass,
-                jylx: this.state.jylx,
-                dwmc: this.state.dwmc,
-                lxr: this.state.lxr,
-                lxdh: this.state.lxdh,
-                qq: this.state.qq,
-                tjr: this.state.tjr,
-                yx: this.state.yx,
+                password: this.state.userpass,
+                type: this.state.jylx,
+                enterprise: this.state.dwmc,
+                real_name: this.state.lxr,
+                tel: this.state.lxdh,
+                qq_number: this.state.qq,
+                referee: this.state.tjr,
+                email: this.state.yx,
                 address_id: c
-
-            },
+            }),
+            // data: {
+            //     username: this.state.username,
+            //     userpass: this.state.userpass,
+            //     jylx: this.state.jylx,
+            //     dwmc: this.state.dwmc,
+            //     lxr: this.state.lxr,
+            //     lxdh: this.state.lxdh,
+            //     qq: this.state.qq,
+            //     tjr: this.state.tjr,
+            //     yx: this.state.yx,
+            //     address_id: c
+            //
+            // },
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
+                console.log(data)
                 if (data.status == '0') {
                     // $('.tishi').text('');
                     // $('.tishi').eq(1).text('用户名已注册');
                     // $('.xingxing').removeClass('display');
                     // $('.xingxing').eq(0).addClass('display');
                 } else {
-                    alert('注册成功');
-                    _this.props.history.push('/Denglu');
+                    // alert('注册成功');
+                    // _this.props.history.push('/Denglu');
                 }
                 // console.log(data);
             }
@@ -495,8 +508,8 @@ class Zhuce extends React.Component {
             alert('输入不能为空');
             return;
         }
-        let data = {};
-        data[flag] = val;
+        // let data = {};
+        // data[flag] = val;
         var _this = this;
         let tishiUser = _this.state.tishiUser;
         let tishiUserClass = _this.state.tishiUserClass;
@@ -504,11 +517,13 @@ class Zhuce extends React.Component {
             url: InterfaceUtil.getUrl(57),
             type: 'post',
             dataType: 'json',
-            data: data,
+            data: InterfaceUtil.addTime({
+                key: flag,
+                value: val
+            }),
             success: function (data, status) {
-                // console.log(data, status)
-                if (data.status === 0) {
-                    tishiUser[flag + 'T'] = data.info;
+                if (data.code === 0) {
+                    tishiUser[flag + 'T'] = data.msg;
                     tishiUserClass[flag + 'C'] = "red1 font14 fontWeight xingxing";
                     tishiUser[flag + 'Clicks'] = false;
                     _this.setState({

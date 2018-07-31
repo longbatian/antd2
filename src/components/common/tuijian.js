@@ -35,16 +35,16 @@ class Tuijian extends React.Component{
     const that = this;
     //智能采购
         $.ajax({
-                url: InterfaceUtil.getUrl(12),
+                url: InterfaceUtil.getUrl(24),
                 type: "post",
-                data: {
+                data: InterfaceUtil.addTime({
                  "jylx":jylx,"limit":a
-                },
+                }),
                 dataType: "json",
                 success: function(data){
-                       that.setState({
-                        tuijian:data.data
-                      });
+                      //  that.setState({
+                      //   tuijian:data.data
+                      // });
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     // 状态码

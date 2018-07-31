@@ -105,16 +105,18 @@ class Yincanglan extends React.Component{
 
   }
   ajaxBuyCarYinCang(id,user_type){
+      var user_id = CoojiePage.getCoojie('user_id');
+      var token = CoojiePage.getCoojie('token');
       const that=this;
       $.ajax({
           // url:'http://192.168.1.49/index.php/index/user/user_reg',
           url: InterfaceUtil.getUrl(0),
           type: 'post',
           dataType: 'json',
-          data: {
-              'member_id':id,
-              "user_type":user_type
-          },
+          data:InterfaceUtil.addTime({
+              user_id:user_id,
+              token:token
+          }),
           beforeSend: function (xhr) {
           },
           success: function (data, textStatus, jqXHR) {
@@ -126,8 +128,8 @@ class Yincanglan extends React.Component{
               }else{
                   if (data.data.cart_number!=undefined){
                       that.setState({
-                          car:data.data.cart_number,
-                          xiaoxi:data.data.znx_count,
+                          car:data.data.cart_count,
+                          xiaoxi:data.data.message_count,
                       });
                   }
               }

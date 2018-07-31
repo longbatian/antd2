@@ -43,23 +43,24 @@ class Shangpinxiangqing extends React.Component {
     //收藏的切换
     colorOrder(e, flag,i) {
         const that = this;
-        let flags=flag !== 0 ? 10 : 5;
-        let spid = InterfaceUtil.getHashParameters().id;
+        let flags=flag !== 1 ? 10 : 5;
 
+        let spid = InterfaceUtil.getHashParameters().id;
         $.ajax({
             url: InterfaceUtil.getUrl(flags),
             type: "post",
-            data: {
-                "username": that.username, "token": that.token, "user_id": that.user_id, "sp_id": spid, 'id': flag
-            },
+            data: InterfaceUtil.addTime({
+                "token": that.token, "user_id": that.user_id, "goods_id": spid
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status === 1) {
+
+                if (data.code === 1) {
                     let datas = that.state.spxq;
-                    if (data.data === 0) {
-                        datas[i].is_f = 0;
+                    if (datas[i].is_collect == 1) {
+                        datas[i].is_collect = 0;
                     } else {
-                        datas[i].is_f = data.data;
+                        datas[i].is_collect =1;
                     }
                     that.setState({
                         spxq: datas,
@@ -78,9 +79,9 @@ class Shangpinxiangqing extends React.Component {
         var b = a.value;
         var moren = e.target.parentNode.firstChild.value;
         moren = parseInt(moren);
-        // console.log(b);
+
         if (isNaN(b) != false || b < 0) {
-            // console.log('aaa')
+
             a.value = moren;
         } else {
             var as = parseInt(b % moren);
@@ -137,16 +138,16 @@ class Shangpinxiangqing extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "goods_id": id, "spsl": shuliang
-            },
+            data: InterfaceUtil.addTime({
+               "token": token, "user_id": user_id, "goods_id": id, "goods_num": shuliang
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
+                if (data.code == '1') {
                     CoojiePage.setBuyCarOk();
                     PubSub.publish('PubSubmessage');
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != '长时间未操作,请重新登录') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
@@ -174,22 +175,22 @@ class Shangpinxiangqing extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "goods_id": id, "spsl": shuliang
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token,  "goods_id": id, "goods_num": shuliang
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
+
+                if (data.code == '1') {
 
                     // window.location.href = '/Buycar';
                     // window.location.href=;
                     _this.props.history.push('/Buycar')
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != '长时间未操作,请重新登录') {
                         _this.props.history.push('/Buycar')
                         // window.location.href='/Buycar';
                     } else {
-
                         _this.props.history.push('/Denglu')
                     }
                 }
@@ -218,8 +219,8 @@ class Shangpinxiangqing extends React.Component {
 
     ajaxSpXq() {
 
-        var jylx = CoojiePage.getCoojie('jylx');
         var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
 
         var id = InterfaceUtil.getHashParameters().id;
         const that = this;
@@ -227,29 +228,41 @@ class Shangpinxiangqing extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(50),
             type: "post",
-            data: {
-                "gid": id, "jylx": jylx, "member_id": user_id
-            },
+            data: InterfaceUtil.addTime({
+                "goods_id": id, "token": token, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status === 1) {
-                    if (data.data.combination.length !== 0) {
-                        that.setState({
-                            spxq: data.data.info,
-                            arrTilte: [],
-                            combination: data.data.combination,
-                            arr2: data.data.combination,
-                        });
-                        that.calculationMoney(data.data.combination);
-                    } else {
-                        that.setState({
-                            spxq: data.data.info,
-                            combination: [],
-                            arrTilte: [],
-                            arr2: []
-                        })
-                    }
+                if(data.code===1){
+                    let spxqs=[];
+                    spxqs[0]=data.data;
+                    that.setState({
+                        spxq: spxqs
+                        // arrTilte: [],
+                        // combination: data.data.combination,
+                        // arr2: data.data.combination,
+                    });
+                    // that.calculationMoney(data.data.combination);
                 }
+
+                // if (data.code === 1) {
+                //     if (data.data.combination.length !== 0) {
+                //         that.setState({
+                //             spxq: data.data.info,
+                //             // arrTilte: [],
+                //             // combination: data.data.combination,
+                //             // arr2: data.data.combination,
+                //         });
+                //         that.calculationMoney(data.data.combination);
+                //     } else {
+                //         that.setState({
+                //             spxq: data.data.info,
+                //             combination: [],
+                //             arrTilte: [],
+                //             arr2: []
+                //         })
+                //     }
+                // }
             }
         });
 
@@ -279,8 +292,8 @@ class Shangpinxiangqing extends React.Component {
         let show = false;
 
         for (var i = 0, len = arr.length; i < len; i++) {
-            if (arr[i].id === id) {
-                arr[i].zxdw1 = val;
+            if (arr[i].goods_id === id) {
+                arr[i].min_buy_ = val;
                 show = !show;
             }
         }
@@ -311,8 +324,8 @@ class Shangpinxiangqing extends React.Component {
         let arr = this.state.combination, goods_id = [], goods_sl = [];
         for (let i = 0, len = checks.length; i < len; i++) {
             if ($(checks[i]).is(':checked')) {
-                goods_id.push(arr[i].id);
-                goods_sl.push(arr[i].zxdw);
+                goods_id.push(arr[i].goods_id);
+                goods_sl.push(arr[i].min_buy);
             }
         }
         goods_id = JSON.stringify(goods_id);
@@ -355,16 +368,16 @@ class Shangpinxiangqing extends React.Component {
         let datas = this.state;
 
         if (data) {
-            tab1 = data[0].spjj ? data[0].spjj : null;
-            tab2 = data[0].sms ? data[0].sms : null;
+            tab1 = data[0].brief ? data[0].brief : null;//介绍
+            tab2 = data[0].explain ? data[0].explain : null; //说明书
             tab3 = data[0].shhbzh ? data[0].shhbzh : null;
         }
         let _data = this.state.combination;
         let _isShowBestBoxs = _data.length === 0 ? 'display' : '';
         let _combination = _data.map((item, i) => {
             let _prices = item.hprice ? item.hprice : item.prices;
-            return <div key={item.id + "_prices"}>
-                <Checkbox onChange={(e) => this.onChanges(e, item.title, i, item.id)} defaultChecked value={_prices}>
+            return <div key={item.goods_id + "_prices"}>
+                <Checkbox onChange={(e) => this.onChanges(e, item.title, i, item.goods_id)} defaultChecked value={_prices}>
                     <img src={this.state.lujin + item.image} alt="" className='spxq_dd_img1'/>
                     <p className='spxq_dd_p hid'>{item.title}</p>
                     <p className='spxq_dd_p hid'>{item.scqy}</p>
@@ -395,27 +408,28 @@ class Shangpinxiangqing extends React.Component {
                 {/*商品详情*/}
                 {
                     datas.spxq.map(function (item, i) {
-                        // console.log(item);
+
                         let islimit = item.activity_xgsl > 99999 ? `` : item.activity_xgsl;
-                        let isActivity = item.hprice ? <span key={i + 'isActivity'}>
-                          <span className='font20 orange'>{item.hprice}</span>
-                          <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.prices}</span>
+                        let isActivity = item.activity_price ? <span key={i + 'isActivity'}>
+                          <span className='font20 orange'>{item.activity_price}</span>
+                          <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.price}</span>
                             <span className='red font13 bold'>( {item.activity_remark} {islimit})</span>
                         </span> :
-                            <span className='font20 orange'>{item.prices}</span>;
-                        let Collection2 = item.is_f !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
+                            <span className='font20 orange'>{item.price}</span>;
+                        let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                             : 'chanpinzhongxin_sp_img_shoucang';
-                        let isKcs=item.kcs>1000?`充裕`:item.kcs;
+                        let isKcs=item.stock_num>1000?`充裕`:item.stock_num;
+                        let times = InterfaceUtil.fmtDate(item.validity_time);
                         return (
-                            <div className='contain marginTop20' key={item.id + '_isActivity'}>
+                            <div className='contain marginTop20' key={item.goods_id + '_isActivity'}>
 
                                 {/*商品图片*/}
                                 <div className='shangpinxiangqing_sp_img marginRight20 floatleft relative'
-                                     data={item.is_f}>
+                                     data={item.is_collect}>
                                     <BigorSmallPage {...this.state.spxq[i]}/>
 
-                                    <div className={Collection2} data={item.is_f} onClick={(e) => {
-                                        this.colorOrder(e, item.is_f,i)
+                                    <div className={Collection2} data={item.is_collect} onClick={(e) => {
+                                        this.colorOrder(e, item.is_collect,i)
                                     }}>
                                         <img src={require("../../images/shangpingxiangqing/xinBai.png")}
                                              className='marginRight10' alt=""/>收藏
@@ -423,12 +437,12 @@ class Shangpinxiangqing extends React.Component {
                                 </div>
                                 {/*商品信息*/}
                                 <div className='shangpinxiangqing_sp_xinxi floatleft'>
-                                    <div className='shangpinxiangqing_sp_xinxi_mingzi'>{item.title}</div>
+                                    <div className='shangpinxiangqing_sp_xinxi_mingzi'>{item.name}</div>
 
                                     <div className='shangpinxiangqing_sp_xinxi_jiage'>
                                         <div className='paddingTop5'>
                                             零售价：<span
-                                            className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.scprice}</span>
+                                            className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.price}</span>
                                         </div>
                                         <div>供货价：
                                             {isActivity}
@@ -442,7 +456,7 @@ class Shangpinxiangqing extends React.Component {
                                         {/*规格*/}
                                         <div>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan hid'>商品规格：{item.sku}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan hid'>商品规格：{item.standard}</span>
                                             <span
                                                 className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>批准文号：{item.pzwh}</span>
 
@@ -450,16 +464,16 @@ class Shangpinxiangqing extends React.Component {
                                         {/*厂家*/}
                                         <div>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan hid'>生产厂家：{item.scqy}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan hid'>生产厂家：{item.enterprise}</span>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>件装量：{item.jzl}{item.bzdw}/件</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>件装量：{item.jzl}{item.unit_num}/件</span>
                                         </div>
                                         {/*单位*/}
                                         <div>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>包装单位：{item.bzdw}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>包装单位：{item.unit}</span>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>中包装：{item.zxdw}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>中包装：{item.min_buy}</span>
                                         </div>
                                         {/*效期*/}
                                         <div>
@@ -467,19 +481,19 @@ class Shangpinxiangqing extends React.Component {
                                             <span
                                                 className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>库存数量：{isKcs}</span>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>效期：{item.vstime}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>效期：{times}</span>
                                         </div>
                                         {/*加入购物车*/}
                                         <div className='inStockBox'>
 
                                             <span>购买数量：</span>
                                             <span>
-                 <input type="hidden" value={item.zxdw}/>
+                 <input type="hidden" value={item.min_buy}/>
                  <button className='shangpinxiangqing_sp_xinxi_ziliao_kuangao' onClick={(e) => {
                      this.jian8(e)
                  }}>-</button>
-                  <input type="text" className='shangpinxiangqing_sp_xinxi_ziliao_shuliang' value={item.zxdw1}
-                         onChange={(e) => this.changeVal(e, item.id)}
+                  <input type="text" className='shangpinxiangqing_sp_xinxi_ziliao_shuliang' value={item.min_buy_}
+                         onChange={(e) => this.changeVal(e, item.goods_id)}
                          onBlur={(e) => {
                              this.shuliang(e)
                          }}/>

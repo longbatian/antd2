@@ -26,7 +26,8 @@ class Louceng1 extends React.Component {
 
 
     componentDidMount() {
-
+        var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
         let user_type = CoojiePage.getCoojie('user_type');
         const that = this;
         //搜索条件ajax
@@ -35,23 +36,21 @@ class Louceng1 extends React.Component {
             url: InterfaceUtil.getUrl(24),
             type: 'post',
             dataType: 'json',
-            data: {
-                user_type: user_type,
-
-            },
+            data: InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token
+            }),
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-
-                // console.log(data)
-                // data=JSON.parse(data);
+                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
-                        youtu: data.data.banner_1,
+                        youtu: data.data.banner_right,
                         banner: data.data.banner,
-                        sp: data.data.goods,
+                        sp: data.data.goods_list,
                         title:data.data.title
                     });
 
@@ -67,16 +66,15 @@ class Louceng1 extends React.Component {
             url: InterfaceUtil.getUrl(25),
             type: 'post',
             dataType: 'json',
-            data: {
-                user_type: user_type,
-
-            },
+            data: InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token
+            }),
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
                 var data = data;
-                // console.log(data)
-                // data=JSON.parse(data);
+
                 if (data.data.length == 0) {
 
                 } else {
@@ -124,7 +122,7 @@ class Louceng1 extends React.Component {
                                     this.state.banner.map(function (item) {
                                         return (
                                             <div key={item.image}>
-                                                <Link to={item.href}>
+                                                <Link to={item.url}>
                                                     <img src={this.state.lujin + item.image}/>
                                                 </Link>
 
@@ -135,10 +133,10 @@ class Louceng1 extends React.Component {
                             </Carousel>
                         </div>
                         {
-                            this.state.youtu.map(function (item) {
+                            this.state.youtu.map(function (item,i) {
                                 return (
-                                    <div key={item.banner_name + 'youtu'} className='louceng_con_img1'>
-                                        <Link to={item.href}>
+                                    <div key={i + 'youtu'} className='louceng_con_img1'>
+                                        <Link to={item.url}>
                                             <img src={this.state.lujin + item.image} alt=""/>
                                         </Link>
 
@@ -155,14 +153,14 @@ class Louceng1 extends React.Component {
                                         <li key={item.id + 'loCsp'}>
                                             <input type="hidden" value={item.id} data={item.zxdw}/>
                                             <Link to={'/Shangpinxiangqing?&id=' + item.id}>
-                                                <img src={this.state.lujin + item.sp_image} alt=""
+                                                <img src={this.state.lujin + item.image} alt=""
                                                     // onClick={(e)=>{this.xiangqing3(e)}}
                                                 />
                                             </Link>
 
-                                            <p className='hid oneWeekgive font16'>{item.title}</p>
-                                            <p className='hid oneWeekgiveP'>{item.sku}</p>
-                                            <p className='hid oneWeekgiveP'>{item.scqy}</p>
+                                            <p className='hid oneWeekgive font16'>{item.name}</p>
+                                            <p className='hid oneWeekgiveP'>{item.standard}</p>
+                                            <p className='hid oneWeekgiveP'>{item.enterprice}</p>
                                             <div className='louceng_con_ul_li_div cursor' onClick={(e) => {
                                                 this.xiangqing1(e)
                                             }}>立即购买
@@ -208,18 +206,20 @@ class Louceng1 extends React.Component {
                     {/**/}
                     {
                         this.state.louceng.map(function (item, i) {
-                            var images = item.ad ? <img src={this.state.lujin + item.ad} alt=""/> : null;
+                            var images = item.top_adv ? <img src={this.state.lujin + item.top_adv} alt=""/> : null;
                             return (
-                                <div key={item.id + 'loShu'}>
+                                <div key={i + 'loShu'}>
                                     {/*楼层标题*/}
                                     <div>
-                                        <Link to={item.title_href} className='marginTop20 louceng_guanggao'>
+                                        <Link to={item.url} className='marginTop20 louceng_guanggao'>
                                             {/*<img src="../../images/index/loucengGG.png" alt=""/>*/}
                                             {images}
                                         </Link>
                                         <div className={'louceng_bt marginTop20 relative'}>
                                             <span
-                                                className={'floatleft louceng_bt_title' + ' ' + 'scrollTop' + [i + 2]}>{item.title}</span>
+                                                className={'floatleft louceng_bt_title' + ' ' + 'scrollTop' + [i + 2]}>
+                                                {item.name}
+                                                </span>
                                             <div className='floatRight'>
                                                 <Link to='/Chanpinzhongxin?&zjzx=2'>
                                                     更多产品<img src={require("../../images/index/loucengJT.png")}
@@ -227,21 +227,21 @@ class Louceng1 extends React.Component {
                                                 </Link>
                                             </div>
                                             <span className='louceng_bt_shuzi'>{i + 1}</span>
-                                            <div className='clear'></div>
+                                            <div className='clear'/>
                                         </div>
                                     </div>
                                     {/*楼层内容*/}
                                     <div className='louceng_con1'>
                                         <div className='floatleft'>
-                                            <Link to={item.img_href}>
-                                                <img src={this.state.lujin + item.zuotu} className='louceng_con1_img'
+                                            <Link to={item.url}>
+                                                <img src={this.state.lujin + item.image} className='louceng_con1_img'
                                                      alt=""/>
                                             </Link>
                                         </div>
                                         {/*<div className='floatleft'><img src={this.state.lujin+item.zuotu} className='louceng_con1_img' alt=""/></div>*/}
                                         <ul className='floatleft louceng_con1_ul'>
                                             {
-                                                this.state.louceng[i].gs.map(function (item1, i) {
+                                                this.state.louceng[i].goods_list.map(function (item1, i) {
                                                     return (
                                                         <li key={item1.id + 'loCgs'}>
                                                             {/*<input type="hidden" value={item1.id}/>*/}
@@ -252,9 +252,9 @@ class Louceng1 extends React.Component {
                                                             </Link>
 
                                                             {/*<img src={this.state.lujin+item.image} alt="" onClick={(e)=>{this.xiangqing3(e)}}/>*/}
-                                                            <p className='hid font16 oneWeekgive'>{item1.title}</p>
-                                                            <p className='hid oneWeekgiveP'>{item1.sku}</p>
-                                                            <p className='hid oneWeekgiveP'>{item1.scqy}</p>
+                                                            <p className='hid font16 oneWeekgive'>{item1.name}</p>
+                                                            <p className='hid oneWeekgiveP'>{item1.standard}</p>
+                                                            <p className='hid oneWeekgiveP'>{item1.enterprise}</p>
                                                         </li>
                                                     )
                                                 }, this)

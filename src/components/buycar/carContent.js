@@ -569,89 +569,84 @@ class Gouwuche2 extends React.Component {
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
         var user_id = CoojiePage.getCoojie('user_id');
-        var jylx = CoojiePage.getCoojie('jylx');
         const that = this;
-        //  广告位
+
         $.ajax({
             url: InterfaceUtil.getUrl(7),
             type: "post",
-            data: {
-                "username": username, "token": token, "member_id": user_id, "jylx": jylx
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
+                console.log(JSON.stringify(data))
                 that.loginPage.ajaxLogin(data.status, that.props);
-                if (data.data.length == 0) {
-
-                } else {
-                    if (!data.data.list) return;
-                    that.setState({
-                        sp: data.data.list.plist,
-                        minMoey: data.data.list.free.lowest,
-                        maxMoney: data.data.list.free.myunfee
-                    }, () => {
-                        var a = document.getElementsByClassName('car_title_div15');
-                        var c = document.getElementsByClassName('car_title_div13');
-                        var d = document.getElementsByClassName('car_title_div14');
-                        var e = document.getElementsByClassName('car_title_div13_span1');
-                        var f = document.getElementsByClassName('car_title_div13_span');
-                        var y = document.getElementsByClassName('car_content_div');
-                        const minM = that.state.minMoey;
-                        for (var i = 0; i < a.length; i++) {
-                            var b = a[i].innerText;
-                            if (b == '无') {
-                                c[i].className = 'car_title_div13 display';
-                                d[i].className = 'car_title_div14'
-                            } else {
-                                c[i].className = 'car_title_div13 ';
-                                e[i].className = 'car_title_div13_span1 red';
-                                f[i].className = 'car_title_div13_span text_del';
-                                d[i].className = 'car_title_div14 display '
-                            }
-                        }
-
-                        for (var i = 0; i < a.length; i++) {
-                            var x = a[i].getAttribute('data');
-                            if (x == 1) {
-                                y[i].className = 'car_content_div orange'
-                            }
-                        }
-
-                        //  是否选中
-                        var check = document.getElementsByClassName('car_content');
-                        var inp = document.getElementsByClassName('buycar_input1');
-                        var heji = document.getElementsByClassName('car_title_div11_xiaoji');
-                        var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                        var zongjia = 0;
-                        var shuliang = 0;
-                        that.catTishiMoney();
-
-                        // 无库存
-                        var kucun = document.getElementsByClassName('car_title_div7_kcs');
-                        for (var i = 0; i < kucun.length; i++) {
-                            var kucun1 = kucun[i].innerText;
-                            if (kucun1 == 0) {
-                                check[i].className = 'contain car_content relative car_content_current'
-                            }
-                        }
-
-
-                    });
-                    // var qifa=document.getElementsByClassName('car_qifa');
-                    // var baoyou=document.getElementsByClassName('car_baoyou');
-                    $('.car_qifa').eq(0).text(data.data.list.free.lowest + '元');
-                    // baoyou[0].innerText=
-                    $('.car_baoyou').eq(0).text(data.data.list.free.myunfee + '元')
-
-                }
+                // if (data.data.length == 0) {
+                //
+                // } else {
+                //     if (!data.data.list) return;
+                //     that.setState({
+                //         sp: data.data.list.plist,
+                //         minMoey: data.data.list.free.lowest,
+                //         maxMoney: data.data.list.free.myunfee
+                //     }, () => {
+                //         var a = document.getElementsByClassName('car_title_div15');
+                //         var c = document.getElementsByClassName('car_title_div13');
+                //         var d = document.getElementsByClassName('car_title_div14');
+                //         var e = document.getElementsByClassName('car_title_div13_span1');
+                //         var f = document.getElementsByClassName('car_title_div13_span');
+                //         var y = document.getElementsByClassName('car_content_div');
+                //         const minM = that.state.minMoey;
+                //         for (var i = 0; i < a.length; i++) {
+                //             var b = a[i].innerText;
+                //             if (b == '无') {
+                //                 c[i].className = 'car_title_div13 display';
+                //                 d[i].className = 'car_title_div14'
+                //             } else {
+                //                 c[i].className = 'car_title_div13 ';
+                //                 e[i].className = 'car_title_div13_span1 red';
+                //                 f[i].className = 'car_title_div13_span text_del';
+                //                 d[i].className = 'car_title_div14 display '
+                //             }
+                //         }
+                //
+                //         for (var i = 0; i < a.length; i++) {
+                //             var x = a[i].getAttribute('data');
+                //             if (x == 1) {
+                //                 y[i].className = 'car_content_div orange'
+                //             }
+                //         }
+                //
+                //         //  是否选中
+                //         var check = document.getElementsByClassName('car_content');
+                //         var inp = document.getElementsByClassName('buycar_input1');
+                //         var heji = document.getElementsByClassName('car_title_div11_xiaoji');
+                //         var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
+                //         var zongjia = 0;
+                //         var shuliang = 0;
+                //         that.catTishiMoney();
+                //
+                //         // 无库存
+                //         var kucun = document.getElementsByClassName('car_title_div7_kcs');
+                //         for (var i = 0; i < kucun.length; i++) {
+                //             var kucun1 = kucun[i].innerText;
+                //             if (kucun1 == 0) {
+                //                 check[i].className = 'contain car_content relative car_content_current'
+                //             }
+                //         }
+                //
+                //
+                //     });
+                //     // var qifa=document.getElementsByClassName('car_qifa');
+                //     // var baoyou=document.getElementsByClassName('car_baoyou');
+                //     $('.car_qifa').eq(0).text(data.data.list.free.lowest + '元');
+                //     // baoyou[0].innerText=
+                //     $('.car_baoyou').eq(0).text(data.data.list.free.myunfee + '元')
+                //
+                // }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
     }

@@ -21,9 +21,9 @@ class Zhaohui extends React.Component {
     $.ajax({
                 url: InterfaceUtil.getUrl(16),
                 type: "post",
-                data: {
-    "username":username
-              },
+                data: InterfaceUtil.addTime({
+                    username:username
+                }),
                 dataType: "json",
                 success: function(data){
                       alert(data.info)

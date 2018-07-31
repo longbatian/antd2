@@ -89,14 +89,15 @@ class PersonalJibenxinxi extends Component {
 
             let username = CoojiePage.getCoojie('username');
             let token = CoojiePage.getCoojie('token');
+            let user_id = CoojiePage.getCoojie('user_id');
             const that = this;
             //我的收藏
             $.ajax({
                 url: InterfaceUtil.getUrl(39),
                 type: "post",
-                data: {
-                    "username": username, "token": token, "userpass": old, "new_userpass": new1
-                },
+                data:InterfaceUtil.addTime( {
+                    "user_id": user_id, "token": token, "password": old, "new_password": new1
+                }),
                 dataType: "json",
                 success: function (data) {
                     if (data.status === 0) {

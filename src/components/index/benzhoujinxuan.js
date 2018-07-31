@@ -25,7 +25,6 @@ class Benzhoujinxuan extends React.Component {
         $(e.target).parents('.jingxuan_div_ul_li').addClass('jingxuan_div_ul_li_current');
         var index = $(e.target).parents('.jingxuan_div_ul_li').index();
         $('.jingxuan_div_ul1').hide();
-        // console.log(index)
         $('.jingxuan_div_ul1').eq(index).show();
         $('.jingxuan_div_ul1').eq(index).find('li').show();
     }
@@ -39,24 +38,23 @@ class Benzhoujinxuan extends React.Component {
 
     componentDidMount() {
 
-        var user_type = CoojiePage.getCoojie('user_type');
+        var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
         const that = this;
         //  广告位
         $.ajax({
-            // url:'http://192.168.1.49/index.php/index/user/user_reg',
             url: InterfaceUtil.getUrl(21),
             type: 'post',
             dataType: 'json',
-            data: {
-                user_type: user_type,
-
-            },
+            data:  InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token
+            }),
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
                 var data = data;
-
-                // alert(JSON.stringify(data.data))
+                // console.log(JSON.stringify(data.data))
                 if (data.data.length == 0 || data.data.length == undefined || data.data.length == null) {
 
                 } else {
@@ -67,25 +65,25 @@ class Benzhoujinxuan extends React.Component {
 
             }
 
-        })
+        });
 
         $.ajax({
-            // url:'http://192.168.1.49/index.php/index/user/user_reg',
             url: InterfaceUtil.getUrl(22),
             type: 'post',
             dataType: 'json',
-            data: {
-                user_type: user_type,
-            },
+            data: InterfaceUtil.addTime({
+                user_id:user_id,
+                token:token
+            }),
             success: function (data) {
                 var data = data;
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
-                        jingxuan: data.data,
-                        length1: data.data[0].model,
-                        week: data.week
+                        jingxuan: data.data.group,
+                        // length1: data.data[0].model,
+                        week: data.title
                     }, () => {
                         var a = document.getElementsByClassName('jingxuan_div_ul_li');
                         a[0].className = 'jingxuan_div_ul_li jingxuan_div_ul_li_current'
@@ -297,9 +295,9 @@ class Benzhoujinxuan extends React.Component {
                         {
                             data.guanggao.map(function (item, i) {
                                 return (
-                                    <li key={item.img_path}>
-                                        <a href={item.img_href}>
-                                            <img src={this.state.lujin + item.img_path} className='guanggao_4_img'
+                                    <li key={i}>
+                                        <a href={item.url}>
+                                            <img src={this.state.lujin + item.image} className='guanggao_4_img'
                                                  alt=""/>
                                         </a>
                                     </li>
@@ -321,11 +319,11 @@ class Benzhoujinxuan extends React.Component {
                     <div className='jingxuan_div '>
                         <ul className='jingxuan_div_ul'>
                             {
-                                this.state.jingxuan.map(function (item, i) {
+                                data.jingxuan.map(function (item, i) {
                                     return (
                                         <li
                                             key={i + 'jingxuan'}
-                                            className=' jingxuan_div_ul_li' onClick={(e) => {
+                                            className=' jingxuan_div_ul_li ' onClick={(e) => {
                                             this.jingxuan(e)
                                         }} data={i}>
                                             <div>
@@ -362,29 +360,31 @@ class Benzhoujinxuan extends React.Component {
                         {/*15个*/}
                         {
                             data.jingxuan.map(function (item, i) {
+
                                 return (
-                                    <ul className='jingxuan_div_ul1' key={i}>
+                                    <ul className='jingxuan_div_ul1 ' key={i}>
                                         {
-                                            data.jingxuan[i].d.map(function (item, i) {
+                                            data.jingxuan[i].goods_list.map(function (item, i) {
                                                 return (
                                                     <li key={i}
-                                                        className='jingxuan_div_ul1_li display' data={i}>
+                                                        className='jingxuan_div_ul1_li display'
+                                                        data={item.id+'goods_list'}>
 
                                                         <div className='jingxuan_div1_box'>
-                                                            <Link to={'/Shangpinxiangqing?&id=' + item.gid}>
+                                                            <Link to={'/Shangpinxiangqing?&id=' + item.goods_id}>
                                                                 <img src={data.lujin + item.image}
                                                                      className='jingxuan_div1_img' alt=""
-                                                                     data={item.gid}
+                                                                     data={item.goods_id}
                                                                     // onClick={(e) => {
                                                                     //   this.xiangqing2(e)
                                                                     // }}
                                                                 />
                                                             </Link>
                                                         </div>
-                                                        <p className='jingxuan_div_ul1_p'>{item.tag}</p>
-                                                        <p className='hid font16 oneWeekgive'>{item.title}</p>
-                                                        <p className='hid oneWeekgiveP'>{item.sku}</p>
-                                                        <p className='hid oneWeekgiveP'>{item.scqy}</p>
+                                                        <p className='jingxuan_div_ul1_p'>{item.price}</p>
+                                                        <p className='hid font16 oneWeekgive'>{item.name}</p>
+                                                        <p className='hid oneWeekgiveP'>{item.standard}</p>
+                                                        <p className='hid oneWeekgiveP'>{item.enterprise}</p>
                                                     </li>
                                                 )
                                             }, this)

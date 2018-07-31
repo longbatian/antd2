@@ -3,6 +3,7 @@ import {Carousel} from 'antd';
 import {Link, Redirect} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
+import CoojiePage from "../../util/CoojiePage";
 
 class Louceng2 extends React.Component {
   constructor(props) {
@@ -22,19 +23,8 @@ class Louceng2 extends React.Component {
   }
 
   componentDidMount() {
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split('; ');
-      for (var i = 0; i < arrCookie.length; i++) {
-        var arr = arrCookie[i].split('=');
-        if (cookieName == arr[0]) {
-          return arr[1];
-        }
-      }
-      return '';
-    }
-
-    var user_type = getCookie('user_type');
+      var user_id = CoojiePage.getCoojie('user_id');
+      var token = CoojiePage.getCoojie('token');
     const that = this;
     //品牌
     $.ajax({
@@ -42,21 +32,21 @@ class Louceng2 extends React.Component {
       url: InterfaceUtil.getUrl(26),
       type: 'post',
       dataType: 'json',
-      data: {
-        user_type: user_type,
+      data:  InterfaceUtil.addTime({
 
-      },
+      }),
       beforeSend: function (xhr) {
       },
       success: function (data, textStatus, jqXHR) {
          var data = data;
         // data = JSON.parse(data);
+        //   console.log(JSON.stringify(data));
         if (data.data.length == 0) {
 
         } else {
           that.setState({
-            pinpai: data.data.brand_img,
-            banner2: data.data.adv_top.image
+            pinpai: data.data.brand,
+            banner2: data.data.adv
           });
 
         }
@@ -66,38 +56,38 @@ class Louceng2 extends React.Component {
     })
 
     //新闻
-    $.ajax({
-      // url:'http://192.168.1.49/index.php/index/user/user_reg',
-      url: InterfaceUtil.getUrl(27),
-      type: 'post',
-      dataType: 'json',
-      data: {
-        user_type: user_type,
-
-      },
-      beforeSend: function (xhr) {
-      },
-      success: function (data, textStatus, jqXHR) {
-        var data = data;
-        // data = JSON.parse(data);
-        // console.log(data.data)
-        if (data.data.length == 0) {
-
-        } else {
-          that.setState({
-            banner1: data.data.news_img,
-            news1: data.data.news,
-            news3: data.data.news1,
-            news2: data.data.news2.content,
-            video_title: data.data.video.video_content,
-            video_src: data.data.video.video_src
-          });
-
-        }
-
-      }
-
-    })
+    // $.ajax({
+    //   // url:'http://192.168.1.49/index.php/index/user/user_reg',
+    //   url: InterfaceUtil.getUrl(27),
+    //   type: 'post',
+    //   dataType: 'json',
+    //   data: {
+    //     // user_type: user_type,
+    //
+    //   },
+    //   beforeSend: function (xhr) {
+    //   },
+    //   success: function (data, textStatus, jqXHR) {
+    //     var data = data;
+    //     // data = JSON.parse(data);
+    //     // console.log(data.data)
+    //     if (data.data.length == 0) {
+    //
+    //     } else {
+    //       that.setState({
+    //         banner1: data.data.news_img,
+    //         news1: data.data.news,
+    //         news3: data.data.news1,
+    //         news2: data.data.news2.content,
+    //         video_title: data.data.video.video_content,
+    //         video_src: data.data.video.video_src
+    //       });
+    //
+    //     }
+    //
+    //   }
+    //
+    // })
 
   }
 
@@ -129,7 +119,8 @@ class Louceng2 extends React.Component {
                   return (
                     <li
                     key={i+item+'pinpai'}
-                    ><img src={this.state.lujin + item.image} className='louceng2_con_ul_img' alt=""/></li>
+                    >
+                        <img src={this.state.lujin + item.image} className='louceng2_con_ul_img' alt=""/></li>
                   )
                 }, this)
               }

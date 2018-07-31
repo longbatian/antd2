@@ -44,6 +44,7 @@ ReactDOM.render((
         <div>
             <Route path="/Denglu" component={Denglu}/>
             <Route exact path="/" component={Index1}/>
+            <Route exact path="/Index" component={Index1}/>
             <Route path="/Chanpinzhongxin" component={Chanpinzhongxin} />
             <Route path="/Shangpinxiangqing" component={Shangpinxiangqing} />
             <Route path="/Zhuce" component={Zhuce} />

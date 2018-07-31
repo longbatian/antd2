@@ -123,12 +123,12 @@ class InformationPage extends Component {
     shangchuan(e) {
         let files = e.target.files;
         let aabb = e.target.getAttribute('data');
-        let username = CoojiePage.getCoojie('username');
+        let user_id = CoojiePage.getCoojie('user_id');
         let token = CoojiePage.getCoojie('token');
 
         let formData = new FormData();
         formData.append("file", files[0]);
-        formData.append("username", username);
+        formData.append("user_id", user_id);
         formData.append("token", token);
         formData.append("type_img", aabb);
 
