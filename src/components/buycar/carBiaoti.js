@@ -47,17 +47,17 @@ class Gouwuche1 extends React.Component {
             var token = CoojiePage.getCoojie('token');
             const that = this;
             //智能采购
-            $.ajax({
-                url: InterfaceUtil.getUrl(2),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "cid": cid, "is_check": 0
-                },
-                dataType: "json",
-                success: function (data) {
-                    // console.log(data)
-                }
-            });
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(2),
+            //     type: "post",
+            //     data: {
+            //         "username": username, "token": token, "cid": cid, "is_check": 0
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //         // console.log(data)
+            //     }
+            // });
 
             cid = JSON.stringify(cid)
 
@@ -83,18 +83,18 @@ class Gouwuche1 extends React.Component {
             const that = this;
             cid = JSON.stringify(cid)
             //智能采购
-            $.ajax({
-                url: InterfaceUtil.getUrl(3),
-                type: "post",
-                data: {
-
-                    "username": username, "token": token, "cid": cid, "is_check": 1
-                },
-                dataType: "json",
-                success: function (data) {
-
-                }
-            });
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(3),
+            //     type: "post",
+            //     data: {
+            //
+            //         "username": username, "token": token, "cid": cid, "is_check": 1
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //
+            //     }
+            // });
 
 
         }

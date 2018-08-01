@@ -1022,16 +1022,16 @@ class Chanpinzhongxin extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                'username': username, 'token': token, 'user_id': user_id, 'goods_id': id, 'spsl': shuliang
-            },
+            data: InterfaceUtil.addTime({
+                 'token': token, 'user_id': user_id, 'goods_id': id, 'goods_num': shuliang,
+                type:1
+            }),
             dataType: "json",
             success: function (data) {
-
-                if (data.status === 1) {
+                if (data.code === 1) {
                     PubSub.publish('PubSubmessage', data.status);
                 }
-                if (data.data == '1') {
+                if (data.code == '1') {
                     var ok = document.getElementsByClassName('buycar_ok');
                     $('.buycar_ok').eq(0).attr('class', 'buycar_ok')
                     // ok[0].className = 'buycar_ok';
@@ -1044,7 +1044,7 @@ class Chanpinzhongxin extends React.Component {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         alert('您的账号被另外的电脑挤出登录状态');
                         that.props.history.push('/Denglu')
@@ -1089,7 +1089,7 @@ class Chanpinzhongxin extends React.Component {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         that.props.history.push('/Denglu')
                         // window.location.href = '#/Denglu';
@@ -1203,20 +1203,20 @@ class Chanpinzhongxin extends React.Component {
                 }
             }
         })
-        //热门
+        //全局
         // ajax.open('post', 'http://192.168.1.49/index.php/index/index/search', false);
-        $.ajax({
-            url: InterfaceUtil.getUrl(1),
-            type: "post",
-            data: InterfaceUtil.addTime({}),
-            dataType: "json",
-            success: function (data) {
-
-                // that.setState({
-                //     top: data.data.top
-                // });
-            }
-        });
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(1),
+        //     type: "post",
+        //     data: InterfaceUtil.addTime({}),
+        //     dataType: "json",
+        //     success: function (data) {
+        //
+        //         // that.setState({
+        //         //     top: data.data.top
+        //         // });
+        //     }
+        // });
 
         this.ajaxProductList();
         window.scrollTo(0, 0)

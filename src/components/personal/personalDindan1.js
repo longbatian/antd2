@@ -368,12 +368,13 @@ class PersonalDindan extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(35),
             type: "post",
-            data: {
-                "username": username, "token": token, "page": e, "limit": 5, "user_id": user_id, "ddzt": ddzt
-            },
+            data: InterfaceUtil.addTime({
+                 "token": token, "page": e,  "user_id": user_id, "status": 0
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status === -2) {
+                console.log(JSON.stringify(data))
+                if (data.code === -2) {
                     // location.replace("#/Denglu");
                     return;
                 }
@@ -382,13 +383,13 @@ class PersonalDindan extends React.Component {
 
                 } else {
                     that.setState({
-                        dingdan: data.data.list,
-                        ddzt0: data.data.ddzt.ddzt0,
-                        ddzt1: data.data.ddzt.ddzt1,
-                        ddzt2: data.data.ddzt.ddzt2,
-                        cons: data.data.cons,
+                        dingdan: data.data.order_list,
+                    //     ddzt0: data.data.ddzt.ddzt0,
+                    //     ddzt1: data.data.ddzt.ddzt1,
+                    //     ddzt2: data.data.ddzt.ddzt2,
+                        cons: data.data.order_count,
                     }, () => {
-
+                    //
                     });
                     that.refs.dingdan.className = 'display'
                 }
@@ -481,16 +482,18 @@ class PersonalDindan extends React.Component {
                                     let dingdanState = '再次购买';
                                     let dingdanClassName = 'dingdan_goumai orange';
                                     let personalCon1_table = <span className='nulls'></span>;
-                                    if (item.ddzt == '待收货') {
+                                    // console.log(item.order_status === 1)
+                                    if (item.order_status === `2`) {
                                         dingdanState = '收货';
-                                    } else if (item.ddzt == '待付款') {
+                                    } else if (item.order_status === `1`) {
+
                                         dingdanState = '取消订单';
                                         dingdanClassName = 'dingdan_goumai';
                                         personalCon1_table = <span className='personalCon1_table_tr_span1'
                                               onClick={(e) => {
                                                   this.qufukuan(e,item.orderno)
                                               }}>去付款</span>
-                                    } else if (item.ddzt == '出货中') {
+                                    } else if (item.order_status === `3`) {
                                         personalCon1_table = <span className='personalCon1_table_tr_span1'
                             onClick={(e) => {
                                 this.qufukuan(e,item.orderno)
@@ -498,41 +501,43 @@ class PersonalDindan extends React.Component {
 
                                     }
                                     return (
-                                        <tr key={item.index}>
-                                            <td className='orange hid width130'>{item.orderno}</td>
-                                            <td>{item.addtime}</td>
-                                            <td>{item.shr}</td>
-                                            <td>{item.ddprice}</td>
-                                            <td>{item.sfje}</td>
+                                        <tr key={item.id}>
+                                            <td className='orange hid width130'>{item.order_number}</td>
+                                            <td>{item.created_time}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.price}</td>
                                             <td className='red'>{item.is_act}</td>
                                             <td className='personalCon1_table_tr'>
-                                                <span className='orange dingdan_ddzt'>{item.ddzt}</span> <span
-                                                className='marginLeft5 blue' onMouseOver={(e) => {
-                                                this.dingdangenzong(e)
-                                            }} onMouseOut={(e) => {
-                                                this.dingdangenzong1(e)
-                                            }}>订单跟踪</span>
-                                                {/*订单跟踪*/}
-                                                <div className='personalCon1_xuanfu1 display'>
-                                                    <Timeline className='wlxx'>
-                                                        {
-                                                            this.state.dingdan[i].wl.map(function (item) {
+                                                {/*<span className='orange dingdan_ddzt'>{item.ddzt}</span> <span*/}
+                                                {/*className='marginLeft5 blue' onMouseOver={(e) => {*/}
+                                                {/*this.dingdangenzong(e)*/}
+                                            {/*}} onMouseOut={(e) => {*/}
+                                                {/*this.dingdangenzong1(e)*/}
+                                            {/*}}>订单跟踪</span>*/}
 
-                                                                return (
-                                                                    <Timeline.Item>
-                                                                        <span
-                                                                            className=''>{item.createtime} {item.wldw}</span>
-                                                                    </Timeline.Item>
-                                                                )
-                                                            }, this)
-                                                        }
-                                                        {/*<Timeline.Item>【已付款】 2017-12-07 13:30:30 您的订单商家正在积极备货中。</Timeline.Item>*/}
-                                                        {/*<Timeline.Item>【已提交】 2017-12-07 13:30:30 您的订单已提交，请尽快完成付款。</Timeline.Item>*/}
-                                                    </Timeline>
-                                                    <Timeline className='ZWwlxx display'>
-                                                        <Timeline.Item><span> 暂无物流信息</span></Timeline.Item>
-                                                    </Timeline>
-                                                </div>
+                                                订单跟踪
+                                                {/*订单跟踪*/}
+                                                {/*<div className='personalCon1_xuanfu1 display'>*/}
+                                                    {/*<Timeline className='wlxx'>*/}
+                                                        {/*{*/}
+                                                            {/*this.state.dingdan[i].wl.map(function (item) {*/}
+
+                                                                {/*return (*/}
+                                                                    {/*<Timeline.Item>*/}
+                                                                        {/*<span*/}
+                                                                            {/*className=''>{item.createtime} {item.wldw}</span>*/}
+                                                                    {/*</Timeline.Item>*/}
+                                                                {/*)*/}
+                                                            {/*}, this)*/}
+                                                        {/*}*/}
+                                                        {/*/!*<Timeline.Item>【已付款】 2017-12-07 13:30:30 您的订单商家正在积极备货中。</Timeline.Item>*!/*/}
+                                                        {/*/!*<Timeline.Item>【已提交】 2017-12-07 13:30:30 您的订单已提交，请尽快完成付款。</Timeline.Item>*!/*/}
+                                                    {/*</Timeline>*/}
+                                                    {/*<Timeline className='ZWwlxx display'>*/}
+                                                        {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
+                                                    {/*</Timeline>*/}
+                                                {/*</div>*/}
                                             </td>
                                             <td>
                                                 <input type="hidden" value={item.orderno}/>

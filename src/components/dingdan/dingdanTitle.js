@@ -14,18 +14,12 @@ class Dingdan extends React.Component {
             lujin: InterfaceUtil.getImgUrl(),
             zhifu: 1,
             chuangjian: {
-                "orderno": '',
-                "ddsfje": '',
-                "goods_price": '',
-                "member_id": '',
-                "userinfo": {
-                    "shr": '',
-                    "shdz": '',
-                    "lxdh": '',
-                    "shyb": '',
-                    "dwmc": ''
-                }
-            },
+                address:{
+                    name:'',
+                    address:'',
+                    tel:'',
+                    enterprise:''
+                }},
             loading: false,
             iconLoading: false,
             shdz: '',
@@ -72,7 +66,7 @@ class Dingdan extends React.Component {
     componentDidMount() {
         let token = CoojiePage.getCoojie('token');
         // let user_id=CoojiePage.getCoojie('user_id');
-        let username = CoojiePage.getCoojie('username');
+        let user_id = CoojiePage.getCoojie('user_id');
         window.scrollTo(0, 0);
         let orderno = sessionStorage.getItem("orderno");
         const that = this;
@@ -80,19 +74,20 @@ class Dingdan extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(18),
             type: "post",
-            data: {
-                "token": token, "orderno": orderno, "username": username
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "order_number": orderno, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status !== 1) {
-                    alert(data.info);
+                console.log(data)
+                if (data.code !== 1) {
+                    alert(data.msg);
                     that.props.history.push('/Buycar');
                     return;
                 }
                 that.setState({
                     chuangjian: data.data,
-                    shdz: data.data.userinfo.shdz,
+                    // shdz: data.data.userinfo.shdz,
                 }, () => {
                     function delCookie(name) {
                         var exp = new Date();
@@ -102,8 +97,8 @@ class Dingdan extends React.Component {
                             document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
                     }
 
-                    delCookie('order_id');
-                    sessionStorage.setItem("orderno", '');
+                    // delCookie('order_id');
+                    // sessionStorage.setItem("orderno", '');
                 });
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -130,8 +125,9 @@ class Dingdan extends React.Component {
     payFor() {
         let token = CoojiePage.getCoojie('token');
         let username = CoojiePage.getCoojie('username');
+        let user_id = CoojiePage.getCoojie('user_id');
         let _payId = this.state.zhifu;
-        let orderno = this.state.chuangjian.orderno;
+        let orderno = this.state.chuangjian.order_number;
         let _this = this;
         // console.log(token+'--'+username+'--'+orderno);
         if (_payId === 2) {
@@ -139,17 +135,16 @@ class Dingdan extends React.Component {
             $.ajax({
                 type: "post",
                 url: InterfaceUtil.getUrl(58),
-                data: {
+                data: InterfaceUtil.addTime({
                     "token": token,
-                    "username": username,
-                    "orderno": orderno,
-                },
+                    "user_id": user_id,
+                    "order_number": orderno
+                }),
                 dataType: "json",
                 success: function (data, status) {
-                    if (data.status === 1) {
-                        // console.log(data)
+                    if (data.code === 1) {
                         _this.setState({
-                            imgs: data.data,
+                            imgs: data.data.qrcode_img,
                             isOver: !_this.state.isOver
                         })
                     } else {
@@ -161,7 +156,23 @@ class Dingdan extends React.Component {
                 }
             });
         } else if (_payId === 1) {
-            window.open('http://www.scjuchuang.com/apis/index.php/index/order/alipay?orderno=' + orderno);
+            // window.open('http://www.scjuchuang.com/apis/index.php/index/order/alipay?orderno=' + orderno);
+            $.ajax({
+                type: "post",
+                url: InterfaceUtil.getUrl(65),
+                data: InterfaceUtil.addTime({
+                    "token": token,
+                    "user_id": user_id,
+                    "order_number": orderno,
+                }),
+                dataType: "json",
+                success: function (data, status) {
+                    console.log(data)
+                    if (data.code === 1) {
+                        window.open('http://'+data.data.url);
+                    }
+                }
+            });
         }
 
     }
@@ -223,7 +234,7 @@ class Dingdan extends React.Component {
 
     render() {
         let data = this.state.chuangjian;
-let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
+        let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
             <Button type="primary"
                     loading={this.state.iconLoading}
                     onClick={this.enterIconLoading}>
@@ -248,26 +259,30 @@ let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
                     <p className='marginLeft20 marginTop10'>
                         <span className='dingdan_div_p_span'>订单编号：</span>
                         <span>
-                         {this.state.chuangjian.orderno}
+                         {data.order_number}
                         </span>
                     </p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>
                             商品总金额：
                          </span>
-                        <span className='red'>￥{this.state.chuangjian.goods_price}</span></p>
+                        <span className='red'>￥{data.price}</span></p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>应付金额：</span>
-                        <span className='red'>￥{this.state.chuangjian.ddsfje}
+                        <span className='red'>￥{data.price}
                             </span>
                     </p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>配送信息：</span>
-                        <span className=''>{data.userinfo.shdz}</span>
+                        <span className=''>
+                            {data.address.name} {data.address.address} {data.address.tel}
+                            </span>
                     </p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>单位名称：</span>
-                        <span className=''>{data.userinfo.dwmc}</span>
+                        <span className=''>
+                            {data.address.enterprise}
+                            </span>
                     </p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>选择支付方式：</span>

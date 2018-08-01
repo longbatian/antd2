@@ -35,7 +35,8 @@ let urls=[
     'Cart/addcart', //4
     // 'user/collection_goods_add',//5
     '/users/goods_collect',//5
-    'user_order/cartdelete',//6
+    // 'user_order/cartdelete',//6
+    '/goods/remove_cart',//6
     // 'Cart/cart_list',//7
     '/goods/cart_list',//7
     // 'goods/goods_list',//8
@@ -54,8 +55,10 @@ let urls=[
     '/users/get_area',//15
     // 'user/goback_password',//16
     '/users/reset_password',//16
-    'order/create_order',//17
-    'order/orderinfo_pay',//18
+    // 'order/create_order',//17
+    '/orders/create_order',//17
+    // 'order/orderinfo_pay',//18
+    '/orders/order_price',//18
     // 'help/helptitle', //19
     '/index/help_center', //19
     'help/helplist',//20
@@ -72,7 +75,8 @@ let urls=[
     '/index/adv_brand',//26
     'index/news',//27
     '/index/get_banner',//28
-    'Order/orderdetail', //29
+    // 'Order/orderdetail', //29
+    '/orders/build_order', //29
     '/index/news_detail',//30
     // 'news/news_info',//30
     // 'news/newlist',//31
@@ -80,7 +84,8 @@ let urls=[
     'user_order/addcartall',//32
     'user/zncg_list',//33
     'user/index',//34
-    'user_order/getorder',//35
+    // 'user_order/getorder',//35
+    '/orders/order_list',//35
     // 'user/collection_goods',//36
     '/users/goods_collect_list',//36
     'order/close_order',//37
@@ -101,8 +106,10 @@ let urls=[
     '/index/message_read',//49
     // 'goods/goods_info',//50
     '/goods/goods_info',//50
+    // 'coupon/get_coupon',//51
     'coupon/get_coupon',//51
-    'user/get_coupon',//52
+    // 'user/get_coupon',//52
+    '/goods/coupon_list',//52
     // 'goods/ranking',//53
     '/goods/goods_rank',//53
     'banners/',//54
@@ -111,13 +118,14 @@ let urls=[
     '/users/user_data',//56
     // 'user/is_username',//57
     '/users/field_valid',//57
-    'order/wxpay_img'//58
+    '/orders/wechat_pay_qrcode'//58
     ,'order/order_status',//59
     'user/user_info_update',//60
     'order/wxpay_img_virtual',//61
     'order/coupon_order_status',//62
     '/index/search_goods',//63
     '/goods/goods_agent',//64
+    '/orders/alipay_pay_qrcode',//65
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{

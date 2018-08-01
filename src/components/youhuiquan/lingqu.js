@@ -29,19 +29,19 @@ class Lingqu extends Component {
         $.ajax({
             url: InterfaceUtil.getUrl(51),
             type: "post",
-            data: {
-                "username": username, "token": token, "member_id": user_id, "acid": yhqid, "user_type": user_type
-            },
+            data: InterfaceUtil.addTime({
+               "token": token, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    alert(data.info);
-                    if (data.status === 1) {
-                       that.removeClassStates(id);
-                    }
-                }
+                // if (data.data.length == 0) {
+                //
+                // } else {
+                //     alert(data.msg);
+                //     if (data.status === 1) {
+                //        that.removeClassStates(id);
+                //     }
+                // }
             }
         });
     }
@@ -72,19 +72,19 @@ class Lingqu extends Component {
         $.ajax({
             url: InterfaceUtil.getUrl(52),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "user_type": user_type
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                // console.log(data)
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        youhuiquan: data.data
-                    });
-                }
+                console.log(data)
+                // if (data.data.length == 0) {
+                //
+                // } else {
+                //     that.setState({
+                //         youhuiquan: data.data
+                //     });
+                // }
             }
         });
     }

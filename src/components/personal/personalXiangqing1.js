@@ -51,7 +51,7 @@ class PersonalXiangqing extends React.Component {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         this.props.history.push('/Denglu');
                         // window.location.href='#/Denglu';

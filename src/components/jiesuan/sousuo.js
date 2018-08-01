@@ -14,7 +14,7 @@ class Jiesuan1 extends React.Component {
         this.member_id = CoojiePage.getCoojie('user_id');
         this.cid = CoojiePage.getCoojie('cid');
         this.state = {
-            feiyong1: ''
+            feiyong1: {}
         }
     }
 
@@ -36,7 +36,7 @@ class Jiesuan1 extends React.Component {
 
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
-        var member_id = CoojiePage.getCoojie('user_id');
+        var user_id = CoojiePage.getCoojie('user_id');
         var user_type = CoojiePage.getCoojie('user_type');
         var jylx = CoojiePage.getCoojie('jylx');
         var cid = CoojiePage.getCoojie('cid');
@@ -45,17 +45,16 @@ class Jiesuan1 extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
-            data: {
-                "user_type": user_type, "member_id": member_id, "username": username, "token":
-                token, "jylx": jylx, "cid": cid, "page": 1, "limit": 10
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "cart_id": cid
+            }),
             dataType: "json",
             success: function (data) {
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
-                        feiyong1: data.data.goos_price_info,
+                        feiyong1: data.data
                     });
                 }
             },
@@ -73,23 +72,22 @@ class Jiesuan1 extends React.Component {
         var b = $('.jiesuan_sel').eq(0).val();
         var bz = $('.jiesuan_div_div4_inp').val();
         const that=this;
-        let cid=JSON.stringify(that.cid)
-
+        let cid=CoojiePage.getCoojie('cid');
         $.ajax({
             url: InterfaceUtil.getUrl(17),
             type: "post",
-            data: {
-                "token":that.token,"member_id":that.member_id,"username":that.username,"yhqid":b,"cid":cid,"bz":bz
-            },
+            data: InterfaceUtil.addTime({
+                "token":that.token,"user_id":that.member_id,"cart_id":cid,"user_remark":bz,user_coupon_id:b
+            }),
             dataType: "json",
             success: function(data){
-
-                if(data.status === 1){
-                    sessionStorage.setItem("orderno",data.data.orderno);
-                    PubSub.publish('PubSubmessage', data.status);
+                console.log(data)
+                if(data.code === 1){
+                    sessionStorage.setItem("orderno",data.data.order_number);
+                    PubSub.publish('PubSubmessage', data.code);
                     that.props.history.push('/Dingdan');
                 }else {
-                    alert(data.info);
+                    alert(data.msg);
                 }
 
             },
@@ -100,6 +98,7 @@ class Jiesuan1 extends React.Component {
     }
 
     render() {
+        const data=this.state.feiyong1;
         return (
             <div className=' jiesuan_sousuo marginBottom20'>
                 <div>
@@ -110,14 +109,14 @@ class Jiesuan1 extends React.Component {
                     </div>
                     <div className=' jiesuan_sousuo_div'>
                         <div className='font20 jiesuan_sousuo_div_div'>应付总额：
-                            <span className='red font20 jiesuan_shifu'>￥{this.state.feiyong1.price_count}</span></div>
+                            <span className='red font20 jiesuan_shifu'>￥{data.price}</span></div>
                         <div className=''>
              <span className='marginRight20'>
-             商品总价：￥{this.state.feiyong1.goos_price_count}
+             商品总价：￥{data.price}
              </span>
                             <span className='marginRight20'>
-               运费：￥{this.state.feiyong1.yunfee}</span><span
-                            className='jiesuan_youhui'>优惠金额：￥{this.state.feiyong1.coupon_price}</span></div>
+               运费：￥{data.freight_price}</span><span
+                            className='jiesuan_youhui'>优惠金额：￥0</span></div>
                     </div>
                 </div>
 

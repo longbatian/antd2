@@ -79,25 +79,25 @@ class Gouwuche3 extends React.Component {
         var token = CoojiePage.getCoojie('token');
         cid = JSON.stringify(cid);
         //搜索条件ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(3),
-            type: "post",
-            data: {
-                "username": username, "token": token, "cid": cid, "is_check": is_check
-            },
-            dataType: "json",
-            success: function (data) {
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
-            }
-        });
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(3),
+        //     type: "post",
+        //     data: {
+        //         "username": username, "token": token, "cid": cid, "is_check": is_check
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //
+        //     },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //         // 状态码
+        //         console.log(XMLHttpRequest.status);
+        //         // 状态
+        //         console.log(XMLHttpRequest.readyState);
+        //         // 错误信息
+        //         console.log(textStatus);
+        //     }
+        // });
 
         $('.shangpingshuliang').text("已选择" + $('.car_content input:checked').length + "件商品");
     }
@@ -225,22 +225,23 @@ class Gouwuche3 extends React.Component {
     }
 
     okAjax(cid) {
-        cid = JSON.stringify(cid);
+        cid =  cid.join(','); //a-b-c-d-e  使用-拼接数组元素
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
-        var member_id = CoojiePage.getCoojie('user_id');
+        var user_id = CoojiePage.getCoojie('user_id');
         var jylx = CoojiePage.getCoojie('jylx');
         const that = this;
-        //  广告位
+        console.log(cid)
         $.ajax({
             url: InterfaceUtil.getUrl(6),
             type: "post",
-            data: {
-                "username": username, "token": token, "cid": cid
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "cart_id": cid
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status === 1) {
+                console.log(data)
+                if (data.code === 1) {
                     window.location.reload()
                 }
             },
@@ -273,7 +274,7 @@ class Gouwuche3 extends React.Component {
         // carTishiMoney
         var _this = this;
         $.ajax({
-            url: InterfaceUtil.getUrl(7),
+            url: InterfaceUtil.getUrl(1),
             type: "post",
             data:  InterfaceUtil.addTime({
                 "token": token, "user_id": user_id
@@ -281,10 +282,10 @@ class Gouwuche3 extends React.Component {
             dataType: "json",
             success: function (data) {
                 // console.log(data)
-                if (data.status === 1) {
+                if (data.code === 1) {
                     _this.setState({
-                        minMoey: data.data.list.free.lowest,
-                        maxMoney: data.data.list.free.myunfee
+                        minMoey: data.data[9].initial_amount,
+                        maxMoney: data.data[10].exempt_freight
                     })
                 }
 

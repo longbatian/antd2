@@ -14,7 +14,9 @@ class Jiesuan extends React.Component {
             feiyong: '',
             coupon: [],
             sp: [],
+            yunf:500,
             cons: '',
+            freight_price:0,
             more: false,
             lujin: InterfaceUtil.getImgUrl(),
             isFavorite: false,
@@ -22,92 +24,88 @@ class Jiesuan extends React.Component {
     }
 
     wanzheng(e) {
-        if (this.state.more == false) {
-
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var member_id = CoojiePage.getCoojie('user_id');
-            var user_type = CoojiePage.getCoojie('user_type');
-            var jylx = CoojiePage.getCoojie('jylx');
-            var cid = CoojiePage.getCoojie('cid');
-            const that = this;
-            //  广告位
-            $.ajax({
-                url: InterfaceUtil.getUrl(29),
-                type: "post",
-                data: {
-                    "user_type": user_type, "member_id": member_id, "username": username,
-                    "token": token, "jylx": jylx, "cid": cid, "page": 1, "limit": that.state.cons
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            sp: data.data.list,
-                            more: true,
-                        });
-                        // if(data.data.list.length<11){
-                        //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
-                        //   a[0].className='jiesuan_div_div3_div display'
-                        // }
-                    }
-                }
-            });
+        if (this.state.more === false) {
+            this.setState({
+                                more: true,
+                            });
+            //
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // var member_id = CoojiePage.getCoojie('user_id');
+            // var user_type = CoojiePage.getCoojie('user_type');
+            // var jylx = CoojiePage.getCoojie('jylx');
+            // var cid = CoojiePage.getCoojie('cid');
+            // const that = this;
+            // //  广告位
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(29),
+            //     type: "post",
+            //     data: {
+            //         "user_type": user_type, "member_id": member_id, "username": username,
+            //         "token": token, "jylx": jylx, "cid": cid, "page": 1, "limit": that.state.cons
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //         if (data.data.length == 0) {
+            //
+            //         } else {
+            //             that.setState({
+            //                 sp: data.data.list,
+            //                 more: true,
+            //             });
+            //             // if(data.data.list.length<11){
+            //             //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
+            //             //   a[0].className='jiesuan_div_div3_div display'
+            //             // }
+            //         }
+            //     }
+            // });
             // er_id="+member_id+"&username="+username+"&token="+token+"&jylx="+jylx+"&cid="+cid+"&page=1"+"&limit="+this.state.cons);
+
             $('.jiesuan_div_div3_div').text('收起清单')
             $('.jiesuan_div_div3_divImg')[0].src = '../../images/buycar/showOrderup.png';
         }
         else {
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var member_id = CoojiePage.getCoojie('user_id');
-            var user_type = CoojiePage.getCoojie('user_type');
-            var jylx = CoojiePage.getCoojie('jylx');
-            var cid = CoojiePage.getCoojie('cid');
-            const that = this;
-            //  广告位
-            $.ajax({
-                url: InterfaceUtil.getUrl(29),
-                type: "post",
-                data: {
-                    "user_type": user_type, "member_id": member_id, "username": username, "token":
-                    token, "jylx": jylx, "cid": cid, "page": 1, "limit": 10
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            shxx: data.data.address_data,
-                            huodong: data.data.activity,
-                            feiyong: data.data.goos_price_info,
-                            coupon: data.data.coupon,
-                            sp: data.data.list,
-                            more: false,
-                        });
-                        // if(data.data.list.length<11){
-                        //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
-                        //   a[0].className='jiesuan_div_div3_div display'
-                        // }
-                    }
-                }
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // var member_id = CoojiePage.getCoojie('user_id');
+            // var user_type = CoojiePage.getCoojie('user_type');
+            // var jylx = CoojiePage.getCoojie('jylx');
+            // var cid = CoojiePage.getCoojie('cid');
+            // const that = this;
+            // //  广告位
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(29),
+            //     type: "post",
+            //     data: {
+            //         "user_type": user_type, "member_id": member_id, "username": username, "token":
+            //         token, "jylx": jylx, "cid": cid, "page": 1, "limit": 10
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //         if (data.data.length == 0) {
+            //
+            //         } else {
+            //             that.setState({
+            //                 shxx: data.data.address_data,
+            //                 huodong: data.data.activity,
+            //                 feiyong: data.data.goos_price_info,
+            //                 coupon: data.data.coupon,
+            //                 sp: data.data.list,
+            //                 more: false,
+            //             });
+            //             // if(data.data.list.length<11){
+            //             //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
+            //             //   a[0].className='jiesuan_div_div3_div display'
+            //             // }
+            //         }
+            //     }
+            // });
+            //
+            this.setState({
+                more: false,
             });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/Order/orderdetail",false);
-            // ajax.open('post',InterfaceUtil.getUrl(29),false);
-            // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            // ajax.onreadystatechange = function() {
-            //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-            //     var data=ajax.responseText;
-            //     data=JSON.parse(data);
-            //     console.log(data);
-
-            //   }
-            // };
-            // // ajax.send();
             $('.jiesuan_div_div3_div').text('查看完整清单');
             $('.jiesuan_div_div3_divImg')[0].src = '../../images/buycar/showOrdersDown.png';
         }
@@ -123,7 +121,7 @@ class Jiesuan extends React.Component {
             if (b == d) {
                 var youhui = c.eq(i).attr('data');
                 $('.jiesuan_youhui').text('优惠金额：￥' + youhui);
-                var zongjia = this.state.feiyong.goos_price_count;
+                var zongjia = this.state.feiyong;
                 youhui = parseFloat(youhui);
                 zongjia = parseFloat(zongjia);
                 var shifu = zongjia - youhui;
@@ -134,45 +132,48 @@ class Jiesuan extends React.Component {
 
 
     componentDidMount() {
-
-        var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
-        var member_id = CoojiePage.getCoojie('user_id');
+        var user_id = CoojiePage.getCoojie('user_id');
         var user_type = CoojiePage.getCoojie('user_type');
         var jylx = CoojiePage.getCoojie('jylx');
         var cid = CoojiePage.getCoojie('cid');
         const that = this;
-        //  广告位
+        //全局
+        $.ajax({
+            url: InterfaceUtil.getUrl(1),
+            type: "post",
+            data: InterfaceUtil.addTime({}),
+            dataType: "json",
+            success: function (data) {
+                that.setState({
+                    yunf: data.data[10].exempt_freight
+                });
+            }
+        });
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
-            data: {
-                "user_type": user_type, "member_id": member_id, "username": username, "token":
-                token, "jylx": jylx, "cid": cid, "page": 1, "limit": 10
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "cart_id": cid
+            }),
             dataType: "json",
             success: function (data) {
-
-                if (data.data.length == 0) {
-
-                } else {
-                    if (data.status !== 1) {
-                        alert(data.info);
-                        that.props.history.push('/Buycar');
-                        return;
-                    }
-                    that.setState({
-                        shxx: data.data.address_data,
-                        huodong: data.data.activity,
-                        feiyong: data.data.goos_price_info,
-                        coupon: data.data.coupon,
-                        sp: data.data.list,
-                        cons: data.data.cont,
-                    });
-                    if (data.data.cont < 11) {
-                        var a = document.getElementsByClassName('jiesuan_div_div3_div');
-                        a[0].className = 'jiesuan_div_div3_div display'
-                    }
+                if (data.code !== 1) {
+                    alert(data.msg);
+                    that.props.history.push('/Buycar');
+                    return;
+                }
+                that.setState({
+                    shxx: data.data.user_address,
+                    // huodong: data.data.activity,
+                    feiyong: data.data.price,
+                    freight_price:data.data.freight_price,
+                    coupon: data.data.coupon_list,
+                    sp: data.data.goods_list,
+                });
+                if (data.data.goods_list.length < 11) {
+                    var a = document.getElementsByClassName('jiesuan_div_div3_div');
+                    a[0].className = 'jiesuan_div_div3_div display'
                 }
             }
         });
@@ -180,6 +181,7 @@ class Jiesuan extends React.Component {
     }
 
     render() {
+        const data=this.state;
         return (
             <div className='container'>
                 {/*进度条*/}
@@ -212,21 +214,21 @@ class Jiesuan extends React.Component {
                     {/*清单列表*/}
                     {
                         this.state.sp.map(function (item, i) {
-                            let activity_price=item.activity_price?item.activity_price:item.prices;
+                            let activity_price=item.activity_price?item.activity_price:item.price;
 
                             return (
                                 <div key={item.id+`sp`+i} className='jiesuan_div_div2'>
                                     <div className='jiesuan_div_div1_div'><img src={this.state.lujin + item.image}
                                                                                className='jiesuan_div_div1_div_img'
                                                                                alt=""/></div>
-                                    <div className='jiesuan_div_div1_div1 hid'>{item.title}</div>
-                                    <div className='jiesuan_div_div1_div2 hid'>{item.sku}</div>
-                                    <div className='jiesuan_div_div1_div3 hid'>{item.scqy}</div>
-                                    <div className='jiesuan_div_div1_div4'>{item.bzdw}</div>
-                                    <div className='jiesuan_div_div1_div5'>{item.vstime}</div>
+                                    <div className='jiesuan_div_div1_div1 hid'>{item.name}</div>
+                                    <div className='jiesuan_div_div1_div2 hid'>{item.standard}</div>
+                                    <div className='jiesuan_div_div1_div3 hid'>{item.enterprise}</div>
+                                    <div className='jiesuan_div_div1_div4'>{item.unit}</div>
+                                    <div className='jiesuan_div_div1_div5'>{item.validity_time}</div>
                                     <div className='jiesuan_div_div1_div6'>{activity_price}</div>
-                                    <div className='jiesuan_div_div1_div7'>{item.spsl}</div>
-                                    <div className='jiesuan_div_div1_div8'>{item.hj}</div>
+                                    <div className='jiesuan_div_div1_div7'>{item.goods_num}</div>
+                                    <div className='jiesuan_div_div1_div8'>{item.price_count}</div>
                                 </div>
                             )
                         }, this)
@@ -241,24 +243,24 @@ class Jiesuan extends React.Component {
                                  src={require('../../images/buycar/showOrdersDown.png')}/>
                         </div>
                         <div className='jiesuan_div_div3_div1'>商品总价：<span
-                            className='red'>￥{this.state.feiyong.goos_price_count}</span></div>
+                            className='red'>￥{data.feiyong}</span></div>
                     </div>
                     {/*收货信息*/}
                     <div className='jiesuan_div_div4'>
                         <div className='jiesuan_div_div4_div'>收货信息</div>
                         <div className='marginTop5'>
             <span className='jiesuan_div_div4_div_span floatleft relative'>
-              {this.state.shxx.shr}
+              {data.shxx.name}
                 <img src={require("../../images/buycar/gou.png")} className='jiesuan_div_div4_div_span_img' alt=""/>
             </span>
                             <span className='floatleft marginLeft10 jiesuan_div_div4_div_span1'>
-              {this.state.shxx.shr}
+              {data.shxx.name}
             </span>
                             <span className='floatleft marginLeft10 jiesuan_div_div4_div_span1'>
-            {this.state.shxx.shdz}
+            {data.shxx.address}
             </span>
                             <span className='floatleft marginLeft10 jiesuan_div_div4_div_span1'>
-             {this.state.shxx.lxdh}
+             电话 {data.shxx.tel} 邮编 {data.shxx.post_code}
             </span>
                             <span className='jiesuan_div_div4_div_span2'>
               默认地址
@@ -274,8 +276,8 @@ class Jiesuan extends React.Component {
                     <div className='jiesuan_div_div4'>
                         <div className='jiesuan_div_div4_div'>商品运费</div>
                         <div className='marginLeft20 marginTop20 marginBottom20'>
-                            实际运费：<span className='red marginRight20'>￥{this.state.feiyong.yunfee}</span>订单满<span
-                            className='red'>{this.state.feiyong.myunfee}</span>元 <span
+                            实际运费：<span className='red marginRight20'>￥{data.freight_price}</span>订单满<span
+                            className='red'>{data.yunf}</span>元 <span
                             className='marginLeft10'>免运费</span>
                         </div>
                         <div className='clear'></div>
@@ -283,7 +285,7 @@ class Jiesuan extends React.Component {
                     {/*参加活动*/}
                     <div className='jiesuan_div_div4 jiesuan_padding'>
                         <div className='jiesuan_div_div4_div'>参加活动</div>
-                        <div className='marginTop10 marginLeft20'>{this.state.huodong}</div>
+                        <div className='marginTop10 marginLeft20'>{data.huodong}</div>
                         <div className='clear'></div>
                     </div>
                     {/*订单备注*/}
@@ -300,13 +302,17 @@ class Jiesuan extends React.Component {
                             <select className='jiesuan_sel' onChange={(e) => {
                                 this.youhuiquan(e)
                             }}>
+                                <option
+                                    value='0'
+                                    data="0"
+                                    className='jiesuan_sel_opt'>无</option>
                                 {
-                                    this.state.coupon.map(function (item, i) {
+                                    data.coupon.map(function (item, i) {
                                         return (
                                             <option
-                                                key={item.id + "coupon"}
-                                                value={item.id} data={item.yhje}
-                                                className='jiesuan_sel_opt'>{item.title}</option>
+                                                key={item.user_coupon_id + "coupon"}
+                                                value={item.user_coupon_id} data={item.coupon_price}
+                                                className='jiesuan_sel_opt'>{item.name}</option>
                                         )
                                     }, this)
                                 }
@@ -319,10 +325,6 @@ class Jiesuan extends React.Component {
                 </div>
             </div>
         )
-    }
-
-    componentDidUpdate() {
-
     }
 }
 

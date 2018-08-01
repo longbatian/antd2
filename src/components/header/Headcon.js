@@ -124,11 +124,12 @@ class Headcon extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
+                console.log(data.data.cart_count)
                 if (data.data.length == 0) {
 
                 } else {
-                    if (data.data.cart_number != undefined) {
-                        // console.log('aaaa')
+                    if (data.data.cart_count != undefined) {
+
                         that.setState({
                             car: data.data.cart_count,
                         });
