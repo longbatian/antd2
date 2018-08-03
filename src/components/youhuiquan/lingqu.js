@@ -1,10 +1,11 @@
-import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
-import { Modal, Button } from 'antd';
+import React, {Component} from 'react';
+import {Link,withRouter} from 'react-router-dom';
+import {Modal, Button} from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
 import '../../styles/youhuiquan/youhuiquan.css'
 import CoojiePage from "../../util/CoojiePage";
+import {PubSub} from "pubsub-js";
 
 class Lingqu extends Component {
     constructor(props) {
@@ -18,51 +19,53 @@ class Lingqu extends Component {
         }
     }
 
-    lingqu(e,id) {
+    lingqu(e, id) {
         let yhqid = e.target.parentNode.parentNode.getAttribute('data');
         let username = CoojiePage.getCoojie('username');
-        let token =  CoojiePage.getCoojie('token');
-        let user_id =  CoojiePage.getCoojie('user_id');
-        let user_type =  CoojiePage.getCoojie('user_type');
+        let token = CoojiePage.getCoojie('token');
+        let user_id = CoojiePage.getCoojie('user_id');
+        let user_type = CoojiePage.getCoojie('user_type');
         const that = this;
-        //  广告位
+        //  优惠券领取
         $.ajax({
             url: InterfaceUtil.getUrl(51),
             type: "post",
             data: InterfaceUtil.addTime({
-               "token": token, "user_id": user_id
+                "token": token, "user_id": user_id, coupon_id: yhqid
             }),
             dataType: "json",
             success: function (data) {
-                // if (data.data.length == 0) {
-                //
-                // } else {
-                //     alert(data.msg);
-                //     if (data.status === 1) {
-                //        that.removeClassStates(id);
-                //     }
-                // }
+                if (data.data.length == 0) {
+
+                } else {
+                    alert(data.msg);
+                    if (data.code == `1`) {
+                        that.removeClassStates(id);
+                    }
+                }
             }
         });
     }
-    removeClassStates(id){
-        // console.log(id)
-        let arr2=this.state.youhuiquan;
-        for (let i=0,len=arr2.length;i<len;i++){
-            if(arr2[i].list){
-                let arr3=arr2[i].list;
-                for(let j=0,lens=arr3.length;j<lens;j++){
-                    if(arr3[j].id===id){
-                        arr3[j].is_lq=1;
+
+    removeClassStates(id) {
+        let arr2 = this.state.youhuiquan;
+        for (let i = 0, len = arr2.length; i < len; i++) {
+            if (arr2[i].length > 0) {
+                let arr3 = arr2[i];
+                for (let j = 0, lens = arr3.length; j < lens; j++) {
+                    if (arr3[j].id === id) {
+                        arr3[j].is_receive = 1;
                     }
                 }
             }
         }
         this.setState({
-            youhuiquan:arr2,
+            youhuiquan: arr2,
         })
     }
+
     componentDidMount() {
+
         let username = CoojiePage.getCoojie('username');
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
@@ -77,113 +80,262 @@ class Lingqu extends Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
-                // if (data.data.length == 0) {
-                //
-                // } else {
-                //     that.setState({
-                //         youhuiquan: data.data
-                //     });
-                // }
+
+                if (data.data.length == 0) {
+
+                } else {
+                    let arr = [];
+                    let j = 0;
+                    for (let i in data.data) {
+                        j++;
+                        arr[j] = data.data[i]
+                    }
+                    $.ajax({
+                        url: InterfaceUtil.getUrl(66),
+                        type: "post",
+                        data: InterfaceUtil.addTime({
+                            "token": token, "user_id": user_id
+                        }),
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.code == 1) {
+                                arr.push(data.data);
+                                console.log(arr)
+                                that.setState({
+                                    youhuiquan: arr
+                                });
+                            }
+
+                        }
+                    })
+                }
             }
         });
+
     }
-    lingquGomai(e,id){
+
+    lingquGomai(e, id) {
         this.payFor(id);
 
     }
+
     setModal2Visible(modal2Visible) {
-        this.times=modal2Visible?1:60;
-        this.setState({ modal2Visible });
+        this.times = modal2Visible ? 1 : 60;
+        this.setState({modal2Visible});
     }
+
     payFor(id) {
-        let token = CoojiePage.getCoojie('token');
-        let username = CoojiePage.getCoojie('username');
-        let _payId = this.state.zhifu;
-        let _this = this;
-        // console.log(token+'--'+username+'--'+orderno);
-            this.setModal2Visible(true);
+        InterfaceUtil.delCookie('cart_id');
+        document.cookie = "coupon_id=" + id;
+        this.props.history.push('./Jiesuan')
+        // var b = $('.jiesuan_sel').eq(0).val();
+        // var bz = $('.jiesuan_div_div4_inp').val();
+        // const that=this;
+        // let cid=CoojiePage.getCoojie('cid');
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(17),
+        //     type: "post",
+        //     data: InterfaceUtil.addTime({
+        //         "token":that.token,"user_id":that.member_id,"cart_id":cid,"user_remark":bz,user_coupon_id:b
+        //     }),
+        //     dataType: "json",
+        //     success: function(data){
+        //         console.log(data)
+        //         if(data.code === 1){
+        //             sessionStorage.setItem("orderno",data.data.order_number);
+        //             PubSub.publish('PubSubmessage', data.code);
+        //             that.props.history.push('/Dingdan');
+        //         }else {
+        //             alert(data.msg);
+        //         }
+        //
+        //     },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //
+        //     }
+        // });
+        // let token = CoojiePage.getCoojie('token');
+        // let username = CoojiePage.getCoojie('username');
+        // let _payId = this.state.zhifu;
+        // let _this = this;
+        // // console.log(token+'--'+username+'--'+orderno);
+        // this.setModal2Visible(true);
+        //
+        // $.ajax({
+        //     type: "post",
+        //     url: InterfaceUtil.getUrl(61),
+        //     data: InterfaceUtil.addTime({
+        //         "token": token,
+        //         "username": username,
+        //         coupon_id: id,
+        //     }),
+        //     dataType: "json",
+        //     success: function (data, status) {
+        //         if (data.status === 1) {
+        //             _this.setState({
+        //                 imgs: data.data.img,
+        //                 isOver: !_this.state.isOver
+        //             })
+        //         } else {
+        //             _this.setState({
+        //                 imgs: ``,
+        //             })
+        //         }
+        //         _this.setTimeOver(data.data.order_v, id)
+        //     }
+        // });
 
-            $.ajax({
-                type: "post",
-                url: InterfaceUtil.getUrl(61),
-                data: {
-                    "token": token,
-                    "username": username,
-                    coupon_id: id,
-                },
-                dataType: "json",
-                success: function (data, status) {
-                    if (data.status === 1) {
-                        _this.setState({
-                            imgs: data.data.img,
-                            isOver: !_this.state.isOver
-                        })
-                    } else {
-                        _this.setState({
-                            imgs: ``,
-                        })
-                    }
-                    _this.setTimeOver(data.data.order_v,id)
-                }
-            });
 
+    }
+
+    // setTimeOver(ids, id) {
+    //     let token = CoojiePage.getCoojie('token');
+    //     let username = CoojiePage.getCoojie('username');
+    //     // let orderno = this.state.chuangjian.orderno;
+    //     let _this = this;
+    //     let timesOut = setInterval(function () {
+    //         $.ajax({
+    //             type: "post",
+    //             url: InterfaceUtil.getUrl(62),
+    //             data: {
+    //                 "token": token,
+    //                 "username": username,
+    //                 orderno_v: ids,
+    //             },
+    //             dataType: "json",
+    //             success: function (data, status) {
+    //                 // console.log(data)
+    //                 if (data.status === 1) {
+    //                     if (data.data === 1) {
+    //                         // let modal;
+    //                         clearInterval(timesOut);
+    //                         _this.setModal2Visible(false);
+    //
+    //
+    //                         const modal = Modal.success({
+    //                             title: '支付成功！',
+    //                             content: '',
+    //                             onOk() {
+    //                                 _this.removeClassStates(id);
+    //                             }
+    //                         });
+    //                         setTimeout(() => {
+    //                             modal.destroy();
+    //                             _this.removeClassStates(id);
+    //                         }, 3000);
+    //                     }
+    //                 } else {
+    //                     alert(data.msg);
+    //
+    //                 }
+    //
+    //             }
+    //         });
+    //         if (_this.times > 59) {
+    //             clearInterval(timesOut);
+    //             _this.setModal2Visible(false);
+    //         }
+    //         _this.times++;
+    //     }, 2000);
+    //
+    // }
+
+    startFor() {
 
     }
 
-    setTimeOver(ids,id) {
-        let token = CoojiePage.getCoojie('token');
-        let username = CoojiePage.getCoojie('username');
-        // let orderno = this.state.chuangjian.orderno;
-        let _this = this;
-        let timesOut = setInterval(function () {
-            $.ajax({
-                type: "post",
-                url: InterfaceUtil.getUrl(62),
-                data: {
-                    "token": token,
-                    "username": username,
-                    orderno_v: ids,
-                },
-                dataType: "json",
-                success: function (data, status) {
-                    // console.log(data)
-                    if (data.status === 1) {
-                        if (data.data === 1) {
-                            // let modal;
-                            clearInterval(timesOut);
-                            _this.setModal2Visible(false);
-
-
-                            const modal = Modal.success({
-                                title: '支付成功！',
-                                content: '',
-                                onOk() {
-                                    _this.removeClassStates(id);
-                                }
-                            });
-                            setTimeout(() => {
-                            modal.destroy();
-                                _this.removeClassStates(id);
-                        }, 3000);
-                        }
-                    } else {
-                        alert(data.info);
-
-                    }
-
-                }
-            });
-            if (_this.times > 59) {
-                clearInterval(timesOut);
-                _this.setModal2Visible(false);
-            }
-            _this.times++;
-        }, 2000);
-
-    }
     render() {
-        let data = this.state;
+        const data = this.state.youhuiquan;
+        console.log(data)
+        let listEle = null;
+        let list = null;
+        let listTit = null;
+        let listTitClass = `youhuiquan_con_title`;
+        list = data.map((it, i) => {
+            if (i === 0) {
+                listTit = `满减券`
+            } else if (i === 1) {
+                listTit = `打折券`
+            } else if (i === 2) {
+                listTit = null
+            } else if (i === 3) {
+                listTit = `充值券`
+            }
+            if (it.length > 0) {
+                listTitClass = `youhuiquan_con_title`;
+                listEle = it.map((item, j) => {
+                    let isYes = item.is_receive === 1 ? 'youhuiquan_img2 youhuiquan_li relative' : 'youhuiquan_li relative';
+                    let isOk = item.is_receive === 1 ?
+                        <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
+                            我的优惠券
+                        </Link> : <a className='personal_Youhuiquan_title_div1_p_a1'
+                                     onClick={(e) => {
+                                         this.lingqu(e, item.id)
+                                     }}>立即领取</a>;
+                    let numbers;
+                    if (item.coupon_type === `2`) {
+                        numbers = <div>
+                            <span className='personal_Youhuiquan_title_div1_p_span12'>{item.name}</span>
+                            <span className='youhuiquan_span'>折</span>
+                        </div>
+                    } else if (item.coupon_type === `1`) {
+                        numbers = <div>
+                            <span className='personal_Youhuiquan_title_div1_p_span'>￥</span>
+                            <span className='personal_Youhuiquan_title_div1_p_span12'>{item.name}</span>
+                        </div>
+                    }
+                    let moneys;
+                    if (item.get_type == 3) {
+                        isOk = item.surpluse_num < 1 ?
+                            <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
+                                我的优惠券
+                            </Link> : <a className='personal_Youhuiquan_title_div1_p_a1'
+                                         onClick={(e) => {
+                                             this.lingquGomai(e, item.id)
+                                         }}>立即购买</a>
+
+                        moneys = <div>
+                            售价: {item.get_rule}
+                        </div>
+                    }
+                    let time1 = InterfaceUtil.fmtDate(item.start_time)
+                    let time2 = InterfaceUtil.fmtDate(item.end_time)
+                    return (
+                        <li key={item.id + 'lin1'} className={isYes} data={item.id} data-index={item.type}
+                            data-a={item.is_lq}>
+                            <div className='personal_Youhuiquan_title_div1_p'>
+                                {numbers}
+                                <span className='personal_Youhuiquan_title_div1_p_span9'></span>
+                                <span className='personal_Youhuiquan_title_div1_p_span3'>优惠券 <span
+                                    className='white1'>【满{item.use_condition}元可以使用】</span></span>
+                                <span
+                                    className='personal_Youhuiquan_title_div1_p_span11'>{item.describe}可用 </span>
+                                <span
+                                    className='personal_Youhuiquan_title_div1_p_span10'>有效期【{time1}-{time2}】</span>
+                                {moneys}
+                                {isOk}
+
+                                {/*<img src={require("../../images/youhuiquan/dazhe.png")} alt=""*/}
+                                {/*className='personal_Youhuiquan_title_div1_p_img display'/>*/}
+                            </div>
+                        </li>
+                    )
+                })
+            } else {
+                listEle = null;
+                listTitClass = `youhuiquan_con_title display`;
+            }
+            return (
+                <div className="youhuiquan_con">
+                    <div className={listTitClass}>{listTit}</div>
+                    <ul>
+                        {listEle}
+                    </ul>
+                </div>
+            )
+        })
+
+        let datas = this.state;
         let imgs = this.state.imgs ? <img className="payImgs" src={this.state.imgs}/> :
             <Button type="primary"
                     loading={this.state.iconLoading}
@@ -209,77 +361,7 @@ class Lingqu extends Component {
                     {imgs}
                 </Modal>
                 <div className='contain youhuiquan_bg'>
-                    {
-                        data.youhuiquan.map(function (item, i) {
-                            let youhuyan = data.youhuiquan[i].list ? data.youhuiquan[i].list.map(function (item, i) {
-                                let isYes = item.is_lq === 1 ? 'youhuiquan_img2 youhuiquan_li relative' : 'youhuiquan_li relative';
-
-                                let isOk = item.is_lq === 1 ?
-                                    <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
-                                        我的优惠券
-                                    </Link> : <a className='personal_Youhuiquan_title_div1_p_a1'
-                                                 onClick={(e) => {
-                                                     this.lingqu(e,item.id)
-                                                 }}>立即领取</a>;
-
-                                let numbers;
-                                if(item.type===`4`){
-                                    numbers = <div>
-                                        <span className='personal_Youhuiquan_title_div1_p_span12'>{item.give_more}{item.rebate}</span>
-                                        <span className='youhuiquan_span'>折</span>
-                                    </div>
-                                }else if(item.type===`1`){
-                                    numbers = <div>
-                                        <span className='personal_Youhuiquan_title_div1_p_span'>￥</span>
-                                        <span className='personal_Youhuiquan_title_div1_p_span12'>{item.give_more}{item.rebate}</span>
-                                    </div>
-                                }
-                                let moneys;
-                                if(item.is_virtual === 1){
-                                    isOk=item.is_lq === 1 ?
-                                        <Link to='./Youhuiquan' className='personal_Youhuiquan_title_div1_p_a1'>
-                                            我的优惠券
-                                        </Link> : <a className='personal_Youhuiquan_title_div1_p_a1'
-                                                     onClick={(e) => {
-                                                         this.lingquGomai(e,item.id)
-                                                     }}>立即购买</a>
-
-                                    moneys=<div>
-                                        售价: {item.price}
-                                    </div>
-                                }
-                                return (
-                                    <li key={item.id+'lin1'} className={isYes} data={item.id} data-index={item.type} data-a={item.is_lq}>
-                                        <div className='personal_Youhuiquan_title_div1_p'>
-                                            {numbers}
-
-                                            <span className='personal_Youhuiquan_title_div1_p_span9'></span>
-                                            <span className='personal_Youhuiquan_title_div1_p_span3'>优惠券 <span
-                                                className='white1'>【满{item.buy_more}元可以使用】</span></span>
-                                            <span
-                                                className='personal_Youhuiquan_title_div1_p_span11'>{item.group_title}可用 </span>
-                                            <span
-                                                className='personal_Youhuiquan_title_div1_p_span10'>有效期【{item.start_time}-{item.end_time}】</span>
-                                            {moneys}
-                                            {isOk}
-
-                                            {/*<img src={require("../../images/youhuiquan/dazhe.png")} alt=""*/}
-                                                 {/*className='personal_Youhuiquan_title_div1_p_img display'/>*/}
-                                        </div>
-                                    </li>
-                                )
-                            }, this) : null;
-                            return (
-                                <div key={i+'lin2'} className='youhuiquan_con'>
-                                    <div className='youhuiquan_con_title'>{item.name}</div>
-                                    <ul>
-                                        {youhuyan}
-                                        <div className='clear'></div>
-                                    </ul>
-                                </div>
-                            )
-                        }, this)
-                    }
+                    {list}
                 </div>
                 <div className='contain marginTop20 youhuiquan_bg'>
                     <div className='youhuiquan_con'>
@@ -306,4 +388,4 @@ class Lingqu extends Component {
     }
 }
 
-export default Lingqu;
+export default withRouter(Lingqu);

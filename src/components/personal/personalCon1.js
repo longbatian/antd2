@@ -49,11 +49,10 @@ class personalBox extends React.Component {
     }
 
     //去付款
-    qufukuan1(e,id) {
+    qufukuan1(e, id) {
         // var id = e.target.parentNode.parentNode.getAttribute('data');
-        // console.log(id);
-        sessionStorage.setItem("orderno",id);
-        // console.log(sessionStorage.getItem("orderno"));
+
+        sessionStorage.setItem("orderno", id);
         this.props.history.push('/Dingdan');
     }
 
@@ -61,7 +60,7 @@ class personalBox extends React.Component {
     xiangqing1(e) {
         var a = e.target.parentNode.parentNode.parentNode.firstChild.innerText;
         var order_id = a;
-        sessionStorage.setItem("orderno",order_id);
+        sessionStorage.setItem("orderno", order_id);
         document.cookie = "order_id=" + order_id;
     }
 
@@ -70,32 +69,21 @@ class personalBox extends React.Component {
         var id = e.target.parentNode.parentNode.getAttribute('data');
         var ida = e.target.parentNode.parentNode.getAttribute('data-a');
 
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
 
-        var username = getCookie('username');
-        var token = getCookie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
         const that = this;
         //头部ajax
         $.ajax({
             url: InterfaceUtil.getUrl(10),
             type: "post",
-            data: {
-                "username": username, "token": token, 'id': id
-            },
+            data:  InterfaceUtil.addTime({
+                "token": token, "user_id": user_id, "goods_id": id
+            }),
             dataType: "json",
             success: function (data) {
-                alert(data.info)
-                if (data.status === 1) {
+                alert(data.msg)
+                if (data.code == 1) {
                     that.ajax2()
                 }
             }
@@ -108,44 +96,45 @@ class personalBox extends React.Component {
         var num = e.target.parentNode.parentNode.getAttribute('data-index');
         var id = e.target.parentNode.parentNode.getAttribute('data-a');
 
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
+        // function getCookie(cookieName) {
+        //     var strCookie = document.cookie;
+        //     var arrCookie = strCookie.split("; ");
+        //     for (var i = 0; i < arrCookie.length; i++) {
+        //         var arr = arrCookie[i].split("=");
+        //         if (cookieName == arr[0]) {
+        //             return arr[1];
+        //         }
+        //     }
+        //     return "";
+        // }
 
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
+        var username = CoojiePage.getCoojie('username');
+        var token =  CoojiePage.getCoojie('token');
+        var user_id =  CoojiePage.getCoojie('user_id');
         const that = this;
         //搜索条件ajax
 
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "goods_id": id, "spsl": num
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "user_id": user_id, "goods_id": id, "goods_num": num
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
-                    var ok = document.getElementsByClassName('buycar_ok');
+                if (data.code == '1') {
+                    var ok = $('.buycar_ok');
                     ok[0].className = 'buycar_ok';
-                    var timer1 = window.setTimeout(function () {
-                        ok[0].className = 'buycar_ok display';
+                    var timer1 =setTimeout(function () {
+                        ok.eq(0).attr('class','buycar_ok display')
+                        // ok[0].className = 'buycar_ok display';
                     }, 3000);
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         // window.location.href='#/Denglu';
                     }
@@ -162,52 +151,54 @@ class personalBox extends React.Component {
         var jylx = CoojiePage.getCoojie('jylx');
         var order_id = CoojiePage.getCoojie('order_id');
         const that = this;
-        //头部ajax
+        //个人信息
         $.ajax({
             url: InterfaceUtil.getUrl(34),
             type: "post",
-            data: {
-                "username": username, "token": token
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token
+            }),
             dataType: "json",
             success: function (data) {
-                if (!data.data[0]) return;
+                console.log(JSON.stringify(data));
+                if (!data.data) return;
+                var data=data.data;
                 that.setState({
-                    username: data.data[0].username,
-                    dwmc: data.data[0].dwmc,
-                    jfye: data.data[0].jfye,
-                    zzyxq: data.data[0].zzyxq,
-                    hydj: data.data[0].hydj,
-                    shzt: data.data[0].shzt,
-                    ddzt1: data.data[0].ddzt1,
-                    ddzt3: data.data[0].ddzt3,
-                    znx: data.data[0].znx,
-                    coupons: data.data[0].coupons,
-                    zzxq: data.data[0],
-                    url: data.data[0].user_photo,
+                    username: data.username,
+                    dwmc: data.enterprise,
+                    jfye: data.integral,
+                    // zzyxq: data.data[0].zzyxq,
+                    hydj: data.level,
+                    // shzt: data.data[0].shzt,
+                    ddzt1: data.pay_order,
+                    ddzt3: data.send_order,
+                    znx: data.message_count,
+                    coupons: data.integral,
+                    // zzxq: data.data[0],
+                    // url: data.data[0].user_photo,
                 });
-                var xq = document.getElementsByClassName('a');
-                let xqs=$('.a');
-                if (data.data[0].z1 != 1) {
-                    xqs.eq(0).attr('class','zizhixiaoqi_span1 a red')
-                    // xq[0].className = 'zizhixiaoqi_span1 a red'
-                }
-                if (data.data[0].z2 != 1) {
-                    xqs.eq(1).attr('class','zizhixiaoqi_span2 a red')
-                    // xq[1].className = 'zizhixiaoqi_span2 a red'
-                }
-                if (data.data[0].z3 != 1) {
-                     xqs.eq(2).attr('class','zizhixiaoqi_span2 a red')
-                    // xq[2].className = 'zizhixiaoqi_span2 a red'
-                }
-                if (data.data[0].z4 != 1) {
-                     xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
-                    // xq[3].className = 'zizhixiaoqi_span2 a red'
-                }
-                if (data.data[0].z5 != 1) {
-                     xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
-                    // xq[4].className = 'zizhixiaoqi_span2 a red'
-                }
+                // var xq = document.getElementsByClassName('a');
+                // let xqs=$('.a');
+                // if (data.data[0].z1 != 1) {
+                //     xqs.eq(0).attr('class','zizhixiaoqi_span1 a red')
+                //     // xq[0].className = 'zizhixiaoqi_span1 a red'
+                // }
+                // if (data.data[0].z2 != 1) {
+                //     xqs.eq(1).attr('class','zizhixiaoqi_span2 a red')
+                //     // xq[1].className = 'zizhixiaoqi_span2 a red'
+                // }
+                // if (data.data[0].z3 != 1) {
+                //      xqs.eq(2).attr('class','zizhixiaoqi_span2 a red')
+                //     // xq[2].className = 'zizhixiaoqi_span2 a red'
+                // }
+                // if (data.data[0].z4 != 1) {
+                //      xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
+                //     // xq[3].className = 'zizhixiaoqi_span2 a red'
+                // }
+                // if (data.data[0].z5 != 1) {
+                //      xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
+                //     // xq[4].className = 'zizhixiaoqi_span2 a red'
+                // }
 
             }
         });
@@ -216,17 +207,18 @@ class personalBox extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(35),
             type: "post",
-            data: {
-                "username": username, "token": token, "page": 1, "limit": 3, "user_id": user_id
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "page": 1, "user_id": user_id, "status": 0,
+                pageSize: 3
+            }),
             dataType: "json",
             success: function (data) {
                 if (data.data.length == 0) {
 
                 } else {
-                    if (!data.data.list) return;
+                    if (!data.data.order_list) return;
                     that.setState({
-                        dingdan9: data.data.list,
+                        dingdan9: data.data.order_list,
                     });
                     that.refs.dingdan.className = 'display'
                 }
@@ -243,23 +235,23 @@ class personalBox extends React.Component {
         var jylx = CoojiePage.getCoojie('jylx');
 
         var that = this;
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods",false);
+        //收藏
         $.ajax({
             url: InterfaceUtil.getUrl(36),
             type: "post",
-            data: {
-                "username": username, "token": token, "page": 1, "limit": 3, "user_id": user_id, "jylx": jylx
-            },
+            data: InterfaceUtil.addTime( {
+                "user_id": user_id, "token": token, "page": 1, "pageSize": 3
+            }),
             dataType: "json",
             success: function (data) {
-                that.loginPage.ajaxLogin(data.status, that.props);
+                that.loginPage.ajaxLogin(data.code, that.props);
 
                 if (data.data.length == 0) {
 
                 } else {
-                    if (!data.data.list) return;
+                    if (!data.data.collect_list) return;
                     that.setState({
-                        jylx: data.data.list,
+                        jylx: data.data.collect_list,
                     });
                     that.refs.shoucang.className = 'display'
                 }
@@ -285,8 +277,9 @@ class personalBox extends React.Component {
                             <p className='personalCon1_top_zizhi_p'>{this.state.username}，<span
                                 className='font14'>欢迎回来</span><span className='personalCon1_top_zizhi_p1'>你的资质已审核 <span
                                 className='personalCon1_top_zizhi_p2'>{this.state.shzt}</span></span></p>
-                            <p className='font14 personalCon1_top_zizhi_p3'>会员等级:<a href=""
-                                                                                    className='personalCon1_top_zizhi_a'>{this.state.hydj}</a><span>当前单位:{this.state.dwmc}</span>
+                            <p className='font14 personalCon1_top_zizhi_p3'>会员等级:
+                                <a href=""
+                                   className='personalCon1_top_zizhi_a'>{this.state.hydj}</a><span>当前单位:{this.state.dwmc}</span>
                             </p>
                             <p>
                                 <button className='personalCon1_top_zizhi_btn cursor' onClick={(e) => {
@@ -350,7 +343,7 @@ class personalBox extends React.Component {
                             <span className='floatleft personal_line_p'>最近订单</span>
                             <Link to="/Dindan" className='black'>
                                 <span
-                                className='floatRight personal_line_p1'>查看更多>></span></Link>
+                                    className='floatRight personal_line_p1'>查看更多>></span></Link>
                         </div>
                         <table className='personalCon1_table'>
                             <thead>
@@ -367,51 +360,54 @@ class personalBox extends React.Component {
                             <tbody>
                             {
                                 this.state.dingdan9.map(function (item, i) {
-                                    let orderState = item.ddzt == '待付款' ?
+
+                                    let orderState = item.order_status == 1 ?
                                         <span className='personalCon1_current' onClick={(e) => {
-                                            this.qufukuan1(e,item.orderno)
+                                            this.qufukuan1(e, item.order_number)
                                         }}>去付款</span> : <span className='nulls'></span>
+                                    let times=InterfaceUtil.fmtDate(item.created_time);
                                     return (
                                         <tr key={i}>
-                                            <td className='orange hid'>{item.orderno}</td>
-                                            <td>{item.addtime}</td>
-                                            <td>{item.ddprice}</td>
-                                            <td>{item.sfje}</td>
-                                            <td>{item.is_act}</td>
+                                            <td className='orange hid'>{item.order_number}</td>
+                                            <td>{times}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.price}</td>
+                                            <td>/</td>
                                             <td className='personalCon1_table_tr'>
-                                                <span className='orange'>{item.ddzt} </span>
-                                                <span className='marginLeft5 blue'
-                                                      onMouseOver={(e) => {
-                                                          this.dingdangenzong(e)
-                                                      }}
-                                                      onMouseOut={(e) => {
-                                                          this.dingdangenzong1(e)
-                                                      }}>
-                                  订单跟踪
-                            </span>
+                                                {/*<span className='orange'>{item.ddzt} </span>*/}
+                                                {/*<span className='marginLeft5 blue'*/}
+                                                      {/*onMouseOver={(e) => {*/}
+                                                          {/*this.dingdangenzong(e)*/}
+                                                      {/*}}*/}
+                                                      {/*onMouseOut={(e) => {*/}
+                                                          {/*this.dingdangenzong1(e)*/}
+                                                      {/*}}>*/}
+                                                      订单跟踪
+                                                {/*</span>*/}
                                                 {/*订单跟踪*/}
-                                                <div className='personalCon1_xuanfu display'>
-                                                    {/*订单跟踪*/}
-                                                    <Timeline className='wlxx'>
-                                                        {
-                                                            this.state.dingdan9[i].wl.map(function (item, i) {
-                                                                return (
-                                                                    <Timeline.Item
-                                                                        key={i}>
-                                                                        <span> {item.createtime} {item.wldw}</span></Timeline.Item>
-                                                                )
-                                                            }, this)
-                                                        }
+                                                {/*<div className='personalCon1_xuanfu display'>*/}
+                                                    {/*/!*订单跟踪*!/*/}
+                                                    {/*<Timeline className='wlxx'>*/}
+                                                        {/*{*/}
+                                                            {/*this.state.dingdan9[i].wl.map(function (item, i) {*/}
+                                                                {/*return (*/}
+                                                                    {/*<Timeline.Item*/}
+                                                                        {/*key={i}>*/}
+                                                                        {/*<span> {item.createtime} {item.wldw}</span></Timeline.Item>*/}
+                                                                {/*)*/}
+                                                            {/*}, this)*/}
+                                                        {/*}*/}
 
-                                                    </Timeline>
-                                                    <Timeline className='ZWwlxx display'>
-                                                        <Timeline.Item><span> 暂无物流信息</span></Timeline.Item>
-                                                    </Timeline>
+                                                    {/*</Timeline>*/}
+                                                    {/*<Timeline className='ZWwlxx display'>*/}
+                                                        {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
+                                                    {/*</Timeline>*/}
 
 
-                                                </div>
+                                                {/*</div>*/}
+                                                {/*/*/}
                                             </td>
-                                            <td data={item.orderno}>
+                                            <td data={item.order_number}>
                                                 {orderState}
                                                 <Link to="/Xiangqing" className='black'><span onClick={(e) => {
                                                     this.xiangqing1(e)
@@ -424,8 +420,9 @@ class personalBox extends React.Component {
                             <tr rowSpan={6} ref='dingdan'>
                                 <td colSpan={7}>
                                     <p className='font20'>亲，您还没有订单哦~</p>
-                                    <p className='personalCon1_table_tr_p'><a href=""
-                                                                              className='personalCon1_table_td'>去产品中心</a>
+                                    <p className='personalCon1_table_tr_p'>
+                                        <a href=""
+                                           className='personalCon1_table_td'>去产品中心</a>
                                     </p>
                                 </td>
                             </tr>
@@ -441,7 +438,7 @@ class personalBox extends React.Component {
                             <span className='floatleft personal_line_p'>我的收藏</span>
                             <Link to="/Wodeshoucang" className='black'>
                                 <span
-                                className='floatRight personal_line_p1'>查看更多>></span></Link>
+                                    className='floatRight personal_line_p1'>查看更多>></span></Link>
                         </div>
                         <table className='personalCon1_table'>
                             <thead>
@@ -458,16 +455,15 @@ class personalBox extends React.Component {
                             {
                                 this.state.jylx.map(function (item) {
                                     if (this.state.jylx.length != []) {
-                                        // console.log(item)
                                         return (
-                                            <tr key={item.sp_id + 'perConJy'} data={item.id} data-index={item.zxdw}
-                                                data-a={item.sp_id}>
+                                            <tr key={item.goods_id + 'perConJy'} data={item.goods_id} data-index={item.min_buy}
+                                                data-a={item.goods_id}>
                                                 <td><img className='collectionImg' src={this.state.lujin + item.image}/>
                                                 </td>
-                                                <td>{item.title}</td>
-                                                <td>{item.scqy}</td>
-                                                <td>{item.sku}</td>
-                                                <td>{item.prices}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.enterprise}</td>
+                                                <td>{item.standard}</td>
+                                                <td>{item.price}</td>
                                                 <td><span className='personalCon1_current' onClick={(e) => {
                                                     this.buycar0(e)
                                                 }}>加入购物车</span>
@@ -506,7 +502,7 @@ class personalBox extends React.Component {
         //物流
         var ZWwlxx = document.getElementsByClassName('ZWwlxx');
         var wlxx = document.getElementsByClassName('wlxx');
-        // console.log(wlxx.length);
+
         for (var i = 0; i < ZWwlxx.length; i++) {
             if (wlxx[i].children.length == 0) {
                 ZWwlxx[i].className = 'ant-timeline ZWwlxx '

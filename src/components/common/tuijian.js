@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
+import CoojiePage from '../../util/CoojiePage';
 import $ from 'jquery';
 
 class Tuijian extends React.Component{
@@ -31,61 +32,35 @@ class Tuijian extends React.Component{
       }
       return "";
     }
-    var jylx=getCookie('jylx');
+    var user_id=CoojiePage.getCoojie('user_id');
+    var token=CoojiePage.getCoojie('token');
     const that = this;
     //智能采购
         $.ajax({
                 url: InterfaceUtil.getUrl(24),
                 type: "post",
                 data: InterfaceUtil.addTime({
-                 "jylx":jylx,"limit":a
+                    pageSize:5,
+                    user_id:user_id,
+                    token:token
                 }),
                 dataType: "json",
                 success: function(data){
-                      //  that.setState({
-                      //   tuijian:data.data
-                      // });
+
+                       that.setState({
+                        tuijian:data.data
+                      });
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息
-                    console.log(textStatus);
+
                 }
             });
-
-    // try {
-    //   window.ajax = new ActiveXObject("Msxml2.XMLHTTP");
-    // } catch(e) {
-    //   try {
-    //     window.ajax = new ActiveXObject("Microsoft.XMLHTTP");
-    //   } catch(e1) {
-    //     window.ajax = new XMLHttpRequest();
-    //   }
-    // }
-    // // ajax.open('post',"http://192.168.1.49/index.php/index/cart/goods_rand",false);
-    // ajax.open('post',InterfaceUtil.getUrl(12),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-    //       that.setState({
-    //         tuijian:data.data
-    //       });
-    //   }
-    // };
-    // ajax.send("&jylx="+jylx+"&limit="+a);
   }
     //跳转
     xiangqingSix(e){
 
     }
   render(){
-      // console.log(this.state.tuijian.length)
-      // let tujian;
       let _this=this;
       let tujian= this.state.tuijian.length===0?null: this.state.tuijian.map(function (item){
             return <td key={item.id+'cao'}>
@@ -96,9 +71,9 @@ class Tuijian extends React.Component{
                         />
                     </Link>
                 </div>
-                <p>{item.title}</p>
-                <p>{item.scqy}</p>
-                <p className='orange'>￥{item.prices}</p>
+                <p>{item.name}</p>
+                <p>{item.enterprise}</p>
+                <p className='orange'>￥{item.goods_price}</p>
             </td>
         });
     return(

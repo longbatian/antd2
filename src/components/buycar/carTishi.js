@@ -262,7 +262,7 @@ class Gouwuche3 extends React.Component {
                 cid.push(c);
             }
         }
-        document.cookie = "cid=" + cid;
+        document.cookie = "cart_id=" + cid;
         this.props.history.push('/Jiesuan');
     }
 

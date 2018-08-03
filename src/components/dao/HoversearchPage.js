@@ -217,8 +217,7 @@ class HoversearchPage extends Component {
                 if (data.data.length == 0) {
 
                 } else {
-                    if (data.data.cart_number != undefined) {
-
+                    if (data.data.cart_count != undefined) {
                         that.setState({
                             car: data.data.cart_count,
                         });

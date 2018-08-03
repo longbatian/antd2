@@ -1151,6 +1151,7 @@ class Chanpinzhongxin extends React.Component {
             data: InterfaceUtil.addTime({}),
             dataType: "json",
             success: function (data) {
+
                 if (data.data.length == 0) {
 
                 } else {

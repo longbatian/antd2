@@ -2,6 +2,7 @@
 // var u='http://192.168.1.49/index.php/index/';
 // var u='http://192.168.1.49/';
 import forge from "node-forge";
+import CoojiePage from "./CoojiePage";
 
 // let u='http://jc.cx5201314.com/';
 // let u='http://192.168.1.49/';
@@ -25,15 +26,12 @@ let imgu='http://web.tyaow.com';
 //     'user/user_info_update','order/wxpay_img_virtual','order/coupon_order_status',
 // ];
 let urls=[
-    // 'index/other',//0
+
     '/index/sidebar',//0
-    // 'index/search',//1
-    // '/index/search_goods',//1
     '/index/get_global',//1
     'Cart/check_cart',//2
     'Cart/check_cart',//3
     'Cart/addcart', //4
-    // 'user/collection_goods_add',//5
     '/users/goods_collect',//5
     // 'user_order/cartdelete',//6
     '/goods/remove_cart',//6
@@ -68,7 +66,8 @@ let urls=[
     '/index/recom_goods',//22
     '/index/goods_type',//23
     // 'index/drugstore', //24
-    '/index/necessary', //24
+    // '/index/necessary', //24
+    '/goods/goods_recom', //24
     // 'index/floor',//25
     '/index/hierarchy',//25
     // 'index/brand',//26
@@ -83,19 +82,22 @@ let urls=[
     '/index/news_list',//31
     'user_order/addcartall',//32
     'user/zncg_list',//33
-    'user/index',//34
+    // 'user/index',//34
+    '/users/user_info',//34
     // 'user_order/getorder',//35
     '/orders/order_list',//35
     // 'user/collection_goods',//36
     '/users/goods_collect_list',//36
-    'order/close_order',//37
+    // 'order/close_order',//37
+    '/orders/close_order',//37
     'user_order/cartaddall',//38
     // 'user/changepassword',//39
     '/users/modify_password',//39
     'user/userinfo',//40
     'user/jfls_log',//41
     'user/luck_log',//42
-    'user_order/getorderinfo',//43
+    // 'user_order/getorderinfo',//43
+    '/orders/order_detail',//43
     'order/order_wl',//44
     'user/coupons'//45
     ,'user/coupon_counts',//46
@@ -107,7 +109,8 @@ let urls=[
     // 'goods/goods_info',//50
     '/goods/goods_info',//50
     // 'coupon/get_coupon',//51
-    'coupon/get_coupon',//51
+    // 'coupon/get_coupon',//51
+    '/goods/get_coupon',//51
     // 'user/get_coupon',//52
     '/goods/coupon_list',//52
     // 'goods/ranking',//53
@@ -119,13 +122,15 @@ let urls=[
     // 'user/is_username',//57
     '/users/field_valid',//57
     '/orders/wechat_pay_qrcode'//58
-    ,'order/order_status',//59
+    // ,'order/order_status',//59
+    ,'/orders/order_pay_status',//59
     'user/user_info_update',//60
     'order/wxpay_img_virtual',//61
     'order/coupon_order_status',//62
     '/index/search_goods',//63
     '/goods/goods_agent',//64
     '/orders/alipay_pay_qrcode',//65
+    '/goods/coupon_tickets',//66
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
@@ -195,6 +200,12 @@ export default class InterfaceUtil{
 
         return flag;
     }
+
+    /**
+     * 时间戳转换时间- - -格式
+     * @param obj
+     * @returns {string}
+     */
     static fmtDate(obj){
         var date = new Date();
         date.setTime(obj * 1000);
@@ -210,5 +221,17 @@ export default class InterfaceUtil{
         minute = minute < 10 ? ('0' + minute) : minute;
         second = second < 10 ? ('0' + second) : second;
         return y + '-' + m + '-' + d;
+    }
+
+    /**
+     * 删除coikie
+     * @param name
+     */
+    static delCookie(name) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval = CoojiePage.getCoojie(name);
+        if (cval != null)
+            document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
     }
 }

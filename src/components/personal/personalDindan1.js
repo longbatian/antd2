@@ -1,8 +1,8 @@
 // import $ from "../../js/jquery.min";
 import $ from 'jquery';
 import React from 'react';
-import {Input, Button, Select, Pagination, Timeline,} from 'antd';
-import {Link,withRouter} from 'react-router-dom';
+import {Button, Input, Pagination, Select,} from 'antd';
+import {Link, withRouter} from 'react-router-dom';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -17,7 +17,7 @@ class PersonalDindan extends React.Component {
             dingdan: [],
             ddzt: [],
             cons: 1,
-            page:1
+            page: 1
         }
     }
 
@@ -224,8 +224,8 @@ class PersonalDindan extends React.Component {
 
     }
 
-    qufukuan(e,id) {
-        sessionStorage.setItem("orderno",id);
+    qufukuan(e, id) {
+        sessionStorage.setItem("orderno", id);
         this.props.history.push('/Dingdan')
     }
 
@@ -233,23 +233,23 @@ class PersonalDindan extends React.Component {
     zhuangtai(e) {
         var b = $('.select').val();
         if (b == '订单状态') {
-            var a = ''
-            document.cookie = "ddzt=" + '';
+            // var a = 0
+            document.cookie = "ddzt=" + '0';
         } else if (b == '待付款') {
-            var a = '1';
+            // var a = '1';
             document.cookie = "ddzt=" + '1';
         } else if (b == '待收货') {
-            var a = '2,3';
-            document.cookie = "ddzt=" + '2,3';
+            // var a = '3';
+            document.cookie = "ddzt=" + '3';
         } else if (b == '已完成') {
-            var a = '4';
+            // var a = '4';
             document.cookie = "ddzt=" + '4';
         } else if (b == '已取消') {
-            var a = '5';
+            // var a = '5';
             document.cookie = "ddzt=" + '5';
         } else if (b == '出货中') {
-            var a = '9';
-            document.cookie = "ddzt=" + '9';
+            // var a = '2';
+            document.cookie = "ddzt=" + '2';
         }
 
         var username = CoojiePage.getCoojie('username');
@@ -258,51 +258,53 @@ class PersonalDindan extends React.Component {
         var month = CoojiePage.getCoojie('month');
         const that = this;
         //所有订单
-        $.ajax({
-            url: InterfaceUtil.getUrl(35),
-            type: "post",
-            data: {
-                "username": username,
-                "token": token,
-                "user_id": user_id,
-                "page": 1,
-                "limit": 5,
-                "ddzt": a,
-                "timev": month
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        dingdan: data.data.list,
-                        cons: data.data.cons,
-                    });
-                }
-            }
-        });
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(35),
+        //     type: "post",
+        //     data: {
+        //         "username": username,
+        //         "token": token,
+        //         "user_id": user_id,
+        //         "page": 1,
+        //         "limit": 5,
+        //         "ddzt": a,
+        //         "timev": month
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 dingdan: data.data.list,
+        //                 cons: data.data.cons,
+        //             });
+        //         }
+        //     }
+        // });
+        this.ajaxPersonDingDan();
 
     }
 
     //取消订单
-    quxiaoDD(e) {
+    quxiaoDD(e,id) {
         var zhi = e.target.innerText;
-        var id = e.target.parentNode.firstChild.value;
+        // var id = e.target.parentNode.firstChild.value;
         if (zhi == '取消订单') {
-            let username = CoojiePage.getCoojie('username');
+            let user_id = CoojiePage.getCoojie('user_id');
             let token = CoojiePage.getCoojie('token');
             const that = this;
             //订单ajax
             $.ajax({
                 url: InterfaceUtil.getUrl(37),
                 type: "post",
-                data: {
-                    "username": username, "token": token, "orderno": id
-                },
+                data:InterfaceUtil.addTime( {
+                    "user_id": user_id, "token": token, "order_id": id
+                }),
                 dataType: "json",
                 success: function (data) {
-                    if (data.status === 1) {
+                    console.log(data)
+                    if (data.code == 1) {
                         that.ajaxPersonDingDan();
                     }
                 }
@@ -343,12 +345,13 @@ class PersonalDindan extends React.Component {
     //分页
     fenye(e) {
         this.setState({
-            page:e
-        },() =>{
+            page: e
+        }, () => {
             this.ajaxPersonDingDan();
         })
 
     }
+
     componentDidMount() {
         this.ajaxPersonDingDan();
     }
@@ -363,33 +366,33 @@ class PersonalDindan extends React.Component {
         let user_id = CoojiePage.getCoojie('user_id');
         let ddzt = CoojiePage.getCoojie('ddzt');
         const that = this;
-        let e =this.state.page;
+        let e = this.state.page;
         //订单ajax
         $.ajax({
             url: InterfaceUtil.getUrl(35),
             type: "post",
             data: InterfaceUtil.addTime({
-                 "token": token, "page": e,  "user_id": user_id, "status": 0
+                "token": token, "page": e, "user_id": user_id, "status": ddzt,
+                pageSize: 10
             }),
             dataType: "json",
             success: function (data) {
                 console.log(JSON.stringify(data))
-                if (data.code === -2) {
-                    // location.replace("#/Denglu");
+                if (data.code === 0) {
+                    that.props.history.push("#/Denglu");
                     return;
                 }
-                // console.log(data);
                 if (data.data.length == 0) {
 
                 } else {
                     that.setState({
                         dingdan: data.data.order_list,
-                    //     ddzt0: data.data.ddzt.ddzt0,
-                    //     ddzt1: data.data.ddzt.ddzt1,
-                    //     ddzt2: data.data.ddzt.ddzt2,
+                        //     ddzt0: data.data.ddzt.ddzt0,
+                        //     ddzt1: data.data.ddzt.ddzt1,
+                        //     ddzt2: data.data.ddzt.ddzt2,
                         cons: data.data.order_count,
                     }, () => {
-                    //
+                        //
                     });
                     that.refs.dingdan.className = 'display'
                 }
@@ -490,57 +493,58 @@ class PersonalDindan extends React.Component {
                                         dingdanState = '取消订单';
                                         dingdanClassName = 'dingdan_goumai';
                                         personalCon1_table = <span className='personalCon1_table_tr_span1'
-                                              onClick={(e) => {
-                                                  this.qufukuan(e,item.orderno)
-                                              }}>去付款</span>
+                                                                   onClick={(e) => {
+                                                                       this.qufukuan(e, item.order_number)
+                                                                   }}>去付款</span>
                                     } else if (item.order_status === `3`) {
                                         personalCon1_table = <span className='personalCon1_table_tr_span1'
-                            onClick={(e) => {
-                                this.qufukuan(e,item.orderno)
-                            }}>收货</span>;
+                                                                   onClick={(e) => {
+                                                                       this.qufukuan(e, item.order_number)
+                                                                   }}>收货</span>;
 
                                     }
+                                    let times = InterfaceUtil.fmtDate(item.created_time);
                                     return (
                                         <tr key={item.id}>
                                             <td className='orange hid width130'>{item.order_number}</td>
-                                            <td>{item.created_time}</td>
+                                            <td>{times}</td>
                                             <td>{item.name}</td>
                                             <td>{item.price}</td>
                                             <td>{item.price}</td>
-                                            <td className='red'>{item.is_act}</td>
+                                            <td className='red'>/</td>
                                             <td className='personalCon1_table_tr'>
                                                 {/*<span className='orange dingdan_ddzt'>{item.ddzt}</span> <span*/}
                                                 {/*className='marginLeft5 blue' onMouseOver={(e) => {*/}
                                                 {/*this.dingdangenzong(e)*/}
-                                            {/*}} onMouseOut={(e) => {*/}
+                                                {/*}} onMouseOut={(e) => {*/}
                                                 {/*this.dingdangenzong1(e)*/}
-                                            {/*}}>订单跟踪</span>*/}
+                                                {/*}}>订单跟踪</span>*/}
 
                                                 订单跟踪
                                                 {/*订单跟踪*/}
                                                 {/*<div className='personalCon1_xuanfu1 display'>*/}
-                                                    {/*<Timeline className='wlxx'>*/}
-                                                        {/*{*/}
-                                                            {/*this.state.dingdan[i].wl.map(function (item) {*/}
+                                                {/*<Timeline className='wlxx'>*/}
+                                                {/*{*/}
+                                                {/*this.state.dingdan[i].wl.map(function (item) {*/}
 
-                                                                {/*return (*/}
-                                                                    {/*<Timeline.Item>*/}
-                                                                        {/*<span*/}
-                                                                            {/*className=''>{item.createtime} {item.wldw}</span>*/}
-                                                                    {/*</Timeline.Item>*/}
-                                                                {/*)*/}
-                                                            {/*}, this)*/}
-                                                        {/*}*/}
-                                                        {/*/!*<Timeline.Item>【已付款】 2017-12-07 13:30:30 您的订单商家正在积极备货中。</Timeline.Item>*!/*/}
-                                                        {/*/!*<Timeline.Item>【已提交】 2017-12-07 13:30:30 您的订单已提交，请尽快完成付款。</Timeline.Item>*!/*/}
-                                                    {/*</Timeline>*/}
-                                                    {/*<Timeline className='ZWwlxx display'>*/}
-                                                        {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
-                                                    {/*</Timeline>*/}
+                                                {/*return (*/}
+                                                {/*<Timeline.Item>*/}
+                                                {/*<span*/}
+                                                {/*className=''>{item.createtime} {item.wldw}</span>*/}
+                                                {/*</Timeline.Item>*/}
+                                                {/*)*/}
+                                                {/*}, this)*/}
+                                                {/*}*/}
+                                                {/*/!*<Timeline.Item>【已付款】 2017-12-07 13:30:30 您的订单商家正在积极备货中。</Timeline.Item>*!/*/}
+                                                {/*/!*<Timeline.Item>【已提交】 2017-12-07 13:30:30 您的订单已提交，请尽快完成付款。</Timeline.Item>*!/*/}
+                                                {/*</Timeline>*/}
+                                                {/*<Timeline className='ZWwlxx display'>*/}
+                                                {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
+                                                {/*</Timeline>*/}
                                                 {/*</div>*/}
                                             </td>
                                             <td>
-                                                <input type="hidden" value={item.orderno}/>
+                                                <input type="hidden" value={item.order_number}/>
                                                 {/*<Link to="/Dingdan" className=''>*/}
                                                 {personalCon1_table}
                                                 {/*<span className='personalCon1_table_tr_span1'onClick={(e)=>{this.qufukuan(e)}}>去付款</span>*/}
@@ -551,7 +555,7 @@ class PersonalDindan extends React.Component {
                                                                                                   this.xiangqing(e)
                                                                                               }}>查看订单</span></Link>&nbsp;
                                                 <span className={dingdanClassName} onClick={(e) => {
-                                                    this.quxiaoDD(e)
+                                                    this.quxiaoDD(e,item.id)
                                                 }}>{dingdanState}</span>
                                             </td>
                                         </tr>

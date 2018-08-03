@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import React from 'react';
 import {withRouter} from 'react-router-dom'
-import {Tabs, Select, Button, Modal, Pagination} from 'antd';
+import {Modal, Pagination, Tabs} from 'antd';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -31,7 +31,7 @@ function showConfirm() {
         cancelText: '取消',
         onOk() {
 
-            var username = CoojiePage.getCoojie('username');
+            var user_id = CoojiePage.getCoojie('user_id');
             var token = CoojiePage.getCoojie('token');
             var arr = $('.shoucang_inp');
             for (var i = 0; i < arr.length; i++) {
@@ -45,11 +45,11 @@ function showConfirm() {
                         url: InterfaceUtil.getUrl(10),
                         type: 'post',
                         dataType: 'json',
-                        data: {
-                            username: username,
+                        data: InterfaceUtil.addTime({
+                            user_id: user_id,
                             token: token,
-                            id: id,
-                        },
+                            goods_id: id,
+                        }),
                         beforeSend: function (xhr) {
                         },
                         success: function (data, textStatus, jqXHR) {
@@ -73,6 +73,25 @@ function onChange(pageNumber) {
 
 class PersonalWodejifen extends React.Component {
 
+    state = {
+        loading: false,
+        visible: false,
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+    handleOk = () => {
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({loading: false, visible: false});
+        }, 3000);
+    }
+    handleCancel = () => {
+        this.setState({visible: false});
+    }
+
     constructor(props) {
         super(props); //调用父类的构造方法；
         this.loginPage = new LoginPage();
@@ -84,11 +103,6 @@ class PersonalWodejifen extends React.Component {
 
     }
 
-    state = {
-        loading: false,
-        visible: false,
-    }
-
     showConfirm() {
         var _this = this;
         confirm({
@@ -98,29 +112,32 @@ class PersonalWodejifen extends React.Component {
             cancelText: '取消',
             onOk() {
 
-                var username = CoojiePage.getCoojie('username');
+                var user_id = CoojiePage.getCoojie('user_id');
                 var token = CoojiePage.getCoojie('token');
                 var arr = $('.shoucang_inp');
                 for (var i = 0; i < arr.length; i++) {
                     var a = $('.shoucang_inp').eq(i).prop('checked');
-
                     if (a == true) {
                         var id = $('.spid').eq(i).val();
-
+                        console.log(id)
                         $.ajax({
                             // url:'http://192.168.1.49/index.php/index/user/collection_goods_delete',
                             url: InterfaceUtil.getUrl(10),
                             type: 'post',
                             dataType: 'json',
-                            data: {
-                                username: username,
+                            data: InterfaceUtil.addTime({
+                                user_id: user_id,
                                 token: token,
-                                id: id,
-                            },
+                                goods_id: id,
+                            }),
                             beforeSend: function (xhr) {
                             },
                             success: function (data, textStatus, jqXHR) {
-                                _this.ajax2();
+                                console.log(data)
+                                if (data.code == 1) {
+                                    _this.ajax2();
+                                }
+
                             },
 
                         })
@@ -181,32 +198,29 @@ class PersonalWodejifen extends React.Component {
 
         // 请求
 
-        var username = CoojiePage.getCoojie('username');
+        var user_id = CoojiePage.getCoojie('user_id');
         var token = CoojiePage.getCoojie('token');
         const that = this;
-        num = JSON.stringify(num);
-        id = JSON.stringify(id);
+        // num = JSON.stringify(num);
+        // id = JSON.stringify(id);
+        id = id.join(',');
         //智能采购
         $.ajax({
-            url: InterfaceUtil.getUrl(32),
+            url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "goods_id": id, "goods_sl": num
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "goods_id": id,
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
-                    var ok = document.getElementsByClassName('buycar_ok');
-                    ok[0].className = 'buycar_ok';
-                    var timer1 = window.setTimeout(function () {
-                        ok[0].className = 'buycar_ok display';
-                    }, 3000);
+                if (data.code == '1') {
+                   CoojiePage.setBuyCarOk()
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         this.props.history.push('/Denglu');
                         // window.location.href='#/Denglu';
@@ -217,6 +231,8 @@ class PersonalWodejifen extends React.Component {
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
 
     }
+
+    //取消收藏
 
     buycar4(e) {
         var id = e.target.parentNode.parentNode.getAttribute('data');
@@ -232,23 +248,24 @@ class PersonalWodejifen extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "goods_id": id, "spsl": num, "user_id": user_id
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "user_id": user_id, "goods_id": id, "goods_num": num
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
-                    var ok = document.getElementsByClassName('buycar_ok');
-                    ok[0].className = 'buycar_ok';
-                    var timer1 = window.setTimeout(function () {
-                        ok[0].className = 'buycar_ok display';
-                    }, 3000);
+                if (data.code == '1') {
+                    // var ok = document.getElementsByClassName('buycar_ok');
+                    // ok[0].className = 'buycar_ok';
+                    // var timer1 = window.setTimeout(function () {
+                    //     ok[0].className = 'buycar_ok display';
+                    // }, 3000);
+                    CoojiePage.setBuyCarOk()
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         this.props.history.push('/Denglu');
                         // window.location.href='#/Denglu';
@@ -282,17 +299,20 @@ class PersonalWodejifen extends React.Component {
         var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //智能采购
-        id = JSON.stringify(id)
+        // id = JSON.stringify(id)
+        id = id.join(',');
+
         $.ajax({
-            url: InterfaceUtil.getUrl(1),
+            url: InterfaceUtil.getUrl(10),
             type: "post",
             data: InterfaceUtil.addTime({
                 "user_id": user_id, "token": token, "goods_id": id
             }),
             dataType: "json",
             success: function (data) {
-                alert(data.info)
-                if (data.status === 1) {
+                alert(data.msg)
+                console.log(data)
+                if (data.code == 1) {
                     that.ajax2();
                 }
             }
@@ -311,13 +331,13 @@ class PersonalWodejifen extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(10),
             type: "post",
-            data:InterfaceUtil.addTime( {
-                "user_id": user_id, "token": token, "id": id
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "goods_id": id
             }),
             dataType: "json",
             success: function (data) {
-                alert(data.info)
-                if (data.status === 1) {
+                alert(data.msg)
+                if (data.code == 1) {
                     that.ajax2()
                 }
             }
@@ -336,24 +356,6 @@ class PersonalWodejifen extends React.Component {
         // };
 
         // ajax.send("username="+username+"&token="+token+"&id="+id);
-    }
-
-    //取消收藏
-
-
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    }
-    handleOk = () => {
-        this.setState({loading: true});
-        setTimeout(() => {
-            this.setState({loading: false, visible: false});
-        }, 3000);
-    }
-    handleCancel = () => {
-        this.setState({visible: false});
     }
 
     //分页
@@ -413,7 +415,7 @@ class PersonalWodejifen extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(36),
             type: "post",
-            data:InterfaceUtil.addTime( {
+            data: InterfaceUtil.addTime({
                 "user_id": user_id, "token": token, "page": 1, "pageSize": 10
             }),
             dataType: "json",
@@ -508,19 +510,20 @@ class PersonalWodejifen extends React.Component {
                             this.state.jylx.map(function (item) {
 
                                 return (
-                                    <tr key={item.index} data={item.sp_id} data-index={item.zxdw} data-a={item.id}
+                                    <tr key={item.index} data={item.goods_id} data-index={item.min_buy}
+                                        data-a={item.goods_id}
                                         className='caigou_tr'>
                                         <td className='orange'>
-                                            <input type="hidden" value={item.id} className='spid'/>
+                                            <input type="hidden" value={item.goods_id} className='spid'/>
                                             <input type="checkbox" className='marginRight5 shoucang_inp'/>
                                             <img src={this.state.lujin + item.image} alt="" className='shoucang_img'/>
                                         </td>
-                                        <td className='xianzhi'>{item.title}</td>
-                                        <td>{item.scqy}</td>
-                                        <td>{item.sku}</td>
-                                        <td>瓶</td>
-                                        <td className='personalCon1_table_tr'>{item.is_activity}</td>
-                                        <td>{item.prices}</td>
+                                        <td className='xianzhi'>{item.name}</td>
+                                        <td>{item.enterprise}</td>
+                                        <td>{item.standard}</td>
+                                        <td>{item.unit}</td>
+                                        <td className='personalCon1_table_tr'>/</td>
+                                        <td>{item.price}</td>
                                         <td>
                 <span><img src={require("../../images/personal/lajitong.png")} alt=""
                            onClick={(e) => {
@@ -551,10 +554,10 @@ class PersonalWodejifen extends React.Component {
                         <p>
                             <span className='personal_wodechoucang_top_span marginRight5'>
                                 <input type="checkbox"
-                                                                                                 className='quanxuan1'
-                                                                                                 onClick={(e) => {
-                                                                                                     this.quanxuan1(e)
-                                                                                                 }}/></span>
+                                       className='quanxuan1'
+                                       onClick={(e) => {
+                                           this.quanxuan1(e)
+                                       }}/></span>
                             <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
                             <span className='personal_zhanneixin_top_span4 cursor'
                                   onClick={(e) => this.buycar3(e)}>加入购物车</span>

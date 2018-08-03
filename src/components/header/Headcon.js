@@ -29,7 +29,7 @@ class Headcon extends React.Component {
         this.setState({
             values: a
         })
-        // console.log(a)
+
         if (a == '') {
             $('.sousuokuang').addClass('display')
         } else {
@@ -90,7 +90,7 @@ class Headcon extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                // console.log(data);
+
                 if(data.data[2].search_default){
                      var a = data.data[2].search_default.split('|'); // [ab, c, de]
                     that.setState({
@@ -124,7 +124,7 @@ class Headcon extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data.data.cart_count)
+
                 if (data.data.length == 0) {
 
                 } else {

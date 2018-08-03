@@ -119,7 +119,7 @@ class Dingdan extends React.Component {
         this.setState({
             visible: false
         });
-        this.times = 60;
+        this.times = 90;
     }
 
     payFor() {
@@ -179,22 +179,22 @@ class Dingdan extends React.Component {
 
     setTimeOver() {
         var token = CoojiePage.getCoojie('token');
-        var username = CoojiePage.getCoojie('username');
-        var orderno = this.state.chuangjian.orderno;
+        var user_id = CoojiePage.getCoojie('user_id');
+        let orderno = this.state.chuangjian.order_number;
         var _this = this;
         var timesOut = setInterval(function () {
             $.ajax({
                 type: "post",
                 url: InterfaceUtil.getUrl(59),
-                data: {
+                data: InterfaceUtil.addTime({
                     "token": token,
-                    "username": username,
-                    "orderno": orderno,
-                },
+                    "user_id": user_id,
+                    "pay_order_number": orderno
+                }),
                 dataType: "json",
                 success: function (data, status) {
-                    if (data.status === 1) {
-                        if (data.data === 2) {
+                    console.log(data)
+                    if (data.code === 1) {
                             // let modal;
                             clearInterval(timesOut);
                             _this.hideModal();
@@ -210,20 +210,19 @@ class Dingdan extends React.Component {
                                 modal.destroy();
                                 _this.props.history.push('/Personal')
                             }, 3000);
-                        }
                     } else {
-                        alert(data.info);
+                        // alert(data.msg);
 
                     }
 
                 }
             });
-            if (_this.times > 59) {
+            if (_this.times > 89) {
                 clearInterval(timesOut);
                 _this.hideModal()
             }
             _this.times++;
-        }, 2000);
+        }, 1500);
 
     }
 

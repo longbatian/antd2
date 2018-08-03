@@ -729,10 +729,10 @@ class Gouwuche2 extends React.Component {
 
 
                         return (
-                            <div key={item.cart_id}
+                            <div key={item.goods_id}
                                  className='contain car_content relative'
                                  data={item.is_check}
-                                 data-index={item.isxs}
+                                 data-index={item.goods_id}
                                  data-kcs={item.stock_num}>
                                 <div className='car_title_div1 hid' data={item.goods_id}>
                                     <input type="checkbox" className='buycar_input1'

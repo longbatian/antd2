@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter, Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import $ from 'jquery';
 import CoojiePage from '../../util/CoojiePage';
@@ -9,7 +9,7 @@ import {PubSub} from "pubsub-js";
 class Jiesuan1 extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
-         this.username = CoojiePage.getCoojie('username');
+        this.username = CoojiePage.getCoojie('username');
         this.token = CoojiePage.getCoojie('token');
         this.member_id = CoojiePage.getCoojie('user_id');
         this.cid = CoojiePage.getCoojie('cid');
@@ -39,15 +39,21 @@ class Jiesuan1 extends React.Component {
         var user_id = CoojiePage.getCoojie('user_id');
         var user_type = CoojiePage.getCoojie('user_type');
         var jylx = CoojiePage.getCoojie('jylx');
-        var cid = CoojiePage.getCoojie('cid');
+        var cart_id = CoojiePage.getCoojie('cart_id');
+        var coupon_id = CoojiePage.getCoojie('coupon_id');
+
         const that = this;
-        //  广告位
+        let datas = {};
+        if (cart_id) {
+            datas = {"user_id": user_id, "token": token, "cart_id": cart_id}
+        } else {
+            datas = {"user_id": user_id, "token": token, "coupon_id": coupon_id}
+        }
+        console.log(datas)
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
-            data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "cart_id": cid
-            }),
+            data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
                 if (data.data.length == 0) {
@@ -63,30 +69,53 @@ class Jiesuan1 extends React.Component {
             }
         });
     }
-    componentWillUnmount(){
+
+    componentWillUnmount() {
         window.onscroll = '';
 
     }
+
     chuangjian(e) {
         // var a =document.getElementsByClassName('jiesuan_sel');
         var b = $('.jiesuan_sel').eq(0).val();
         var bz = $('.jiesuan_div_div4_inp').val();
-        const that=this;
-        let cid=CoojiePage.getCoojie('cid');
+        const that = this;
+        let cid = CoojiePage.getCoojie('cid');
+        var cart_id = CoojiePage.getCoojie('cart_id');
+        var coupon_id = CoojiePage.getCoojie('coupon_id');
+
+        let datas = {};
+        if (cart_id) {
+            datas = {
+                "token": that.token,
+                "user_id": that.member_id,
+                "cart_id": cart_id,
+                "user_remark": bz,
+                user_coupon_id: b
+            }
+        } else {
+            datas = {
+                "token": that.token,
+                "user_id": that.member_id,
+                "user_remark": bz,
+                user_coupon_id: b,
+                "coupon_id": coupon_id
+            }
+        }
         $.ajax({
             url: InterfaceUtil.getUrl(17),
             type: "post",
-            data: InterfaceUtil.addTime({
-                "token":that.token,"user_id":that.member_id,"cart_id":cid,"user_remark":bz,user_coupon_id:b
-            }),
+            data: InterfaceUtil.addTime(datas),
             dataType: "json",
-            success: function(data){
+            success: function (data) {
                 console.log(data)
-                if(data.code === 1){
-                    sessionStorage.setItem("orderno",data.data.order_number);
+                if (data.code === 1) {
+                    InterfaceUtil.delCookie('coupon_id');
+                    InterfaceUtil.delCookie('cart_id');
+                    sessionStorage.setItem("orderno", data.data.order_number);
                     PubSub.publish('PubSubmessage', data.code);
                     that.props.history.push('/Dingdan');
-                }else {
+                } else {
                     alert(data.msg);
                 }
 
@@ -98,7 +127,7 @@ class Jiesuan1 extends React.Component {
     }
 
     render() {
-        const data=this.state.feiyong1;
+        const data = this.state.feiyong1;
         return (
             <div className=' jiesuan_sousuo marginBottom20'>
                 <div>

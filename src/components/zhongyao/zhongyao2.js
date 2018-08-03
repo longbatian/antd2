@@ -107,7 +107,7 @@ class Zhongyao2 extends React.Component {
             data: InterfaceUtil.addTime({}),
             dataType: "json",
             success: function (data) {
-
+                console.log(JSON.stringify(data))
                 if (data.data.length == 0) {
 
                 } else {
@@ -143,7 +143,7 @@ class Zhongyao2 extends React.Component {
                                         <div className='zhongyao_rank_con_zheng floatleft'><img
                                             src={this.state.lujin + item.image} className='width69' alt=""/></div>
                                         <div className='zhongyao_rank_ul_rank'>{i + 1}</div>
-                                        <span className='floatleft hid width110'>{item.title}</span>
+                                        <span className='floatleft hid width110'>{item.name}</span>
                                         <span className='floatleft hid width110'>精选{item.sku}</span>
                                         <span className='floatleft hid width110'>{item.scqy}</span>
                                         <div className='clear'></div>
@@ -153,7 +153,7 @@ class Zhongyao2 extends React.Component {
                             }, this)
                         }
                         {
-                            this.state.rank2.map(function (item, i) {
+                            this.state.rank1.map(function (item, i) {
                                 return (
                                     <li key={item.id + 'zhYrank2'} className='zhongyao_rank_ul_li'
                                         onMouseOver={(e) => {
@@ -169,8 +169,8 @@ class Zhongyao2 extends React.Component {
                                         <div className='zhongyao_rank_ul_yuan floatleft'>{i + 4}</div>
                                         <img src={this.state.lujin + item.image} alt=""
                                              className='zhongyao_rank_ul_img_current display floatleft'/>
-                                        <span className='floatleft width165 hid'>{item.title}</span>
-                                        <div className='clear'></div>
+                                        <span className='floatleft width165 hid'>{item.name}</span>
+                                        <div className='clear'/>
                                         {/*</Link>*/}
 
                                     </li>
@@ -216,7 +216,7 @@ class Zhongyao2 extends React.Component {
                     </div>
                     <ul className='zhongyao_rank_ul'>
                         {
-                            this.state.rank3.map(function (item, i) {
+                            this.state.rank2.map(function (item, i) {
                                 return (
                                     <li className='relative' key={item.id + 'zhYrank3'} data={item.id} onClick={(e) => {
                                         this.xiangqing1(e, item.id)
@@ -224,16 +224,16 @@ class Zhongyao2 extends React.Component {
                                         <div className='zhongyao_rank_con_zheng floatleft'><img
                                             src={this.state.lujin + item.image} className='width69' alt=""/></div>
                                         <div className='zhongyao_rank_ul_rank'>{i + 1}</div>
-                                        <span className='floatleft hid width110'>{item.title}</span>
-                                        <span className='floatleft hid width110'>精选{item.sku}</span>
-                                        <span className='floatleft hid width110'>{item.scqy}</span>
+                                        <span className='floatleft hid width110'>{item.name}</span>
+                                        <span className='floatleft hid width110'>精选{item.standard}</span>
+                                        <span className='floatleft hid width110'>{item.enterprise}</span>
                                         <div className='clear'></div>
                                     </li>
                                 )
                             }, this)
                         }
                         {
-                            this.state.rank4.map(function (item, i) {
+                            this.state.rank2.map(function (item, i) {
                                 return (
                                     <li key={item.id + 'zhYrank4'} className='zhongyao_rank_ul_li'
                                         onMouseOver={(e) => {
@@ -244,10 +244,10 @@ class Zhongyao2 extends React.Component {
                                         onClick={(e) => {
                                             this.xiangqing1(e, item.id)
                                         }}>
-                                        <div className='zhongyao_rank_ul_yuan floatleft'>{i + 4}</div>
+                                        <div className='zhongyao_rank_ul_yuan floatleft'>{i + 5}</div>
                                         <img src={this.state.lujin + item.image} alt=""
                                              className='zhongyao_rank_ul_img_current display floatleft'/>
-                                        <span className='floatleft width165 hid'>{item.title}</span>
+                                        <span className='floatleft width165 hid'>{item.name}</span>
                                         <div className='clear'></div>
                                     </li>
                                 )

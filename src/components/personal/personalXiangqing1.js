@@ -36,12 +36,13 @@ class PersonalXiangqing extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(38),
             type: "post",
-            data: {
-                "username": username, "token": token, "order_id": order_id, "user_id": user_id
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "order_id": order_id, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.status === 1) {
+                // console.log(JSON.stringify(data))
+                if (data.code === 1) {
                     PubSub.publish('PubSubmessage', data.status);
                 }
                 if (data.data == '1') {
@@ -124,7 +125,7 @@ class PersonalXiangqing extends React.Component {
     }
 
     componentDidMount() {
-        let username = CoojiePage.getCoojie('username');
+        let user_id = CoojiePage.getCoojie('user_id');
         let token = CoojiePage.getCoojie('token');
         let order_id = CoojiePage.getCoojie('order_id');
         const that = this;
@@ -132,37 +133,37 @@ class PersonalXiangqing extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(43),
             type: "post",
-            data: {
-                "username": username, "token": token, "order_id": order_id, "page": 1, "limit": 5
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "order_id": order_id, "page": 1, "pageSize": 10
+            }),
             dataType: "json",
             success: function (data) {
-
+                console.log(JSON.stringify(data));
                 if (data.data.length == 0) {
 
                 } else {
-                    that.setState({
-                        ddxq: data.data.order_info,
-                        ddsj: data.data.order,
-                        sphj: data.data.order[0].ddprice,
-                        cons: data.data.cons
-                    }, () => {
-                        var a = document.getElementsByClassName('xiangqing_ddzt');
-                        var b = a[0].innerText;
-                        if (b == '待付款') {
-                            var c = document.getElementsByClassName('personal_xiangqing_con_span1');
-                            c[0].className = 'personal_xiangqing_con_span1 fontFamily'
-                        }
-                    });
+                    // that.setState({
+                    //     ddxq: data.data.order_info,
+                    //     ddsj: data.data.order,
+                    //     sphj: data.data.order[0].ddprice,
+                    //     cons: data.data.cons
+                    // }, () => {
+                    //     var a = document.getElementsByClassName('xiangqing_ddzt');
+                    //     var b = a[0].innerText;
+                    //     if (b == '待付款') {
+                    //         var c = document.getElementsByClassName('personal_xiangqing_con_span1');
+                    //         c[0].className = 'personal_xiangqing_con_span1 fontFamily'
+                    //     }
+                    // });
                 }
             }
         });
         $.ajax({
             url: InterfaceUtil.getUrl(44),
             type: "post",
-            data: {
-                "username": username, "token": token, "limit": 5, "orderno": order_id
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": user_id, "token": token, "pageSize": 5, "orderno": order_id
+            }),
             dataType: "json",
             success: function (data) {
                 // console.log(data)

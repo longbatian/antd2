@@ -19,6 +19,7 @@
 }
 .youhuiquan_con ul{
   margin-left: -20px;
+  overflow: hidden;
 }
 .youhuiquan_con ul li {
   width: 275px;

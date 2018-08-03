@@ -14,9 +14,9 @@ class Jiesuan extends React.Component {
             feiyong: '',
             coupon: [],
             sp: [],
-            yunf:500,
+            yunf: 500,
             cons: '',
-            freight_price:0,
+            freight_price: 0,
             more: false,
             lujin: InterfaceUtil.getImgUrl(),
             isFavorite: false,
@@ -26,8 +26,8 @@ class Jiesuan extends React.Component {
     wanzheng(e) {
         if (this.state.more === false) {
             this.setState({
-                                more: true,
-                            });
+                more: true,
+            });
             //
             // var username = CoojiePage.getCoojie('username');
             // var token = CoojiePage.getCoojie('token');
@@ -134,9 +134,8 @@ class Jiesuan extends React.Component {
     componentDidMount() {
         var token = CoojiePage.getCoojie('token');
         var user_id = CoojiePage.getCoojie('user_id');
-        var user_type = CoojiePage.getCoojie('user_type');
-        var jylx = CoojiePage.getCoojie('jylx');
-        var cid = CoojiePage.getCoojie('cid');
+        var cart_id = CoojiePage.getCoojie('cart_id');
+        var coupon_id = CoojiePage.getCoojie('coupon_id');
         const that = this;
         //全局
         $.ajax({
@@ -150,24 +149,30 @@ class Jiesuan extends React.Component {
                 });
             }
         });
+        let datas = {};
+        if (cart_id) {
+            datas = { "user_id": user_id, "token": token, "cart_id": cart_id}
+        }else {
+            datas = { "user_id": user_id, "token": token, "coupon_id": coupon_id}
+        }
+        console.log(datas)
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
-            data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "cart_id": cid
-            }),
+            data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (data.code !== 1) {
                     alert(data.msg);
-                    that.props.history.push('/Buycar');
+                    // that.props.history.push('/Buycar');
                     return;
                 }
                 that.setState({
                     shxx: data.data.user_address,
                     // huodong: data.data.activity,
                     feiyong: data.data.price,
-                    freight_price:data.data.freight_price,
+                    freight_price: data.data.freight_price,
                     coupon: data.data.coupon_list,
                     sp: data.data.goods_list,
                 });
@@ -181,7 +186,7 @@ class Jiesuan extends React.Component {
     }
 
     render() {
-        const data=this.state;
+        const data = this.state;
         return (
             <div className='container'>
                 {/*进度条*/}
@@ -214,10 +219,10 @@ class Jiesuan extends React.Component {
                     {/*清单列表*/}
                     {
                         this.state.sp.map(function (item, i) {
-                            let activity_price=item.activity_price?item.activity_price:item.price;
+                            let activity_price = item.activity_price ? item.activity_price : item.price;
 
                             return (
-                                <div key={item.id+`sp`+i} className='jiesuan_div_div2'>
+                                <div key={item.id + `sp` + i} className='jiesuan_div_div2'>
                                     <div className='jiesuan_div_div1_div'><img src={this.state.lujin + item.image}
                                                                                className='jiesuan_div_div1_div_img'
                                                                                alt=""/></div>
@@ -305,7 +310,8 @@ class Jiesuan extends React.Component {
                                 <option
                                     value='0'
                                     data="0"
-                                    className='jiesuan_sel_opt'>无</option>
+                                    className='jiesuan_sel_opt'>无
+                                </option>
                                 {
                                     data.coupon.map(function (item, i) {
                                         return (
