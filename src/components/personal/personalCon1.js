@@ -57,11 +57,11 @@ class personalBox extends React.Component {
     }
 
     //查看订单
-    xiangqing1(e) {
-        var a = e.target.parentNode.parentNode.parentNode.firstChild.innerText;
-        var order_id = a;
-        sessionStorage.setItem("orderno", order_id);
-        document.cookie = "order_id=" + order_id;
+    xiangqing1(e,id) {
+        // var a = e.target.parentNode.parentNode.parentNode.firstChild.innerText;
+        // var order_id = a;
+        sessionStorage.setItem("orderno", id);
+        document.cookie = "order_id=" + id;
     }
 
     //取消收藏
@@ -160,7 +160,6 @@ class personalBox extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data));
                 if (!data.data) return;
                 var data=data.data;
                 that.setState({
@@ -410,7 +409,7 @@ class personalBox extends React.Component {
                                             <td data={item.order_number}>
                                                 {orderState}
                                                 <Link to="/Xiangqing" className='black'><span onClick={(e) => {
-                                                    this.xiangqing1(e)
+                                                    this.xiangqing1(e,item.id)
                                                 }}> 查看订单</span></Link>
                                             </td>
                                         </tr>

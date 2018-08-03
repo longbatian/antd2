@@ -90,7 +90,8 @@ let urls=[
     '/users/goods_collect_list',//36
     // 'order/close_order',//37
     '/orders/close_order',//37
-    'user_order/cartaddall',//38
+    // 'user_order/cartaddall',//38
+    '/orders/order_again',//38
     // 'user/changepassword',//39
     '/users/modify_password',//39
     'user/userinfo',//40
@@ -99,7 +100,8 @@ let urls=[
     // 'user_order/getorderinfo',//43
     '/orders/order_detail',//43
     'order/order_wl',//44
-    'user/coupons'//45
+    // 'user/coupons'//45
+    '/goods/user_coupon'//45
     ,'user/coupon_counts',//46
     'user/delete_znx',//47
     // 'user/get_znx',//48

@@ -1,8 +1,8 @@
 import $ from "jquery";
 import React from 'react';
-import {Input, Button, Select, Pagination, Timeline} from 'antd';
+import {Pagination} from 'antd';
 import Tuijian from '../common/tuijian';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
 import {PubSub} from 'pubsub-js';
@@ -20,11 +20,12 @@ class PersonalXiangqing extends React.Component {
             checked: '',
             cons: 1,
             orderno: [],
+            e:1,
         }
     }
 
 
-    BuyCar(e) {
+    BuyCar(e,id) {
 
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
@@ -37,18 +38,49 @@ class PersonalXiangqing extends React.Component {
             url: InterfaceUtil.getUrl(38),
             type: "post",
             data: InterfaceUtil.addTime({
-                "token": token, "order_id": order_id, "user_id": user_id
+                "token": token, "order_id": id, "user_id": user_id
             }),
             dataType: "json",
             success: function (data) {
-                // console.log(JSON.stringify(data))
+
                 if (data.code === 1) {
                     PubSub.publish('PubSubmessage', data.status);
-                }
-                if (data.data == '1') {
                     CoojiePage.setBuyCarOk()
+                }else {
+                    if (data.msg != 'token过期') {
+                        var no = document.getElementsByClassName('buycar_no');
+                        var no_span = document.getElementsByClassName('buycar_no_con_span');
+                        no[0].className = 'buycar_no';
+                        no_span[0].innerText = data.msg;
+                    } else {
+                        this.props.history.push('/Denglu');
+
+                    }
+                }
+
+            }
+        });
+    }
+
+    BuyCar8(e) {
+        var id = e.target.getAttribute('data');
+        var num = e.target.getAttribute('data-index');
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
+        const that = this;
+        //我的收藏
+        $.ajax({
+            url: InterfaceUtil.getUrl(11),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                 "token": token, "user_id": user_id, "goods_id": id, "goods_num": num
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code == '1') {
+                   CoojiePage.setBuyCarOk();
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
@@ -60,71 +92,34 @@ class PersonalXiangqing extends React.Component {
                 }
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartaddall",false);
-        // ajax.open('post',InterfaceUtil.getUrl(38),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&order_id="+order_id+"&user_id="+user_id);
-    }
-
-    BuyCar8(e) {
-        var id = e.target.getAttribute('data');
-        var num = e.target.getAttribute('data-index');
-
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
-
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
-        const that = this;
-        //我的收藏
-        $.ajax({
-            url: InterfaceUtil.getUrl(11),
-            type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "goods_id": id, "spsl": num
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data == '1') {
-                    var ok = document.getElementsByClassName('buycar_ok');
-                    ok[0].className = 'buycar_ok';
-                    var timer1 = window.setTimeout(function () {
-                        ok[0].className = 'buycar_ok display';
-                    }, 3000);
-                } else {
-                    if (data.info != 'token过期') {
-                        var no = document.getElementsByClassName('buycar_no');
-                        var no_span = document.getElementsByClassName('buycar_no_con_span');
-                        no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
-                    } else {
-                        this.props.history.push('/Denglu');
-                        // window.location.href='#/Denglu';
-                    }
-                }
-            }
-        });
     }
 
     componentDidMount() {
+        this.startAjax();
+        //物流
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(44),
+        //     type: "post",
+        //     data: InterfaceUtil.addTime({
+        //         "user_id": user_id, "token": token, "pageSize": 5, "orderno": order_id
+        //     }),
+        //     dataType: "json",
+        //     success: function (data) {
+        //         // console.log(data)
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 orderno: data.data
+        //             }, () => {
+        //
+        //             });
+        //         }
+        //     }
+        // });
+
+    }
+    startAjax(){
         let user_id = CoojiePage.getCoojie('user_id');
         let token = CoojiePage.getCoojie('token');
         let order_id = CoojiePage.getCoojie('order_id');
@@ -134,82 +129,38 @@ class PersonalXiangqing extends React.Component {
             url: InterfaceUtil.getUrl(43),
             type: "post",
             data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "order_id": order_id, "page": 1, "pageSize": 10
+                "user_id": user_id, "token": token, "order_id": order_id, "page": that.state.e, "pageSize": 10
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data));
                 if (data.data.length == 0) {
 
                 } else {
-                    // that.setState({
-                    //     ddxq: data.data.order_info,
-                    //     ddsj: data.data.order,
-                    //     sphj: data.data.order[0].ddprice,
-                    //     cons: data.data.cons
-                    // }, () => {
-                    //     var a = document.getElementsByClassName('xiangqing_ddzt');
-                    //     var b = a[0].innerText;
-                    //     if (b == '待付款') {
-                    //         var c = document.getElementsByClassName('personal_xiangqing_con_span1');
-                    //         c[0].className = 'personal_xiangqing_con_span1 fontFamily'
-                    //     }
-                    // });
-                }
-            }
-        });
-        $.ajax({
-            url: InterfaceUtil.getUrl(44),
-            type: "post",
-            data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "pageSize": 5, "orderno": order_id
-            }),
-            dataType: "json",
-            success: function (data) {
-                // console.log(data)
-                if (data.data.length == 0) {
-
-                } else {
+                    let datas = data.data;
                     that.setState({
-                        orderno: data.data
+                        ddxq: datas.goods_list,
+                        ddsj: datas,
+                        // sphj: data.data.order[0].ddprice,
+                        // cons: data.data.cons
                     }, () => {
-
+                        var a = document.getElementsByClassName('xiangqing_ddzt');
+                        var b = a[0].innerText;
+                        if (b == '待付款') {
+                            var c = document.getElementsByClassName('personal_xiangqing_con_span1');
+                            c[0].className = 'personal_xiangqing_con_span1 fontFamily'
+                        }
                     });
                 }
             }
         });
-
     }
-
-//分页
+    //分页
     fenye(e) {
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var order_id = CoojiePage.getCoojie('order_id');
-        const that = this;
-        //订单ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(43),
-            type: "post",
-            data: {
-                "username": username, "token": token, "order_id": order_id, page: e,
-                limit: 5
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data.length == 0) {
+        this.setState({
+            e:e
+        })
+        this.startAjax();
 
-                } else {
-                    that.setState({
-                        ddxq: data.data.order_info,
-                        ddsj: data.data.order,
-                    });
-                    //    that.refs.dingdan.className = 'display'
-                }
-
-            }
-        });
     }
 
     dingdanxiangqingJiesuan(id) {
@@ -218,6 +169,12 @@ class PersonalXiangqing extends React.Component {
     }
 
     render() {
+        let item = this.state.ddsj;
+        let times = null;
+        let address = item.address ? item.address : {};
+        let connum=item.goods_list ?item.goods_list.length+1:1;
+            times = InterfaceUtil.fmtDate(item.created_time);
+
         return (
             <div className=' width988 floatRight'>
                 {/*最近订单标题*/}
@@ -227,118 +184,118 @@ class PersonalXiangqing extends React.Component {
                 {/*内容*/}
                 <div className='bgWhite personal_xiangqing_title'>
                     <div className='xian'></div>
-                    {
-                        this.state.ddsj.map(function (item) {
+                    {/*{*/}
+                    {/*this.state.ddsj.map(function (item) {*/}
 
-                            return (
-                                <div>
-                                    {/*头部*/}
-                                    <div className='width988 white'>
-                                        {/*时间订单号*/}
-                                        <div className='timeOrder'>
-                                            <div className='personal_xiangqing_con_p'>
-                                                <span className='fontFamily marginLeft10'>{item.addtime}</span>
-                                                &nbsp;&nbsp;&nbsp;订单号:<span
-                                                className='fontFamily xiangqing_ddh'>&nbsp;{item.orderno}</span>
-                                                &nbsp;&nbsp;&nbsp;状态：<span
-                                                className='orange fontFamily xiangqing_ddzt'>{item.ddzt}</span>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                    {/*return (*/}
+                    <div>
+                        {/*头部*/}
+                        <div className='width988 white'>
+                            {/*时间订单号*/}
+                            <div className='timeOrder'>
+                                <div className='personal_xiangqing_con_p'>
+                                    <span className='fontFamily marginLeft10'>创建时间： {times}</span>
+                                    &nbsp;&nbsp;&nbsp;订单号:<span
+                                    className='fontFamily xiangqing_ddh'>&nbsp;{item.order_number}</span>
+                                    &nbsp;&nbsp;&nbsp;状态：<span
+                                    className='orange fontFamily xiangqing_ddzt'>{item.order_type}</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
 
-                                                <span
-                                                    className='personal_xiangqing_con_span1 fontFamily display'
-                                                    onClick={() => this.dingdanxiangqingJiesuan(item.orderno)}
-                                                >
+                                    <span
+                                        className='personal_xiangqing_con_span1 fontFamily display'
+                                        onClick={() => this.dingdanxiangqingJiesuan(item.order_number)}
+                                    >
                                                     去付款
                                                 </span>
-                                            </div>
-                                            <p className='personal_xiangqing_con_p1'>用户备注：<span>{item.bz}</span></p>
-                                            <p className='personal_xiangqing_con_p1'>系统备注：<span
-                                                className='red1'>{item.sysbz}</span></p>
-                                        </div>
-                                        <div className='clear'></div>
-                                    </div>
-                                    {/*物流详情*/}
-                                    <div className='personal_xiangqing_title_con'>
-                                        <div className='personal_xiangqing_title_con_div'>
-                                            <p>配送方式：<span>自提</span></p>
-                                            <p>发票信息：<span>增值税专用发票</span></p>
-                                        </div>
-                                        <div className='personal_xiangqing_title_con_div1'>
-                                            {/*<Timeline>*/}
-                                            {/*{*/}
-                                            {/*this.state.orderno.map(function (item){*/}
-                                            {/*return(*/}
-                                            {/*<Timeline.Item></Timeline.Item>*/}
-                                            {/*)*/}
-                                            {/*},this )*/}
-                                            {/*}*/}
-                                            {/*</Timeline>*/}
-                                            {/*{*/}
-                                            {/*this.state.orderno.map(function (item){*/}
-                                            {/*return(*/}
-                                            {/*<p className=''>{item.createtime}  {item.wldw}</p>*/}
-                                            {/*)*/}
-                                            {/*},this )*/}
-                                            {/*}*/}
-                                            <Timeline className='wlxx'>
-                                                {
-                                                    this.state.orderno.map(function (item, i) {
-                                                        return (
-                                                            <Timeline.Item>
-                                                                <span className='wlxx_span'>
-                                                                {item.createtime}\{item.wldw}
-                                                                </span>
-                                                            </Timeline.Item>
-                                                        )
-                                                    }, this)
-                                                }
-
-                                            </Timeline>
-
-
-                                            {/*<Timeline className='ZWwlxx display'>*/}
-                                                {/*<Timeline.Item><span*/}
-                                                    {/*className='wlxx_span'> 暂无物流信息</span></Timeline.Item>*/}
-                                            {/*</Timeline>*/}
-                                        </div>
-                                        <div className='clear'></div>
-                                    </div>
-                                    {/*收货信息*/}
-                                    <div className='marginLeft20 marginTop20 personal_xiangqing_title_div2'>
-                                        <p className='personal_xiangqing_title_div2_p1'>收货信息</p>
-                                        <div className='personal_xiangqing_title_div2_div2'>收货人：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>{item.shr}</div>
-                                        <br/>
-                                        <div className='personal_xiangqing_title_div2_div'>联系方式：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>{item.shdh}</div>
-                                        <br/>
-                                        <div className='personal_xiangqing_title_div2_div'>收货地址：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>{item.shdz}</div>
-                                        <div className='clear'></div>
-                                    </div>
-                                    {/*费用总计*/}
-                                    <div className='marginTop20 personal_xiangqing_title_div2'>
-                                        <p className='personal_xiangqing_title_div2_p1'>费用总计</p>
-                                        <div className='personal_xiangqing_title_div2_div2'>商品金额：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>{item.ddprice}</div>
-                                        <br/>
-                                        <div className='personal_xiangqing_title_div2_div'>+运费：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>￥<span>{item.ddyf}</span>
-                                        </div>
-                                        <br/>
-                                        <div className='personal_xiangqing_title_div2_div'>-优惠：</div>
-                                        <div className='personal_xiangqing_title_div2_div1'>￥<span>{item.yhqje}</span>
-                                        </div>
-                                        <br/>
-                                        <div className='personal_xiangqing_title_div2_div orange1'>实付金额：</div>
-                                        <div className='personal_xiangqing_title_div2_div1 orange1'>￥<span
-                                            className='orange1'>{item.sfje}</span></div>
-                                        <div className='clear'/>
-                                    </div>
                                 </div>
-                            )
-                        }, this)
-                    }
+                                <p className='personal_xiangqing_con_p1'>用户备注：<span>{item.bz}</span></p>
+                                <p className='personal_xiangqing_con_p1'>系统备注：<span
+                                    className='red1'>{item.sysbz}</span></p>
+                            </div>
+                            <div className='clear'></div>
+                        </div>
+                        {/*物流详情*/}
+                        <div className='personal_xiangqing_title_con'>
+                            <div className='personal_xiangqing_title_con_div'>
+                                <p>配送方式：<span>自提</span></p>
+                                <p>发票信息：<span>增值税专用发票</span></p>
+                            </div>
+                            <div className='personal_xiangqing_title_con_div1'>
+                                {/*<Timeline>*/}
+                                {/*{*/}
+                                {/*this.state.orderno.map(function (item){*/}
+                                {/*return(*/}
+                                {/*<Timeline.Item></Timeline.Item>*/}
+                                {/*)*/}
+                                {/*},this )*/}
+                                {/*}*/}
+                                {/*</Timeline>*/}
+                                {/*{*/}
+                                {/*this.state.orderno.map(function (item){*/}
+                                {/*return(*/}
+                                {/*<p className=''>{item.createtime}  {item.wldw}</p>*/}
+                                {/*)*/}
+                                {/*},this )*/}
+                                {/*}*/}
+                                {/*<Timeline className='wlxx'>*/}
+                                {/*{*/}
+                                {/*this.state.orderno.map(function (item, i) {*/}
+                                {/*return (*/}
+                                {/*<Timeline.Item>*/}
+                                {/*<span className='wlxx_span'>*/}
+                                {/*{item.createtime}\{item.wldw}*/}
+                                {/*</span>*/}
+                                {/*</Timeline.Item>*/}
+                                {/*)*/}
+                                {/*}, this)*/}
+                                {/*}*/}
+
+                                {/*</Timeline>*/}
+
+
+                                {/*<Timeline className='ZWwlxx display'>*/}
+                                {/*<Timeline.Item><span*/}
+                                {/*className='wlxx_span'> 暂无物流信息</span></Timeline.Item>*/}
+                                {/*</Timeline>*/}
+                            </div>
+                            <div className='clear'></div>
+                        </div>
+                        {/*收货信息*/}
+                        <div className='marginLeft20 marginTop20 personal_xiangqing_title_div2'>
+                            <p className='personal_xiangqing_title_div2_p1'>收货信息</p>
+                            <div className='personal_xiangqing_title_div2_div2'>收货人：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>{address.name}</div>
+                            <br/>
+                            <div className='personal_xiangqing_title_div2_div'>联系方式：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>{address.tel}</div>
+                            <br/>
+                            <div className='personal_xiangqing_title_div2_div'>收货地址：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>{address.address}</div>
+                            <div className='clear'></div>
+                        </div>
+                        {/*费用总计*/}
+                        <div className='marginTop20 personal_xiangqing_title_div2'>
+                            <p className='personal_xiangqing_title_div2_p1'>费用总计</p>
+                            <div className='personal_xiangqing_title_div2_div2'>商品金额：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>{item.price}</div>
+                            <br/>
+                            <div className='personal_xiangqing_title_div2_div'>+运费：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>￥<span>{item.freight_price}</span>
+                            </div>
+                            <br/>
+                            <div className='personal_xiangqing_title_div2_div'>-优惠：</div>
+                            <div className='personal_xiangqing_title_div2_div1'>￥<span>{item.coupon_price}</span>
+                            </div>
+                            <br/>
+                            <div className='personal_xiangqing_title_div2_div orange1'>实付金额：</div>
+                            <div className='personal_xiangqing_title_div2_div1 orange1'>￥<span
+                                className='orange1'>{item.price}</span></div>
+                            <div className='clear'/>
+                        </div>
+                    </div>
+                    {/*)*/}
+                    {/*}, this)*/}
+                    {/*}*/}
 
                     <div className='clear'/>
                     {/*订单商品*/}
@@ -348,7 +305,7 @@ class PersonalXiangqing extends React.Component {
                             <span className='floatleft personal_xiangqing_title_div3_span1'>订单商品</span>
                             <span className='floatRight marginRight20 personal_xiangqing_title_div3_span2'
                                   onClick={(e) => {
-                                      this.BuyCar(e)
+                                      this.BuyCar(e,item.id)
                                   }}>全部加入购物车</span>
                             <div className='clear'/>
                         </div>
@@ -371,22 +328,27 @@ class PersonalXiangqing extends React.Component {
                             <tbody>
                             {
                                 this.state.ddxq.map(function (item) {
+                                    let moneys = null;
+                                    if (item.goods_num && item.goods_price) {
+                                        moneys = parseFloat(item.goods_price) / parseFloat(item.goods_num);
+                                    }
+
                                     return (
-                                        <tr key={item.index}>
+                                        <tr key={item.id}>
                                             <td className='orange hid width130'>
-                                                <img src={this.state.lujin + item.sp_image} className='xiangqing_img'
+                                                <img src={this.state.lujin + item.image} className='xiangqing_img'
                                                      alt=""/>
                                             </td>
-                                            <td className='hid'>{item.sp_name}</td>
-                                            <td className='hid'>{item.scqy}</td>
-                                            <td className='hid'>{item.sp_sku}</td>
-                                            <td>{item.sp_dw}</td>
-                                            <td><span className='red'>{item.act}</span></td>
-                                            <td className='personalCon1_table_tr'>￥{item.sp_price}</td>
-                                            <td>{item.sp_sl}</td>
-                                            <td>￥{item.price_count}</td>
-                                            <td><span className='personal_xiangqing_title_div3_span' data={item.sp_id}
-                                                      data-index={item.zxdw} onClick={(e) => {
+                                            <td className='hid'>{item.name}</td>
+                                            <td className='hid'>{item.enterprise}</td>
+                                            <td className='hid'>{item.standard}</td>
+                                            <td>{item.unit}</td>
+                                            <td><span className='red'>/</span></td>
+                                            <td className='personalCon1_table_tr'>￥{moneys}</td>
+                                            <td>{item.goods_num}</td>
+                                            <td>￥{item.goods_price}</td>
+                                            <td><span className='personal_xiangqing_title_div3_span' data={item.goods_id}
+                                                      data-index={item.goods_num} onClick={(e) => {
                                                 this.BuyCar8(e)
                                             }}>加入购物车</span></td>
                                         </tr>
@@ -404,7 +366,7 @@ class PersonalXiangqing extends React.Component {
                             <div className='floatRight personal_zhanneixin_title_div3_span3'>
                                 <Pagination
                                     showQuickJumper={true} defaultCurrent={1} defaultPageSize={5}
-                                    total={this.state.cons} onChange={(e) => {
+                                    total={connum} onChange={(e) => {
                                     this.fenye(e)
                                 }}/></div>
                             <div className='clear'/>

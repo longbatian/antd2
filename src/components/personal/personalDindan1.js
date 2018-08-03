@@ -33,11 +33,11 @@ class PersonalDindan extends React.Component {
         a.lastChild.className = 'personalCon1_xuanfu1 personalCon1_xuanfu display'
     }
 
-    //
-    xiangqing(e) {
-        var a = e.target.parentNode.parentNode.firstChild.value;
-        var order_id = a;
-        document.cookie = "order_id=" + order_id;
+    /**
+     *传值订单id
+     */
+    xiangqing(e,a) {
+        document.cookie = "order_id=" + a;
     }
 
     //切换颜色
@@ -303,7 +303,7 @@ class PersonalDindan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data) {
-                    console.log(data)
+
                     if (data.code == 1) {
                         that.ajaxPersonDingDan();
                     }
@@ -319,22 +319,19 @@ class PersonalDindan extends React.Component {
             $.ajax({
                 url: InterfaceUtil.getUrl(38),
                 type: "post",
-                data: {
-                    "username": username, "token": token, "user_id": user_id, "order_id": id
-                },
+                data: InterfaceUtil.addTime({
+                   "token": token, "user_id": user_id, "order_id": id
+                }),
                 dataType: "json",
                 success: function (data) {
-                    if (data.data == '1') {
-                        var ok = document.getElementsByClassName('buycar_ok');
-                        ok[0].className = 'buycar_ok';
-                        var timer1 = window.setTimeout(function () {
-                            ok[0].className = 'buycar_ok display';
-                        }, 3000);
+                    console.log(data)
+                    if (data.code == '1') {
+                       CoojiePage.setBuyCarOk();
                     } else {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     }
                 }
             });
@@ -377,7 +374,6 @@ class PersonalDindan extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
                 if (data.code === 0) {
                     that.props.history.push("#/Denglu");
                     return;
@@ -485,7 +481,6 @@ class PersonalDindan extends React.Component {
                                     let dingdanState = '再次购买';
                                     let dingdanClassName = 'dingdan_goumai orange';
                                     let personalCon1_table = <span className='nulls'></span>;
-                                    // console.log(item.order_status === 1)
                                     if (item.order_status === `2`) {
                                         dingdanState = '收货';
                                     } else if (item.order_status === `1`) {
@@ -552,7 +547,7 @@ class PersonalDindan extends React.Component {
                                                 &nbsp;
                                                 <Link to="/Xiangqing" className='black'><span className='orange'
                                                                                               onClick={(e) => {
-                                                                                                  this.xiangqing(e)
+                                                                                                  this.xiangqing(e,item.id)
                                                                                               }}>查看订单</span></Link>&nbsp;
                                                 <span className={dingdanClassName} onClick={(e) => {
                                                     this.quxiaoDD(e,item.id)
@@ -599,7 +594,6 @@ class PersonalDindan extends React.Component {
         //物流
         var ZWwlxx = document.getElementsByClassName('ZWwlxx');
         var wlxx = document.getElementsByClassName('wlxx');
-        // console.log(wlxx.length);
         for (var i = 0; i < ZWwlxx.length; i++) {
             if (wlxx[i].children.length == 0) {
                 ZWwlxx[i].className = 'ant-timeline ZWwlxx '
