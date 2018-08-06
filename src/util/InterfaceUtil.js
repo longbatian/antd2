@@ -81,7 +81,8 @@ let urls=[
     // 'news/newlist',//31
     '/index/news_list',//31
     'user_order/addcartall',//32
-    'user/zncg_list',//33
+    // 'user/zncg_list',//33
+    '/orders/auto_buy',//33
     // 'user/index',//34
     '/users/user_info',//34
     // 'user_order/getorder',//35
@@ -133,6 +134,7 @@ let urls=[
     '/goods/goods_agent',//64
     '/orders/alipay_pay_qrcode',//65
     '/goods/coupon_tickets',//66
+    '/users/integral_goods',//67
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{

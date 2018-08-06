@@ -4,8 +4,9 @@
 
 import React from 'react';
 import Tuijian from '../common/tuijian';
-import {Input, Button, Select, Pagination, Modal} from 'antd';
+import {Button, Modal, Pagination, Select} from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
+import CoojiePage from '../../util/CoojiePage';
 import $ from 'jquery';
 import '../../styles/personal/personalCaigou.css'
 // import $ from "../../js/jquery.min";
@@ -17,25 +18,12 @@ function handleChange(value) {
 }
 
 
-
 class PersonalCaigou extends React.Component {
-
-    constructor(props) {
-        super(props); //调用父类的构造方法；
-        this.state = {
-            zncg: [],
-            lujin: 'http://www.scjuchuang.com/',
-            checked: '',
-            cons: ''
-        }
-    }
 
     state = {
         loading: false,
         visible: false,
     }
-
-
     showModal = () => {
         this.setState({
             visible: true,
@@ -49,6 +37,17 @@ class PersonalCaigou extends React.Component {
     }
     handleCancel = () => {
         this.setState({visible: false});
+    }
+
+    constructor(props) {
+        super(props); //调用父类的构造方法；
+        this.state = {
+            zncg: [],
+            lujin: InterfaceUtil.getImgUrl(),
+            checked: '',
+            cons: '',
+            page:1,
+        }
     }
 
     //全选
@@ -160,43 +159,28 @@ class PersonalCaigou extends React.Component {
         var num = e.target.parentNode.parentNode.getAttribute('data-index');
 
         // 请求
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
 
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
+
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //智能采购
         $.ajax({
             url: InterfaceUtil.getUrl(11),
             type: "post",
-            data: {
-                "username": username, "token": token, "goods_id": id, "spsl": num, "user_id": user_id
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "goods_id": id, "user_id": user_id
+            }),
             dataType: "json",
             success: function (data) {
-                if (data.data == '1') {
-                    var ok = document.getElementsByClassName('buycar_ok');
-                    ok[0].className = 'buycar_ok';
-                    var timer1 = window.setTimeout(function () {
-                        ok[0].className = 'buycar_ok display';
-                    }, 3000);
+                if (data.code == '1') {
+                    CoojiePage.setBuyCarOk()
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
-                        no_span[0].innerText = data.info;
+                        no_span[0].innerText = data.msg;
                     } else {
                         window.location.href = '#/Denglu';
                     }
@@ -206,99 +190,39 @@ class PersonalCaigou extends React.Component {
 
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/cartadd",false);
-        // ajax.open('post',InterfaceUtil.getUrl(11),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
-
-        //   }
-        // };
-        // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&spsl="+num+"&user_id="+user_id);
     }
 
     //分页
     fenye(e) {
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
-
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
-        var jylx = getCookie('jylx');
-        const that = this;
-        //智能采购
-        $.ajax({
-            url: InterfaceUtil.getUrl(33),
-            type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "jylx": jylx, "page": e, "limit": 12
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data.list.length == 0) {
-
-                } else {
-                    that.setState({
-                        zncg: data.data.list,
-                        cons: data.data.cons
-                    });
-                    that.refs.shoucang.className = 'display'
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-            }
-        });
+        this.setState({
+            page: e
+        }, () => this.startAjax())
 
     }
 
     componentDidMount() {
-        function getCookie(cookieName) {
-            var strCookie = document.cookie;
-            var arrCookie = strCookie.split("; ");
-            for (var i = 0; i < arrCookie.length; i++) {
-                var arr = arrCookie[i].split("=");
-                if (cookieName == arr[0]) {
-                    return arr[1];
-                }
-            }
-            return "";
-        }
+        this.startAjax()
+    }
 
-        var username = getCookie('username');
-        var token = getCookie('token');
-        var user_id = getCookie('user_id');
-        var jylx = getCookie('jylx');
+    startAjax() {
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //智能采购
         $.ajax({
             url: InterfaceUtil.getUrl(33),
             type: "post",
-            data: {
-                "username": username, "token": token, "user_id": user_id, "jylx": jylx, "page": 1, "limit": 12
-            },
+            data: InterfaceUtil.addTime({
+                "token": token, "user_id": user_id, "page":that.state.page , "pageSize": 10
+            }),
             dataType: "json",
             success: function (data) {
-
-                if (data.data.list.length == 0) {
-
-                } else {
-                    that.setState({
-                        zncg: data.data.list,
-                        cons: data.data.cons
-                    });
+                console.log(JSON.stringify(data))
+                if (data.code == 1) {
+                    // that.setState({
+                    //     zncg: data.data.list,
+                    //     cons: data.data.cons
+                    // });
                     that.refs.shoucang.className = 'display'
                 }
             },
@@ -306,7 +230,6 @@ class PersonalCaigou extends React.Component {
 
             }
         });
-
     }
 
     render() {
@@ -345,11 +268,12 @@ class PersonalCaigou extends React.Component {
                     {/*全选删除*/}
                     <div className='personal_zhanneixin_top marginLeft20'>
                         <p>
-                            <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"
-                                                                                                 onClick={(e) => {
-                                                                                                     this.quanxuan(e)
-                                                                                                 }}
-                                                                                                 className='quanxuan'/></span>
+                            <span className='personal_wodechoucang_top_span marginRight5'><
+                                input type="checkbox"
+                                      onClick={(e) => {
+                                          this.quanxuan(e)
+                                      }}
+                                      className='quanxuan'/></span>
                             <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
                             <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
                                 this.buycar3(e)
@@ -375,17 +299,17 @@ class PersonalCaigou extends React.Component {
                         {
                             this.state.zncg.map(function (item) {
                                 return (
-                                    <tr data={item.id} data-index={item.zxdw} className='caigou_tr'>
+                                    <tr data={item.id} data-index={item.min_buy} className='caigou_tr'>
                                         <td>
                                             <input type="checkbox" className='marginRight5 shoucang_inp'/>
                                             <img src={this.state.lujin + item.image} alt="" className='xiangqing_img'/>
                                         </td>
-                                        <td className='hid'>{item.title}</td>
-                                        <td className='hid'>{item.scqy}</td>
-                                        <td className='hid'>{item.sku}</td>
-                                        <td>否</td>
+                                        <td className='hid'>{item.name}</td>
+                                        <td className='hid'>{item.enterprise}</td>
+                                        <td className='hid'>{item.standard}</td>
+                                        <td>/</td>
                                         <td>{item.bzdw}</td>
-                                        <td>{item.prices}</td>
+                                        <td>{item.price}</td>
                                         <td>{item.c}</td>
                                         <td>
                                             <div className='personal_Caigou_table_btn' onClick={(e) => {

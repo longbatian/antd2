@@ -6,7 +6,7 @@ import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import LoginPage from '../../util/LoginPage';
 import CoojiePage from '../../util/CoojiePage';
-import {withRouter, Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 import {PubSub} from 'pubsub-js';
 import $ from 'jquery';
@@ -392,7 +392,7 @@ class Chanpinzhongxin extends React.Component {
     }
 
     //分类切换
-    blue(e,pids) {
+    blue(e, pids) {
         var a = document.getElementsByClassName('fenlei1');
         $('.chanpinzhongxin_right_head_li .fenlei').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -422,17 +422,17 @@ class Chanpinzhongxin extends React.Component {
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
         const that = this;
-        var class_z=[];
-        var data=this.state.class;
-         for (var i=0;i<data.length;i++){
-             if(pids === data[i].id){
-                 class_z=data[i].next;
-                 that.setState({
-                     class_z: class_z,
-                     title_zilei: ''
-                 });
-             }
-         }
+        var class_z = [];
+        var data = this.state.class;
+        for (var i = 0; i < data.length; i++) {
+            if (pids === data[i].id) {
+                class_z = data[i].next;
+                that.setState({
+                    class_z: class_z,
+                    title_zilei: ''
+                });
+            }
+        }
         if (class_z.length == 0) {
             $('.title_zilei').addClass('display')
         } else {
@@ -507,7 +507,7 @@ class Chanpinzhongxin extends React.Component {
         }
     }
 
-    blue2(e,jxs) {
+    blue2(e, jxs) {
         var a = document.getElementsByClassName('jixing1');
         $('.jixing').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -1023,8 +1023,8 @@ class Chanpinzhongxin extends React.Component {
             url: InterfaceUtil.getUrl(11),
             type: "post",
             data: InterfaceUtil.addTime({
-                 'token': token, 'user_id': user_id, 'goods_id': id, 'goods_num': shuliang,
-                type:1
+                'token': token, 'user_id': user_id, 'goods_id': id, 'goods_num': shuliang,
+                type: 1
             }),
             dataType: "json",
             success: function (data) {
@@ -1292,8 +1292,10 @@ class Chanpinzhongxin extends React.Component {
 
             }
         })
+        console.log(e)
         const that = this;
         //  商品列表ajax
+
         $.ajax({
             url: InterfaceUtil.getUrl(8),
             type: "post",
@@ -1404,14 +1406,14 @@ class Chanpinzhongxin extends React.Component {
                             <li>
                                 <span className='floatleft'>分类：</span>
                                 {/*<span className='floatRight chanpinzhongxin_right_head_span' onClick={(e) => {*/}
-                                    {/*this.more(e)*/}
+                                {/*this.more(e)*/}
                                 {/*}}>更多</span>*/}
                                 <ul className='chanpinzhongxin_right_head_li_ul'>
                                     {
                                         data.class.map(function (item) {
                                             return (
                                                 <li key={item.id + 'fenlei1'} className='fenlei1' onClick={(e) => {
-                                                    this.blue(e,item.id)
+                                                    this.blue(e, item.id)
                                                 }} data-index={item.id}>{item.name}</li>
                                             )
                                         }, this)
@@ -1449,7 +1451,7 @@ class Chanpinzhongxin extends React.Component {
                                         data.jx.map(function (item, i) {
                                             return (
                                                 <li key={item.id} className='jixing1' onClick={(e) => {
-                                                    this.blue2(e,item.id)
+                                                    this.blue2(e, item.id)
                                                 }}>{item.name}</li>
                                             )
                                         }, this)
@@ -1462,12 +1464,14 @@ class Chanpinzhongxin extends React.Component {
                                 <span className='floatleft'>效期：</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul'>
                                     <li className="xiaoqi1" data="2" onClick={(e) => {
-                                        this.blue3(e,2)
-                                    }}>常规效期</li>
+                                        this.blue3(e, 2)
+                                    }}>常规效期
+                                    </li>
                                     <li className="xiaoqi1" data="1"
                                         onClick={(e) => {
-                                            this.blue3(e,1)
-                                        }}>近效期</li>
+                                            this.blue3(e, 1)
+                                        }}>近效期
+                                    </li>
 
                                 </ul>
                                 <div className='clear'></div>
@@ -1780,12 +1784,9 @@ class Chanpinzhongxin extends React.Component {
                                     )
                                 }, this)
                             }
-                            {/*<span className='chanpinzhongxin_bottom_span'><a href="">注射用克林霉素磷酸脂</a></span>丨*/}
-                            {/*<span className='chanpinzhongxin_bottom_span'><a href="">注射用脑蛋白水解物</a></span>丨*/}
-                            {/*<span className='chanpinzhongxin_bottom_span'><a href="">注射用头孢他啶</a></span>丨*/}
-                            {/*<span className='chanpinzhongxin_bottom_span'><a href="">乳酸左氧氟沙星氯化钠注射</a></span>*/}
+
                         </div>
-                        <div className='clear'></div>
+                        <div className='clear'/>
                     </div>
                     <div className='chanpinzhongxin_bottom_div'>
                         <span>重新搜索：</span>

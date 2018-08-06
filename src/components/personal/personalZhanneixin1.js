@@ -281,6 +281,7 @@ class PersonalZhanneixin extends React.Component {
                                        onClick={(e) => {
                                            this.quanxuan(e)
                                        }}/></p>
+
                             <span className='personal_zhanneixin_top_span1'>全选</span>
                             <span className='personal_zhanneixin_top_span2 cursor' onClick={()=>this.showConfirm()}>删除</span>
                         </div>
@@ -363,7 +364,8 @@ class PersonalZhanneixin extends React.Component {
                     </div>
                     {/*分页*/}
                     <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
-                        <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination
+                        <span className='floatRight personal_zhanneixin_title_div3_span3'>
+                            <Pagination
                             showQuickJumper={true} defaultCurrent={1} defaultPageSize={5} total={data.cons}
                             onChange={(e) => {
                                 this.fenye(e)

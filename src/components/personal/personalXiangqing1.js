@@ -376,7 +376,7 @@ class PersonalXiangqing extends React.Component {
                     <div className='marginTop10'>
                         <p className='personal_xiangqing_title_div3_p'><span
                             className='personal_xiangqing_title_div3_p_span'>商品合计：</span><span
-                            className='red'>￥{this.state.sphj}</span></p>
+                            className='red'>￥{item.price}</span></p>
                     </div>
                     <div className='clear'/>
                 </div>

@@ -1,18 +1,40 @@
 import React from 'react';
+import $ from 'jquery'
 import {Link} from 'react-router-dom';
+import InterfaceUtil from "../../../util/InterfaceUtil";
+import CoojiePage from "../../../util/CoojiePage";
 
 
 class Integralpage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            // page:1
+        }
+        this.user_id=CoojiePage.getCoojie('user_id');
+        this.token=CoojiePage.getCoojie('token');
     }
-
+    componentDidMount(){
+        const _this=this
+        $.ajax({
+            url: InterfaceUtil.getUrl(67),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "token": _this.token, "user_id": _this.user_id
+            }),
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    }
     render() {
         return <div className='boderBottom'>
             <div className="iglHead">
                 <div className="iglHeadLeft">
-                    <img src={require('../../../images/head/logo.png')} alt=""/>
+                    <Link to='/Index'>
+                        <img src={require('../../../images/head/logo.png')} alt=""/>
+                    </Link>
                     <span>积分商城</span>
                 </div>
                 <ul className="iglHeadRig">
@@ -26,7 +48,7 @@ class Integralpage extends React.Component {
                         <Link to={'/Integral/lottery'}>小积分抽大奖</Link>
                     </li>
                     {/*<li>*/}
-                        {/*<Link to={'/Integral/pay'}>积分购券</Link>*/}
+                    {/*<Link to={'/Integral/pay'}>积分购券</Link>*/}
                     {/*</li>*/}
                     <li>
                         <Link to={'/'}>积分攻略</Link>
