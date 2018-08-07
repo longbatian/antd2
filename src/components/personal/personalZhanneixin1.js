@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import {withRouter} from 'react-router-dom'
 import React from 'react';
-import {Input, Button, Select, Pagination, Modal} from 'antd';
+import {Button, Modal, Pagination, Select} from 'antd';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -16,19 +16,18 @@ class PersonalZhanneixin extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
         this.loginPage = new LoginPage();
-        this.username=CoojiePage.getCoojie('username');
-        this.token=CoojiePage.getCoojie('token');
-        this.user_id=CoojiePage.getCoojie('user_id');
+        this.username = CoojiePage.getCoojie('username');
+        this.token = CoojiePage.getCoojie('token');
+        this.user_id = CoojiePage.getCoojie('user_id');
         this.state = {
             znx: [],
             content: '',
             visible: false,
-            textLetter:'',
-            textTitle:'',
-            page:1,
+            textLetter: '',
+            textTitle: '',
+            page: 1,
         }
     }
-
 
     //全选
     quanxuan(e) {
@@ -54,7 +53,16 @@ class PersonalZhanneixin extends React.Component {
             return;
         }
     }
+    showModalZnx (e, i) {
+        this.setState({
+            visible: true,
+        });
 
+        this.textLetter(i)
+    }
+    handleCancel = () => {
+        this.setState({visible: false});
+    }
 
     //切换颜色
     color(e) {
@@ -82,10 +90,10 @@ class PersonalZhanneixin extends React.Component {
             url: InterfaceUtil.getUrl(48),
             type: "post",
             data: InterfaceUtil.addTime({
-                user_id:user_id,
-                token:token,
-                page:1,
-                pageSize:10
+                user_id: user_id,
+                token: token,
+                page: 1,
+                pageSize: 10
             }),
             dataType: "json",
             success: function (data) {
@@ -114,16 +122,18 @@ class PersonalZhanneixin extends React.Component {
     //分页
     fenye(e) {
         this.setState({
-            page:e
+            page: e
         });
         // this.startAjax()
         this.refs.dingdan.className = 'display'
 
     }
+
     componentDidMount() {
         this.startAjax();
     }
-    startAjax(){
+
+    startAjax() {
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
         const that = this;
@@ -131,11 +141,11 @@ class PersonalZhanneixin extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(48),
             type: "post",
-            data:InterfaceUtil.addTime({
-                user_id:user_id,
-                token:token,
-                page:that.state.page,
-                pageSize:10
+            data: InterfaceUtil.addTime({
+                user_id: user_id,
+                token: token,
+                page: that.state.page,
+                pageSize: 10
             }),
             dataType: "json",
             success: function (data) {
@@ -152,50 +162,45 @@ class PersonalZhanneixin extends React.Component {
             }
         });
     }
-    showModalZnx = (e,i) => {
-        this.setState({
-            visible: true,
-        });
-        this.textLetter(i)
-    }
-    handleCancel = () => {
-        this.setState({ visible: false });
-    }
-    textLetter(i){
-        let datas=this.state.znx;
-        const _this=this;
-        if(datas.length===0) return;
+
+    textLetter(i) {
+        let datas = this.state.znx;
+        const _this = this;
+        if (datas.length === 0) return;
         // console.log(datas[i].status)
-        if(datas[i].status===1){
+        if (datas[i].status === 1) {
             $.ajax({
                 url: InterfaceUtil.getUrl(49),
                 type: "post",
-                data:InterfaceUtil.addTime({
-                    user_id:_this.user_id,
-                    token:_this.token,
+                data: InterfaceUtil.addTime({
+                    user_id: _this.user_id,
+                    token: _this.token,
                     "id": datas[i].id
                 }),
                 dataType: "json",
                 success: function (data) {
                     if (data.status === 1) {
 
-                        datas[i].status=2;
+                        datas[i].status = 2;
                         _this.setState({
-                            textLetter:`${datas[i].content}`,
-                            znx:datas,
-                            textTitle:datas[i].title
+                            textLetter: `${datas[i].content}`,
+                            znx: datas,
+                            textTitle: datas[i].title,
+                            content: datas[i].content
                         })
                     }
                 }
             });
-        }else {
+        } else {
             this.setState({
-                textLetter:`${datas[i].content}`,
-                textTitle:datas[i].title
+                textLetter: `${datas[i].content}`,
+                textTitle: datas[i].title,
+                content: datas[i].content
             })
         }
 
     }
+
     showConfirm() {
         let id = [];
         confirm({
@@ -204,36 +209,36 @@ class PersonalZhanneixin extends React.Component {
             okText: '确定',
             cancelText: '取消',
             onOk() {
-                    let a = $('.shoucang_inp');
-                    for (let i = 0; i < a.length; i++) {
-                        let xuanzhong = a[i].checked;
-                        if (xuanzhong === true) {
-                            let id1 = $('.zhanneixin_li').attr('data');
-                            id.push(id1);
+                let a = $('.shoucang_inp');
+                for (let i = 0; i < a.length; i++) {
+                    let xuanzhong = a[i].checked;
+                    if (xuanzhong === true) {
+                        let id1 = $('.zhanneixin_li').attr('data');
+                        id.push(id1);
+                    }
+                }
+
+                // if (id.length === 0) return;
+                let ids = JSON.stringify(id);
+                // console.log(ids)
+                let username = CoojiePage.getCoojie('username');
+                let token = CoojiePage.getCoojie('token');
+                const that = this;
+                //站内信
+                $.ajax({
+                    url: InterfaceUtil.getUrl(47),
+                    type: "post",
+                    data: {
+                        "username": username, "token": token, id: ids
+                    },
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.status === 1) {
+
                         }
                     }
-
-                    // if (id.length === 0) return;
-                    let ids = JSON.stringify(id);
-                    // console.log(ids)
-                    let username = CoojiePage.getCoojie('username');
-                    let token = CoojiePage.getCoojie('token');
-                    const that = this;
-                    //站内信
-                    $.ajax({
-                        url: InterfaceUtil.getUrl(47),
-                        type: "post",
-                        data: {
-                            "username": username, "token": token, id:ids
-                        },
-                        dataType: "json",
-                        success: function (data) {
-
-                            if (data.status === 1) {
-
-                            }
-                        }
-                    });
+                });
             },
             onCancel() {
             },
@@ -241,7 +246,7 @@ class PersonalZhanneixin extends React.Component {
     }
 
     render() {
-        const { visible } = this.state;
+        const {visible} = this.state;
         let data = this.state;
         return (
             <div className=' width988 floatRight'>
@@ -283,33 +288,34 @@ class PersonalZhanneixin extends React.Component {
                                        }}/></p>
 
                             <span className='personal_zhanneixin_top_span1'>全选</span>
-                            <span className='personal_zhanneixin_top_span2 cursor' onClick={()=>this.showConfirm()}>删除</span>
+                            <span className='personal_zhanneixin_top_span2 cursor'
+                                  onClick={() => this.showConfirm()}>删除</span>
                         </div>
                     </div>
                     {/*消息*/}
                     <div className='marginLeft20 marginTop20 personal_zhanneixin_msg'>
                         <ul>
                             {
-                                data.znx.map(function (item,i) {
-                                    let stationLetterClass,stationLetterText;
-                                    if(item.status===1){
-                                        stationLetterClass='zhanneixin_li';
-                                        stationLetterText='未读'
-                                    }else if(item.status===2){
-                                        stationLetterClass='zhanneixin_li2';
-                                        stationLetterText='已读'
+                                data.znx.map(function (item, i) {
+                                    let stationLetterClass, stationLetterText;
+                                    if (item.is_read === 1) {
+                                        stationLetterClass = 'zhanneixin_li';
+                                        stationLetterText = '未读'
+                                    } else if (item.is_read === 2) {
+                                        stationLetterClass = 'zhanneixin_li2';
+                                        stationLetterText = '已读'
                                     }
                                     return (
                                         <li key={item.id} data={item.id} className={stationLetterClass}>
                                             <div className='personal_zhanneixin_top_div display'/>
                                             {/*<div className='personal_zhanneixin_top_div1 display'>*/}
-                                                {/*<p className='personal_zhanneixin_top_div_p'>{item.title} <span*/}
-                                                    {/*className='personal_zhanneixin_top_div_span floatRight'*/}
-                                                    {/*onClick={(e) => {*/}
-                                                        {/*this.guanbi(e)*/}
-                                                    {/*}}>×</span></p>*/}
-                                                {/*<p className='personal_zhanneixin_top_div_p1'*/}
-                                                   {/*dangerouslySetInnerHTML={{__html: item.content}}/>*/}
+                                            {/*<p className='personal_zhanneixin_top_div_p'>{item.title} <span*/}
+                                            {/*className='personal_zhanneixin_top_div_span floatRight'*/}
+                                            {/*onClick={(e) => {*/}
+                                            {/*this.guanbi(e)*/}
+                                            {/*}}>×</span></p>*/}
+                                            {/*<p className='personal_zhanneixin_top_div_p1'*/}
+                                            {/*dangerouslySetInnerHTML={{__html: item.content}}/>*/}
                                             {/*</div>*/}
 
 
@@ -321,15 +327,20 @@ class PersonalZhanneixin extends React.Component {
                                                          this.status(e)
                                                      }}>{stationLetterText}</div>
                                                 <div
-                                                    className='personal_zhanneixin_top_span2 floatleft'>{item.title}</div>
+                                                    className='personal_zhanneixin_top_span2 floatleft'>
+                                                    {item.title}
+                                                    </div>
                                                 <div
-                                                    className='personal_zhanneixin_top_span3 floatRight'>[<span>{item.addtime}</span>]
+                                                    className='personal_zhanneixin_top_span3 floatRight'>
+                                                    [<span>{item.created_time}</span>]
                                                 </div>
                                                 <br/>
                                                 <div className='width930 cursor'
-                                                     onClick={(e) =>this.showModalZnx(e,i)}>
+                                                     onClick={(e) => this.showModalZnx(e, i)}>
                                                     <p className='personal_zhanneixin_top_p'
-                                                       dangerouslySetInnerHTML={{__html: item.content1}}/>
+                                                    >
+                                                        {item.content}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className='clear'/>
@@ -347,7 +358,7 @@ class PersonalZhanneixin extends React.Component {
                             onCancel={this.handleCancel}
                             footer={null}
                         >
-                            <div dangerouslySetInnerHTML={{__html: data.textLetter}}/>
+                            <div> {data.content}</div>
                         </Modal>
                     </div>
                     {/*全选删除*/}
@@ -359,17 +370,18 @@ class PersonalZhanneixin extends React.Component {
                                            this.quanxuan1(e)
                                        }}/></span>
                             <span className='personal_zhanneixin_top_span1'>全选</span>
-                            <span className='personal_zhanneixin_top_span2 cursor' onClick={() =>this.showConfirm()}>删除</span>
+                            <span className='personal_zhanneixin_top_span2 cursor'
+                                  onClick={() => this.showConfirm()}>删除</span>
                         </p>
                     </div>
                     {/*分页*/}
                     <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
                         <span className='floatRight personal_zhanneixin_title_div3_span3'>
                             <Pagination
-                            showQuickJumper={true} defaultCurrent={1} defaultPageSize={5} total={data.cons}
-                            onChange={(e) => {
-                                this.fenye(e)
-                            }}/></span>
+                                showQuickJumper={true} defaultCurrent={1} defaultPageSize={5} total={data.cons}
+                                onChange={(e) => {
+                                    this.fenye(e)
+                                }}/></span>
                         <div className='clear'/>
                     </div>
                 </div>

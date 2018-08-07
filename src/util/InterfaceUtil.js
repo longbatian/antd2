@@ -135,6 +135,10 @@ let urls=[
     '/orders/alipay_pay_qrcode',//65
     '/goods/coupon_tickets',//66
     '/users/integral_goods',//67
+    '/users/integral_log',//68
+    '/users/prize_goods',//69
+    '/users/integral_prize',//70
+    '/users/integral_convert', //71
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
@@ -226,7 +230,27 @@ export default class InterfaceUtil{
         second = second < 10 ? ('0' + second) : second;
         return y + '-' + m + '-' + d;
     }
-
+    /**
+     * 时间戳转换时间...格式
+     * @param obj
+     * @returns {string}
+     */
+    static fmtDates(obj){
+        var date = new Date();
+        date.setTime(obj * 1000);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '.' + m + '.' + d;
+    }
     /**
      * 删除coikie
      * @param name

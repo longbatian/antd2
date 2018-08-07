@@ -15,18 +15,7 @@ class Integralpage extends React.Component {
         this.token=CoojiePage.getCoojie('token');
     }
     componentDidMount(){
-        const _this=this
-        $.ajax({
-            url: InterfaceUtil.getUrl(67),
-            type: "post",
-            data: InterfaceUtil.addTime({
-                "token": _this.token, "user_id": _this.user_id
-            }),
-            dataType: "json",
-            success: function (data) {
-                console.log(data)
-            }
-        })
+
     }
     render() {
         return <div className='boderBottom'>

@@ -4,18 +4,68 @@ import InterfaceUtil from './../../../util/InterfaceUtil';
 import Greatvaluecoupon from './conponents/Greatvaluecoupon';
 import IthTemplate from './conponents/IthTemplate';
 import './conponents/integralHome.css'
+import CoojiePage from "../../../util/CoojiePage";
+import $ from "jquery";
 
 class IntegralHome extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.user_id = CoojiePage.getCoojie('user_id');
+        this.token = CoojiePage.getCoojie('token');
+        this.state = {
+            integral: 0,
+            username: ``,
+            integralArray: [],
+            con: []
+        }
     }
 
     componentDidMount() {
+        const _this = this;
+        //积分商品
+        $.ajax({
+            url: InterfaceUtil.getUrl(67),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "token": _this.token, "user_id": _this.user_id
+            }),
+            dataType: "json",
+            success: function (data) {
+                console.log(JSON.stringify(data))
+                if (data.code === 1) {
+                    let datas = data.data;
+                    _this.setState({
+                        integralArray: datas.coupon_list,
+                        con: datas.goods_list
+                    })
+                }
+            }
+        })
+        //个人信息总览
+        $.ajax({
+            url: InterfaceUtil.getUrl(34),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "token": _this.token, "user_id": _this.user_id
+            }),
+            dataType: "json",
+            success: function (data) {
+                // console.log(data)
+                if (data.code === 1) {
+                    _this.setState({
+                        username: data.data.username,
+                        integral: data.data.integral
+                    })
+                }
 
+            }
+        })
     }
 
     render() {
+        const data = this.state;
+        let integralArray=null,con=null;
+
         return <div>
             <div className="ithHead">
                 <div className="ithHeadBox">
@@ -23,17 +73,17 @@ class IntegralHome extends Component {
                         <div className="ithHeadrigcon">
                             <div className="ithHeadrigcontit">
                                 <i className="ith_bg1"/>
-                                <h2>四川聚创医药有限公司</h2>
+                                <h2>{data.username}</h2>
                             </div>
-                            <div className="ithStrip">
-                                <span>3156/10000</span>
-                            </div>
-                            <p>还差6844积分即可升级成为金牌会员</p>
+                            {/*<div className="ithStrip">*/}
+                            {/*<span>3156/10000</span>*/}
+                            {/*</div>*/}
+                            {/*<p>还差6844积分即可升级成为金牌会员</p>*/}
                         </div>
                         <div className="ithHeadrigrig">
                             <div>
                                 <p>可用积分</p>
-                                <p className="bigred">4698</p>
+                                <p className="bigred">{data.integral}</p>
                             </div>
                         </div>
                         <div className="ithHeadrigImg">
@@ -48,14 +98,14 @@ class IntegralHome extends Component {
                     <div className="ithconshopping">
                         <h2>购物</h2>
                         <p>成功下单并收货可获得积分奖励</p>
-                        <Link to="Integral/home">
+                        <Link to="/Integral/home">
                             去购物 <span>></span>
                         </Link>
                     </div>
                     <div className="ithconshopping ithconSignin">
                         <h2>每日签到</h2>
                         <p>连续签到可获得积分奖励</p>
-                        <Link to="Integral/home">
+                        <Link to="/Integral/data">
                             去签到<span>></span>
                         </Link>
                     </div>
@@ -70,7 +120,7 @@ class IntegralHome extends Component {
                                     <h2>小积分抽大奖</h2>
                                     <p>积分抽奖一次仅用<span>20积分</span></p>
                                 </div>
-                                <Link to="#">
+                                <Link to="/Integral/lottery">
                                     去抽奖
                                 </Link>
                             </li>
@@ -93,21 +143,21 @@ class IntegralHome extends Component {
                     <li>
                         热门兑换
                     </li>
-                    <li>
-                        家用电器
-                    </li>
-                    <li>
-                        移动电器
-                    </li>
-                    <li>
-                        办公用品
-                    </li>
-                    <li>
-                        户外运动
-                    </li>
+                    {/*<li>*/}
+                        {/*家用电器*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                        {/*移动电器*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                        {/*办公用品*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                        {/*户外运动*/}
+                    {/*</li>*/}
                 </ul>
-               <Greatvaluecoupon/>
-               <IthTemplate/>
+                <Greatvaluecoupon {...this.state}/>
+                <IthTemplate {...this.state}/>
             </div>
         </div>
     }
