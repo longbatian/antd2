@@ -143,6 +143,7 @@ let urls=[
     '/users/prize_winners',//72
     '/index/activity_group',//73
     '/goods/traded_goods',//74
+    '/goods/package_goods',//75
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
@@ -266,5 +267,8 @@ export default class InterfaceUtil{
         var cval = CoojiePage.getCoojie(name);
         if (cval != null)
             document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    }
+    static setUp(){
+
     }
 }

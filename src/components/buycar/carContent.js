@@ -21,7 +21,7 @@ class Gouwuche2 extends React.Component {
 
 
     //加
-    jia3(e,mo1,mo2) {
+    jia3(e, mo1, mo2) {
         var a = e.target.parentNode.getAttribute('data');
         var kucun = e.target.parentNode.getAttribute('data-a');
         var goods_id = e.target.parentNode.getAttribute('data-index');
@@ -55,12 +55,12 @@ class Gouwuche2 extends React.Component {
                     "token": token,
                     "user_id": user_id,
                     "type": 1,
-                    goods_id:goods_id
+                    goods_id: goods_id
                 }),
                 dataType: "json",
                 success: function (data) {
-                    let hjnum=mo2?mo2:mo1;
-                    heji.innerText = '￥' +(data.data.goods_num * hjnum);
+                    let hjnum = mo2 ? mo2 : mo1;
+                    heji.innerText = '￥' + (data.data.goods_num * hjnum);
                     //  是否选中
                     var check = document.getElementsByClassName('car_content');
                     var inp = document.getElementsByClassName('buycar_input1');
@@ -122,7 +122,7 @@ class Gouwuche2 extends React.Component {
     }
 
     //减
-    jian3(e,mo1,mo2) {
+    jian3(e, mo1, mo2) {
         var a = e.target.parentNode.getAttribute('data');
         a = parseInt(a);
         var b = e.target.parentNode.children[1].getAttribute('value');
@@ -160,12 +160,12 @@ class Gouwuche2 extends React.Component {
                         "token": token,
                         "user_id": user_id,
                         "type": 0,
-                        goods_id:goods_id
+                        goods_id: goods_id
 
                     }),
                     dataType: "json",
                     success: function (data) {
-                        let hjnum=mo2?mo2:mo1;
+                        let hjnum = mo2 ? mo2 : mo1;
                         heji.innerText = '￥' + data.data.goods_num * hjnum;
                         //  是否选中
                         var check = document.getElementsByClassName('car_content');
@@ -218,7 +218,7 @@ class Gouwuche2 extends React.Component {
     }
 
     //输入框
-    shuliangBuy(e,mo1,mo2) {
+    shuliangBuy(e, mo1, mo2) {
         let a = e.target;
         let b = a.value;
         let moren = e.target.parentNode.getAttribute('data');
@@ -258,7 +258,7 @@ class Gouwuche2 extends React.Component {
                             "token": token,
                             "user_id": user_id,
                             "goods_id": goods_id,
-                            goods_num:b
+                            goods_num: b
                         }),
                         dataType: "json",
                         success: function (data) {
@@ -324,17 +324,17 @@ class Gouwuche2 extends React.Component {
                     $.ajax({
                         url: InterfaceUtil.getUrl(11),
                         type: "post",
-                        data:InterfaceUtil.addTime({
+                        data: InterfaceUtil.addTime({
                             "token": token,
                             "user_id": user_id,
                             "goods_id": goods_id,
-                            goods_num:b
+                            goods_num: b
                         }),
                         dataType: "json",
                         success: function (data) {
                             console.log(data)
-                            let hjnum=mo2?mo2:mo1;
-                            heji.innerText = '￥' + data.data.goods_num * hjnum ;
+                            let hjnum = mo2 ? mo2 : mo1;
+                            heji.innerText = '￥' + data.data.goods_num * hjnum;
 
                             //  是否选中
                             let check = document.getElementsByClassName('car_content');
@@ -386,14 +386,14 @@ class Gouwuche2 extends React.Component {
     }
 
     //选择
-    fuxuankuang(e) {
+    fuxuankuang(e, nowNum) {
         var a = e.target.checked;
         const minM = this.state.minMoey;
         if (a == false) {
-            var b = e.target.parentNode.parentNode.children;
-            var c = b[12].innerText;
-            c = c.slice(1);
-            c = parseFloat(c);
+            // var b = e.target.parentNode.parentNode.children;
+            // var c = b[12].innerText;
+            // c = c.slice(1);
+            let c = parseFloat(nowNum);
             var zongjia = $('.car_Heji_div1_span').text();
             zongjia = zongjia.slice(1);
             zongjia = parseFloat(zongjia);
@@ -422,28 +422,29 @@ class Gouwuche2 extends React.Component {
             }
             //ajax
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            //搜索条件ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(3),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "cid": cid, "is_check": 0
-                },
-                dataType: "json",
-                success: function (data) {
-
-                }
-            });
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // //搜索条件ajax
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(3),
+            //     type: "post",
+            //     data: {
+            //         "username": username, "token": token, "cid": cid, "is_check": 0
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //
+            //     }
+            // });
             // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
 
         } else if (a == true) {
 
-            var b = e.target.parentNode.parentNode.children;
-            var c = b[12].innerText;
-            c = c.slice(1);
-            c = parseFloat(c);
+            // var b = e.target.parentNode.parentNode.children;
+            // var c = b[12].innerText;
+            // c = c.slice(1);
+
+            let c = parseFloat(nowNum);
             var zongjia = $('.car_Heji_div1_span').text();
             zongjia = zongjia.slice(1);
             zongjia = parseFloat(zongjia);
@@ -470,20 +471,20 @@ class Gouwuche2 extends React.Component {
             }
 
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            //搜索条件ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(3),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "cid": cid, "is_check": 1
-                },
-                dataType: "json",
-                success: function (data) {
-
-                }
-            });
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // //搜索条件ajax
+            // $.ajax({
+            //     url: InterfaceUtil.getUrl(3),
+            //     type: "post",
+            //     data: {
+            //         "username": username, "token": token, "cid": cid, "is_check": 1
+            //     },
+            //     dataType: "json",
+            //     success: function (data) {
+            //
+            //     }
+            // });
             // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
 
         }
@@ -578,12 +579,13 @@ class Gouwuche2 extends React.Component {
             dataType: "json",
             success: function (data) {
 
-                if(data.data[9].initial_amount){
+                if (data.data[9].initial_amount) {
                     that.setState({
                         minMoey: data.data[9].initial_amount,
                         maxMoney: data.data[10].exempt_freight
                     })
-                }}
+                }
+            }
         })
         //购物车数量
         $.ajax({
@@ -594,7 +596,7 @@ class Gouwuche2 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-
+                console.log(data, JSON.stringify(data))
                 that.loginPage.ajaxLogin(data.status, that.props);
                 if (data.data.length == 0) {
 
@@ -605,50 +607,50 @@ class Gouwuche2 extends React.Component {
                         // minMoey: data.data.list.free.lowest,
                         // maxMoney: data.data.list.free.myunfee
                     }, () => {
-                        var a = document.getElementsByClassName('car_title_div15');
-                        var c = document.getElementsByClassName('car_title_div13');
-                        var d = document.getElementsByClassName('car_title_div14');
-                        var e = document.getElementsByClassName('car_title_div13_span1');
-                        var f = document.getElementsByClassName('car_title_div13_span');
-                        var y = document.getElementsByClassName('car_content_div');
-                        const minM = that.state.minMoey;
-                        for (var i = 0; i < a.length; i++) {
-                            var b = a[i].innerText;
-                            if (b == '否') {
-                                c[i].className = 'car_title_div13 display';
-                                d[i].className = 'car_title_div14'
-                            } else {
-                                c[i].className = 'car_title_div13 ';
-                                e[i].className = 'car_title_div13_span1 red';
-                                f[i].className = 'car_title_div13_span text_del';
-                                d[i].className = 'car_title_div14 display '
-                            }
-                        }
-
-                        for (var i = 0; i < a.length; i++) {
-                            var x = a[i].getAttribute('data');
-                            if (x == 1) {
-                                y[i].className = 'car_content_div orange'
-                            }
-                        }
-
-                        //  是否选中
-                        var check = document.getElementsByClassName('car_content');
-                        var inp = document.getElementsByClassName('buycar_input1');
-                        var heji = document.getElementsByClassName('car_title_div11_xiaoji');
-                        var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                        var zongjia = 0;
-                        var shuliang = 0;
+                        // var a = document.getElementsByClassName('car_title_div15');
+                        // var c = document.getElementsByClassName('car_title_div13');
+                        // var d = document.getElementsByClassName('car_title_div14');
+                        // var e = document.getElementsByClassName('car_title_div13_span1');
+                        // var f = document.getElementsByClassName('car_title_div13_span');
+                        // var y = document.getElementsByClassName('car_content_div');
+                        // const minM = that.state.minMoey;
+                        // for (var i = 0; i < a.length; i++) {
+                        //     var b = a[i].innerText;
+                        //     if (b == '否') {
+                        //         c[i].className = 'car_title_div13 display';
+                        //         d[i].className = 'car_title_div14'
+                        //     } else {
+                        //         c[i].className = 'car_title_div13 ';
+                        //         e[i].className = 'car_title_div13_span1 red';
+                        //         f[i].className = 'car_title_div13_span text_del';
+                        //         d[i].className = 'car_title_div14 display '
+                        //     }
+                        // }
+                        //
+                        // for (var i = 0; i < a.length; i++) {
+                        //     var x = a[i].getAttribute('data');
+                        //     if (x == 1) {
+                        //         y[i].className = 'car_content_div orange'
+                        //     }
+                        // }
+                        //
+                        // //  是否选中
+                        // var check = document.getElementsByClassName('car_content');
+                        // var inp = document.getElementsByClassName('buycar_input1');
+                        // var heji = document.getElementsByClassName('car_title_div11_xiaoji');
+                        // var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
+                        // var zongjia = 0;
+                        // var shuliang = 0;
                         that.catTishiMoney();
 
                         // 无库存
-                        var kucun = document.getElementsByClassName('car_title_div7_kcs');
-                        for (var i = 0; i < kucun.length; i++) {
-                            var kucun1 = kucun[i].innerText;
-                            if (kucun1 == 0) {
-                                check[i].className = 'contain car_content relative car_content_current'
-                            }
-                        }
+                        // var kucun = document.getElementsByClassName('car_title_div7_kcs');
+                        // for (var i = 0; i < kucun.length; i++) {
+                        //     var kucun1 = kucun[i].innerText;
+                        //     if (kucun1 == 0) {
+                        //         check[i].className = 'contain car_content relative car_content_current'
+                        //     }
+                        // }
 
 
                     });
@@ -724,96 +726,201 @@ class Gouwuche2 extends React.Component {
             <div className='container'>
                 {
                     this.state.sp.map(function (item, i) {
-                        let times = InterfaceUtil.fmtDate(item.validity_time);
-                        let isAc=item.activity_price?`是`:`否`;
+                        let times = item.validity_time ? InterfaceUtil.fmtDate(item.validity_time) : null;
+                        let isAc = item.activity_price ? `是` : `否`;
+
+                        let isAcClass = null;
+                        let isAcHeadClass = `display`;
+                        let isAcHeadText = null;
+                        let arrs = [];
+                        if (item.mold === `goods`) {
+                            if (item.activity_price) {
+                                if (item.traded_goods.length === 0) {
+                                    isAcClass = null;
+                                    isAcHeadClass = `display`;
+                                    isAcHeadText = null;
+                                    arrs = [];
+                                } else {
+                                    isAcClass = `ccnactivity`;
+                                    isAcHeadClass = `ccnRedemption`;
+                                    isAcHeadText = `换购`;
+                                    arrs = item.traded_goods;
+                                }
+                            } else {
+                                isAcClass = null;
+                                isAcHeadClass = `display`;
+                                isAcHeadText = null;
+                                arrs = [];
+                            }
+                        } else {
+                            isAcClass = `ccnactivity`;
+                            isAcHeadClass = `ccnRedemption`;
+                            isAcHeadText = `套餐`
+                            arrs = item.goods_list
+                        }
 
 
+                        let activity_price = item.activity_price ? <div className='car_title_div13 '>
+                                <div className='car_title_div13_span text_del'>￥{item.price}</div>
+                                <div className='car_title_div13_span1 red'>￥{item.activity_price}</div>
+                            </div>
+                            : <div className='car_title_div14'>
+                                ￥{item.price}
+                            </div>;
+                        arrs = arrs.length > 0 ? arrs.map((it, i) => {
+                            let num = it.traded_goods_num ? it.traded_goods_num : it.min_buy;
+                            let money = it.traded_price ? it.traded_price : it.price;
+                            return <div className="ccnTradedBox" key={it.id}>
+                                <div className="ccnTraded">
+                                    <div className='car_title_div1 ' data={it.id}>
+                                        <input
+                                            defaultChecked={true}
+                                            type="checkbox"
+                                            className='buycar_input1'
+                                            onClick={(e) => {
+                                                this.fuxuankuang(e, item.price)
+                                            }}
+                                        />
+                                        {/*<div>*/}
+                                        <img src={it.image}
+                                             className='car_title_div1_img'/>
+                                        {/*</div>*/}
+
+                                    </div>
+                                    <div className='car_title_div2 '>
+                                        <Link to={`/Shangpinxiangqing?&id=` + it.id}>
+                                            {it.name}
+                                        </Link>
+                                    </div>
+                                    <div className='car_title_div3 '>
+                                        {it.standard}
+                                    </div>
+                                    <div className='car_title_div4 '>
+                                        {it.enterprise}
+                                    </div>
+                                    <div className='car_title_div5'>
+                                        {it.unit}
+                                    </div>
+                                    <div className='car_title_div5'>
+                                        {it.unit_num}
+                                    </div>
+                                    <div className='car_title_div6'>
+
+                                    </div>
+                                    <div className='car_title_div7 car_title_div7_kcs'>
+                                        {it.stock_num}
+                                    </div>
+                                    <div className='car_title_div15'>
+
+                                    </div>
+                                    <div className='car_title_div14'>
+                                        ￥{money}
+                                    </div>
+                                    <div className='car_title_div10 '>
+                                        {num}
+                                    </div>
+                                    <div className='car_title_div11 car_title_div11_xiaoji'>
+                                        ￥{money}
+                                    </div>
+                                </div>
+                            </div>
+                        }) : null;
                         return (
-                            <div key={item.goods_id}
-                                 className='contain car_content relative'
-                                 data={item.is_check}
-                                 data-index={item.goods_id}
-                                 data-kcs={item.stock_num}>
-                                <div className='car_title_div1 hid' data={item.goods_id}>
-                                    <input type="checkbox" className='buycar_input1'
-                                           onClick={(e) => {
-                                               this.fuxuankuang(e)
-                                           }}/>
-                                           {/*<div>*/}
-                                               <img src={this.state.lujin + item.image} className='car_title_div1_img'/>
-                                           {/*</div>*/}
+                            <div key={i} className={isAcClass}>
+                                <div className={isAcHeadClass}>
+                                    <div className="ccnRedemptionHead">
+                                        <span className="ccm_Bg1">{isAcHeadText}</span>
+                                        <span className="ccn_blu">本次购买 元换购本品，送完为止，活动结束时间</span>
+                                    </div>
+                                </div>
+                                <div key={item.goods_id}
+                                     className='contain car_content relative'
+                                     data={item.is_check}
+                                     data-index={item.goods_id}
+                                     data-kcs={item.stock_num}>
+                                    <div className='car_title_div1 ' data={item.goods_id}>
+                                        <input
+                                            type="checkbox"
+                                            defaultChecked={true}
+                                            className='buycar_input1'
+                                            onClick={(e) => {
+                                                this.fuxuankuang(e, item.price_count)
 
-                                </div>
-                                <div className='car_title_div2 hid'>
-                                    <Link to={`/Shangpinxiangqing?&id=`+item.id}>
-                                        {item.name}
-                                    </Link>
+                                            }}
+                                        />
+                                        {/*<div>*/}
+                                        <img src={this.state.lujin + item.image} className='car_title_div1_img'/>
+                                        {/*</div>*/}
 
-                                </div>
-                                <div className='car_title_div3 hid'>
-                                    {item.standard}
-                                </div>
-                                <div className='car_title_div4 hid'>
-                                    {item.enterprise}
-                                </div>
-                                <div className='car_title_div5'>
-                                    {item.unit}
-                                </div>
-                                <div className='car_title_div5'>
-                                    {item.unit_num}
-                                </div>
-                                <div className='car_title_div6'>
-                                    {times}
-                                </div>
-                                <div className='car_title_div7 car_title_div7_kcs'>
-                                    {item.stock_num}
-                                </div>
-                                <div className='car_title_div15'>
-                                    {isAc}
-                                </div>
-                                <div className='car_title_div13 '>
-                                    <div className='car_title_div13_span'>￥{item.price}</div>
-                                    <div className='car_title_div13_span1'>￥{item.activity_price}</div>
-                                </div>
-                                <div className='car_title_div14'>
-                                    ￥{item.price}
-                                </div>
-                                <div className='car_title_div10 carCon10' data={item.min_buy} data-index={item.id}
-                                     data-a={item.stock_num}>
-                                    <button className='car_title_div10_btn' onClick={(e) => {
-                                        this.jian3(e,item.price,item.activity_price)
-                                    }}>-
-                                    </button>
-                                    <input type="text" defaultValue={item.goods_num} className='car_title_div10_inp'
-                                           onBlur={(e) => {
-                                               this.shuliangBuy(e,item.price,item.activity_price)
-                                           }}/>
-                                    <button className='car_title_div10_btn' onClick={(e) => {
-                                        this.jia3(e,item.price,item.activity_price)
-                                    }}>+
-                                    </button>
-                                    <div className='clear'></div>
-                                </div>
-                                <div className='car_title_div11 car_title_div11_xiaoji'>
-                                    ￥{item.price_count}
-                                </div>
-                                <div className='car_title_div12_con' data-index={item.cart_id} data={item.id}>
+                                    </div>
+                                    <div className='car_title_div2 '>
+                                        <Link to={`/Shangpinxiangqing?&id=` + item.id}>
+                                            {item.name}
+                                        </Link>
+
+                                    </div>
+                                    <div className='car_title_div3 '>
+                                        {item.standard}
+                                    </div>
+                                    <div className='car_title_div4 '>
+                                        {item.enterprise}
+                                    </div>
+                                    <div className='car_title_div5'>
+                                        {item.unit}
+                                    </div>
+                                    <div className='car_title_div5'>
+                                        {item.unit_num}
+                                    </div>
+                                    <div className='car_title_div6'>
+                                        {times}
+                                    </div>
+                                    <div className='car_title_div7 car_title_div7_kcs'>
+                                        {item.stock_num}
+                                    </div>
+                                    <div className='car_title_div15'>
+                                        {isAc}
+                                    </div>
+                                    {activity_price}
+                                    <div className='car_title_div10 carCon10' data={item.min_buy} data-index={item.id}
+                                         data-a={item.stock_num}>
+                                        <button className='car_title_div10_btn' onClick={(e) => {
+                                            this.jian3(e, item.price, item.activity_price)
+                                        }}>-
+                                        </button>
+                                        <input type="text" defaultValue={item.goods_num} className='car_title_div10_inp'
+                                               onBlur={(e) => {
+                                                   this.shuliangBuy(e, item.price, item.activity_price)
+                                               }}/>
+                                        <button className='car_title_div10_btn' onClick={(e) => {
+                                            this.jia3(e, item.price, item.activity_price)
+                                        }}>+
+                                        </button>
+                                        <div className='clear'></div>
+                                    </div>
+
+                                    <div className='car_title_div11 car_title_div11_xiaoji'>
+                                        ￥{item.price_count}
+                                    </div>
+                                    <div className='car_title_div12_con' data-index={item.cart_id} data={item.id}>
                                     <span className='car_title_div12_span' onClick={(e) => {
                                         this.shanchu(e)
                                     }}>删除</span>
-                                    <span onClick={(e) => {
-                                        this.shoucang(e)
-                                    }}>添加收藏</span>
-                                </div>
-                                <div
-                                    className='car_content_div orange display'>
-                                    本品限购{item.activity_xgsl}{item.bzdw}，
-                                    {item.activity_xgsl}{item.activity_max_num}以内活动价￥{item.activity_price}出售，
-                                    {item.activity_xgsl}{item.activity_max_num}以上按原价￥{item.price}出售，活动结束时间：
-                                    {item.end_time}
-                                </div>
+                                        <span onClick={(e) => {
+                                            this.shoucang(e)
+                                        }}>添加收藏</span>
+                                    </div>
+                                    <div
+                                        className='car_content_div orange display'>
+                                        本品限购{item.activity_xgsl}{item.bzdw}，
+                                        {item.activity_xgsl}{item.activity_max_num}以内活动价￥{item.activity_price}出售，
+                                        {item.activity_xgsl}{item.activity_max_num}以上按原价￥{item.price}出售，活动结束时间：
+                                        {item.end_time}
+                                    </div>
+                                    {arrs}
 
+                                </div>
                             </div>
+
                         )
                     }, this)
                 }

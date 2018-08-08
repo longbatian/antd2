@@ -133,6 +133,7 @@
   border-left: 1px solid #FFBF00;
 }
 .bdbox .bdliFot .bdliFotrigInputBox .bdliFotrigInputBoxRig span {
+  cursor: pointer;
   display: block;
   width: 18px;
   background: #fff;
@@ -152,6 +153,7 @@
   margin-top: 2px;
   border-radius: 3px;
   font-size: 20px;
+  cursor: pointer;
 }
 .bdbox .bdliConBox {
   height: 146px;
