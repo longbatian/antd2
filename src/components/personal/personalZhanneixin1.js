@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import {withRouter} from 'react-router-dom'
 import React from 'react';
-import {Button, Modal, Pagination, Select} from 'antd';
+import {Button, message, Modal, Pagination, Select} from 'antd';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -12,6 +12,10 @@ import '../../styles/personal/personalZhanneixin.css'
 const confirm = Modal.confirm;
 
 class PersonalZhanneixin extends React.Component {
+
+    handleCancel = () => {
+        this.setState({visible: false});
+    }
 
     constructor(props) {
         super(props); //调用父类的构造方法；
@@ -53,15 +57,13 @@ class PersonalZhanneixin extends React.Component {
             return;
         }
     }
-    showModalZnx (e, i) {
+
+    showModalZnx(e, i) {
         this.setState({
             visible: true,
         });
 
         this.textLetter(i)
-    }
-    handleCancel = () => {
-        this.setState({visible: false});
     }
 
     //切换颜色
@@ -213,28 +215,31 @@ class PersonalZhanneixin extends React.Component {
                 for (let i = 0; i < a.length; i++) {
                     let xuanzhong = a[i].checked;
                     if (xuanzhong === true) {
-                        let id1 = $('.zhanneixin_li').attr('data');
+                        let id1 = a[i].value;
                         id.push(id1);
                     }
                 }
 
-                // if (id.length === 0) return;
-                let ids = JSON.stringify(id);
-                // console.log(ids)
-                let username = CoojiePage.getCoojie('username');
+                if (id.length === 0) {
+                    message.warning('请至少选择一个删除');
+                    return;
+                }
+                ;
+                let ids = id.join(',');
+                let user_id = CoojiePage.getCoojie('user_id');
                 let token = CoojiePage.getCoojie('token');
                 const that = this;
                 //站内信
                 $.ajax({
                     url: InterfaceUtil.getUrl(47),
                     type: "post",
-                    data: {
-                        "username": username, "token": token, id: ids
-                    },
+                    data: InterfaceUtil.addTime({
+                        "user_id": user_id, "token": token, id: ids
+                    }),
                     dataType: "json",
                     success: function (data) {
-
-                        if (data.status === 1) {
+                        console.log(data)
+                        if (data.code === 1) {
 
                         }
                     }
@@ -301,10 +306,11 @@ class PersonalZhanneixin extends React.Component {
                                     if (item.is_read === 1) {
                                         stationLetterClass = 'zhanneixin_li';
                                         stationLetterText = '未读'
-                                    } else if (item.is_read === 2) {
+                                    } else {
                                         stationLetterClass = 'zhanneixin_li2';
                                         stationLetterText = '已读'
                                     }
+                                    console.log(item)
                                     return (
                                         <li key={item.id} data={item.id} className={stationLetterClass}>
                                             <div className='personal_zhanneixin_top_div display'/>
@@ -319,8 +325,12 @@ class PersonalZhanneixin extends React.Component {
                                             {/*</div>*/}
 
 
-                                            <div className='personal_zhanneixin_top_span floatleft'><input
-                                                type="checkbox" className='shoucang_inp'/></div>
+                                            <div className='personal_zhanneixin_top_span floatleft'>
+                                                <input
+                                                    type="checkbox" className='shoucang_inp'
+                                                    value={item.id}
+                                                />
+                                            </div>
                                             <div>
                                                 <div className='personal_zhanneixin_top_span1 floatleft aaaa'
                                                      onChange={(e) => {
@@ -329,7 +339,7 @@ class PersonalZhanneixin extends React.Component {
                                                 <div
                                                     className='personal_zhanneixin_top_span2 floatleft'>
                                                     {item.title}
-                                                    </div>
+                                                </div>
                                                 <div
                                                     className='personal_zhanneixin_top_span3 floatRight'>
                                                     [<span>{item.created_time}</span>]

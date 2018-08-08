@@ -65,7 +65,7 @@ class Lingqu extends Component {
     }
 
     componentDidMount() {
-
+        window.scrollTo(0,0);
         let username = CoojiePage.getCoojie('username');
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
@@ -126,6 +126,7 @@ class Lingqu extends Component {
 
     payFor(id) {
         InterfaceUtil.delCookie('cart_id');
+        InterfaceUtil.delCookie('package_id');
         document.cookie = "coupon_id=" + id;
         this.props.history.push('./Jiesuan')
         // var b = $('.jiesuan_sel').eq(0).val();

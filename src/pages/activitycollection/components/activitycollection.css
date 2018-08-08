@@ -140,6 +140,9 @@
 .acUl2 li .acul2Con {
   padding: 10px;
 }
+.acUl2 li .acul2Con p:nth-child(2) {
+  height: 21px;
+}
 .acUl2 li .acul2Con .acul2ConTit {
   color: #188ae7;
   font-size: 16px;
@@ -165,6 +168,7 @@
   text-align: center;
   line-height: 18px;
   border-left: 1px solid #ADABB8;
+  cursor: pointer;
 }
 .acul2ConFot .acul2ConFotLef span {
   display: block;
@@ -205,6 +209,7 @@
   font-size: 14px;
   background: #666666;
   color: #fff;
+  height: 40px;
   padding: 3px 10px;
   line-height: 1.2;
 }

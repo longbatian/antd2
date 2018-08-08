@@ -4,6 +4,8 @@ import InterfaceUtil from './../../../util/InterfaceUtil';
 import Datepicker from './components/Datepicker';
 
 import './components/intergraldatepicker.css';
+import $ from "jquery";
+import CoojiePage from "../../../util/CoojiePage";
 
 
 class ComInfoPage extends Component {
@@ -12,9 +14,7 @@ class ComInfoPage extends Component {
         this.state = {}
     }
 
-    componentDidMount() {
 
-    }
 
     render() {
         return <div>

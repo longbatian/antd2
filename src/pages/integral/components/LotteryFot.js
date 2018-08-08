@@ -1,14 +1,45 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import $ from "jquery";
+import InterfaceUtil from "../../../util/InterfaceUtil";
 
 
 class LotteryFot extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            list:[]
+        }
     }
-
+    componentDidMount() {
+        const _this = this;
+        $.ajax({
+            url: InterfaceUtil.getUrl(72),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                page:1,pageSize:6
+            }),
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                if(data.code===1){
+                    _this.setState({
+                        list:data.data.list
+                    })
+                }
+            }
+        })
+    }
     render() {
+        const data=this.state.list;
+        let list=data.length>0?data.map((data)=>{
+            let times=InterfaceUtil.fmtDate(data.created_time)
+            return  <li key={data.id}>
+                <span>{data.username}</span>
+                <span>{data.value}</span>
+                <span>{times}</span>
+            </li>
+        }):null;
         return <div className='intFotBox'>
             <div className="intFotBoxLef">
                 <img src={require('../../../images/interl/14.png')} alt=""/>
@@ -40,36 +71,12 @@ class LotteryFot extends React.Component {
                 <h1>中奖达人名单</h1>
                 <div className='intredboxs'>
                     <ul>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
-                        <li>
-                            <span>juchuang</span>
-                            <span>抽中100元优惠券</span>
-                            <span>20180506 08:00:00</span>
-                        </li>
+                        {/*<li>*/}
+                            {/*<span>juchuang</span>*/}
+                            {/*<span>抽中100元优惠券</span>*/}
+                            {/*<span>20180506 08:00:00</span>*/}
+                        {/*</li>*/}
+                        {list}
                     </ul>
                 </div>
             </div>

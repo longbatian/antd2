@@ -145,20 +145,19 @@ class Integralpage extends React.Component {
             activedId: 0
         })
         // 随机算出一个动画执行的最小次数，这里可以随机变更数值，按自己的需求来
-        let times = this.state.list.length * Math.floor(Math.random() * 8 + 4)
+        let times = this.state.list.length * Math.floor(Math.random() * 6 + 4)
         this.setState({
             times: times
         })
         // 抽奖正式开始↓↓
         this.begin = setInterval(() => {
             let num;
-
             if (this.state.activedId === this.state.prizeId && this.state.actTimes > this.state.times) {
                 // 符合上述所有条件时才是中奖的时候，两个ID相同并且动画执行的次数大于(或等于也行)设定的最小次数
                 clearInterval(this.begin)
                 this.setState({
                     isRolling: false
-                })
+                },()=>console.log(11))
                 return
             }
 
@@ -190,7 +189,7 @@ class Integralpage extends React.Component {
         }, 40)
     }
     componentDidMount(){
-        const _this=this
+        const _this=this;
         $.ajax({
             url: InterfaceUtil.getUrl(69),
             type: "post",
@@ -200,6 +199,15 @@ class Integralpage extends React.Component {
             dataType: "json",
             success: function (data) {
                 console.log(JSON.stringify(data))
+                if(data.code===1){
+                    let list=_this.state.list;
+                    data.data.map((it,i)=>{
+                        list[i].imgUrl=it.image
+                    });
+                    _this.setState({
+                        list:list
+                    })
+                }
             }
         })
     }

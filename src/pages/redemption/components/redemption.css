@@ -27,6 +27,7 @@
   padding: 10px;
 }
 .rdBox ul li .rdliimg .rdimg1 {
+  display: block;
   width: 100%;
   height: 265px;
 }
@@ -58,6 +59,7 @@
 .rdBox ul .rdTishi {
   background: #F68B00;
   padding: 0 10px;
+  height: 42px;
 }
 .rdBox ul .rdTishi span:first-child {
   color: #fff;

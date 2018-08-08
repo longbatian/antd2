@@ -104,7 +104,8 @@ let urls=[
     // 'user/coupons'//45
     '/goods/user_coupon'//45
     ,'user/coupon_counts',//46
-    'user/delete_znx',//47
+    // 'user/delete_znx',//47
+    '/index/message_del',//47
     // 'user/get_znx',//48
     '/index/message',//48
     // 'user/get_znx_info',//49
@@ -139,6 +140,9 @@ let urls=[
     '/users/prize_goods',//69
     '/users/integral_prize',//70
     '/users/integral_convert', //71
+    '/users/prize_winners',//72
+    '/index/activity_group',//73
+    '/goods/traded_goods',//74
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil{
@@ -158,7 +162,8 @@ export default class InterfaceUtil{
      */
     static getImgUrl(){
         // return 'http://192.168.1.49/';
-        return imgu;
+        // return imgu;
+        return '';
     }
     static getHashParameters(){
         let url = document.location.href;

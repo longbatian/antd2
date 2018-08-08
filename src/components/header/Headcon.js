@@ -194,7 +194,7 @@ class Headcon extends React.Component {
                                 this.state.top.map(function (item, i) {
 
                                     return (
-                                        <span className='marginRight10'>{item}</span>
+                                        <span key={i} className='marginRight10'>{item}</span>
                                     )
                                 }, this)
                             }
