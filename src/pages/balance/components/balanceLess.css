@@ -1,0 +1,66 @@
+.ncontain {
+  background: #F1F1F1;
+}
+.ncontain > div {
+  width: 1200px;
+  overflow: hidden;
+  margin: auto;
+  padding: 20px 0;
+}
+.blHead {
+  overflow: hidden;
+  background: #fff;
+  padding: 15px 10px;
+  line-height: 1.5;
+}
+.blHead h2 {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.blHead ul {
+  float: left;
+  margin: 8px 0 0;
+  overflow: hidden;
+}
+.blHead ul li {
+  float: left;
+  padding: 0 25px;
+  border-left: 1px solid #ddd;
+}
+.blHead ul li:first-child {
+  border-left: none;
+}
+.blBoxs {
+  width: 980px;
+  float: right;
+  overflow: hidden;
+}
+.blCons {
+  padding: 20px;
+  background: #fff;
+}
+.blCons .bods {
+  border: 1px solid #ddd;
+}
+.bl1Head {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #F1F1F1;
+  padding: 20px;
+}
+.bl1Head .bl1HeadLef {
+  float: left;
+  border-right: 1px solid #ddd;
+  width: 25%;
+  text-align: left;
+}
+.bl1Head .bl1HeadLef p:last-child {
+  color: #FE8502;
+  font-size: 40px;
+}
+.bl1Head .bl1HeadLef p:last-child span {
+  font-size: 22px;
+  vertical-align: text-bottom;
+}
+/*# sourceMappingURL=balanceLess.css.map */
