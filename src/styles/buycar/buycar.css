@@ -265,6 +265,10 @@
 /*结算*/
 .jiesuan_div{
   border: 1px solid #e0e0e0;
+  overflow: hidden;
+}
+.jiesuan_div_div2>div{
+  min-height: 1px;
 }
 .jiesuan_div_div{
   width: 1160px;
@@ -516,5 +520,13 @@
 .ccnactivity .car_content{
   background: #FEF7F1;
 }
-
+.ccn_bg2{
+  display: inline-block;
+  width: 5px;
+  height: 10px;
+  background: url("../../images/buycar/002.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  margin-right: 5px;
+}
 

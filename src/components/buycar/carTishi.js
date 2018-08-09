@@ -35,8 +35,8 @@ class Gouwuche3 extends React.Component {
             for (var i = 0; i < che.length; i++) {
                 che[i].setAttribute('checked', true);
             }
-            $('.tishi_anniu1,.tishi_anniu').hide();
-            $('.tishi_anniu').show();
+            // $('.tishi_anniu1,.tishi_anniu').hide();
+            // $('.tishi_anniu').show();
             $('.buycar_input').prop('checked', true);
             $('.buycar_input1').prop('checked', true);
             $('.buycar_input2').prop('checked', true);
@@ -75,9 +75,9 @@ class Gouwuche3 extends React.Component {
         this.showJiesuan(heji)
         //ajax
 
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        cid = JSON.stringify(cid);
+        // var username = CoojiePage.getCoojie('username');
+        // var token = CoojiePage.getCoojie('token');
+        // cid = JSON.stringify(cid);
         //搜索条件ajax
         // $.ajax({
         //     url: InterfaceUtil.getUrl(3),
@@ -104,6 +104,7 @@ class Gouwuche3 extends React.Component {
 
     showJiesuan(heji) {
         var minM = this.state.minMoey;
+        heji=parseInt(heji)
         if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
@@ -262,7 +263,19 @@ class Gouwuche3 extends React.Component {
                 cid.push(c);
             }
         }
+        var b=$('.ccnChildInput');
+        let traded_goods_id=[];
+        console.log(traded_goods_id)
+        if(b.length>0){
+            b.map((it,i)=>{
+                if (i.checked === true) {
+                    traded_goods_id.push($(i).attr('data-index'));
+                }
+            })
+        }
+
         document.cookie = "cart_id=" + cid;
+        document.cookie = "traded_goods_id=" + traded_goods_id;
         this.props.history.push('/Jiesuan');
     }
 

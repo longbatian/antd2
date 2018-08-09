@@ -136,6 +136,7 @@ class Jiesuan extends React.Component {
         var user_id = CoojiePage.getCoojie('user_id');
         var cart_id = CoojiePage.getCoojie('cart_id');
         var coupon_id = CoojiePage.getCoojie('coupon_id');
+        let traded_goods_id = CoojiePage.getCoojie('traded_goods_id');
         const that = this;
         //全局
         $.ajax({
@@ -151,18 +152,22 @@ class Jiesuan extends React.Component {
         });
         let datas = {};
         if (cart_id) {
-            datas = { "user_id": user_id, "token": token, "cart_id": cart_id}
+            datas = {
+                "user_id": user_id,
+                "token": token,
+                "cart_id": cart_id,
+                traded_goods_id:traded_goods_id
+
+            }
         }else {
             datas = { "user_id": user_id, "token": token, "coupon_id": coupon_id}
         }
-        console.log(datas)
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
             data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
-                console.log(data)
                 if (data.code !== 1) {
                     alert(data.msg);
                     // that.props.history.push('/Buycar');
@@ -187,6 +192,8 @@ class Jiesuan extends React.Component {
 
     render() {
         const data = this.state;
+        const datas=this.props;
+        console.log(datas)
         return (
             <div className='container'>
                 {/*进度条*/}

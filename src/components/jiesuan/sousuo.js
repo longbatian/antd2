@@ -33,23 +33,26 @@ class Jiesuan1 extends React.Component {
             }
         }
 
-
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var user_type = CoojiePage.getCoojie('user_type');
-        var jylx = CoojiePage.getCoojie('jylx');
-        var cart_id = CoojiePage.getCoojie('cart_id');
-        var coupon_id = CoojiePage.getCoojie('coupon_id');
+        let token = CoojiePage.getCoojie('token');
+        let user_id = CoojiePage.getCoojie('user_id');
+        let cart_id = CoojiePage.getCoojie('cart_id');
+        let coupon_id = CoojiePage.getCoojie('coupon_id');
+        let traded_goods_id = CoojiePage.getCoojie('traded_goods_id');
 
         const that = this;
         let datas = {};
         if (cart_id) {
-            datas = {"user_id": user_id, "token": token, "cart_id": cart_id}
-        } else {
-            datas = {"user_id": user_id, "token": token, "coupon_id": coupon_id}
+            datas = {
+                "user_id": user_id,
+                "token": token,
+                "cart_id": cart_id,
+                traded_goods_id:traded_goods_id
+
+            }
+        }else {
+            datas = { "user_id": user_id, "token": token, "coupon_id": coupon_id}
         }
-        console.log(datas)
+
         $.ajax({
             url: InterfaceUtil.getUrl(29),
             type: "post",
@@ -76,13 +79,12 @@ class Jiesuan1 extends React.Component {
     }
 
     chuangjian(e) {
-        // var a =document.getElementsByClassName('jiesuan_sel');
         var b = $('.jiesuan_sel').eq(0).val();
         var bz = $('.jiesuan_div_div4_inp').val();
         const that = this;
-        let cid = CoojiePage.getCoojie('cid');
         var cart_id = CoojiePage.getCoojie('cart_id');
-        var coupon_id = CoojiePage.getCoojie('coupon_id');
+        let coupon_id = CoojiePage.getCoojie('coupon_id');
+        let traded_goods_id = CoojiePage.getCoojie('traded_goods_id');
 
         let datas = {};
         if (cart_id) {
@@ -91,7 +93,8 @@ class Jiesuan1 extends React.Component {
                 "user_id": that.member_id,
                 "cart_id": cart_id,
                 "user_remark": bz,
-                user_coupon_id: b
+                 user_coupon_id: b,
+                traded_goods_id:traded_goods_id
             }
         } else {
             datas = {
@@ -112,13 +115,13 @@ class Jiesuan1 extends React.Component {
                 if (data.code === 1) {
                     InterfaceUtil.delCookie('coupon_id');
                     InterfaceUtil.delCookie('cart_id');
+                    InterfaceUtil.delCookie('traded_goods_id');
                     sessionStorage.setItem("orderno", data.data.order_number);
                     PubSub.publish('PubSubmessage', data.code);
                     that.props.history.push('/Dingdan');
                 } else {
                     alert(data.msg);
                 }
-
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
 

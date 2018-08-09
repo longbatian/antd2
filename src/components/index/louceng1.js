@@ -28,12 +28,10 @@ class Louceng1 extends React.Component {
     componentDidMount() {
         var user_id = CoojiePage.getCoojie('user_id');
         var token = CoojiePage.getCoojie('token');
-        let user_type = CoojiePage.getCoojie('user_type');
         const that = this;
         //搜索条件ajax
         $.ajax({
-            // url:'http://192.168.1.49/index.php/index/user/user_reg',
-            url: InterfaceUtil.getUrl(24),
+            url: InterfaceUtil.getUrl(22),
             type: 'post',
             dataType: 'json',
             data: InterfaceUtil.addTime({
@@ -62,7 +60,6 @@ class Louceng1 extends React.Component {
 
         //楼层
         $.ajax({
-            // url:'http://192.168.1.49/index.php/index/user/user_reg',
             url: InterfaceUtil.getUrl(25),
             type: 'post',
             dataType: 'json',
@@ -74,7 +71,7 @@ class Louceng1 extends React.Component {
             },
             success: function (data, textStatus, jqXHR) {
                 var data = data;
-
+                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -119,55 +116,55 @@ class Louceng1 extends React.Component {
                         <div className='louceng_con_lunbo'>
                             <Carousel autoplay>
                                 {
-                                    this.state.banner.map(function (item) {
-                                        return (
-                                            <div key={item.image}>
-                                                <Link to={item.url}>
-                                                    <img src={this.state.lujin + item.image}/>
-                                                </Link>
-
-                                            </div>
-                                        )
-                                    }, this)
+                                    // this.state.banner.map(function (item) {
+                                    //     return (
+                                    //         <div key={item.image}>
+                                    //             <Link to={item.url}>
+                                    //                 <img src={item.image}/>
+                                    //             </Link>
+                                    //
+                                    //         </div>
+                                    //     )
+                                    // }, this)
                                 }
                             </Carousel>
                         </div>
                         {
-                            this.state.youtu.map(function (item,i) {
-                                return (
-                                    <div key={i + 'youtu'} className='louceng_con_img1'>
-                                        <Link to={item.url}>
-                                            <img src={this.state.lujin + item.image} alt=""/>
-                                        </Link>
-
-                                    </div>
-                                )
-                            }, this)
+                            // this.state.youtu.map(function (item,i) {
+                            //     return (
+                            //         <div key={i + 'youtu'} className='louceng_con_img1'>
+                            //             <Link to={item.url}>
+                            //                 <img src={this.state.lujin + item.image} alt=""/>
+                            //             </Link>
+                            //
+                            //         </div>
+                            //     )
+                            // }, this)
                         }
                         {/*第二行*/}
                         <ul className='louceng_con_ul floatleft'>
                             {
-                                this.state.sp.map(function (item) {
-
-                                    return (
-                                        <li key={item.id + 'loCsp'}>
-                                            <input type="hidden" value={item.id} data={item.zxdw}/>
-                                            <Link to={'/Shangpinxiangqing?&id=' + item.id}>
-                                                <img src={this.state.lujin + item.image} alt=""
-                                                    // onClick={(e)=>{this.xiangqing3(e)}}
-                                                />
-                                            </Link>
-
-                                            <p className='hid oneWeekgive font16'>{item.name}</p>
-                                            <p className='hid oneWeekgiveP'>{item.standard}</p>
-                                            <p className='hid oneWeekgiveP'>{item.enterprice}</p>
-                                            <div className='louceng_con_ul_li_div cursor' onClick={(e) => {
-                                                this.xiangqing1(e)
-                                            }}>立即购买
-                                            </div>
-                                        </li>
-                                    )
-                                }, this)
+                                // this.state.sp.map(function (item) {
+                                //
+                                //     return (
+                                //         <li key={item.id + 'loCsp'}>
+                                //             <input type="hidden" value={item.id} data={item.zxdw}/>
+                                //             <Link to={'/Shangpinxiangqing?&id=' + item.id}>
+                                //                 <img src={this.state.lujin + item.image} alt=""
+                                //                     // onClick={(e)=>{this.xiangqing3(e)}}
+                                //                 />
+                                //             </Link>
+                                //
+                                //             <p className='hid oneWeekgive font16'>{item.name}</p>
+                                //             <p className='hid oneWeekgiveP'>{item.standard}</p>
+                                //             <p className='hid oneWeekgiveP'>{item.enterprice}</p>
+                                //             <div className='louceng_con_ul_li_div cursor' onClick={(e) => {
+                                //                 this.xiangqing1(e)
+                                //             }}>立即购买
+                                //             </div>
+                                //         </li>
+                                //     )
+                                // }, this)
                             }
                             {/*<li>*/}
                             {/*<img src="../../images/index/loucengIMG.png" alt=""/>*/}
@@ -205,66 +202,66 @@ class Louceng1 extends React.Component {
 
                     {/**/}
                     {
-                        this.state.louceng.map(function (item, i) {
-                            var images = item.top_adv ? <img src={this.state.lujin + item.top_adv} alt=""/> : null;
-                            return (
-                                <div key={i + 'loShu'}>
-                                    {/*楼层标题*/}
-                                    <div>
-                                        <Link to={item.url} className='marginTop20 louceng_guanggao'>
-                                            {/*<img src="../../images/index/loucengGG.png" alt=""/>*/}
-                                            {images}
-                                        </Link>
-                                        <div className={'louceng_bt marginTop20 relative'}>
-                                            <span
-                                                className={'floatleft louceng_bt_title' + ' ' + 'scrollTop' + [i + 2]}>
-                                                {item.name}
-                                                </span>
-                                            <div className='floatRight'>
-                                                <Link to='/Chanpinzhongxin?&zjzx=2'>
-                                                    更多产品<img src={require("../../images/index/loucengJT.png")}
-                                                             className='marginLeft10' alt=""/>
-                                                </Link>
-                                            </div>
-                                            <span className='louceng_bt_shuzi'>{i + 1}</span>
-                                            <div className='clear'/>
-                                        </div>
-                                    </div>
-                                    {/*楼层内容*/}
-                                    <div className='louceng_con1'>
-                                        <div className='floatleft'>
-                                            <Link to={item.url}>
-                                                <img src={this.state.lujin + item.image} className='louceng_con1_img'
-                                                     alt=""/>
-                                            </Link>
-                                        </div>
-                                        {/*<div className='floatleft'><img src={this.state.lujin+item.zuotu} className='louceng_con1_img' alt=""/></div>*/}
-                                        <ul className='floatleft louceng_con1_ul'>
-                                            {
-                                                this.state.louceng[i].goods_list.map(function (item1, i) {
-                                                    return (
-                                                        <li key={item1.id + 'loCgs'}>
-                                                            {/*<input type="hidden" value={item1.id}/>*/}
-                                                            <Link to={'/Shangpinxiangqing?&id=' + item1.id}>
-                                                                <img src={this.state.lujin + item1.image} alt=""
-                                                                    // onClick={(e)=>{this.xiangqing3(e)}}
-                                                                />
-                                                            </Link>
-
-                                                            {/*<img src={this.state.lujin+item.image} alt="" onClick={(e)=>{this.xiangqing3(e)}}/>*/}
-                                                            <p className='hid font16 oneWeekgive'>{item1.name}</p>
-                                                            <p className='hid oneWeekgiveP'>{item1.standard}</p>
-                                                            <p className='hid oneWeekgiveP'>{item1.enterprise}</p>
-                                                        </li>
-                                                    )
-                                                }, this)
-                                            }
-                                        </ul>
-                                        <div className='clear'></div>
-                                    </div>
-                                </div>
-                            )
-                        }, this)
+                        // this.state.louceng.map(function (item, i) {
+                        //     var images = item.top_adv ? <img src={this.state.lujin + item.top_adv} alt=""/> : null;
+                        //     return (
+                        //         <div key={i + 'loShu'}>
+                        //             {/*楼层标题*/}
+                        //             <div>
+                        //                 <Link to={item.url} className='marginTop20 louceng_guanggao'>
+                        //                     {/*<img src="../../images/index/loucengGG.png" alt=""/>*/}
+                        //                     {images}
+                        //                 </Link>
+                        //                 <div className={'louceng_bt marginTop20 relative'}>
+                        //                     <span
+                        //                         className={'floatleft louceng_bt_title' + ' ' + 'scrollTop' + [i + 2]}>
+                        //                         {item.name}
+                        //                         </span>
+                        //                     <div className='floatRight'>
+                        //                         <Link to='/Chanpinzhongxin?&zjzx=2'>
+                        //                             更多产品<img src={require("../../images/index/loucengJT.png")}
+                        //                                      className='marginLeft10' alt=""/>
+                        //                         </Link>
+                        //                     </div>
+                        //                     <span className='louceng_bt_shuzi'>{i + 1}</span>
+                        //                     <div className='clear'/>
+                        //                 </div>
+                        //             </div>
+                        //             {/*楼层内容*/}
+                        //             <div className='louceng_con1'>
+                        //                 <div className='floatleft'>
+                        //                     <Link to={item.url}>
+                        //                         <img src={this.state.lujin + item.image} className='louceng_con1_img'
+                        //                              alt=""/>
+                        //                     </Link>
+                        //                 </div>
+                        //                 {/*<div className='floatleft'><img src={this.state.lujin+item.zuotu} className='louceng_con1_img' alt=""/></div>*/}
+                        //                 <ul className='floatleft louceng_con1_ul'>
+                        //                     {
+                        //                         this.state.louceng[i].goods_list.map(function (item1, i) {
+                        //                             return (
+                        //                                 <li key={item1.id + 'loCgs'}>
+                        //                                     {/*<input type="hidden" value={item1.id}/>*/}
+                        //                                     <Link to={'/Shangpinxiangqing?&id=' + item1.id}>
+                        //                                         <img src={this.state.lujin + item1.image} alt=""
+                        //                                             // onClick={(e)=>{this.xiangqing3(e)}}
+                        //                                         />
+                        //                                     </Link>
+                        //
+                        //                                     {/*<img src={this.state.lujin+item.image} alt="" onClick={(e)=>{this.xiangqing3(e)}}/>*/}
+                        //                                     <p className='hid font16 oneWeekgive'>{item1.name}</p>
+                        //                                     <p className='hid oneWeekgiveP'>{item1.standard}</p>
+                        //                                     <p className='hid oneWeekgiveP'>{item1.enterprise}</p>
+                        //                                 </li>
+                        //                             )
+                        //                         }, this)
+                        //                     }
+                        //                 </ul>
+                        //                 <div className='clear'></div>
+                        //             </div>
+                        //         </div>
+                        //     )
+                        // }, this)
                     }
                 </div>
             </div>

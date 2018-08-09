@@ -21,97 +21,113 @@ class Gouwuche2 extends React.Component {
 
 
     //加
-    jia3(e, mo1, mo2) {
-        var a = e.target.parentNode.getAttribute('data');
-        var kucun = e.target.parentNode.getAttribute('data-a');
-        var goods_id = e.target.parentNode.getAttribute('data-index');
-        a = parseInt(a);
-        var b = e.target.parentNode.children[1].getAttribute('value');
-        b = parseInt(b);
-        var minM = this.state.minMoey;
-        var c = b + a;
-        if (c > kucun) {
-            alert('库存数量不足');
-            e.target.parentNode.children[1].value = kucun;
+    jia3(e, unit, id, unitM) {
+
+        let list = this.state.sp;
+        let maxnum = 0;
+        unitM = parseFloat(unitM);
+        list.map((it, i) => {
+            if (it.goods_id !== 0) {
+                if (it.goods_id === id) {
+                    maxnum = it.stock_num;
+                }
+            } else {
+                if (it.id === id) {
+                    maxnum = it.package_num
+                }
+            }
+
+        });
+        let b = e;
+        unit = unit ? unit : 1;
+        unit = parseInt(unit);
+        maxnum = parseInt(maxnum);
+        let num = 0;
+        if (b === maxnum) return;
+        if (b + unit > maxnum) {
+            num = maxnum
         } else {
-            e.target.parentNode.children[1].setAttribute('value', c);
-            e.target.parentNode.children[1].value = c;
+            num = b + unit
+        }
+        this.setStateList(num, id, unitM);
+    }
 
-            var heji = e.target.parentNode;
-            heji = heji.nextSibling;
-            var id = e.target.parentNode.getAttribute('data-index');
-            id = parseInt(id);
+    onChange2(e, unit, id, unitM, th) {
+        let num = th.target.value;
+        let list = this.state.sp;
+        list.map((it, i) => {
+            if (it.goods_id !== 0) {
+                if (it.goods_id === id) {
+                    it.goods_num = num;
+                }
+            } else {
+                if (it.id === id) {
+                    it.goods_num = num;
+                }
+            }
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var user_id = CoojiePage.getCoojie('user_id');
-            var jylx = CoojiePage.getCoojie('jylx');
-            const that = this;
-            //  广告位
+        });
+        this.setState({
+            sp: list
+        });
+
+    }
+
+    setStateList(num, id, unitM) {
+
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
+        let datas = {
+            "token": token,
+            "user_id": user_id,
+             goods_num: num
+        }
+        let list = this.state.sp;
+        list.map((it, i) => {
+            if (it.goods_id !== 0) {
+                if (it.goods_id === id) {
+                    it.goods_num = num;
+                    it.price_count = num * unitM;
+                    datas[`goods_id`] = id;
+                }
+            } else {
+                if (it.id === id) {
+                    it.goods_num = num;
+                    it.price_count = num * unitM;
+                    datas[`goods_package_id`] = id;
+                }
+            }
+
+        });
+        const that = this;
+        // 改变数据库中
+        that.setState({
+            sp: list
+        }, () => {
             $.ajax({
                 url: InterfaceUtil.getUrl(11),
                 type: "post",
-                data: InterfaceUtil.addTime({
-                    "token": token,
-                    "user_id": user_id,
-                    "type": 1,
-                    goods_id: goods_id
-                }),
+                data: InterfaceUtil.addTime(datas),
                 dataType: "json",
                 success: function (data) {
-                    let hjnum = mo2 ? mo2 : mo1;
-                    heji.innerText = '￥' + (data.data.goods_num * hjnum);
-                    //  是否选中
-                    var check = document.getElementsByClassName('car_content');
-                    var inp = document.getElementsByClassName('buycar_input1');
-                    var heji1 = document.getElementsByClassName('car_title_div11_xiaoji');
-                    var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                    var zongjia = 0;
-                    for (var i = 0; i < check.length; i++) {
-                        var xuanzhong = inp[i].getAttribute('checked');
+                    if (data.code === 1) {
 
-                        if (xuanzhong == 'true') {
+                    }else {
 
-                            // inp[i].setAttribute('checked',true);
-                            var xiaoji = heji1[i].innerText;
-
-                            xiaoji = xiaoji.slice(1);
-                            xiaoji = parseFloat(xiaoji);
-                            zongjia = parseFloat(zongjia);
-                            zongjia = zongjia + xiaoji;
-                            zongjia = zongjia.toFixed(2);
-                            zongjia1[0].innerText = "￥" + zongjia;
-                            //判断去结算
-                            var a = document.getElementsByClassName('car_Heji_div1_span');
-                            var b = a[0].innerText;
-                            b = b.slice(1);
-                            b = parseFloat(b);
-                            if (b < minM) {
-                                var c = document.getElementsByClassName('tishi_anniu');
-                                var d = document.getElementsByClassName('tishi_anniu1');
-                                var e = document.getElementsByClassName('tishi_jiage');
-                                var f = minM - b;
-                                f = f.toFixed(2);
-                                e[0].innerText = '￥' + f;
-                            } else {
-                                var c = document.getElementsByClassName('tishi_anniu');
-                                var d = document.getElementsByClassName('tishi_anniu1');
-                            }
-                            that.showJieSuan(b)
-                        } else {
-
-                        }
                     }
                 }
             });
+            that.setAllmoney();
+        });
 
-
-        }
 
     }
 
     showJieSuan(heji) {
         var minM = this.state.minMoey;
+        // parseInt
+        heji=parseInt(heji)
+        console.log(heji,minM,heji >= minM)
         if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
@@ -121,378 +137,136 @@ class Gouwuche2 extends React.Component {
         }
     }
 
-    //减
-    jian3(e, mo1, mo2) {
-        var a = e.target.parentNode.getAttribute('data');
-        a = parseInt(a);
-        var b = e.target.parentNode.children[1].getAttribute('value');
-        var kucun = e.target.parentNode.getAttribute('data-a');
-        var goods_id = e.target.parentNode.getAttribute('data-index');
-        a = parseInt(a);
-        b = parseInt(b);
-        var c = b - a;
-        if (c < kucun) {
-            if (c < 1) {
-                e.target.parentNode.children[1].setAttribute('value', b);
-                e.target.parentNode.children[1].value = b;
-
+//减
+    jian3(e, unit, id, unitM) {
+        let list = this.state.sp;
+        let maxnum = 0;
+        unitM = parseFloat(unitM);
+        list.map((it, i) => {
+            if (it.goods_id !== 0) {
+                if (it.goods_id === id) {
+                    maxnum = it.stock_num;
+                }
             } else {
-                e.target.parentNode.children[1].setAttribute('value', c);
-                e.target.parentNode.children[1].value = c;
-
-
-                var heji = e.target.parentNode;
-                heji = heji.nextSibling;
-                var id = e.target.parentNode.getAttribute('data-index');
-                id = parseInt(id);
-                var username = CoojiePage.getCoojie('username');
-                var token = CoojiePage.getCoojie('token');
-                var user_id = CoojiePage.getCoojie('user_id');
-                var jylx = CoojiePage.getCoojie('jylx');
-                const that = this;
-                const minM = this.state.minMoey;
-                //  广告位
-                $.ajax({
-                    url: InterfaceUtil.getUrl(11),
-                    type: "post",
-                    data: InterfaceUtil.addTime({
-
-                        "token": token,
-                        "user_id": user_id,
-                        "type": 0,
-                        goods_id: goods_id
-
-                    }),
-                    dataType: "json",
-                    success: function (data) {
-                        let hjnum = mo2 ? mo2 : mo1;
-                        heji.innerText = '￥' + data.data.goods_num * hjnum;
-                        //  是否选中
-                        var check = document.getElementsByClassName('car_content');
-                        var inp = document.getElementsByClassName('buycar_input1');
-                        var heji1 = document.getElementsByClassName('car_title_div11_xiaoji');
-                        var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                        var zongjia = 0;
-                        for (var i = 0; i < check.length; i++) {
-                            var xuanzhong = inp[i].getAttribute('checked');
-                            if (xuanzhong == 'true') {
-                                // inp[i].setAttribute('checked',true);
-                                var xiaoji = heji1[i].innerText;
-
-                                xiaoji = xiaoji.slice(1);
-                                xiaoji = parseFloat(xiaoji);
-                                zongjia = parseFloat(zongjia);
-                                zongjia = zongjia + xiaoji;
-                                zongjia = zongjia.toFixed(2);
-                                zongjia1[0].innerText = "￥" + zongjia;
-
-                                //判断去结算
-                                var a = document.getElementsByClassName('car_Heji_div1_span');
-                                var b = a[0].innerText;
-                                b = b.slice(1);
-                                b = parseFloat(b);
-                                if (b < minM) {
-                                    var c = document.getElementsByClassName('tishi_anniu');
-                                    var d = document.getElementsByClassName('tishi_anniu1');
-                                    var e = document.getElementsByClassName('tishi_jiage');
-
-                                    var f = minM - b;
-                                    f = f.toFixed(2);
-                                    e[0].innerText = '￥' + f;
-                                } else {
-                                    var c = document.getElementsByClassName('tishi_anniu');
-                                    var d = document.getElementsByClassName('tishi_anniu1');
-                                }
-                                that.showJieSuan(b);
-                            } else {
-
-                            }
-                        }
-                    }
-                });
-
+                if (it.id === id) {
+                    maxnum = it.package_num
+                }
             }
-        }
 
-
-    }
-
-    //输入框
-    shuliangBuy(e, mo1, mo2) {
-        let a = e.target;
-        let b = a.value;
-        let moren = e.target.parentNode.getAttribute('data');
-        let kucun = e.target.parentNode.getAttribute('data-a');
-        let goods_id = e.target.parentNode.getAttribute('data-index');
-        moren = parseInt(moren);
-        kucun = parseInt(kucun);
-        let heji = e.target.parentNode;
-        heji = heji.nextSibling;
-        let id = e.target.parentNode.getAttribute('data-index');
-        id = parseInt(id);
-        const minM = this.state.minMoey;
-        if (isNaN(b) !== false || b < 0) {
-            a.value = moren;
+        });
+        let b = e;
+        unit = unit ? unit : 1;
+        unit = parseInt(unit);
+        maxnum = parseInt(maxnum);
+        let num = 0;
+        if (b === unit) return;
+        if (b - unit < unit) {
+            num = unit
         } else {
-            if (b > kucun) {
-                alert('库存数量不足');
-                a.value = kucun;
-            } else {
-                var as = parseInt(b % moren);
-                if (as !== 0) {
-                    b = b - as + moren;
-                    a.setAttribute('value', b);
-                    a.value = b;
-
-
-                    let username = CoojiePage.getCoojie('username');
-                    let token = CoojiePage.getCoojie('token');
-                    let user_id = CoojiePage.getCoojie('user_id');
-                    let jylx = CoojiePage.getCoojie('jylx');
-                    const that = this;
-
-                    $.ajax({
-                        url: InterfaceUtil.getUrl(11),
-                        type: "post",
-                        data: InterfaceUtil.addTime({
-                            "token": token,
-                            "user_id": user_id,
-                            "goods_id": goods_id,
-                            goods_num: b
-                        }),
-                        dataType: "json",
-                        success: function (data) {
-                            console.log(data)
-                            heji.innerText = '￥' + data.data.hj;
-
-                            //  是否选中
-                            let check = document.getElementsByClassName('car_content');
-                            let inp = document.getElementsByClassName('buycar_input1');
-                            let heji1 = document.getElementsByClassName('car_title_div11_xiaoji');
-                            let zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                            let zongjia = 0;
-                            for (let i = 0; i < check.length; i++) {
-                                let xuanzhong = check[i].getAttribute('data');
-                                if (xuanzhong == '1') {
-                                    inp[i].setAttribute('checked', true);
-                                    var xiaoji = heji1[i].innerText;
-
-                                    xiaoji = xiaoji.slice(1);
-                                    xiaoji = parseFloat(xiaoji);
-                                    zongjia = parseFloat(zongjia);
-                                    zongjia = zongjia + xiaoji;
-                                    zongjia = zongjia.toFixed(2);
-                                    zongjia1[0].innerText = "￥" + zongjia;
-
-                                    //判断去结算
-                                    let a = document.getElementsByClassName('car_Heji_div1_span');
-                                    let b = a[0].innerText;
-                                    b = b.slice(1);
-                                    b = parseFloat(b);
-                                    if (b < minM) {
-                                        let c = document.getElementsByClassName('tishi_anniu');
-                                        let d = document.getElementsByClassName('tishi_anniu1');
-                                        let e = document.getElementsByClassName('tishi_jiage');
-
-                                        let f = minM - b;
-                                        f = f.toFixed(2);
-                                        e[0].innerText = '￥' + f;
-                                    } else {
-                                        let c = document.getElementsByClassName('tishi_anniu');
-                                        let d = document.getElementsByClassName('tishi_anniu1');
-
-                                    }
-                                    that.showJieSuan(b)
-                                } else {
-
-                                }
-                            }
-                        }
-                    });
-
-                }
-                else {
-                    a.setAttribute('value', b);
-                    a.value = b;
-
-                    let username = CoojiePage.getCoojie('username');
-                    let token = CoojiePage.getCoojie('token');
-                    let user_id = CoojiePage.getCoojie('user_id');
-                    let jylx = CoojiePage.getCoojie('jylx');
-                    const that = this;
-                    //  广告位
-                    $.ajax({
-                        url: InterfaceUtil.getUrl(11),
-                        type: "post",
-                        data: InterfaceUtil.addTime({
-                            "token": token,
-                            "user_id": user_id,
-                            "goods_id": goods_id,
-                            goods_num: b
-                        }),
-                        dataType: "json",
-                        success: function (data) {
-                            console.log(data)
-                            let hjnum = mo2 ? mo2 : mo1;
-                            heji.innerText = '￥' + data.data.goods_num * hjnum;
-
-                            //  是否选中
-                            let check = document.getElementsByClassName('car_content');
-                            let inp = document.getElementsByClassName('buycar_input1');
-                            let heji1 = document.getElementsByClassName('car_title_div11_xiaoji');
-                            let zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                            let zongjia = 0;
-                            for (let i = 0; i < check.length; i++) {
-                                let xuanzhong = check[i].getAttribute('data');
-                                if (xuanzhong == '1') {
-                                    inp[i].setAttribute('checked', true);
-                                    var xiaoji = heji1[i].innerText;
-
-                                    xiaoji = xiaoji.slice(1);
-                                    xiaoji = parseFloat(xiaoji);
-                                    zongjia = parseFloat(zongjia);
-                                    zongjia = zongjia + xiaoji;
-                                    zongjia = zongjia.toFixed(2);
-                                    zongjia1[0].innerText = "￥" + zongjia;
-
-                                    //判断去结算
-                                    let a = document.getElementsByClassName('car_Heji_div1_span');
-                                    let b = a[0].innerText;
-                                    b = b.slice(1);
-                                    b = parseFloat(b);
-                                    if (b < minM) {
-                                        let c = document.getElementsByClassName('tishi_anniu');
-                                        let d = document.getElementsByClassName('tishi_anniu1');
-                                        let e = document.getElementsByClassName('tishi_jiage');
-
-                                        let f = minM - b;
-                                        f = f.toFixed(2);
-                                        e[0].innerText = '￥' + f;
-                                    } else {
-                                        let c = document.getElementsByClassName('tishi_anniu');
-                                        let d = document.getElementsByClassName('tishi_anniu1');
-
-                                    }
-                                    that.showJieSuan(b)
-                                } else {
-
-                                }
-                            }
-                        }
-                    });
-                }
-            }
+            num = b - unit
         }
+        this.setStateList(num, id, unitM);
     }
 
-    //选择
+//输入框
+    shuliangBuy(e, unit, id, unitM, th) {
+        let list = this.state.sp;
+        let maxnum = 0;
+        unitM = parseFloat(unitM);
+        list.map((it, i) => {
+            if (it.goods_id !== 0) {
+                if (it.goods_id === id) {
+                    maxnum = it.stock_num;
+                }
+            } else {
+                if (it.id === id) {
+                    maxnum = it.package_num
+                }
+            }
+
+        });
+        let b = e;
+        unit = unit ? unit : 1;
+        unit = parseInt(unit);
+        maxnum = parseInt(maxnum);
+        let num = 0;
+        if (isNaN(b) != false || b <= 0) {
+            num = unit;
+        } else {
+            var as = parseInt(b % unit);
+            if (as != 0) {
+                b = b - as + unit;
+                num = b;
+            } else {
+                num = b;
+            }
+        }
+        if (b > maxnum) {
+            num = maxnum
+        } else if (b < unit) {
+            num = unit
+        }
+        this.setStateList(num, id, unitM);
+    }
+
+//选择
     fuxuankuang(e, nowNum) {
         var a = e.target.checked;
         const minM = this.state.minMoey;
+        var ziCheck = $(e.target).parents('.car_content').find('input[type=checkbox]');
         if (a == false) {
-            // var b = e.target.parentNode.parentNode.children;
-            // var c = b[12].innerText;
-            // c = c.slice(1);
-            let c = parseFloat(nowNum);
-            var zongjia = $('.car_Heji_div1_span').text();
-            zongjia = zongjia.slice(1);
-            zongjia = parseFloat(zongjia);
-            var zongjia1 = zongjia - c;
-            zongjia1 = zongjia1.toFixed(2);
-            $('.car_Heji_div1_span').text("￥" + zongjia1);
 
-            e.target.setAttribute('checked', false);
-            var cid = e.target.parentNode.getAttribute('data');
-            ;
 
-            //设置总价
-            var a = document.getElementsByClassName('car_Heji_div1_span');
-            var b = a[0].innerText;
-            b = b.slice(1);
-            b = parseFloat(b);
+            ziCheck.prop('checked', false);
 
-            if (b < minM) {
 
-                var e = document.getElementsByClassName('tishi_jiage');
-                var f = minM - b;
-                f = f.toFixed(2);
-                e[0].innerText = '￥' + f;
-            } else {
-
-            }
-            //ajax
-
-            // var username = CoojiePage.getCoojie('username');
-            // var token = CoojiePage.getCoojie('token');
-            // //搜索条件ajax
-            // $.ajax({
-            //     url: InterfaceUtil.getUrl(3),
-            //     type: "post",
-            //     data: {
-            //         "username": username, "token": token, "cid": cid, "is_check": 0
-            //     },
-            //     dataType: "json",
-            //     success: function (data) {
-            //
-            //     }
-            // });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
 
         } else if (a == true) {
+            ziCheck.prop('checked', true);
 
-            // var b = e.target.parentNode.parentNode.children;
-            // var c = b[12].innerText;
-            // c = c.slice(1);
-
-            let c = parseFloat(nowNum);
-            var zongjia = $('.car_Heji_div1_span').text();
-            zongjia = zongjia.slice(1);
-            zongjia = parseFloat(zongjia);
-
-            var zongjia1 = zongjia + c;
-            zongjia1 = zongjia1.toFixed(2);
-            $('.car_Heji_div1_span').text("￥" + zongjia1);
-            e.target.setAttribute('checked', true);
-            var cid = e.target.parentNode.getAttribute('data');
-
-            //设置总价
-            var a = document.getElementsByClassName('car_Heji_div1_span');
-            var b = a[0].innerText;
-            b = b.slice(1);
-            b = parseFloat(b);
-            if (b < minM) {
-                var e = document.getElementsByClassName('tishi_jiage');
-                var f = 200 - b;
-                f = f.toFixed(2);
-                e[0].innerText = '￥' + f;
-            } else {
-
-
-            }
-
-
-            // var username = CoojiePage.getCoojie('username');
-            // var token = CoojiePage.getCoojie('token');
-            // //搜索条件ajax
-            // $.ajax({
-            //     url: InterfaceUtil.getUrl(3),
-            //     type: "post",
-            //     data: {
-            //         "username": username, "token": token, "cid": cid, "is_check": 1
-            //     },
-            //     dataType: "json",
-            //     success: function (data) {
-            //
-            //     }
-            // });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
 
         }
-        $('.shangpingshuliang').text("已选择" + $('.car_content input:checked').length + "件商品");
-        this.showJieSuan(zongjia1)
+
+        this.setAllmoney();
     }
 
-    //收藏
+    fuxuankuang2(e, nowNum) {
+        var a = e.target.checked;
+        const minM = this.state.minMoey;
+        var ziCheck = $(e.target).parents('.car_content').find('input[type=checkbox]');
+        if (a == false) {
+
+        } else if (a == true) {
+            ziCheck.prop('checked', true);
+        }
+        this.setAllmoney();
+
+    }
+
+    /**
+     *
+     * 重新计算总价
+     */
+    setAllmoney() {
+        let arr = $('.buycar_input1');
+        let mon = [];
+        arr.map((it, i) => {
+            if ($(i).prop('checked')) {
+                let num = parseFloat($(i).attr('money'));
+                mon.push(num)
+            }
+        });
+        let all = 0;
+        mon.map((t, i) => {
+            all += t;
+        });
+        all = all.toFixed(2);
+        $('.car_Heji_div1_span').text("￥" + all);
+        $('.shangpingshuliang').text("已选择" + $('.car_content input:checked').length + "件商品");
+        this.showJieSuan(all)
+    }
+
+//收藏
     shoucang(e) {
         var a = e.target.parentNode.getAttribute('data');
         //ajax
@@ -516,7 +290,7 @@ class Gouwuche2 extends React.Component {
         });
     }
 
-    //删除
+//删除
     shanchu(e) {
         var a = e.target.parentNode.getAttribute('data-index');
         var username = CoojiePage.getCoojie('username');
@@ -560,7 +334,8 @@ class Gouwuche2 extends React.Component {
         this.setState({
             sp: arr1
         }, () => {
-            this.catTishiMoney();
+            this.setAllmoney();
+            // this.catTishiMoney();
         })
     }
 
@@ -578,7 +353,6 @@ class Gouwuche2 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-
                 if (data.data[9].initial_amount) {
                     that.setState({
                         minMoey: data.data[9].initial_amount,
@@ -596,7 +370,7 @@ class Gouwuche2 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data, JSON.stringify(data))
+
                 that.loginPage.ajaxLogin(data.status, that.props);
                 if (data.data.length == 0) {
 
@@ -607,59 +381,12 @@ class Gouwuche2 extends React.Component {
                         // minMoey: data.data.list.free.lowest,
                         // maxMoney: data.data.list.free.myunfee
                     }, () => {
-                        // var a = document.getElementsByClassName('car_title_div15');
-                        // var c = document.getElementsByClassName('car_title_div13');
-                        // var d = document.getElementsByClassName('car_title_div14');
-                        // var e = document.getElementsByClassName('car_title_div13_span1');
-                        // var f = document.getElementsByClassName('car_title_div13_span');
-                        // var y = document.getElementsByClassName('car_content_div');
-                        // const minM = that.state.minMoey;
-                        // for (var i = 0; i < a.length; i++) {
-                        //     var b = a[i].innerText;
-                        //     if (b == '否') {
-                        //         c[i].className = 'car_title_div13 display';
-                        //         d[i].className = 'car_title_div14'
-                        //     } else {
-                        //         c[i].className = 'car_title_div13 ';
-                        //         e[i].className = 'car_title_div13_span1 red';
-                        //         f[i].className = 'car_title_div13_span text_del';
-                        //         d[i].className = 'car_title_div14 display '
-                        //     }
-                        // }
-                        //
-                        // for (var i = 0; i < a.length; i++) {
-                        //     var x = a[i].getAttribute('data');
-                        //     if (x == 1) {
-                        //         y[i].className = 'car_content_div orange'
-                        //     }
-                        // }
-                        //
-                        // //  是否选中
-                        // var check = document.getElementsByClassName('car_content');
-                        // var inp = document.getElementsByClassName('buycar_input1');
-                        // var heji = document.getElementsByClassName('car_title_div11_xiaoji');
-                        // var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-                        // var zongjia = 0;
-                        // var shuliang = 0;
-                        that.catTishiMoney();
+                        // that.catTishiMoney();
+                        that.setAllmoney();
 
-                        // 无库存
-                        // var kucun = document.getElementsByClassName('car_title_div7_kcs');
-                        // for (var i = 0; i < kucun.length; i++) {
-                        //     var kucun1 = kucun[i].innerText;
-                        //     if (kucun1 == 0) {
-                        //         check[i].className = 'contain car_content relative car_content_current'
-                        //     }
-                        // }
 
 
                     });
-                    // var qifa=document.getElementsByClassName('car_qifa');
-                    // var baoyou=document.getElementsByClassName('car_baoyou');
-                    // $('.car_qifa').eq(0).text(data.data.list.free.lowest + '元');
-                    // baoyou[0].innerText=
-                    // $('.car_baoyou').eq(0).text(data.data.list.free.myunfee + '元')
-
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -670,55 +397,7 @@ class Gouwuche2 extends React.Component {
     }
 
     catTishiMoney() {
-        const minM = this.state.minMoey;
-        var check = $('.car_content');
-        var inp = document.getElementsByClassName('buycar_input1');
-        var heji = document.getElementsByClassName('car_title_div11_xiaoji');
-        var zongjia1 = document.getElementsByClassName('car_Heji_div1_span');
-        var zongjia = 0;
-        var shuliang = 0;
-        if (check.length === 0) {
-            zongjia1[0].innerText = "￥" + 0;
-            $('.shangpingshuliang').eq(0).text('已选择' + 0 + '件商品')
-            // spsl[0].innerText = '已选择' + shuliang + '件商品';
-        }
-        for (var i = 0; i < check.length; i++) {
-            var xuanzhong = check[i].getAttribute('data');
-            if (xuanzhong == '1') {
-                inp[i].setAttribute('checked', true);
-                var xiaoji = heji[i].innerText;
-                xiaoji = xiaoji.slice(1);
-                xiaoji = parseFloat(xiaoji);
-                zongjia = parseFloat(zongjia);
-                zongjia = zongjia + xiaoji;
-                zongjia = zongjia.toFixed(2);
-                zongjia1[0].innerText = "￥" + zongjia;
-                shuliang = shuliang + 1;
-                var spsl = document.getElementsByClassName('shangpingshuliang');
-                spsl[0].innerText = '已选择' + shuliang + '件商品';
-            }
-        }
-        //总价
-        var a = document.getElementsByClassName('car_Heji_div1_span');
-        var b = a[0].innerText;
-        b = b.slice(1);
-        b = parseFloat(b);
-        if (b < minM) {
-            var c = document.getElementsByClassName('tishi_anniu');
-            var d = document.getElementsByClassName('tishi_anniu1');
-            var e = document.getElementsByClassName('tishi_jiage');
-            c[0].className = 'contain marginTop20 display tishi_anniu';
-            d[0].className = 'contain marginTop20 tishi_anniu1';
-            var f = minM - b;
-            f = f.toFixed(2);
-            e[0].innerText = '￥' + f;
 
-        } else {
-            var c = document.getElementsByClassName('tishi_anniu');
-            var d = document.getElementsByClassName('tishi_anniu1');
-            c[0].className = 'contain marginTop20  tishi_anniu';
-            d[0].className = 'contain marginTop20 tishi_anniu1 display';
-        }
     }
 
     render() {
@@ -728,14 +407,18 @@ class Gouwuche2 extends React.Component {
                     this.state.sp.map(function (item, i) {
                         let times = item.validity_time ? InterfaceUtil.fmtDate(item.validity_time) : null;
                         let isAc = item.activity_price ? `是` : `否`;
-
+                        let id = null;
                         let isAcClass = null;
                         let isAcHeadClass = `display`;
                         let isAcHeadText = null;
                         let arrs = [];
+                        let headT = `特价套餐`;
+                        let stock_nums = null;
                         if (item.mold === `goods`) {
+                            id = item.goods_id;
                             if (item.activity_price) {
-                                if (item.traded_goods.length === 0) {
+
+                                if (item.traded_goods.length < 1) {
                                     isAcClass = null;
                                     isAcHeadClass = `display`;
                                     isAcHeadText = null;
@@ -744,6 +427,12 @@ class Gouwuche2 extends React.Component {
                                     isAcClass = `ccnactivity`;
                                     isAcHeadClass = `ccnRedemption`;
                                     isAcHeadText = `换购`;
+                                    headT = `每次购买本品` +
+                                        item.goods_num + item.unit +
+                                        item.traded_goods[0].traded_price + `换购` +
+                                        item.traded_goods[0].traded_goods_num +
+                                        item.traded_goods[0].unit +
+                                        item.traded_goods[0].name;
                                     arrs = item.traded_goods;
                                 }
                             } else {
@@ -752,11 +441,13 @@ class Gouwuche2 extends React.Component {
                                 isAcHeadText = null;
                                 arrs = [];
                             }
+                            stock_nums = item.stock_num;
                         } else {
                             isAcClass = `ccnactivity`;
                             isAcHeadClass = `ccnRedemption`;
-                            isAcHeadText = `套餐`
-                            arrs = item.goods_list
+                            isAcHeadText = `套餐`;
+                            arrs = item.goods_list;
+                            id = item.id;
                         }
 
 
@@ -767,20 +458,25 @@ class Gouwuche2 extends React.Component {
                             : <div className='car_title_div14'>
                                 ￥{item.price}
                             </div>;
+                        let activity_prices = item.activity_price ? item.activity_price : item.price;
                         arrs = arrs.length > 0 ? arrs.map((it, i) => {
                             let num = it.traded_goods_num ? it.traded_goods_num : it.min_buy;
-                            let money = it.traded_price ? it.traded_price : it.price;
+                            let money = it.traded_price ? `￥` + it.traded_price : null;
+                            let moneyClass = it.traded_price ? `car_title_div11_xiaoji` : null;
+                            let checks = it.traded_price ? <input
+                                defaultChecked={true}
+                                type="checkbox"
+                                data-index={it.traded_goods_id}
+                                className='buycar_input1 ccnChildInput'
+                                money={it.traded_price}
+                                onClick={(e) => {
+                                    this.fuxuankuang2(e, it.traded_price)
+                                }}
+                            /> : <i className="ccn_bg2"/>
                             return <div className="ccnTradedBox" key={it.id}>
                                 <div className="ccnTraded">
                                     <div className='car_title_div1 ' data={it.id}>
-                                        <input
-                                            defaultChecked={true}
-                                            type="checkbox"
-                                            className='buycar_input1'
-                                            onClick={(e) => {
-                                                this.fuxuankuang(e, item.price)
-                                            }}
-                                        />
+                                        {checks}
                                         {/*<div>*/}
                                         <img src={it.image}
                                              className='car_title_div1_img'/>
@@ -814,13 +510,13 @@ class Gouwuche2 extends React.Component {
 
                                     </div>
                                     <div className='car_title_div14'>
-                                        ￥{money}
+                                        {money}
                                     </div>
                                     <div className='car_title_div10 '>
                                         {num}
                                     </div>
-                                    <div className='car_title_div11 car_title_div11_xiaoji'>
-                                        ￥{money}
+                                    <div className={'car_title_div11 ' + moneyClass}>
+                                        {money}
                                     </div>
                                 </div>
                             </div>
@@ -830,7 +526,7 @@ class Gouwuche2 extends React.Component {
                                 <div className={isAcHeadClass}>
                                     <div className="ccnRedemptionHead">
                                         <span className="ccm_Bg1">{isAcHeadText}</span>
-                                        <span className="ccn_blu">本次购买 元换购本品，送完为止，活动结束时间</span>
+                                        <span className="ccn_blu">{headT}</span>
                                     </div>
                                 </div>
                                 <div key={item.goods_id}
@@ -841,8 +537,10 @@ class Gouwuche2 extends React.Component {
                                     <div className='car_title_div1 ' data={item.goods_id}>
                                         <input
                                             type="checkbox"
+                                            data={item.cart_id}
                                             defaultChecked={true}
-                                            className='buycar_input1'
+                                            className='buycar_input1 ccnInput'
+                                            money={item.price_count}
                                             onClick={(e) => {
                                                 this.fuxuankuang(e, item.price_count)
 
@@ -884,15 +582,34 @@ class Gouwuche2 extends React.Component {
                                     <div className='car_title_div10 carCon10' data={item.min_buy} data-index={item.id}
                                          data-a={item.stock_num}>
                                         <button className='car_title_div10_btn' onClick={(e) => {
-                                            this.jian3(e, item.price, item.activity_price)
+                                            this.jian3(item.goods_num,
+                                                item.min_buy_,
+                                                id,
+                                                activity_prices)
                                         }}>-
                                         </button>
-                                        <input type="text" defaultValue={item.goods_num} className='car_title_div10_inp'
+                                        <input type="text"
+                                               value={item.goods_num}
+                                               className='car_title_div10_inp'
+                                               onChange={(e) => this.onChange2(item.goods_num,
+                                                   item.min_buy_,
+                                                   id,
+                                                   activity_prices,
+                                                   e
+                                               )}
                                                onBlur={(e) => {
-                                                   this.shuliangBuy(e, item.price, item.activity_price)
+                                                   this.shuliangBuy(item.goods_num,
+                                                       item.min_buy_,
+                                                       id,
+                                                       activity_prices,
+                                                       e)
                                                }}/>
                                         <button className='car_title_div10_btn' onClick={(e) => {
-                                            this.jia3(e, item.price, item.activity_price)
+                                            this.jia3(item.goods_num,
+                                                item.min_buy_,
+                                                id,
+                                                activity_prices
+                                            )
                                         }}>+
                                         </button>
                                         <div className='clear'></div>

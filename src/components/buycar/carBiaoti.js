@@ -8,7 +8,9 @@ import CoojiePage from '../../util/CoojiePage';
 class Gouwuche1 extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
-        this.state = {}
+        this.state = {
+            minMoey:0
+        }
     }
 
 
@@ -27,8 +29,8 @@ class Gouwuche1 extends React.Component {
 
             }
             // if($('.car_Heji_div1_span').text())
-            $('.tishi_anniu1,.tishi_anniu').hide();
-            $('.tishi_anniu1').show();
+            // $('.tishi_anniu1,.tishi_anniu').hide();
+            // $('.tishi_anniu1').show();
             $('.buycar_input').prop('checked', false);
             $('.buycar_input1').prop('checked', false);
             $('.buycar_input2').prop('checked', false);
@@ -41,11 +43,11 @@ class Gouwuche1 extends React.Component {
                 cid.push(ss1);
             }
 
-            cid = JSON.stringify(cid)
+            // cid = JSON.stringify(cid)
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            const that = this;
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // const that = this;
             //智能采购
             // $.ajax({
             //     url: InterfaceUtil.getUrl(2),
@@ -59,7 +61,7 @@ class Gouwuche1 extends React.Component {
             //     }
             // });
 
-            cid = JSON.stringify(cid)
+            // cid = JSON.stringify(cid)
 
 
         } else if (a == true) {
@@ -78,10 +80,10 @@ class Gouwuche1 extends React.Component {
                 cid.push(ss1);
             }
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            const that = this;
-            cid = JSON.stringify(cid)
+            // var username = CoojiePage.getCoojie('username');
+            // var token = CoojiePage.getCoojie('token');
+            // const that = this;
+            // cid = JSON.stringify(cid)
             //智能采购
             // $.ajax({
             //     url: InterfaceUtil.getUrl(3),
@@ -120,7 +122,9 @@ class Gouwuche1 extends React.Component {
     }
 
     showJiesuan(heji) {
-        if (heji >= 200) {
+        var minM = this.state.minMoey;
+        heji=parseInt(heji)
+        if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
         } else {
@@ -130,7 +134,32 @@ class Gouwuche1 extends React.Component {
     }
 
     componentDidMount() {
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        let user_id = CoojiePage.getCoojie('user_id');
+        let jylx = CoojiePage.getCoojie('jylx');
+        // carTishiMoney
+        var _this = this;
+        $.ajax({
+            url: InterfaceUtil.getUrl(1),
+            type: "post",
+            data:  InterfaceUtil.addTime({
+                "token": token, "user_id": user_id
+            }),
+            dataType: "json",
+            success: function (data) {
+                // console.log(data)
+                if (data.code === 1) {
+                    _this.setState({
+                        minMoey: data.data[9].initial_amount,
+                        maxMoney: data.data[10].exempt_freight
+                    })
+                }
 
+            },
+            error: function () {
+            }
+        });
     }
 
     render() {

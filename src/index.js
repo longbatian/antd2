@@ -38,7 +38,10 @@ import Intergraldatepicker from './pages/integral/intergraldatepicker/Intergrald
 import Redemption from './pages/redemption/Redemption';//换购
 import Bundle from './pages/bundle/Bundle';//换购
 import Footer from './pages/footer'; //尾部
-import Header from './pages/Header1'; //头部
+import Header from './pages/Header1';//头部
+import Balance from "./pages/balance/Balance";
+import PersonalCon from "./components/personal/personalCon";
+
 ReactDOM.render((
     <HashRouter>
         <div>
@@ -74,6 +77,15 @@ ReactDOM.render((
                     <Route  path="/all/Allactivity" component={Activitycollection}/>
                     <Route  path="/all/Redemption" component={Redemption}/>
                     <Route  path="/all/Bundle" component={Bundle}/>
+                    <Route  path="/all/person">
+                        <div className='ncontain'>
+                            <div>
+                                <Route component={PersonalCon}/>
+                                <Route  path="/all/person/Balance" component={Balance}/>
+                            </div>
+
+                        </div>
+                    </Route>
                     <Route component={Footer}/>
                 </div>
             </Route>
