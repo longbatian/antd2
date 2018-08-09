@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import BalancePage1 from './components/BalancePage1'
+import BalancePage2 from './components/BalancePage2'
 import './components/balanceLess.css'
 
 
@@ -20,7 +21,9 @@ class Balance extends Component {
             <div className='blCons'>
                 <BalancePage1/>
             </div>
-
+            <div className='blCons'>
+                <BalancePage2/>
+            </div>
         </div>
     }
 }

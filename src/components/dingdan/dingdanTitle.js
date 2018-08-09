@@ -1,12 +1,29 @@
 import React from 'react';
 import $ from 'jquery';
-import {withRouter, Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-import {Modal, Button} from 'antd';
+import {Button, Modal} from 'antd';
 import '../../styles/dingdan/dingdan.css';
 
 class Dingdan extends React.Component {
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+        this.times = 1;
+    }
+    hideModal = () => {
+        this.setState({
+            visible: false
+        });
+        this.times = 90;
+    }
+    enterIconLoading = () => {
+        this.setState({iconLoading: true});
+        this.setTimeOver();
+    }
+
     constructor(props) {
         super(props); //调用父类的构造方法；
         this.times = 1;
@@ -14,12 +31,13 @@ class Dingdan extends React.Component {
             lujin: InterfaceUtil.getImgUrl(),
             zhifu: 1,
             chuangjian: {
-                address:{
-                    name:'',
-                    address:'',
-                    tel:'',
-                    enterprise:''
-                }},
+                address: {
+                    name: '',
+                    address: '',
+                    tel: '',
+                    enterprise: ''
+                }
+            },
             loading: false,
             iconLoading: false,
             shdz: '',
@@ -28,7 +46,6 @@ class Dingdan extends React.Component {
             // payforId:1,
         }
     }
-
 
     zhifu(e) {
         if (e.target.children.length == 1) {
@@ -109,19 +126,6 @@ class Dingdan extends React.Component {
 
     }
 
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-        this.times = 1;
-    }
-    hideModal = () => {
-        this.setState({
-            visible: false
-        });
-        this.times = 90;
-    }
-
     payFor() {
         let token = CoojiePage.getCoojie('token');
         let username = CoojiePage.getCoojie('username');
@@ -169,7 +173,7 @@ class Dingdan extends React.Component {
                 success: function (data, status) {
                     console.log(data)
                     if (data.code === 1) {
-                        window.open('http://'+data.data.url);
+                        window.open('http://' + data.data.url);
                     }
                 }
             });
@@ -195,21 +199,21 @@ class Dingdan extends React.Component {
                 success: function (data, status) {
                     console.log(data)
                     if (data.code === 1) {
-                            // let modal;
-                            clearInterval(timesOut);
-                            _this.hideModal();
-                            const modal = Modal.success({
-                                title: '支付成功！',
-                                content: '页面会在3秒后跳转，或者点击跳转',
-                                onOk() {
-                                    _this.props.history.push('/Personal')
-                                    // location.replace('/Personal');
-                                }
-                            });
-                            setTimeout(() => {
-                                modal.destroy();
+                        // let modal;
+                        clearInterval(timesOut);
+                        _this.hideModal();
+                        const modal = Modal.success({
+                            title: '支付成功！',
+                            content: '页面会在3秒后跳转，或者点击跳转',
+                            onOk() {
                                 _this.props.history.push('/Personal')
-                            }, 3000);
+                                // location.replace('/Personal');
+                            }
+                        });
+                        setTimeout(() => {
+                            modal.destroy();
+                            _this.props.history.push('/Personal')
+                        }, 3000);
                     } else {
                         // alert(data.msg);
 
@@ -224,11 +228,6 @@ class Dingdan extends React.Component {
             _this.times++;
         }, 1500);
 
-    }
-
-    enterIconLoading = () => {
-        this.setState({iconLoading: true});
-        this.setTimeOver();
     }
 
     render() {
@@ -288,7 +287,8 @@ class Dingdan extends React.Component {
                         <span className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' onClick={(e) => {
                             this.zhifu(e)
                         }}>
-             <img src={require("../../images/buycar/zfb.png")} className='marginRight10 dingdan_div_p_span1_img'
+             <img src={require("../../images/buycar/zfb.png")}
+                  className='marginRight10 dingdan_div_p_span1_img'
                   alt=""/>支付宝</span>
                         <span className='dingdan_div_p_span2 marginLeft20' onClick={(e) => {
                             this.zhifu1(e)

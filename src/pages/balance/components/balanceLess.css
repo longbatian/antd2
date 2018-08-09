@@ -49,18 +49,137 @@
   background: #F1F1F1;
   padding: 20px;
 }
-.bl1Head .bl1HeadLef {
+.bl1Head .bl1Headlef {
   float: left;
   border-right: 1px solid #ddd;
-  width: 25%;
-  text-align: left;
+  width: 30%;
+  text-align: center;
+  font-size: 16px;
 }
-.bl1Head .bl1HeadLef p:last-child {
+.bl1Head .bl1Headlef p:last-child {
   color: #FE8502;
   font-size: 40px;
 }
-.bl1Head .bl1HeadLef p:last-child span {
+.bl1Head .bl1Headlef p:last-child span {
   font-size: 22px;
   vertical-align: text-bottom;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+.bl1HeadRig {
+  margin-left: 30%;
+  padding: 20px 50px;
+  overflow: hidden;
+}
+.bl1HeadRig .bl1HeadRiglef {
+  margin: 15px 0 0 30px;
+  float: left;
+}
+.bl1HeadRig .bl1HeadRiglef p {
+  font-size: 16px;
+}
+.bl1HeadRig .bl1HeadRiglef p span {
+  font-size: 20px;
+}
+.bl1HeadRig .bl1HeadRigrig {
+  float: right;
+}
+.bl1HeadRig .bl1HeadRigrig button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  background: #188AE7;
+}
+.bl1HeadRig .bl1HeadRigrig button:first-child {
+  background: #FE8502;
+  margin-bottom: 20px;
+}
+.nTable {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.nTable thead th {
+  background: #F1F1F1;
+  height: 40px;
+}
+.nTable td {
+  height: 40px;
+}
+.paginationbox {
+  padding-top: 20px;
+  text-align: right;
+}
+.pad20 {
+  padding: 20px;
+}
+.bl2d {
+  padding: 0 0 20px;
+  overflow: hidden;
+}
+.bl2d .bl2dlef {
+  font-size: 16px;
+  float: left;
+  width: 13%;
+  text-align: right;
+  padding-top: 6px;
+}
+.bl2d .bl2drig {
+  margin-left: 16%;
+}
+.bl2d .bl2drig .bl2drigspan span {
+  display: inline-block;
+  border: 1px solid #ddd;
+  line-height: 36px;
+  width: 120px;
+  border-radius: 4px;
+  text-align: center;
+  margin: 0 10px 10px;
+}
+.bl2d .bl2drig .bl2drigspan span.bl2drigspanact {
+  color: #FE8502;
+  border-color: #FE8502;
+}
+.bl2d .bl2drig .bl2drigspan input {
+  width: 120px;
+  height: 36px;
+  margin-left: 10px;
+}
+.bl2drigtabs {
+  margin: 0;
+  border: 1px solid #ddd;
+}
+.bl2drigtabs .bl2drigtabstit {
+  height: 40px;
+  margin: 0;
+  background: #F8F8F8;
+  overflow: hidden;
+}
+.bl2drigtabs .bl2drigtabstit li {
+  float: left;
+  background: #fff;
+  line-height: 40px;
+  padding: 0 20px;
+}
+.bl2drigtabs .bl2drigtabstit .bl2drigtabscon {
+  height: 40px;
+}
+.bl2drigSpan {
+  font-size: 20px;
+  color: #FE8502;
+  display: inline-block;
+  margin-top: 3px;
+}
+.bl2drigButton {
+  padding: 6px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  background: #188AE7;
 }
 /*# sourceMappingURL=balanceLess.css.map */
