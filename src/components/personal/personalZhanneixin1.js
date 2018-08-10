@@ -99,7 +99,7 @@ class PersonalZhanneixin extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.data.length == 0) {
 
                 } else {
@@ -238,7 +238,7 @@ class PersonalZhanneixin extends React.Component {
                     }),
                     dataType: "json",
                     success: function (data) {
-                        console.log(data)
+
                         if (data.code === 1) {
 
                         }
@@ -310,7 +310,7 @@ class PersonalZhanneixin extends React.Component {
                                         stationLetterClass = 'zhanneixin_li2';
                                         stationLetterText = '已读'
                                     }
-                                    console.log(item)
+
                                     return (
                                         <li key={item.id} data={item.id} className={stationLetterClass}>
                                             <div className='personal_zhanneixin_top_div display'/>

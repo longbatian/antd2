@@ -265,4 +265,33 @@
   padding: 0 0 20px;
   margin-top: 20px;
 }
+.qtBox {
+  background: #F1F1F1;
+  padding: 30px 0;
+  overflow: hidden;
+}
+.qtBox .qtboxs {
+  width: 1200px;
+  margin: auto;
+  box-shadow: 0 3px 3px 1px #ddd;
+  background: #fff;
+  padding: 0 30px;
+}
+.qtBox .qtboxHead {
+  border-bottom: 1px dashed #ddd;
+  text-align: center;
+}
+.qtBox .qtboxHead h1 {
+  font-size: 30px;
+  margin-top: 20px;
+}
+.qtBox .qtConcontel {
+  width: 200px;
+}
+.qtBox .qtContit {
+  line-height: 44px;
+}
+.qtCon {
+  padding: 20px 0;
+}
 /*# sourceMappingURL=balanceLess.css.map */

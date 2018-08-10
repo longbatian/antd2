@@ -41,7 +41,7 @@ import Footer from './pages/footer'; //尾部
 import Header from './pages/Header1';//头部
 import Balance from "./pages/balance/Balance";
 import PersonalCon from "./components/personal/personalCon";
-
+import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 ReactDOM.render((
     <HashRouter>
         <div>
@@ -77,13 +77,13 @@ ReactDOM.render((
                     <Route  path="/all/Allactivity" component={Activitycollection}/>
                     <Route  path="/all/Redemption" component={Redemption}/>
                     <Route  path="/all/Bundle" component={Bundle}/>
+                    <Route  path="/all/Questionnaire" component={Questionnaire}/>
                     <Route  path="/all/person">
                         <div className='ncontain'>
                             <div>
                                 <Route component={PersonalCon}/>
                                 <Route  path="/all/person/Balance" component={Balance}/>
                             </div>
-
                         </div>
                     </Route>
                     <Route component={Footer}/>

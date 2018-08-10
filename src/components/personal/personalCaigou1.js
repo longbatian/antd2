@@ -219,7 +219,7 @@ class PersonalCaigou extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
+
                 if (data.code == 1) {
                     // that.setState({
                     //     zncg: data.data.list,

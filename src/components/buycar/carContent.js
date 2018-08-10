@@ -127,7 +127,6 @@ class Gouwuche2 extends React.Component {
         var minM = this.state.minMoey;
         // parseInt
         heji=parseInt(heji)
-        console.log(heji,minM,heji >= minM)
         if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
@@ -466,7 +465,7 @@ class Gouwuche2 extends React.Component {
                             let checks = it.traded_price ? <input
                                 defaultChecked={true}
                                 type="checkbox"
-                                data-index={it.traded_goods_id}
+                                data-index={it.traded_id}
                                 className='buycar_input1 ccnChildInput'
                                 money={it.traded_price}
                                 onClick={(e) => {

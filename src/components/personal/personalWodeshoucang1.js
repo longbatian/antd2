@@ -119,7 +119,7 @@ class PersonalWodejifen extends React.Component {
                     var a = $('.shoucang_inp').eq(i).prop('checked');
                     if (a == true) {
                         var id = $('.spid').eq(i).val();
-                        console.log(id)
+
                         $.ajax({
                             // url:'http://192.168.1.49/index.php/index/user/collection_goods_delete',
                             url: InterfaceUtil.getUrl(10),
@@ -133,7 +133,7 @@ class PersonalWodejifen extends React.Component {
                             beforeSend: function (xhr) {
                             },
                             success: function (data, textStatus, jqXHR) {
-                                console.log(data)
+
                                 if (data.code == 1) {
                                     _this.ajax2();
                                 }
@@ -310,7 +310,7 @@ class PersonalWodejifen extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                alert(data.msg)
+
                 console.log(data)
                 if (data.code == 1) {
                     that.ajax2();

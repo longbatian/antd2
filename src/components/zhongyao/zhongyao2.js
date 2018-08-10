@@ -107,7 +107,7 @@ class Zhongyao2 extends React.Component {
             data: InterfaceUtil.addTime({}),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
+
                 if (data.data.length == 0) {
 
                 } else {

@@ -78,12 +78,7 @@ class NewXq2 extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
 
@@ -124,7 +119,7 @@ class NewXq2 extends React.Component {
                         b = '' + b;
                         // console.log(a);
                         if (a == 'null') {
-                            console.log('aaaa')
+
                             pre[0].className = 'marginBottom10 news_pre display cursor'
                         } else {
                             pre[0].className = 'marginBottom10 news_pre cursor'
@@ -139,12 +134,7 @@ class NewXq2 extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
 

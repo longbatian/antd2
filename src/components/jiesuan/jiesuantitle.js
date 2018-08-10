@@ -28,81 +28,11 @@ class Jiesuan extends React.Component {
             this.setState({
                 more: true,
             });
-            //
-            // var username = CoojiePage.getCoojie('username');
-            // var token = CoojiePage.getCoojie('token');
-            // var member_id = CoojiePage.getCoojie('user_id');
-            // var user_type = CoojiePage.getCoojie('user_type');
-            // var jylx = CoojiePage.getCoojie('jylx');
-            // var cid = CoojiePage.getCoojie('cid');
-            // const that = this;
-            // //  广告位
-            // $.ajax({
-            //     url: InterfaceUtil.getUrl(29),
-            //     type: "post",
-            //     data: {
-            //         "user_type": user_type, "member_id": member_id, "username": username,
-            //         "token": token, "jylx": jylx, "cid": cid, "page": 1, "limit": that.state.cons
-            //     },
-            //     dataType: "json",
-            //     success: function (data) {
-            //         if (data.data.length == 0) {
-            //
-            //         } else {
-            //             that.setState({
-            //                 sp: data.data.list,
-            //                 more: true,
-            //             });
-            //             // if(data.data.list.length<11){
-            //             //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
-            //             //   a[0].className='jiesuan_div_div3_div display'
-            //             // }
-            //         }
-            //     }
-            // });
-            // er_id="+member_id+"&username="+username+"&token="+token+"&jylx="+jylx+"&cid="+cid+"&page=1"+"&limit="+this.state.cons);
-
             $('.jiesuan_div_div3_div').text('收起清单')
             $('.jiesuan_div_div3_divImg')[0].src = '../../images/buycar/showOrderup.png';
         }
         else {
 
-            // var username = CoojiePage.getCoojie('username');
-            // var token = CoojiePage.getCoojie('token');
-            // var member_id = CoojiePage.getCoojie('user_id');
-            // var user_type = CoojiePage.getCoojie('user_type');
-            // var jylx = CoojiePage.getCoojie('jylx');
-            // var cid = CoojiePage.getCoojie('cid');
-            // const that = this;
-            // //  广告位
-            // $.ajax({
-            //     url: InterfaceUtil.getUrl(29),
-            //     type: "post",
-            //     data: {
-            //         "user_type": user_type, "member_id": member_id, "username": username, "token":
-            //         token, "jylx": jylx, "cid": cid, "page": 1, "limit": 10
-            //     },
-            //     dataType: "json",
-            //     success: function (data) {
-            //         if (data.data.length == 0) {
-            //
-            //         } else {
-            //             that.setState({
-            //                 shxx: data.data.address_data,
-            //                 huodong: data.data.activity,
-            //                 feiyong: data.data.goos_price_info,
-            //                 coupon: data.data.coupon,
-            //                 sp: data.data.list,
-            //                 more: false,
-            //             });
-            //             // if(data.data.list.length<11){
-            //             //   var a =document.getElementsByClassName('jiesuan_div_div3_div');
-            //             //   a[0].className='jiesuan_div_div3_div display'
-            //             // }
-            //         }
-            //     }
-            // });
-            //
             this.setState({
                 more: false,
             });
@@ -156,7 +86,7 @@ class Jiesuan extends React.Component {
                 "user_id": user_id,
                 "token": token,
                 "cart_id": cart_id,
-                traded_goods_id:traded_goods_id
+                traded_id:traded_goods_id
 
             }
         }else {
@@ -168,6 +98,7 @@ class Jiesuan extends React.Component {
             data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
+
                 if (data.code !== 1) {
                     alert(data.msg);
                     // that.props.history.push('/Buycar');
@@ -193,7 +124,6 @@ class Jiesuan extends React.Component {
     render() {
         const data = this.state;
         const datas=this.props;
-        console.log(datas)
         return (
             <div className='container'>
                 {/*进度条*/}

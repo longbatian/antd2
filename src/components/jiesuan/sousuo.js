@@ -94,7 +94,7 @@ class Jiesuan1 extends React.Component {
                 "cart_id": cart_id,
                 "user_remark": bz,
                  user_coupon_id: b,
-                traded_goods_id:traded_goods_id
+                traded_id:traded_goods_id
             }
         } else {
             datas = {
@@ -111,7 +111,7 @@ class Jiesuan1 extends React.Component {
             data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.code === 1) {
                     InterfaceUtil.delCookie('coupon_id');
                     InterfaceUtil.delCookie('cart_id');

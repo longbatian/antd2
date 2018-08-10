@@ -168,7 +168,7 @@ class PersonalJibenxinxi extends Component {
                 },
                 dataType: "json",
                 success: function (data) {
-                    // console.log(data);
+
                     //     this.handleSubmit();
                     if (data.status === 1) {
                         setTimeout(() => {

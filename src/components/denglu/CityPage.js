@@ -35,7 +35,7 @@ class CityPage extends Component{
         beforeSend:function(xhr){
         },
         success:function(data,textStatus,jqXHR){
-          console.log(data)
+
           _this.setState({
             json:data.data,
           })

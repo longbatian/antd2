@@ -141,12 +141,7 @@ class Gouwuche3 extends React.Component {
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            // 状态码
-                            console.log(XMLHttpRequest.status);
-                            // 状态
-                            console.log(XMLHttpRequest.readyState);
-                            // 错误信息
-                            console.log(textStatus);
+
                         }
                     });
 
@@ -179,12 +174,7 @@ class Gouwuche3 extends React.Component {
 
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            // 状态码
-                            console.log(XMLHttpRequest.status);
-                            // 状态
-                            console.log(XMLHttpRequest.readyState);
-                            // 错误信息
-                            console.log(textStatus);
+
                         }
                     });
                     // ajax.open('post',"http://192.168.1.49/index.php/index/Cart/check_cart",false);
@@ -232,7 +222,7 @@ class Gouwuche3 extends React.Component {
         var user_id = CoojiePage.getCoojie('user_id');
         var jylx = CoojiePage.getCoojie('jylx');
         const that = this;
-        console.log(cid)
+
         $.ajax({
             url: InterfaceUtil.getUrl(6),
             type: "post",
@@ -241,7 +231,7 @@ class Gouwuche3 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.code === 1) {
                     window.location.reload()
                 }

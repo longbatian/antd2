@@ -190,18 +190,7 @@ class PersonalWodejifen extends React.Component {
         }
                 }
             });
-    // ajax.open('post',InterfaceUtil.getUrl(42),false);
-    // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    // ajax.onreadystatechange = function() {
-    //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-    //     var data=ajax.responseText;
-    //     data=JSON.parse(data);
-    //     console.log(data)
 
-
-    //   }
-    // };
-    // ajax.send("username="+username+"&token="+token+"&page=1&limit=15");
   }
 
   render() {

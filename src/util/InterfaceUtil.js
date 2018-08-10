@@ -46,7 +46,7 @@ let urls = [
     '/orders/create_order',//17
     '/orders/order_price',//18
     '/index/help_center', //19
-    'help/helplist',//20
+    '/index/necessary',//20
     '/index/spcarea',//21
     '/index/recom_goods',//22
     '/index/goods_type',//23
@@ -67,7 +67,7 @@ let urls = [
     '/orders/order_again',//38
     '/users/modify_password',//39
     '/users/want_buy',//40用户求购
-    'user/jfls_log',//41
+    '/users/balance_log',//41余额记录
     'user/luck_log',//42
     '/orders/order_detail',//43
     'order/order_wl',//44

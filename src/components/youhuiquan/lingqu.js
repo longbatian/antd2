@@ -100,7 +100,6 @@ class Lingqu extends Component {
                         success: function (data) {
                             if (data.code == 1) {
                                 arr.push(data.data);
-                                console.log(arr)
                                 that.setState({
                                     youhuiquan: arr
                                 });
@@ -247,7 +246,7 @@ class Lingqu extends Component {
 
     render() {
         const data = this.state.youhuiquan;
-        console.log(data)
+
         let listEle = null;
         let list = null;
         let listTit = null;

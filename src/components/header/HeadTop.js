@@ -106,6 +106,11 @@ class HeadTop extends React.Component{
                 电子发票查询&nbsp;<span>|</span>&nbsp;
               </a>
               </li>
+              <li className='gray blue cursor'>
+                  <a href='http://scjcyy.e-fapiao.cc:91/Account/Login' target='_target'>
+                      质检报告查询&nbsp;<span>|</span>&nbsp;
+                  </a>
+              </li>
             <li className='gray cursor'>
               <Link to={"HelpZx?&id=44"}>
                 互联网药品交易许可证

@@ -31,7 +31,6 @@ class PersonalYouhuiquan extends React.Component {
 
     //显示优惠券的子集分类
     value(e) {
-        console.log(e.target.value);
         this.setState({
             status: e.target.value
         },()=>this.startAjax())
@@ -125,7 +124,7 @@ class PersonalYouhuiquan extends React.Component {
 
     //切换颜色
     color(e,id) {
-        console.log(id);
+
         $('.title_1').removeClass('orange');
         $(e.target).addClass('orange');
         this.setState({
@@ -135,7 +134,7 @@ class PersonalYouhuiquan extends React.Component {
 
     //分页
     fenye(e) {
-        console.log(e);
+
         this.setState({
             page: e
         },()=>this.startAjax())
@@ -206,7 +205,7 @@ class PersonalYouhuiquan extends React.Component {
         var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //优惠券内容
-        console.log(that.state.order)
+
         $.ajax({
             url: InterfaceUtil.getUrl(45),
             type: "post",

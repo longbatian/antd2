@@ -295,7 +295,7 @@ class Zhuce extends React.Component {
                 {
                     errMessage: '请认真阅读用户协议',
                     test: (value) => {
-                        console.log($('.jieshou6').is(':checked'))
+
                         if ($('.jieshou6').is(':checked')) {
                             return value;
                         } else {
@@ -480,7 +480,7 @@ class Zhuce extends React.Component {
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-                console.log(data)
+
                 if (data.status == '0') {
                     // $('.tishi').text('');
                     // $('.tishi').eq(1).text('用户名已注册');
@@ -549,7 +549,7 @@ class Zhuce extends React.Component {
                 }
             },
             fail: function (err, status) {
-                console.log(err)
+
             }
         })
     }

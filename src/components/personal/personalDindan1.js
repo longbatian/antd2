@@ -324,7 +324,7 @@ class PersonalDindan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data) {
-                    console.log(data)
+
                     if (data.code == '1') {
                        CoojiePage.setBuyCarOk();
                     } else {

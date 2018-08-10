@@ -449,7 +449,7 @@ class Zhuce extends React.Component {
         }else{
           location.replace('#/Denglu');
         }
-        console.log(data);
+
       },
 
     })

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Carousel} from 'antd';
 import {Link} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
@@ -15,7 +14,7 @@ class Benzhoujinxuan extends React.Component {
             length1: '',
             week: '',
             lujin: InterfaceUtil.getImgUrl(),
-            timeOver:false,
+            timeOver: false,
         }
     }
 
@@ -46,9 +45,9 @@ class Benzhoujinxuan extends React.Component {
             url: InterfaceUtil.getUrl(21),
             type: 'post',
             dataType: 'json',
-            data:  InterfaceUtil.addTime({
-                user_id:user_id,
-                token:token
+            data: InterfaceUtil.addTime({
+                user_id: user_id,
+                token: token
             }),
             beforeSend: function (xhr) {
             },
@@ -72,8 +71,8 @@ class Benzhoujinxuan extends React.Component {
             type: 'post',
             dataType: 'json',
             data: InterfaceUtil.addTime({
-                user_id:user_id,
-                token:token
+                user_id: user_id,
+                token: token
             }),
             success: function (data) {
                 var data = data;
@@ -86,11 +85,12 @@ class Benzhoujinxuan extends React.Component {
                         week: data.title
                     }, () => {
                         var a = document.getElementsByClassName('jingxuan_div_ul_li');
-                        a[0].className = 'jingxuan_div_ul_li jingxuan_div_ul_li_current'
+                        $('.jingxuan_div_ul_li').eq(0).attr('class', 'jingxuan_div_ul_li jingxuan_div_ul_li_current');
+                        // a[0].className = 'jingxuan_div_ul_li jingxuan_div_ul_li_current'
                         for (var i = 0; i < 5; i++) {
                             var li = document.getElementsByClassName('jingxuan_div_ul1_li');
                             li[i].className = 'jingxuan_div_ul1_li';
-                            if(that.state.timeOver) return;
+                            if (that.state.timeOver) return;
                             //  本周精选设置时间
                             //获取今天星期几
                             var days = new Date().getDay();
@@ -149,7 +149,7 @@ class Benzhoujinxuan extends React.Component {
                                     if (t.remainSec <= 0) {
                                         window.clearInterval(timeid);
                                     }
-                                },1000)
+                                }, 1000)
                             }
                             else if (now < start1) {
                                 $('.timeDiv').eq(0).hide();
@@ -166,6 +166,7 @@ class Benzhoujinxuan extends React.Component {
                                 var hours = 0;
                                 var minutes = 0;
                                 var seconds = 0;
+
                                 function getTimeReamin(endtime) {
                                     endtime = endtime * 1000;
                                     //剩余的秒数
@@ -202,7 +203,7 @@ class Benzhoujinxuan extends React.Component {
                                     if (t.remainSec <= 0) {
                                         window.clearInterval(timeid);
                                     }
-                                },1000)
+                                }, 1000)
                             }
                             else if (now < start2) {
                                 $('.timeDiv').eq(1).hide();
@@ -221,6 +222,7 @@ class Benzhoujinxuan extends React.Component {
                                 var hours = 0;
                                 var minutes = 0;
                                 var seconds = 0;
+
                                 function getTimeReamin(endtime) {
 
                                     endtime = endtime * 1000;
@@ -263,7 +265,7 @@ class Benzhoujinxuan extends React.Component {
                                     if (t.remainSec <= 0) {
                                         window.clearInterval(timeid);
                                     }
-                                },1000)
+                                }, 1000)
                             }
                             else if (now > end3) {
                                 $('.time').eq(2).text('已结束');
@@ -274,7 +276,7 @@ class Benzhoujinxuan extends React.Component {
                     });
                 }
                 that.setState({
-                    timeOver:true,
+                    timeOver: true,
                 })
 
             }
@@ -282,11 +284,10 @@ class Benzhoujinxuan extends React.Component {
         })
 
 
-
     }
 
     render() {
-       let data=this.state;
+        let data = this.state;
         return (
             <div className='contain'>
                 {/*广告位*/}
@@ -331,7 +332,7 @@ class Benzhoujinxuan extends React.Component {
                                                        className='jingxuan_div_ul_li_input'/>
                                                 {item.title}
                                                 <span className='marginLeft10 mingzi'>已结束</span>
-                                                <div className='blue timeDiv'>
+                                                <div className='blue timeDiv display'>
                                                     {/*<span className='blue display time'></span>*/}
                                                     <span className='days'>{data.days}</span>
                                                     <span>天</span><span className='hours'>{data.hours}</span>
@@ -368,7 +369,7 @@ class Benzhoujinxuan extends React.Component {
                                                 return (
                                                     <li key={i}
                                                         className='jingxuan_div_ul1_li display'
-                                                        data={item.id+'goods_list'}>
+                                                        data={item.id + 'goods_list'}>
 
                                                         <div className='jingxuan_div1_box'>
                                                             <Link to={'/Shangpinxiangqing?&id=' + item.goods_id}>
