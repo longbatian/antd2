@@ -239,122 +239,126 @@ class PersonalCaigou extends React.Component {
                 <div className='personal_Wodejifen_title marginBottom20 margin13'>
                     <p className='marginLeft20 fontFamily fontWeight floatleft font20 '>智能采购</p>
                     <ul>
-                        <li className='orange'>智能采购</li>
-                        {/*<div className='shu floatleft'></div>*/}
-                        {/*<li>采购计划</li>*/}
-                        {/*<div className='shu floatleft'></div>*/}
-                        {/*<li>求购信息</li>*/}
+                        <li
+                            className='orange'>智能采购</li>
+                        <div className='shu floatleft'></div>
+                        <li>采购计划</li>
+                        <div className='shu floatleft'></div>
+                        <li>求购信息</li>
                     </ul>
                 </div>
 
                 {/*内容*/}
-                <div className='white personal_xiangqing_title'>
-                    {/*输入框*/}
-                    <div className='personal_Dindan_con_inp'>
-                        <div className="example-input floatRight marginRight20 ">
-                            <Select defaultValue='全部' style={{width: 200}} onChange={handleChange}>
-                                <option value="全部">全部</option>
-                                <option value="近一周">近一周</option>
-                                <option value="近一月">近一月</option>
-                                <option value="近三月">近三月</option>
-                                <option value="近半年">近半年</option>
-                                <option value="近一年">近一年</option>
-                                <option value="一年以前">一年以前</option>
-                            </Select>
-                            <Button icon="search" style={{marginLeft: 10}}>查询</Button>
+                <div className="zcB a display">
+                    <div className='white personal_xiangqing_title'>
+                        {/*输入框*/}
+                        <div className='personal_Dindan_con_inp'>
+                            <div className="example-input floatRight marginRight20 ">
+                                <Select defaultValue='全部' style={{width: 200}} onChange={handleChange}>
+                                    <option value="全部">全部</option>
+                                    <option value="近一周">近一周</option>
+                                    <option value="近一月">近一月</option>
+                                    <option value="近三月">近三月</option>
+                                    <option value="近半年">近半年</option>
+                                    <option value="近一年">近一年</option>
+                                    <option value="一年以前">一年以前</option>
+                                </Select>
+                                <Button icon="search" style={{marginLeft: 10}}>查询</Button>
+                            </div>
+                            <div className='clear'></div>
                         </div>
-                        <div className='clear'></div>
-                    </div>
-                    {/*全选删除*/}
-                    <div className='personal_zhanneixin_top marginLeft20'>
-                        <p>
+                        {/*全选删除*/}
+                        <div className='personal_zhanneixin_top marginLeft20'>
+                            <p>
                             <span className='personal_wodechoucang_top_span marginRight5'><
                                 input type="checkbox"
                                       onClick={(e) => {
                                           this.quanxuan(e)
                                       }}
                                       className='quanxuan'/></span>
-                            <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-                            <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
-                                this.buycar3(e)
-                            }}>加入购物车</span>
-                        </p>
-                    </div>
-                    {/*输入框*/}
-                    <table className='personal_Caigou_table marginTop20'>
-                        <thead>
-                        <tr>
-                            <th width="90px">商品</th>
-                            <th width="167px">商品名称</th>
-                            <th width="166px">生产厂家</th>
-                            <th width="90px">规格</th>
-                            <th width="75px">参与活动</th>
-                            <th width="50px">单位</th>
-                            <th width="80px">当前价格</th>
-                            <th width="85px">采购次数</th>
-                            <th width="145px">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.state.zncg.map(function (item) {
-                                return (
-                                    <tr data={item.id} data-index={item.min_buy} className='caigou_tr'>
-                                        <td>
-                                            <input type="checkbox" className='marginRight5 shoucang_inp'/>
-                                            <img src={this.state.lujin + item.image} alt="" className='xiangqing_img'/>
-                                        </td>
-                                        <td className='hid'>{item.name}</td>
-                                        <td className='hid'>{item.enterprise}</td>
-                                        <td className='hid'>{item.standard}</td>
-                                        <td>/</td>
-                                        <td>{item.bzdw}</td>
-                                        <td>{item.price}</td>
-                                        <td>{item.c}</td>
-                                        <td>
-                                            <div className='personal_Caigou_table_btn' onClick={(e) => {
-                                                this.buycar4(e)
-                                            }}>加入购物车
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            }, this)
-                        }
-                        <tr rowSpan={9} className='shoucang' ref='shoucang'>
-                            <td colSpan={9}>
-                                <p className='font20'>亲，您还没有收藏哦~</p>
-                                <p className='personalCon1_table_tr_p'><a href=""
-                                                                          className='personalCon1_table_td'>去产品中心</a>
-                                </p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div className='personal_zhanneixin_top marginTop20 marginLeft20'>
-                        <p>
+                                <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
+                                <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
+                                    this.buycar3(e)
+                                }}>加入购物车</span>
+                            </p>
+                        </div>
+                        {/*输入框*/}
+                        <table className='personal_Caigou_table marginTop20'>
+                            <thead>
+                            <tr>
+                                <th width="90px">商品</th>
+                                <th width="167px">商品名称</th>
+                                <th width="166px">生产厂家</th>
+                                <th width="90px">规格</th>
+                                <th width="75px">参与活动</th>
+                                <th width="50px">单位</th>
+                                <th width="80px">当前价格</th>
+                                <th width="85px">采购次数</th>
+                                <th width="145px">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                this.state.zncg.map(function (item) {
+                                    return (
+                                        <tr data={item.id} data-index={item.min_buy} className='caigou_tr'>
+                                            <td>
+                                                <input type="checkbox" className='marginRight5 shoucang_inp'/>
+                                                <img src={this.state.lujin + item.image} alt="" className='xiangqing_img'/>
+                                            </td>
+                                            <td className='hid'>{item.name}</td>
+                                            <td className='hid'>{item.enterprise}</td>
+                                            <td className='hid'>{item.standard}</td>
+                                            <td>/</td>
+                                            <td>{item.bzdw}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.c}</td>
+                                            <td>
+                                                <div className='personal_Caigou_table_btn' onClick={(e) => {
+                                                    this.buycar4(e)
+                                                }}>加入购物车
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                }, this)
+                            }
+                            <tr rowSpan={9} className='shoucang' ref='shoucang'>
+                                <td colSpan={9}>
+                                    <p className='font20'>亲，您还没有收藏哦~</p>
+                                    <p className='personalCon1_table_tr_p'><a href=""
+                                                                              className='personalCon1_table_td'>去产品中心</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div className='personal_zhanneixin_top marginTop20 marginLeft20'>
+                            <p>
                             <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"
                                                                                                  className='quanxuan1'
                                                                                                  onClick={(e) => {
                                                                                                      this.quanxuan1(e)
                                                                                                  }}/></span>
-                            <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-                            <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
-                                this.buycar3(e)
-                            }}>加入购物车</span>
-                        </p>
-                    </div>
-                    {/*分页*/}
-                    <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
+                                <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
+                                <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
+                                    this.buycar3(e)
+                                }}>加入购物车</span>
+                            </p>
+                        </div>
+                        {/*分页*/}
+                        <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
                         <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination
                             showQuickJumper={true} defaultCurrent={1} defaultPageSize={12} total={this.state.cons}
                             onChange={(e) => {
                                 this.fenye(e)
                             }}/></span>
-                        <div className='clear'></div>
+                            <div className='clear'></div>
+                        </div>
+                        <div className='xian'></div>
                     </div>
-                    <div className='xian'></div>
                 </div>
+
 
                 {/*推荐*/}
                 <Tuijian data='5'/>

@@ -8,19 +8,23 @@ class BalancePage1 extends Component {
         super(props)
     }
     render(){
+        let data=this.props;
+        console.log(this.props)
         return <div className="">
             <div className="bl1Head">
                 <div className="bl1Headlef">
                     <p>我的账户余额</p>
                     <p>
                         <span className="bghsmall">￥</span>
-                        8888.2
+                        {data.price}
                     </p>
                 </div>
                 <div className="bl1HeadRig">
                     <div className="bl1HeadRiglef">
-                        <p>充值余额:$555</p>
-                        <p>赠送余额:$555</p>
+                        <p>充值余额:
+                            {data.price}
+                        </p>
+                        <p>赠送余额:0</p>
                     </div>
                     <div className="bl1HeadRigrig">
                         <button>充值</button>
@@ -40,11 +44,11 @@ class BalancePage1 extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>退款</td>
-                        <td>201811111</td>
-                        <td>+金额</td>
-                        <td>5555</td>
-                        <td>啦啦啦啦啦</td>
+                        {/*<td>退款</td>*/}
+                        {/*<td>201811111</td>*/}
+                        {/*<td>+金额</td>*/}
+                        {/*<td>5555</td>*/}
+                        {/*<td>啦啦啦啦啦</td>*/}
                     </tr>
                 </tbody>
             </table>

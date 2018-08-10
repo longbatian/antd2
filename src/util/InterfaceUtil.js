@@ -88,7 +88,7 @@ let urls = [
     , '/orders/order_pay_status',//59
     'user/user_info_update',//60
     'order/wxpay_img_virtual',//61
-    'order/coupon_order_status',//62
+    '/orders/balance_pay',//62
     '/index/search_goods',//63
     '/goods/goods_agent',//64
     '/orders/alipay_pay_qrcode',//65

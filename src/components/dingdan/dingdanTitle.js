@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {Link, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-import {Button, Modal} from 'antd';
+import {Button, Modal,message} from 'antd';
 import '../../styles/dingdan/dingdan.css';
 
 class Dingdan extends React.Component {
@@ -48,20 +48,26 @@ class Dingdan extends React.Component {
     }
 
     zhifu(e) {
-        if (e.target.children.length == 1) {
-            e.target.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
-            e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
-            this.setState({
-                zhifu: 1
-            })
-        } else {
-            e.target.parentNode.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
-            e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
-            this.setState({
-                zhifu: 1
-            })
+        $('.ddcon>div').removeClass().addClass('dingdan_div_p_span2 marginLeft20');
+        $(e.target).parent().removeClass().addClass('dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3');
 
-        }
+        this.setState({
+                    zhifu: $(e.target).parent().index()+1
+                })
+        // if (e.target.children.length == 1) {
+        //     e.target.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
+        //     e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
+        //     this.setState({
+        //         zhifu: 1
+        //     })
+        // } else {
+        //     e.target.parentNode.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
+        //     e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
+        //     this.setState({
+        //         zhifu: 1
+        //     })
+        //
+        // }
     }
 
     zhifu1(e) {
@@ -96,7 +102,7 @@ class Dingdan extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.code !== 1) {
                     alert(data.msg);
                     that.props.history.push('/Buycar');
@@ -171,9 +177,28 @@ class Dingdan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data, status) {
-                    console.log(data)
                     if (data.code === 1) {
                         window.open('http://' + data.data.url);
+                    }
+                }
+            });
+        }else if (_payId === 3) {
+            // window.open('http://www.scjuchuang.com/apis/index.php/index/order/alipay?orderno=' + orderno);
+            $.ajax({
+                type: "post",
+                url: InterfaceUtil.getUrl(62),
+                data: InterfaceUtil.addTime({
+                    "token": token,
+                    "user_id": user_id,
+                    "order_number": orderno,
+                }),
+                dataType: "json",
+                success: function (data, status) {
+                    if (data.code === 1) {
+                        message.success(data.msg);
+                        _this.props.history.push('/Personal');
+                    }else {
+                        message.error(data.msg)
                     }
                 }
             });
@@ -187,6 +212,7 @@ class Dingdan extends React.Component {
         let orderno = this.state.chuangjian.order_number;
         var _this = this;
         var timesOut = setInterval(function () {
+
             $.ajax({
                 type: "post",
                 url: InterfaceUtil.getUrl(59),
@@ -197,7 +223,7 @@ class Dingdan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data, status) {
-                    console.log(data)
+
                     if (data.code === 1) {
                         // let modal;
                         clearInterval(timesOut);
@@ -221,6 +247,7 @@ class Dingdan extends React.Component {
 
                 }
             });
+
             if (_this.times > 89) {
                 clearInterval(timesOut);
                 _this.hideModal()
@@ -282,20 +309,36 @@ class Dingdan extends React.Component {
                             {data.address.enterprise}
                             </span>
                     </p>
-                    <p className='marginLeft20'>
+                    <div className='marginLeft20'>
                         <span className='dingdan_div_p_span'>选择支付方式：</span>
-                        <span className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' onClick={(e) => {
-                            this.zhifu(e)
-                        }}>
-             <img src={require("../../images/buycar/zfb.png")}
-                  className='marginRight10 dingdan_div_p_span1_img'
-                  alt=""/>支付宝</span>
-                        <span className='dingdan_div_p_span2 marginLeft20' onClick={(e) => {
-                            this.zhifu1(e)
-                        }}>
-             <img src={require("../../images/buycar/weixin.png")} className='marginRight10 dingdan_div_p_span1_img'
-                  alt=""/>微信支付</span>
-                    </p>
+                        <div className="ddcon">
+                            <div className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' >
+                                <img src={require("../../images/buycar/zfb.png")}
+                                     className='marginRight10 dingdan_div_p_span1_img'
+                                     alt=""/>
+                                <span onClick={(e) => {
+                                    this.zhifu(e)
+                                }}>支付宝</span>
+                            </div>
+                            <div className='dingdan_div_p_span2 marginLeft20' >
+                                <img src={require("../../images/buycar/weixin.png")}
+                                     className='marginRight10 dingdan_div_p_span1_img'
+                                     alt=""/>
+                            <span onClick={(e) => {
+                                this.zhifu(e)
+                            }}>微信支付</span>
+                            </div>
+                            <div className='dingdan_div_p_span2 marginLeft20' >
+                                <img src={require("../../images/buycar/003.png")}
+                                     className='marginRight0 dingdan_div_p_span1_img'
+                                     alt=""/>
+                                <span onClick={(e) => {
+                                    this.zhifu(e)
+                                }}>余额支付</span>
+                            </div>
+                        </div>
+
+                    </div>
                     <div className='dingdan_div_div1'>
            <span className='dingdan_div_div1_div'
                  onClick={() => this.payFor()}

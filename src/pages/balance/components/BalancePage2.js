@@ -1,11 +1,36 @@
 import React, {Component} from 'react';
 import {Input} from 'antd';
+import $ from 'jquery';
+import CoojiePage from '../../../util/CoojiePage';
+import Payfor from '../../../components/dingdan/dingdanTitle2'
+import InterfaceUtil from '../../../util/InterfaceUtil';
 import './balanceLess.css'
 
 
 class BalancePage1 extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.user_id = CoojiePage.getCoojie('user_id');
+        this.token = CoojiePage.getCoojie('token');
+        this.state = {
+
+        }
+    }
+
+    onChange(e) {
+        $('.bl2drigspan').find('span').removeClass();
+        $(e.target).addClass('bl2drigspanact');
+       $('.bl2drigspanpar').text($(e.target).text())
+    }
+    onBlur(e){
+        $('.bl2drigspan').find('span').removeClass();
+        let val=e.target.value;
+        if(isNaN(val)){
+            alert('请输入正确的金额')
+        }else {
+            $('.bl2drigspanpar').text( val)
+
+        }
     }
 
     render() {
@@ -16,13 +41,30 @@ class BalancePage1 extends Component {
                 </div>
                 <div className="bl2drig">
                     <div className='bl2drigspan'>
-                        <span>100元</span>
-                        <span>200元</span>
-                        <span>400元</span>
-                        <span>600元</span>
-                        <span>600元</span>
-                        <span className="bl2drigspanact">10000元</span>
-                        <Input placehoder="请输入金额"/>
+                        <span
+
+                            onClick={this.onChange}
+                        >100元</span>
+                        <span
+                            onClick={this.onChange}
+                        >200元</span>
+                        <span
+                            onClick={this.onChange}
+                        >400元</span>
+                        <span
+                            onClick={this.onChange}
+                        >600元</span>
+                        <span
+                            onClick={this.onChange}
+                        >800元</span>
+                        <span
+                            onClick={this.onChange}
+                            className="bl2drigspanact">1000元</span>
+                        <Input
+                            onBlur={
+                                (e) => this.onBlur(e)
+                            }
+                            placehoder="请输入金额"/>
                     </div>
 
                 </div>
@@ -48,41 +90,19 @@ class BalancePage1 extends Component {
                 </div>
                 <div className="bl2drig">
                     <span className='bl2drigSpan'>
-                         ￥500
+                         ￥<span className="bl2drigspanpar">500</span>
                     </span>
 
                 </div>
             </div>
-            {/*<div className="bl2d">*/}
-                {/*<div className="bl2dlef">*/}
-                    {/*充值金额*/}
-                {/*</div>*/}
-                {/*<div className="bl2drig">*/}
-                    {/*<div*/}
-                        {/*className='dingdan_div_p_span1 dingdan_div_p_span3'*/}
-                        {/*onClick={(e) => {*/}
-                            {/*this.zhifu(e)*/}
-                        {/*}}>*/}
-                        {/*<img src={require("../../../images/buycar/zfb.png")}*/}
-                             {/*className='marginRight10 dingdan_div_p_span1_img'*/}
-                             {/*alt=""/>支付宝*/}
-                    {/*</div>*/}
-                    {/*<div className='dingdan_div_p_span2' onClick={(e) => {*/}
-                        {/*this.zhifu1(e)*/}
-                    {/*}}>*/}
-                        {/*<img src={require("../../../images/buycar/weixin.png")}*/}
-                             {/*className='marginRight10 dingdan_div_p_span1_img'*/}
-                             {/*alt=""/>微信支付*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-            {/*</div>*/}
             <div className="bl2d">
                 <div className="bl2dlef">
                 </div>
                 <div className="bl2drig">
-                    <button className="bl2drigButton">
-                        立即支付
-                    </button>
+                    <Payfor/>
+                    {/*<button className="bl2drigButton">*/}
+                        {/*立即支付*/}
+                    {/*</button>*/}
                 </div>
             </div>
             <div className="bl2Fot">
@@ -90,9 +110,9 @@ class BalancePage1 extends Component {
                     客服电话：028-8321111
                     （工作时间：周一至周五8:30-17:30节假日除外）
                 </p>
-               <p className='bl2FotTit'>
-                   温馨提示:
-               </p>
+                <p className='bl2FotTit'>
+                    温馨提示:
+                </p>
                 <p>支付宝、微信充值后及时到账，无需等到</p>
                 <p>用户鱼儿永久有效，充值余额可以提现，根据需要充值！</p>
             </div>
