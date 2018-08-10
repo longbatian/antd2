@@ -7,6 +7,8 @@ import Tuijian from '../common/tuijian';
 import {Button, Modal, Pagination, Select} from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
+import Shoppinglist from './Shoppinglist'
+import Shoppinglist2 from './Shoppinglist2'
 import $ from 'jquery';
 import '../../styles/personal/personalCaigou.css'
 // import $ from "../../js/jquery.min";
@@ -46,7 +48,7 @@ class PersonalCaigou extends React.Component {
             lujin: InterfaceUtil.getImgUrl(),
             checked: '',
             cons: '',
-            page:1,
+            page: 1,
         }
     }
 
@@ -213,7 +215,7 @@ class PersonalCaigou extends React.Component {
             url: InterfaceUtil.getUrl(33),
             type: "post",
             data: InterfaceUtil.addTime({
-                "token": token, "user_id": user_id, "page":that.state.page , "pageSize": 10
+                "token": token, "user_id": user_id, "page": that.state.page, "pageSize": 10
             }),
             dataType: "json",
             success: function (data) {
@@ -231,25 +233,44 @@ class PersonalCaigou extends React.Component {
             }
         });
     }
-
+    onClicks(e){
+        $('.zcUl').find('li').removeClass();
+        $(e.target).addClass('orange');
+        let index=$(e.target).attr('data-class');
+        $('.zcB').hide();
+        $('.'+index).show();
+    }
     render() {
         return (
             <div className=' width988 floatRight'>
                 {/*最近订单标题*/}
                 <div className='personal_Wodejifen_title marginBottom20 margin13'>
                     <p className='marginLeft20 fontFamily fontWeight floatleft font20 '>智能采购</p>
-                    <ul>
+                    <ul className="zcUl">
                         <li
-                            className='orange'>智能采购</li>
-                        <div className='shu floatleft'></div>
-                        <li>采购计划</li>
-                        <div className='shu floatleft'></div>
-                        <li>求购信息</li>
+                            data-class="a"
+                            className='orange'
+                            onClick={this.onClicks}
+                        >
+                            智能采购
+                        </li>
+                        <li
+                            data-class="b"
+                            onClick={this.onClicks}
+                        >
+                            采购计划
+                        </li>
+                        <li
+                            data-class="c"
+                            onClick={this.onClicks}
+                        >
+                            求购信息
+                        </li>
                     </ul>
                 </div>
 
                 {/*内容*/}
-                <div className="zcB a display">
+                <div className="zcB a">
                     <div className='white personal_xiangqing_title'>
                         {/*输入框*/}
                         <div className='personal_Dindan_con_inp'>
@@ -304,7 +325,8 @@ class PersonalCaigou extends React.Component {
                                         <tr data={item.id} data-index={item.min_buy} className='caigou_tr'>
                                             <td>
                                                 <input type="checkbox" className='marginRight5 shoucang_inp'/>
-                                                <img src={this.state.lujin + item.image} alt="" className='xiangqing_img'/>
+                                                <img src={this.state.lujin + item.image} alt=""
+                                                     className='xiangqing_img'/>
                                             </td>
                                             <td className='hid'>{item.name}</td>
                                             <td className='hid'>{item.enterprise}</td>
@@ -358,10 +380,17 @@ class PersonalCaigou extends React.Component {
                         <div className='xian'></div>
                     </div>
                 </div>
-
-
+                <div className="zcB b display">
+                    <Shoppinglist/>
+                </div>
+                <div className="zcB c display">
+                    <Shoppinglist2/>
+                </div>
+                <div className="blBoxs ">
+                    <Tuijian data='5'/>
+                </div>
                 {/*推荐*/}
-                <Tuijian data='5'/>
+
             </div>
         );
     }

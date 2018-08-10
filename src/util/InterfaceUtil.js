@@ -66,7 +66,7 @@ let urls = [
     '/orders/close_order',//37
     '/orders/order_again',//38
     '/users/modify_password',//39
-    'user/userinfo',//40
+    '/users/want_buy',//40用户求购
     'user/jfls_log',//41
     'user/luck_log',//42
     '/orders/order_detail',//43

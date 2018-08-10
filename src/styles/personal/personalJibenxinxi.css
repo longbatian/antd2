@@ -129,7 +129,20 @@
   position: relative;
   padding: 0 0 1px;
 }
-
+.zcUl{
+  overflow: hidden;
+  padding: 10px 0 0;
+}
+.zcUl li{
+  padding: 0 20px;
+  height: 25px;
+  line-height: 25px;
+  float: left;
+  border-right: 1px solid #ddd;
+}
+.zcUl li:last-child{
+  border: none;
+}
 .xiugaimima{
   position: absolute;
   top: 0px;
@@ -139,6 +152,9 @@
   background-color: #000000;
   opacity: 0.4;
   z-index: 8;
+}
+.zcB{
+  overflow: hidden;
 }
 .xiugaimima_div{
   width: 470px;
