@@ -178,7 +178,11 @@ class Dingdan extends React.Component {
                 dataType: "json",
                 success: function (data, status) {
                     if (data.code === 1) {
-                        window.open('http://' + data.data.url);
+                        var openwin=window.open('http://' + data.data.url);
+                        if(openwin==null){
+                           window.location.href='http://' + data.data.url;
+                        }
+
                     }
                 }
             });
