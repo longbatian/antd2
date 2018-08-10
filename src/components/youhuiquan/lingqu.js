@@ -35,14 +35,12 @@ class Lingqu extends Component {
             }),
             dataType: "json",
             success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    alert(data.msg);
-                    if (data.code == `1`) {
-                        that.removeClassStates(id);
-                    }
+                if (data.code == `1`) {
+                    that.removeClassStates(id);
+                }else {
+                    alert(data.msg)
                 }
+
             }
         });
     }
@@ -66,10 +64,8 @@ class Lingqu extends Component {
 
     componentDidMount() {
         window.scrollTo(0,0);
-        let username = CoojiePage.getCoojie('username');
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
-        let user_type = CoojiePage.getCoojie('user_type');
         const that = this;
         //  广告位
         $.ajax({
@@ -80,7 +76,6 @@ class Lingqu extends Component {
             }),
             dataType: "json",
             success: function (data) {
-
                 if (data.data.length == 0) {
 
                 } else {
@@ -128,63 +123,6 @@ class Lingqu extends Component {
         InterfaceUtil.delCookie('package_id');
         document.cookie = "coupon_id=" + id;
         this.props.history.push('./Jiesuan')
-        // var b = $('.jiesuan_sel').eq(0).val();
-        // var bz = $('.jiesuan_div_div4_inp').val();
-        // const that=this;
-        // let cid=CoojiePage.getCoojie('cid');
-        // $.ajax({
-        //     url: InterfaceUtil.getUrl(17),
-        //     type: "post",
-        //     data: InterfaceUtil.addTime({
-        //         "token":that.token,"user_id":that.member_id,"cart_id":cid,"user_remark":bz,user_coupon_id:b
-        //     }),
-        //     dataType: "json",
-        //     success: function(data){
-        //         console.log(data)
-        //         if(data.code === 1){
-        //             sessionStorage.setItem("orderno",data.data.order_number);
-        //             PubSub.publish('PubSubmessage', data.code);
-        //             that.props.history.push('/Dingdan');
-        //         }else {
-        //             alert(data.msg);
-        //         }
-        //
-        //     },
-        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //
-        //     }
-        // });
-        // let token = CoojiePage.getCoojie('token');
-        // let username = CoojiePage.getCoojie('username');
-        // let _payId = this.state.zhifu;
-        // let _this = this;
-        // // console.log(token+'--'+username+'--'+orderno);
-        // this.setModal2Visible(true);
-        //
-        // $.ajax({
-        //     type: "post",
-        //     url: InterfaceUtil.getUrl(61),
-        //     data: InterfaceUtil.addTime({
-        //         "token": token,
-        //         "username": username,
-        //         coupon_id: id,
-        //     }),
-        //     dataType: "json",
-        //     success: function (data, status) {
-        //         if (data.status === 1) {
-        //             _this.setState({
-        //                 imgs: data.data.img,
-        //                 isOver: !_this.state.isOver
-        //             })
-        //         } else {
-        //             _this.setState({
-        //                 imgs: ``,
-        //             })
-        //         }
-        //         _this.setTimeOver(data.data.order_v, id)
-        //     }
-        // });
-
 
     }
 

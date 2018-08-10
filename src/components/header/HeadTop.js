@@ -12,6 +12,7 @@ class HeadTop extends React.Component{
   constructor(props){
     super(props); //调用父类的构造方法；
     this.loginPage=new LoginPage();
+    this.erp_id=CoojiePage.getCoojie('erp_id');
     this.state={
       lujin:InterfaceUtil.getImgUrl(),
     }
@@ -47,18 +48,7 @@ class HeadTop extends React.Component{
   }
 
   huiyuan(e){
-    // var token=CoojiePage.getCoojie('token');
     this.loginPage.loginGo('/Personal',this.props);
-    // if(token==''){
-    //   alert('请登录')
-    //     this.props.history.push('/Denglu');
-    //   // location.replace("#/Denglu");
-    //   // window.location.href='#/Denglu';
-    // }else{
-    //     this.props.history.push('/Personal');
-    //   // window.location.href='#/Personal';
-    //
-    // }
   }
 
   componentDidMount(){
@@ -107,7 +97,7 @@ class HeadTop extends React.Component{
               </a>
               </li>
               <li className='gray blue cursor'>
-                  <a href='http://scjcyy.e-fapiao.cc:91/Account/Login' target='_target'>
+                  <a href={'http://www.51yywd.com/User/jsapi?business_id=29603&dwid='+this.erp_id} target='_target'>
                       质检报告查询&nbsp;<span>|</span>&nbsp;
                   </a>
               </li>

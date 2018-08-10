@@ -41,11 +41,11 @@ class Chanpinzhongxin extends React.Component {
             pingming: 1,
             changjia: 1,
             pxtype: '1',//排序名称
-            title: '',//商品名称
-            scqy: '',//生产企业
+            title: 0,//商品名称
+            scqy: 0,//生产企业
             page: 1,//页数
             pxnum: 1,
-            is_kc: '',
+            is_kc: 0,
         }
     }
 
@@ -1197,7 +1197,7 @@ class Chanpinzhongxin extends React.Component {
                 if (data.data.length == 0) {
 
                 } else {
-                    // console.log(JSON.stringify(data))
+
                     that.setState({
                         jx: data.data
                     });
@@ -1205,19 +1205,7 @@ class Chanpinzhongxin extends React.Component {
             }
         })
         //全局
-        // ajax.open('post', 'http://192.168.1.49/index.php/index/index/search', false);
-        // $.ajax({
-        //     url: InterfaceUtil.getUrl(1),
-        //     type: "post",
-        //     data: InterfaceUtil.addTime({}),
-        //     dataType: "json",
-        //     success: function (data) {
-        //
-        //         // that.setState({
-        //         //     top: data.data.top
-        //         // });
-        //     }
-        // });
+
 
         this.ajaxProductList();
         window.scrollTo(0, 0)
@@ -1225,7 +1213,6 @@ class Chanpinzhongxin extends React.Component {
 
     ajaxProductList() {
         let token = CoojiePage.getCoojie('token');
-        let jylx = CoojiePage.getCoojie('jylx');
         let user_id = CoojiePage.getCoojie('user_id');
         //获取地址栏的值
         let did = InterfaceUtil.getHashParameters().did;
@@ -1249,25 +1236,28 @@ class Chanpinzhongxin extends React.Component {
             did = '';
         }
         if (pid == undefined) {
-            pid = '';
+            pid = 0;
         }
         if (sid == undefined) {
-            sid = '';
+            sid = 0;
         }
         if (c == undefined) {
-            c = '';
+            c = 0;
         }
         if (d == undefined) {
-            d = '';
+            d = 0;
         }
         if (f == null || f == undefined) {
-            f = '';
+            f = 0;
         }
         if (e == null || e == undefined) {
-            e = '';
+            e =0;
         }
         if (pxnum = '' || pxnum == undefined || !pxnum) {
             pxnum = 1;
+        }
+        if (zjzx == null || zjzx == undefined) {
+            zjzx =0;
         }
         let arr = this.state.class,
             title_fenlei = '';
@@ -1292,7 +1282,7 @@ class Chanpinzhongxin extends React.Component {
 
             }
         })
-        console.log(e)
+
         const that = this;
         //  商品列表ajax
 
@@ -1310,6 +1300,7 @@ class Chanpinzhongxin extends React.Component {
             // , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'type': zjzx, is_kc: is_kc
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -1347,7 +1338,7 @@ class Chanpinzhongxin extends React.Component {
      * checked
      */
     changeSwitch(checked) {
-        // console.log(`switch to ${checked}`);
+
         let iskc = checked ? 1 : '';
         this.setState({
             is_kc: iskc
@@ -1579,7 +1570,6 @@ class Chanpinzhongxin extends React.Component {
                         {/*商品信息*/}
                         <ul className='chanpinzhongxin_right_con_ul'>
                             {this.state.splist.map(function (item) {
-                                // console.log(item)
                                 let islimit = item.activity_num > 99999 ? `` : item.activity_num;
                                 let hprice = item.activity_price ?
                                     <div>价格：<span

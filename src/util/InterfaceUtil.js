@@ -154,7 +154,8 @@ export default class InterfaceUtil {
         let sign_key = `scjuchuang_85237790`;
         let a = '';
         for (let i in flag) {//用javascript的for/in循环遍历对象的属性
-            a += i + `=` + flag[i] + `&`
+            // a += i + `=` + flag[i] + `&`
+            a += i + `=` + encodeURIComponent(flag[i]) + `&`
         }
         a += `sign_key=` + sign_key;
         let md = forge.md.md5.create();
@@ -171,7 +172,6 @@ export default class InterfaceUtil {
         let timestamp = (new Date()).getTime();
         flag[`time_stamp`] = timestamp;
         this.md(flag);
-
         return flag;
     }
 

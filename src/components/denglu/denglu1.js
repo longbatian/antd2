@@ -49,9 +49,8 @@ class Denglu1 extends React.Component {
                     beforeSend: function (xhr) {
                     },
                     success: function (data, textStatus, jqXHR) {
+                        console.log(data)
                         var zhi = $('.denglu_con_kuang_box_p3_mima').prop('checked');
-
-
                         if (data.code === 1) {
 
                             if (zhi === true) {
@@ -66,6 +65,7 @@ class Denglu1 extends React.Component {
                                 document.cookie = "user_id=" + data.data.user_id;
                                 document.cookie = "username=" + data.data.username;
                                 document.cookie = "token=" + data.data.token;
+                                document.cookie = "erp_id=" + data.data.erp_id;
                                 // document.cookie = "user_type=" + data.data.user_type;
                                 // document.cookie = "jylx=" + data.data.jylx;
 
