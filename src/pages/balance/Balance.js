@@ -1,14 +1,16 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import BalancePage1 from './components/BalancePage1'
 import BalancePage2 from './components/BalancePage2'
+import BalancePage3 from './components/BalancePage3'
 import './components/balanceLess.css'
 
 
 class Balance extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
-    render(){
+
+    render() {
         return <div className="blBoxs">
             <div className="blHead">
                 <h2>我的余额</h2>
@@ -23,6 +25,9 @@ class Balance extends Component {
             </div>
             <div className='blCons'>
                 <BalancePage2/>
+            </div>
+            <div className='blCons'>
+                <BalancePage3/>
             </div>
         </div>
     }
