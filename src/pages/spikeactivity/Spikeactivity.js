@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import {Input, message, Pagination} from 'antd';
 import CoojiePage from './../../util/CoojiePage';
 import InterfaceUtil from "../../util/InterfaceUtil";
@@ -14,6 +14,7 @@ class Spikeactivity extends React.Component {
         super(props);
         this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
+        this.loginPage=new LoginPage();
         this.state = {
             goods_list: [],
             page: 1,
@@ -57,7 +58,7 @@ class Spikeactivity extends React.Component {
                         imgs:datas.image
                     })
                 }else {
-                    // LoginPage.ajaxLogin(data.code,_this.props);
+                    _this.loginPage.ajaxLogin(data.code,_this.props);
                 }
             }
         })
@@ -467,4 +468,4 @@ class Spikeactivity extends React.Component {
     }
 }
 
-export default Spikeactivity;
+export default withRouter(Spikeactivity);
