@@ -123,12 +123,13 @@ class personalBox extends React.Component {
                                         <span>电子合同</span>
                                         <i className='myPageI'/>
                                     </Link></li>
-                                    <li><Link to="/Wodejifen" className='black color1_qiehuan' onClick={(e) => {
-                                        this.color1(e)
-                                    }}>
-                                        <span>我的积分</span>
-                                        <i className='myPageI'/>
-                                    </Link></li>
+                                    {/*<li><Link to="/Wodejifen" className='black color1_qiehuan' onClick={(e) => {*/}
+                                        {/*this.color1(e)*/}
+                                    {/*}}>*/}
+                                        {/*<span>我的积分</span>*/}
+                                        {/*<i className='myPageI'/>*/}
+                                    {/*</Link>*/}
+                                    {/*</li>*/}
                                     <li><Link to="/Caigou" className='black color1_qiehuan' onClick={(e) => {
                                         this.color1(e)
                                     }}>
@@ -148,9 +149,10 @@ class personalBox extends React.Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/all/person/Balance" className='black color1_qiehuan' onClick={(e) => {
-                                            this.color1(e)
-                                        }}>
+                                        <Link to="/all/person/Balance" className='black color1_qiehuan'
+                                              onClick={(e) => {
+                                                  this.color1(e)
+                                              }}>
                                             <span>余额</span>
                                             <i className='myPageI'/>
                                         </Link>

@@ -360,7 +360,7 @@ class Spikeactivity extends React.Component {
                     <p>{it.enterprise}</p>
                     <p>规格：{it.standard}</p>
                     <p className="colred">效期：{time}</p>
-                    <p>限购：{it.min_buy_}</p>
+                    {/*<p>限购：{it.min_buy_}</p>*/}
                     <p>价格：
                         <span className="acbigs colred">{it.price}</span>
                     </p>

@@ -119,43 +119,43 @@ class PersonalWodejifen extends React.Component {
   }
 
   componentDidMount(){
-    function getCookie(cookieName) {
-      var strCookie = document.cookie;
-      var arrCookie = strCookie.split("; ");
-      for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-          return arr[1];
-        }
-      }
-      return "";
-    }
-    var username=getCookie('username');
-    var token=getCookie('token');
-    var user_id=getCookie('user_id');
-    const that = this;
-    //头部ajax
-    $.ajax({
-                url: InterfaceUtil.getUrl(41),
-                type: "post",
-                data: {
-    "username":username,"token":token,"page":1,"limit":18,"user_id":user_id
-              },
-                dataType: "json",
-                success: function(data){
-          if(data.data.list.length==0){
-          that.refs.jifen.className=''
-        }else{
-          that.setState({
-            wdjf:data.data.list,
-            xfcount:data.data.xfcount,
-            jfye:data.data.jfye,
-            cons:data.data.cons,
-          });
-          that.refs.jifen.className='display'
-        }
-                }
-            });
+    // function getCookie(cookieName) {
+    //   var strCookie = document.cookie;
+    //   var arrCookie = strCookie.split("; ");
+    //   for(var i = 0; i < arrCookie.length; i++){
+    //     var arr = arrCookie[i].split("=");
+    //     if(cookieName == arr[0]){
+    //       return arr[1];
+    //     }
+    //   }
+    //   return "";
+    // }
+    // var username=getCookie('username');
+    // var token=getCookie('token');
+    // var user_id=getCookie('user_id');
+    // const that = this;
+    // //头部ajax
+    // $.ajax({
+    //             url: InterfaceUtil.getUrl(41),
+    //             type: "post",
+    //             data: {
+    // "username":username,"token":token,"page":1,"limit":18,"user_id":user_id
+    //           },
+    //             dataType: "json",
+    //             success: function(data){
+    //       if(data.data.list.length==0){
+    //       that.refs.jifen.className=''
+    //     }else{
+    //       that.setState({
+    //         wdjf:data.data.list,
+    //         xfcount:data.data.xfcount,
+    //         jfye:data.data.jfye,
+    //         cons:data.data.cons,
+    //       });
+    //       that.refs.jifen.className='display'
+    //     }
+    //             }
+    //         });
     // ajax.open('post',"http://192.168.1.49/index.php/index/user/jfls_log",false);
     // ajax.open('post',InterfaceUtil.getUrl(41),false);
     // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -171,25 +171,25 @@ class PersonalWodejifen extends React.Component {
   //  中奖纪录
   //   ajax.open('post',"http://192.168.1.49/index.php/index/user/luck_log",false);
 
-     $.ajax({
-                url: InterfaceUtil.getUrl(42),
-                type: "post",
-                data: {
-    "username":username,"token":token,"page":1,"limit":15
-              },
-                dataType: "json",
-                success: function(data){
-        if(data.data.list.length==0){
-          that.refs.jifen1.className=''
-        }else{
-          that.setState({
-            zjjl:data.data.list,
-            cons:data.data.cons,
-          });
-          that.refs.jifen.className='display'
-        }
-                }
-            });
+    //  $.ajax({
+    //             url: InterfaceUtil.getUrl(42),
+    //             type: "post",
+    //             data: {
+    // "username":username,"token":token,"page":1,"limit":15
+    //           },
+    //             dataType: "json",
+    //             success: function(data){
+    //     if(data.data.list.length==0){
+    //       that.refs.jifen1.className=''
+    //     }else{
+    //       that.setState({
+    //         zjjl:data.data.list,
+    //         cons:data.data.cons,
+    //       });
+    //       that.refs.jifen.className='display'
+    //     }
+    //             }
+    //         });
 
   }
 
