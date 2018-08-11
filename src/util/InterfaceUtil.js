@@ -31,7 +31,7 @@ let urls = [
     '/index/get_global',//1
     '/goods/activity_goods',//2活动
     '/users/integral_signin',//3签到
-    'Cart/addcart', //4
+    '/users/signin_record', //4签到记录
     '/users/goods_collect',//5
     '/goods/remove_cart',//6
     '/goods/cart_list',//7

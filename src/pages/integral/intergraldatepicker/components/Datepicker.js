@@ -1,24 +1,49 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {message} from 'antd'
 import InterfaceUtil from './../../../../util/InterfaceUtil';
+import CoojiePage from './../../../../util/CoojiePage';
 
 import './intergraldatepicker.css';
+import $ from "jquery";
+
 class Datepicker extends Component {
     constructor(props) {
         super(props);
+        this.user_id = CoojiePage.getCoojie('user_id')
+        this.token = CoojiePage.getCoojie('token')
         this.state = {}
     }
 
     componentDidMount() {
 
-        this.add(); //进入页面第一次渲染
+
+
+        const _this = this;
+        $.ajax({
+            url: InterfaceUtil.getUrl(4),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "token": _this.token, "user_id": _this.user_id
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    _this.add(data.data.days); //进入页面第一次渲染
+                } else {
+                    message.error(data.msg)
+                }
+            }
+        })
+
+
     }
 
-    add() {
+    add(days) {
         var dat = new Date(); //当前时间
         var nianD = dat.getFullYear(); //当前年份
         var yueD = dat.getMonth(); //当前月
-        var tianDs = [0];
+        var tianDs = days;
         document.getElementById('date').innerHTML = "";
         var nian = dat.getFullYear(); //当前年份
         var yue = dat.getMonth(); //当前月

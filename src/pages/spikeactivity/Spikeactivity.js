@@ -46,7 +46,6 @@ class Spikeactivity extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
                 if (data.code == 1) {
                     let datas = data.data
                     _this.setState({
@@ -333,7 +332,6 @@ class Spikeactivity extends React.Component {
                 >
                     未开始
                 </div>
-
             } else if (start < timestamp && timestamp < end) {
                 button = <div
                     className="acul2ConFotbut"
@@ -349,7 +347,7 @@ class Spikeactivity extends React.Component {
                     已结束
                 </div>
             }
-            console.log()
+            let limits=it.activity_max_num===0?`不限购`:it.activity_max_num;
             return <li key={it.id} className="skali">
                 <Link to={'/Shangpinxiangqing?&id='+it.id}>
                     <img src={it.image}/>
@@ -360,10 +358,12 @@ class Spikeactivity extends React.Component {
                     <p>{it.enterprise}</p>
                     <p>规格：{it.standard}</p>
                     <p className="colred">效期：{time}</p>
-                    {/*<p>限购：{it.min_buy_}</p>*/}
+                    <p>限购：{limits}</p>
                     <p>价格：
-                        <span className="acbigs colred">{it.price}</span>
+                        <span className="acbigs colred">{it.activity_price}</span>
+                        <span className="acYuan">原价：{it.price}</span>
                     </p>
+
                     <div className="acul2ConFot">
                         <div className="acul2ConFotLef">
                             <div className="acul2ConFotLefspan">
@@ -456,7 +456,9 @@ class Spikeactivity extends React.Component {
 
             </div>
             <div className="paginationboxs ">
-                <Pagination showQuickJumper defaultCurrent={1} current={data.page} total={data.nums}
+                <Pagination showQuickJumper
+                            defaultPageSize={12}
+                            defaultCurrent={1} current={data.page} total={data.nums}
                             onChange={(e) => this.changesPage(e)}
                 />
             </div>

@@ -18,6 +18,8 @@ class ComInfoPage extends Component {
         this.state = {}
     }
 
+
+
     handleClick() {
         const _this = this;
         $.ajax({
@@ -28,12 +30,12 @@ class ComInfoPage extends Component {
             }),
             dataType: "json",
             success: function (data) {
-               if(data.code===1){
-                   message.success(data.msg)
-               }else {
-                   message.success(data.msg);
-                   _this.loginPage.ajaxLogin(data.code, _this.props);
-               }
+                if (data.code === 1) {
+                    message.success(data.msg)
+                } else {
+                    message.success(data.msg);
+                    _this.loginPage.ajaxLogin(data.code, _this.props);
+                }
             }
         })
 
@@ -60,7 +62,7 @@ class ComInfoPage extends Component {
                             </div>
                             <button
                                 onClick={
-                                    ()=> this.handleClick()
+                                    () => this.handleClick()
                                 }
                             >
                                 签 到
