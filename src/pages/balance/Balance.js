@@ -31,7 +31,7 @@ class Balance extends Component {
             dataType: "json",
             success: function (data, status) {
                 if (data.code===1){
-                    console.log(data)
+
                     _this.setState({
                         price:data.data.price
                     })

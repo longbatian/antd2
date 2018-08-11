@@ -36,13 +36,10 @@ class HeadTop extends React.Component{
     $('.head_shoujiban').removeClass('head_rexian_current');
   }
   tuichu(e){
-    var exp = new Date();
-    exp.setTime(exp.getTime() -1*24*60*60*1000);
-    document.cookie = "user_id="+";expires=" + exp.toGMTString();
-    document.cookie = "username="+";expires=" + exp.toGMTString();
-    document.cookie = "token="+";expires=" + exp.toGMTString();
-    document.cookie = "user_type="+";expires=" + exp.toGMTString();
-    document.cookie = "jylx="+";expires=" + exp.toGMTString();
+    InterfaceUtil.delCookie('user_id');
+    InterfaceUtil.delCookie('token');
+    InterfaceUtil.delCookie('erp_id');
+    InterfaceUtil.delCookie('username');
     // this.props.history.push('/Index');
       window.location.reload();
   }
@@ -52,7 +49,6 @@ class HeadTop extends React.Component{
   }
 
   componentDidMount(){
-
     var username=CoojiePage.getCoojie('username');
     if(username==''){
       var top=document.getElementsByClassName('TOP');
@@ -102,7 +98,7 @@ class HeadTop extends React.Component{
                   </a>
               </li>
             <li className='gray cursor'>
-              <Link to={"HelpZx?&id=44"}>
+              <Link to={"/HelpZx?&id=44"}>
                 互联网药品交易许可证
               </Link>
             </li>

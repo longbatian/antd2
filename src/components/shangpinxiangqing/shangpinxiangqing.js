@@ -54,7 +54,7 @@ class Shangpinxiangqing extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.code === 1) {
                     let datas = that.state.spxq;
                     if (datas[i].is_collect == 1) {
@@ -350,12 +350,7 @@ class Shangpinxiangqing extends React.Component {
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
 

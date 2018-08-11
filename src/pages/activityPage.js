@@ -17,11 +17,6 @@ class ActivityPage extends Component {
     }
 
     componentDidMount() {
-        // sessionStorage.setItem("urls","http://www.scjuchuang.com/activitys/actNew1.php?gid=93");
-
-        // ActivityPage?&names=newYearnew1.php
-        //ActivityPage?&names=actNew1.php&para=gid&gid=93
-        // ActivityPage?&names=goldEggsnew.php&para=lid&lid=5
         this.openIframe();
 
     }

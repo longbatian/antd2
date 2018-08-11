@@ -31,7 +31,7 @@ class IntegralHome extends Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
+
                 if (data.code === 1) {
                     let datas = data.data;
                     _this.setState({
@@ -118,7 +118,7 @@ class IntegralHome extends Component {
                                 </div>
                                 <div className="ithconhuaRig">
                                     <h2>小积分抽大奖</h2>
-                                    <p>积分抽奖一次仅用<span>20积分</span></p>
+                                    <p>积分抽奖一次仅用<span>200积分</span></p>
                                 </div>
                                 <Link to="/Integral/lottery">
                                     去抽奖

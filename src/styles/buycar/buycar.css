@@ -20,6 +20,9 @@
   text-align: center;
   float: left;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .car_title_div2 a{
   color: #333;

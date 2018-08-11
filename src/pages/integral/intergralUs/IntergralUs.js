@@ -38,7 +38,7 @@ class IntergralUs extends Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.code === 1) {
                     _this.setState({
                         consume_integral: data.data.consume_integral,

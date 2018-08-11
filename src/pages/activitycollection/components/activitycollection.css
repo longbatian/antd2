@@ -140,6 +140,11 @@
 .acUl2 li .acul2Con {
   padding: 10px;
 }
+.acUl2 li .acul2Con p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .acUl2 li .acul2Con p:nth-child(2) {
   height: 21px;
 }
@@ -227,5 +232,8 @@
   background-size: 100% 100%;
   vertical-align: middle;
   margin-right: 5px;
+}
+.skali {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=activitycollection.css.map */

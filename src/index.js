@@ -40,6 +40,7 @@ import Bundle from './pages/bundle/Bundle';//换购
 import Footer from './pages/footer'; //尾部
 import Header from './pages/Header1';//头部
 import Balance from "./pages/balance/Balance";
+import Spikeactivity from "./pages/spikeactivity/Spikeactivity";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 ReactDOM.render((
@@ -68,7 +69,7 @@ ReactDOM.render((
             <Route  path="/ActivityPage" component={ActivityPage} />
             <Route  path="/HelpZx" component={HelpZx} />
             <Route  path="/Xiangqing" component={Xiangqing} />
-            <Route  path="/InformationPage" component={InformationPage} />
+            <Route  path="/InformationPage" component={InformationPage}/>
             <Route  path="/NewXq" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
             <Route  path="/all">
@@ -78,7 +79,8 @@ ReactDOM.render((
                     <Route  path="/all/Redemption" component={Redemption}/>
                     <Route  path="/all/Bundle" component={Bundle}/>
                     <Route  path="/all/Questionnaire" component={Questionnaire}/>
-                    <Route  path="/all/person">
+                    <Route  path="/all/Spikeactivity" component={Spikeactivity}/>
+                    <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>
                                 <Route component={PersonalCon}/>

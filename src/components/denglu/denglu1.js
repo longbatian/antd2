@@ -1,10 +1,10 @@
 import React from "react";
 // import $ from '../../js/jquery.min';
 import $ from 'jquery';
-import {withRouter, Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
-import forge from 'node-forge';
 // var forge = require('node-forge');
+import {Input} from 'antd'
 import '../../styles/common.css';
 import '../../styles/personal.css';
 import '../../styles/denglu/denglu.css'
@@ -20,7 +20,7 @@ class Denglu1 extends React.Component {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
 
     }
 
@@ -36,7 +36,7 @@ class Denglu1 extends React.Component {
                 alert('请输入密码')
                 return false;
             } else {
-                let data={
+                let data = {
                     username: username,
                     password: psd,
                 };
@@ -52,25 +52,24 @@ class Denglu1 extends React.Component {
                         console.log(data)
                         var zhi = $('.denglu_con_kuang_box_p3_mima').prop('checked');
                         if (data.code === 1) {
+                            // if (zhi === true) {
+                            //     let exp = new Date();
+                            //     // exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
+                            //     document.cookie = "user_id=" + data.data.id + ";expires=" + exp.toGMTString();
+                            //     document.cookie = "username=" + data.data.username + ";expires=" + exp.toGMTString();
+                            //     document.cookie = "token=" + data.data.token + ";expires=" + exp.toGMTString();
+                            //     // document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
+                            //     // document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
+                            // } else {
+                            document.cookie = "user_id=" + data.data.user_id;
+                            document.cookie = "token=" + data.data.token;
+                            document.cookie = "erp_id=" + data.data.erp_id;
+                            document.cookie = "username=" + data.data.username;
+                            // document.cookie = "user_type=" + data.data.user_type;
+                            // document.cookie = "jylx=" + data.data.jylx;
 
-                            if (zhi === true) {
-                                let exp = new Date();
-                                // exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
-                                document.cookie = "user_id=" + data.data.id + ";expires=" + exp.toGMTString();
-                                document.cookie = "username=" + data.data.username + ";expires=" + exp.toGMTString();
-                                document.cookie = "token=" + data.data.token + ";expires=" + exp.toGMTString();
-                                // document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
-                                // document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
-                            } else {
-                                document.cookie = "user_id=" + data.data.user_id;
-                                document.cookie = "username=" + data.data.username;
-                                document.cookie = "token=" + data.data.token;
-                                document.cookie = "erp_id=" + data.data.erp_id;
-                                // document.cookie = "user_type=" + data.data.user_type;
-                                // document.cookie = "jylx=" + data.data.jylx;
-
-                            }
-                            if (data.data.status === `1`) {
+                            // }
+                            if (data.data.status == `1`) {
                                 _this.props.history.push('/');
                             } else {
                                 _this.props.history.push('/InformationPage');
@@ -105,68 +104,69 @@ class Denglu1 extends React.Component {
     }
 
     denglu(e) {
-        var _this = this;
-        if (e.keyCode == "13") {
-            // console.log('aaaaaaaaaa')
-            var psd = $('.denglu_con_kuang_box_p1_psd').val();
-            var username = $('.denglu_con_kuang_box_p1_user').val();
-            if (username == '') {
-                alert('请输入账号')
-                return false;
-            } else {
-                if (psd == '') {
-                    alert('请输入密码')
-                    return false;
-                } else {
-                    $.ajax({
-                        // url:'http://192.168.1.49/index.php/index/user/api_login_user',
-                        url: InterfaceUtil.getUrl(13),
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            username: username,
-                            userpass: psd,
-                        },
-                        beforeSend: function (xhr) {
-                        },
-                        success: function (data, textStatus, jqXHR) {
-                            var zhi = $('.denglu_con_kuang_box_p3_mima').prop('checked');
-                            // console.log(data);
-                            if (data.info == '登录成功') {
-                                if (zhi == true) {
-                                    var exp = new Date();
-                                    exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
-                                    document.cookie = "user_id=" + data.data.id + ";expires=" + exp.toGMTString();
-                                    document.cookie = "username=" + data.data.username + ";expires=" + exp.toGMTString();
-                                    document.cookie = "token=" + data.data.token + ";expires=" + exp.toGMTString();
-                                    document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
-                                    document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
-                                    if (data.data.shzt === 1) {
-                                        _this.props.history.push('/InformationPage');
-                                    } else {
-                                        _this.props.history.push('/Index');
-                                    }
-                                } else {
-                                    document.cookie = "user_id=" + data.data.id;
-                                    document.cookie = "username=" + data.data.username;
-                                    document.cookie = "token=" + data.data.token;
-                                    document.cookie = "user_type=" + data.data.user_type;
-                                    document.cookie = "jylx=" + data.data.jylx;
-                                    if (data.data.shzt === 1) {
-                                        _this.props.history.push('/InformationPage');
-                                    } else {
-                                        _this.props.history.push('/Index');
-                                    }
-                                }
-                            } else {
-                                alert(data.info)
-                            }
-                        },
-
-                    })
-                }
-            }
-        }
+        this.post();
+        // var _this = this;
+        // if (e.keyCode == "13") {
+        //
+        //     var psd = $('.denglu_con_kuang_box_p1_psd').val();
+        //     var username = $('.denglu_con_kuang_box_p1_user').val();
+        //     if (username == '') {
+        //         alert('请输入账号')
+        //         return false;
+        //     } else {
+        //         if (psd == '') {
+        //             alert('请输入密码')
+        //             return false;
+        //         } else {
+        //             $.ajax({
+        //                 // url:'http://192.168.1.49/index.php/index/user/api_login_user',
+        //                 url: InterfaceUtil.getUrl(13),
+        //                 type: 'post',
+        //                 dataType: 'json',
+        //                 data: {
+        //                     username: username,
+        //                     userpass: psd,
+        //                 },
+        //                 beforeSend: function (xhr) {
+        //                 },
+        //                 success: function (data, textStatus, jqXHR) {
+        //                     var zhi = $('.denglu_con_kuang_box_p3_mima').prop('checked');
+        //                     // console.log(data);
+        //                     if (data.code == 1) {
+        //                         // if (zhi == true) {
+        //                         //     var exp = new Date();
+        //                         //     exp.setTime(exp.getTime() + 7 * 24 * 60 * 60 * 1000);
+        //                         //     document.cookie = "user_id=" + data.data.id + ";expires=" + exp.toGMTString();
+        //                         //     document.cookie = "username=" + data.data.username + ";expires=" + exp.toGMTString();
+        //                         //     document.cookie = "token=" + data.data.token + ";expires=" + exp.toGMTString();
+        //                         //     document.cookie = "user_type=" + data.data.user_type + ";expires=" + exp.toGMTString();
+        //                         //     document.cookie = "jylx=" + data.data.jylx + ";expires=" + exp.toGMTString();
+        //                         //     if (data.data.shzt === 1) {
+        //                         //         _this.props.history.push('/InformationPage');
+        //                         //     } else {
+        //                         //         _this.props.history.push('/Index');
+        //                         //     }
+        //                         // } else {
+        //                             document.cookie = "user_id=" + data.data.id;
+        //                             document.cookie = "username=" + data.data.username;
+        //                             document.cookie = "token=" + data.data.token;
+        //                             document.cookie = "user_type=" + data.data.user_type;
+        //                             document.cookie = "jylx=" + data.data.jylx;
+        //                             if (data.data.status == 1) {
+        //                                 _this.props.history.push('/InformationPage');
+        //                             } else {
+        //                                 _this.props.history.push('/Index');
+        //                             }
+        //                         }
+        //                     } else {
+        //                         alert(data.info)
+        //                     }
+        //                 },
+        //
+        //             })
+        //         }
+        //     }
+        // }
     }
 
     isFocus(key) {
@@ -247,12 +247,10 @@ class Denglu1 extends React.Component {
                                 </p>
                                 <p className={isFoucs2}>
                                     <span className='denglu_con_kuang_box_p1_span1'></span>
-                                    <input type="password"
+                                    <Input type="password"
                                            className='denglu_con_kuang_box_p1_psd'
                                            placeholder='请输入密码'
-                                           onKeyUp={(e) => {
-                                               this.denglu(e)
-                                           }
+                                           onPressEnter={(e) => this.post()
                                            }
                                            onFocus={() => {
                                                this.isFocus(2)
@@ -272,7 +270,10 @@ class Denglu1 extends React.Component {
                                     <span className='clear'></span>
                                 </p>
                                 <p className='denglu_con_kuang_box_p4'>
-                                    <button className='denglu_con_kuang_box_btn' onClick={() => this.post()}>登录</button>
+                                    <button className='denglu_con_kuang_box_btn'
+                                            onClick={() => this.post()
+                                            }>登录
+                                    </button>
                                 </p>
                                 <p className='denglu_con_kuang_box_p5'>
                                     <span className='denglu_con_kuang_box_p5_span'>忘记密码？</span>

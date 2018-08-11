@@ -128,9 +128,12 @@ class Dingdan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data, status) {
-                    console.log(data)
+
                     if (data.code === 1) {
-                        window.open('http://' + data.data.url);
+                        var openwin=window.open('http://' + data.data.url);
+                        if(openwin==null){
+                            window.location.href='http://' + data.data.url;
+                        }
                     }
                 }
             });
@@ -145,7 +148,6 @@ class Dingdan extends React.Component {
         let  price= $('.bl2drigspanpar').text()
         var _this = this;
         var timesOut = setInterval(function () {
-            console.log(_this.times);
             $.ajax({
                 type: "post",
                 url: InterfaceUtil.getUrl(59),

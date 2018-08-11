@@ -1300,7 +1300,7 @@ class Chanpinzhongxin extends React.Component {
             // , 'scqy': f, 'pxnum': pxnum, 'pxtype': pxtype, 'type': zjzx, is_kc: is_kc
             dataType: "json",
             success: function (data) {
-                console.log(data)
+
                 if (data.data.length == 0) {
 
                 } else {

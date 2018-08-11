@@ -27,7 +27,7 @@ class Bundle extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data));
+
                 if (data.code === 1) {
                     _this.setState({
                         list: data.data

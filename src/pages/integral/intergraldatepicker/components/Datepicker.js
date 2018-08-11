@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom';
 import InterfaceUtil from './../../../../util/InterfaceUtil';
 
 import './intergraldatepicker.css';
-
-
 class Datepicker extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +18,7 @@ class Datepicker extends Component {
         var dat = new Date(); //当前时间
         var nianD = dat.getFullYear(); //当前年份
         var yueD = dat.getMonth(); //当前月
-        var tianDs = [1, 5, 24, 25, 26, 17, 10, 3, 18];
+        var tianDs = [0];
         document.getElementById('date').innerHTML = "";
         var nian = dat.getFullYear(); //当前年份
         var yue = dat.getMonth(); //当前月
@@ -33,7 +31,7 @@ class Datepicker extends Component {
         var setZhou = new Date(nian, yue, 1).getDay(); //获取当前月第一天 是 周几
         for (var i = 0; i < setZhou; i++) { //渲染空白 与 星期 对应上
             var li = document.createElement('li');
-            console.log(li)
+
             document.getElementById('date').appendChild(li);
         }
         for (var i = 1; i <= setTian; i++) { //利用获取到的当月最后一天 把 前边的 天数 都循环 出来

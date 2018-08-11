@@ -32,7 +32,7 @@ class FooterCon extends React.Component {
     //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
     //     var data = ajax.responseText;
     //     data = JSON.parse(data);
-    //     // console.log(data);
+
     //     if (data.data.length == 0) {
     //
     //     } else {

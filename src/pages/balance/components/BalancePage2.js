@@ -44,22 +44,22 @@ class BalancePage1 extends Component {
                         <span
 
                             onClick={this.onChange}
-                        >100元</span>
+                        >100</span>
                         <span
                             onClick={this.onChange}
-                        >200元</span>
+                        >200</span>
                         <span
                             onClick={this.onChange}
-                        >400元</span>
+                        >400</span>
                         <span
                             onClick={this.onChange}
-                        >600元</span>
+                        >600</span>
                         <span
                             onClick={this.onChange}
-                        >800元</span>
+                        >800</span>
                         <span
                             onClick={this.onChange}
-                            className="bl2drigspanact">1000元</span>
+                            className="bl2drigspanact">1000</span>
                         <Input
                             onBlur={
                                 (e) => this.onBlur(e)
@@ -79,7 +79,7 @@ class BalancePage1 extends Component {
                             <li>活动</li>
                         </ul>
                         <div className="bl2drigtabscon">
-                            充值后可获得500积分
+                            {/*充值后可获得500积分*/}
                         </div>
                     </div>
                 </div>

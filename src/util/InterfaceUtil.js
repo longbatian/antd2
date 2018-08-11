@@ -3,6 +3,7 @@
 // var u='http://192.168.1.49/';
 import forge from "node-forge";
 import CoojiePage from "./CoojiePage";
+import $ from "jquery";
 
 // let u='http://jc.cx5201314.com/';
 // let u='http://192.168.1.49/';
@@ -28,8 +29,8 @@ let imgu = 'http://web.tyaow.com';
 let urls = [
     '/index/sidebar',//0
     '/index/get_global',//1
-    'Cart/check_cart',//2
-    'Cart/check_cart',//3
+    '/goods/activity_goods',//2活动
+    '/users/integral_signin',//3签到
     'Cart/addcart', //4
     '/users/goods_collect',//5
     '/goods/remove_cart',//6
@@ -234,4 +235,5 @@ export default class InterfaceUtil {
     static setUp() {
 
     }
+
 }

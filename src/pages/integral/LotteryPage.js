@@ -121,7 +121,7 @@ class Integralpage extends React.Component {
                     }),
                     dataType: "json",
                     success: function (data) {
-                        console.log(data)
+
                         if(data.code===1){
                             // 状态还原之后才能开始真正的抽奖
                             _this.handlePlay( data.data.id)
@@ -139,7 +139,6 @@ class Integralpage extends React.Component {
         // 随机获取一个中奖ID
         let prize = id;
         // let prize = 5;
-        console.log(prize);
         this.setState({
             prizeId: prize,
             activedId: 0
@@ -157,7 +156,7 @@ class Integralpage extends React.Component {
                 clearInterval(this.begin)
                 this.setState({
                     isRolling: false
-                },()=>console.log(11))
+                })
                 return
             }
 

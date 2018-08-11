@@ -49,7 +49,7 @@ class Redemption extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data);
+
                 if(data.code===1){
                     PubSub.publish('PubSubmessage', data.code);
                     CoojiePage.setBuyCarOk();

@@ -39,8 +39,8 @@ class Louceng2 extends React.Component {
       },
       success: function (data, textStatus, jqXHR) {
          var data = data;
-        // data = JSON.parse(data);
-        //   console.log(JSON.stringify(data));
+
+
         if (data.data.length == 0) {
 
         } else {

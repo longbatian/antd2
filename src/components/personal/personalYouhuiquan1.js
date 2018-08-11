@@ -35,90 +35,6 @@ class PersonalYouhuiquan extends React.Component {
             status: e.target.value
         },()=>this.startAjax())
 
-        // var a = $('.personal_Youhuiquan_title_select').val();
-        // if (a == '全部优惠券') {
-        //     a = 'null';
-        //     $('.title_1').removeClass('orange');
-        // }
-        // else if (a == '已用优惠券') {
-        //     a = '2';
-        //     $('.title_2').removeClass('display');
-        //     $('.title_1').removeClass('orange');
-        //     $('.title_1').addClass('display');
-        //     $('.title_3').addClass('display');
-        // }
-        // else if (a == '过期优惠券') {
-        //     a = '3';
-        //     $('.title_1').addClass('display');
-        //     $('.title_1').removeClass('orange');
-        //     $('.title_2').addClass('display');
-        //     $('.title_3').removeClass('display');
-        // }
-        // else if (a == '可用优惠券') {
-        //     a = '1';
-        //     $('.title_2').addClass('display');
-        //     $('.title_1').removeClass('display');
-        //     $('.title_1').removeClass('orange');
-        //     $('.title_3').addClass('display');
-        // }
-        //
-        // //获取cookie
-        // function getCookie(cookieName) {
-        //     var strCookie = document.cookie;
-        //     var arrCookie = strCookie.split('; ');
-        //     for (var i = 0; i < arrCookie.length; i++) {
-        //         var arr = arrCookie[i].split('=');
-        //         if (cookieName == arr[0]) {
-        //             return arr[1];
-        //         }
-        //     }
-        //     return '';
-        // }
-        //
-        // var username = getCookie('username');
-        // var token = getCookie('token');
-        // var user_id = getCookie('user_id');
-        // const that = this;
-        // //我的收藏
-        // $.ajax({
-        //     url: InterfaceUtil.getUrl(45),
-        //     type: "post",
-        //     data: {
-        //         'username': username, 'token': token, 'page': 1, 'limit': 12, 'user_id': user_id, 'coupon_type': a
-        //     },
-        //     dataType: "json",
-        //     success: function (data) {
-        //         if (data.data.length == 0) {
-        //
-        //         } else {
-        //             that.setState({
-        //                 yhq: data.data.list,
-        //                 length: data.data.counts
-        //             });
-        //             that.refs.youhuiquan.className = 'display'
-        //         }
-        //
-        //     }
-        // });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user/coupons",false);
-        // ajax.open('post', InterfaceUtil.getUrl(45), false);
-        // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        // ajax.onreadystatechange = function () {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data = ajax.responseText;
-        //     data = JSON.parse(data);
-        //     // console.log(data)
-
-        //   }
-        // };
-        // ajax.send('username=' + username + '&token=' + token + '&page=1&limit=12&user_id=' + user_id + '&coupon_type=' + a);
-
-        // var a = $('.personal_Youhuiquan_title_select option:checked').text();
-        // // console.log(a.replace(/[^0-9]/ig, ''));
-        // var b = a.replace(/[^0-9]/ig, '');
-        // that.setState({
-        //     cons: b
-        // });
 
     }
 
@@ -138,63 +54,10 @@ class PersonalYouhuiquan extends React.Component {
         this.setState({
             page: e
         },()=>this.startAjax())
-        // //判断类型
-        // var a = $('.personal_Youhuiquan_title_select').val();
-        // if (a == '全部优惠券') {
-        //     a = 'null';
-        // }
-        // else if (a == '已用优惠券') {
-        //     a = '2';
-        // }
-        // else if (a == '过期优惠券') {
-        //     a = '3';
-        // }
-        // else if (a == '可用优惠券') {
-        //     a = '1';
-        // }
-        //
+
 
     }
 
-    //大图列表切换
-    // qiehuan(e) {
-    //     var a = e.target;
-    //     var b = a.children.length;
-    //     if (b == 0) {
-    //         var c = document.getElementsByClassName('chanpinzhongxin_right_con_div_li1');
-    //         if (a.innerText == '大图') {
-    //             c[0].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li4'
-    //             c[1].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li7'
-    //             a.parentNode.className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li5';
-    //             $('.chanpinzhongxin_right_con_ul').removeClass('display');
-    //             $('.chanpinzhongxin_con1_table').addClass('display');
-    //         } else {
-    //             c[0].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li4'
-    //             c[1].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li7'
-    //             a.parentNode.className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li6';
-    //             $('.chanpinzhongxin_right_con_ul').addClass('display');
-    //             $('.chanpinzhongxin_con1_table').removeClass('display');
-    //         }
-    //
-    //     } else {
-    //         var c = document.getElementsByClassName('chanpinzhongxin_right_con_div_li1');
-    //         if (a.innerText == '大图') {
-    //             c[0].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li4'
-    //             c[1].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li7'
-    //             a.className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li5';
-    //             $('.chanpinzhongxin_right_con_ul').removeClass('display');
-    //             $('.chanpinzhongxin_con1_table').addClass('display');
-    //         } else {
-    //             c[0].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li4'
-    //             c[1].className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li7'
-    //             a.className = 'chanpinzhongxin_right_con_div_li1 chanpinzhongxin_right_con_div_li6';
-    //             $('.chanpinzhongxin_right_con_ul').addClass('display');
-    //             $('.chanpinzhongxin_con1_table').removeClass('display');
-    //         }
-    //
-    //     }
-    //
-    // }
 
     componentDidMount() {
         this.startAjax();
@@ -215,7 +78,7 @@ class PersonalYouhuiquan extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data), typeof(data.data.count))
+
                 that.loginPage.ajaxLogin(data.status, that.props);
                 if (data.data.length == 0) {
 

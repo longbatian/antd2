@@ -137,16 +137,23 @@
 
 
 .denglu_con_kuang_box_p1_user{
+  width: 240px;
   margin-left: 5px;
   border: none;
   height: 30px;
   position: absolute;
   top: 9px;
-  outline-color: #ffffff;
   font-size: 14px;
+  outline: none;
+}
+.denglu_con_kuang_box_p1  .ant-input:focus,
+.denglu_con_kuang_box_p1 .ant-input:active{
+  border: none;
+  box-shadow:none;
 }
 .denglu_con_kuang_box_p1_psd{
   margin-left: 5px;
+  width: 240px;
   border: none;
   height: 30px;
   position: absolute;

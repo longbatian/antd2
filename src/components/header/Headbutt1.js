@@ -8,7 +8,7 @@ import $ from 'jquery';
 class Headbutt extends React.Component{
   constructor(props){
     super(props); //调用父类的构造方法；
-    // console.log(this.props.location.query);
+
     this.state={
       fenlei:true,
     }

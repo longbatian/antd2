@@ -86,38 +86,38 @@ class InformationPage extends Component {
     componentDidMount() {
         const that = this;
         //我的收藏
-        $.ajax({
-            url: InterfaceUtil.getUrl(40),
-            type: "post",
-            data: {
-                "username": that.username, "token": that.token
-            },
-            dataType: "json",
-            success: function (data) {
-                var obj = data.data;
-                var keys = [];//定义一个数组用来接受key
-                var values = [];//定义一个数组用来接受value
-                for (let key in obj) {
-                    keys.push(key);
-                    values.push(obj[key]);//取得value
-                    if (obj[key] === 'null' || obj[key] === null) {
-                        obj[key] = ''
-                    }
-                }
-                if (data.status === 1) {
-                    if (data.data.shzt === '审核通过') {
-                        that.props.history.push('/Index');
-                        return;
-                    }
-                    that.setState({
-                        jbxx: obj,
-                        jynr: obj.jynr1,
-                    });
-                } else {
-                    that.props.history.push('/Denglu');
-                }
-            }
-        });
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(40),
+        //     type: "post",
+        //     data: {
+        //         "username": that.username, "token": that.token
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //         var obj = data.data;
+        //         var keys = [];//定义一个数组用来接受key
+        //         var values = [];//定义一个数组用来接受value
+        //         for (let key in obj) {
+        //             keys.push(key);
+        //             values.push(obj[key]);//取得value
+        //             if (obj[key] === 'null' || obj[key] === null) {
+        //                 obj[key] = ''
+        //             }
+        //         }
+        //         if (data.status === 1) {
+        //             if (data.data.shzt === '审核通过') {
+        //                 that.props.history.push('/Index');
+        //                 return;
+        //             }
+        //             that.setState({
+        //                 jbxx: obj,
+        //                 jynr: obj.jynr1,
+        //             });
+        //         } else {
+        //             that.props.history.push('/Denglu');
+        //         }
+        //     }
+        // });
     }
 
     shangchuan(e) {
@@ -145,12 +145,7 @@ class InformationPage extends Component {
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                // 状态码
-                console.log(XMLHttpRequest.status);
-                // 状态
-                console.log(XMLHttpRequest.readyState);
-                // 错误信息
-                console.log(textStatus);
+
             }
         });
     }

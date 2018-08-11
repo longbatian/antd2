@@ -156,7 +156,7 @@ class Gouwuche3 extends React.Component {
                 if (kcs == '0' || xiajia == '0') {
                     $('.buycar_input1').eq(i).prop('checked', false);
                     var cid = $('.car_title_div1').eq(i + 1).attr('data');
-                    // console.log(cid)
+
                     //ajax
 
 
@@ -255,7 +255,6 @@ class Gouwuche3 extends React.Component {
         }
         var b=$('.ccnChildInput');
         let traded_goods_id=[];
-        console.log(traded_goods_id)
         if(b.length>0){
             b.map((it,i)=>{
                 if (i.checked === true) {

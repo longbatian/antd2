@@ -56,8 +56,7 @@ class Gouwuche1 extends React.Component {
             //         "username": username, "token": token, "cid": cid, "is_check": 0
             //     },
             //     dataType: "json",
-            //     success: function (data) {
-            //         // console.log(data)
+            //     success: function (data) {    //
             //     }
             // });
 

@@ -48,15 +48,10 @@ class NewZX1 extends React.Component{
             news_con:data.data.list,
             cons:data.data.cont,
           });
-        }           
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
+
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/news/newlist",false);
@@ -67,7 +62,7 @@ class NewZX1 extends React.Component{
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
     //     console.log(data);
-        
+
     //   }
     // };
     // ajax.send("&page=1"+"&limit=8&pid="+pid);
@@ -104,15 +99,10 @@ class NewZX1 extends React.Component{
             news_con:data.data.list,
             cons:data.data.cont,
           });
-        }      
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
+
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/news/newlist",false);
@@ -123,7 +113,7 @@ class NewZX1 extends React.Component{
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
     //     console.log(data);
-        
+
     //   }
     // };
     // ajax.send("&page="+e+"&limit=8&pid="+pid);
@@ -149,7 +139,7 @@ class NewZX1 extends React.Component{
 
   //跳转
   huanye1(e){
-    console.log(e.target);
+
     var nid = e.target.getAttribute('data');
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     document.cookie="nid="+nid;
@@ -188,15 +178,10 @@ class NewZX1 extends React.Component{
             news_con:data.data.list,
             cons:data.data.cont,
           });
-        }         
+        }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
+
                 }
             });
     // ajax.open('post',"http://192.168.1.49/index.php/index/news/newlist",false);
@@ -207,7 +192,7 @@ class NewZX1 extends React.Component{
     //     var data=ajax.responseText;
     //     data=JSON.parse(data);
     //     console.log(data);
-       
+
     //   }
     // };
     // ajax.send("&page=1"+"&limit=8&pid="+pid);

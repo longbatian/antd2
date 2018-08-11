@@ -41,7 +41,7 @@ class Louceng1 extends React.Component {
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-                console.log(data)
+
                 if (data.data.length == 0) {
 
                 } else {
@@ -71,7 +71,6 @@ class Louceng1 extends React.Component {
             },
             success: function (data, textStatus, jqXHR) {
                 var data = data;
-                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -88,7 +87,7 @@ class Louceng1 extends React.Component {
 
     render() {
         let data=this.state;
-        // console.log(this.state.louceng)
+
         // var imgs=this.state.louceng?<img src={this.state.lujin+this.state.louceng.ad} className='marginTop20' alt=""/>:null;
         return (
             <div className='contain'>

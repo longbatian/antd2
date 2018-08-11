@@ -101,7 +101,7 @@ class Jiesuan extends React.Component {
 
                 if (data.code !== 1) {
                     alert(data.msg);
-                    // that.props.history.push('/Buycar');
+                    that.props.history.push('/Buycar');
                     return;
                 }
                 that.setState({
