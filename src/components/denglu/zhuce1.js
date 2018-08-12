@@ -446,6 +446,9 @@ class Zhuce extends React.Component {
         if (this.valiForm() !== true) {
             return false;
         }
+        let qq=this.state.qq?this.state.qq:0;
+        let tjr=this.state.tjr?this.state.tjr:0;
+        let yx=this.state.yx?this.state.yx:0;
         let c = $('.county option:checked').attr('id');
         $.ajax({
             // url:'http://192.168.1.49/index.php/index/user/user_reg',
@@ -459,9 +462,9 @@ class Zhuce extends React.Component {
                 enterprise: this.state.dwmc,
                 real_name: this.state.lxr,
                 tel: this.state.lxdh,
-                qq_number: this.state.qq,
-                referee: this.state.tjr,
-                email: this.state.yx,
+                qq_number: qq,
+                referee: tjr,
+                email: yx,
                 address_id: c
             }),
             // data: {
@@ -480,17 +483,13 @@ class Zhuce extends React.Component {
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-
-                if (data.status == '0') {
-                    // $('.tishi').text('');
-                    // $('.tishi').eq(1).text('用户名已注册');
-                    // $('.xingxing').removeClass('display');
-                    // $('.xingxing').eq(0).addClass('display');
+                console.log(data)
+                if (data.code == 1) {
+                    alert('注册成功');
+                    _this.props.history.push('/Denglu');
                 } else {
-                    // alert('注册成功');
-                    // _this.props.history.push('/Denglu');
+                    alert(data.msg)
                 }
-                // console.log(data);
             }
 
         })

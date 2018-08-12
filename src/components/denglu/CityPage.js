@@ -62,7 +62,7 @@ class CityPage extends Component{
       return false;
     }else{
       return this.state.json[this.state.index.provinceIndex].next[this.state.index.cityIndex].next.map(function(array, index){
-        return (<option key={index} data-index={index} id={array.Id}>{array.name}</option>);
+        return (<option key={index} data-index={index} id={array.id}>{array.name}</option>);
       });
     }
   }

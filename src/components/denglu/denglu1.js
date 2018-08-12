@@ -75,7 +75,7 @@ class Denglu1 extends React.Component {
                                 _this.props.history.push('/InformationPage');
                             }
                         } else {
-                            alert(data.info)
+                            alert(data.msg)
                         }
                     },
 
