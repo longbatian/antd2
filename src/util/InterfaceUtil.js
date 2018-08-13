@@ -87,7 +87,7 @@ let urls = [
     '/users/field_valid',//57
     '/orders/wechat_pay_qrcode'//58
     , '/orders/order_pay_status',//59
-    'user/user_info_update',//60
+    '/users/save_user_data',//60
     'order/wxpay_img_virtual',//61
     '/orders/balance_pay',//62
     '/index/search_goods',//63

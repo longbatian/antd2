@@ -404,11 +404,11 @@ class Shangpinxiangqing extends React.Component {
                 {
                     datas.spxq.map(function (item, i) {
 
-                        let islimit = item.activity_xgsl > 99999 ? `` : item.activity_xgsl;
+                        let islimit = item.activity_max_num === 0 ? `不限购` :`限购`+item.activity_max_num;
                         let isActivity = item.activity_price ? <span key={i + 'isActivity'}>
                           <span className='font20 orange'>{item.activity_price}</span>
                           <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.price}</span>
-                            <span className='red font13 bold'>( {item.activity_remark} {islimit})</span>
+                            <span className='red font13 bold'>( {islimit})</span>
                         </span> :
                             <span className='font20 orange'>{item.price}</span>;
                         let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'

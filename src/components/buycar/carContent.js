@@ -22,7 +22,6 @@ class Gouwuche2 extends React.Component {
 
     //加
     jia3(e, unit, id, unitM) {
-
         let list = this.state.sp;
         let maxnum = 0;
         unitM = parseFloat(unitM);
@@ -38,7 +37,8 @@ class Gouwuche2 extends React.Component {
             }
 
         });
-        let b = e;
+        let b = parseInt(e);
+        ;
         unit = unit ? unit : 1;
         unit = parseInt(unit);
         maxnum = parseInt(maxnum);
@@ -80,15 +80,21 @@ class Gouwuche2 extends React.Component {
         let datas = {
             "token": token,
             "user_id": user_id,
-             goods_num: num
+            goods_num: num
         }
         let list = this.state.sp;
         list.map((it, i) => {
             if (it.goods_id !== 0) {
                 if (it.goods_id === id) {
                     it.goods_num = num;
-                    it.price_count = num * unitM;
                     datas[`goods_id`] = id;
+                    if (num <= it.activity_max_num - it.activity_user_num && num !== 0) {
+                        let price_counts = num * it.activity_price;
+                        it.price_count = price_counts.toFixed(2);
+                    } else {
+                        let price_counts = num * it.price;
+                        it.price_count = price_counts.toFixed(2);
+                    }
                 }
             } else {
                 if (it.id === id) {
@@ -112,7 +118,7 @@ class Gouwuche2 extends React.Component {
                 success: function (data) {
                     if (data.code === 1) {
 
-                    }else {
+                    } else {
 
                     }
                 }
@@ -126,7 +132,7 @@ class Gouwuche2 extends React.Component {
     showJieSuan(heji) {
         var minM = this.state.minMoey;
         // parseInt
-        heji=parseInt(heji)
+        heji = parseInt(heji)
         if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
@@ -214,12 +220,7 @@ class Gouwuche2 extends React.Component {
         const minM = this.state.minMoey;
         var ziCheck = $(e.target).parents('.car_content').find('input[type=checkbox]');
         if (a == false) {
-
-
             ziCheck.prop('checked', false);
-
-
-
         } else if (a == true) {
             ziCheck.prop('checked', true);
 
@@ -384,7 +385,6 @@ class Gouwuche2 extends React.Component {
                         that.setAllmoney();
 
 
-
                     });
                 }
             },
@@ -520,6 +520,15 @@ class Gouwuche2 extends React.Component {
                                 </div>
                             </div>
                         }) : null;
+                        // console.log(item)
+                        let maxnums=item.activity_max_num? <div
+                            className='car_content_div orange '>
+                            本品限购{item.activity_max_num}{item.unit}，
+                            {item.activity_max_num}{item.unit}以内活动价￥{item.activity_price}出售，
+                            {item.activity_max_num}{item.unit}以上按原价￥{item.price}出售
+                            {/*， 活动结束时间：*/}
+                            {/*{item.end_time}*/}
+                        </div>:null;
                         return (
                             <div key={i} className={isAcClass}>
                                 <div className={isAcHeadClass}>
@@ -625,13 +634,7 @@ class Gouwuche2 extends React.Component {
                                             this.shoucang(e)
                                         }}>添加收藏</span>
                                     </div>
-                                    <div
-                                        className='car_content_div orange display'>
-                                        本品限购{item.activity_xgsl}{item.bzdw}，
-                                        {item.activity_xgsl}{item.activity_max_num}以内活动价￥{item.activity_price}出售，
-                                        {item.activity_xgsl}{item.activity_max_num}以上按原价￥{item.price}出售，活动结束时间：
-                                        {item.end_time}
-                                    </div>
+                                    {maxnums}
                                     {arrs}
 
                                 </div>

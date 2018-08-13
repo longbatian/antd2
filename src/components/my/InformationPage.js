@@ -5,14 +5,58 @@ import CoojiePage from '../../util/CoojiePage';
 import Head from '../../pages/Header1';
 import InterfaceUtil from "../../util/InterfaceUtil";
 import './informationPage.css'
-import {Form, Input, Button, Checkbox, Col, Row, Upload, Icon} from 'antd';
+import {Button, Checkbox, Col, Form, Input, Row,message} from 'antd';
 
 const FormItem = Form.Item;
 
 class InformationPage extends Component {
+    handleSubmit = (e) => {
+        const _this = this;
+        e.preventDefault();
+        let checkboxs = [];
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                for (let i = 1; i < 15; i++) {
+                    if (values[i]) {
+                        checkboxs.push(i);
+                    }
+                }
+
+                if (checkboxs.length === 0) {
+                    alert('至少选择一个经营范围！');
+                    return
+                }
+                this.setState({loading: true});
+                checkboxs =checkboxs.join(',');
+                $.ajax({
+                    url: InterfaceUtil.getUrl(60),
+                    type: "post",
+                    data: InterfaceUtil.addTime({
+                        "user_id": _this.user_id, "token": _this.token, 'name': values.userName,
+                        'address': values.address, 'tel': values.phonenumber,
+                        'shop_operate': checkboxs
+                    }),
+                    // 'shyb': values.zipCode,
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.code === 1) {
+                            window.scrollTo(0, 0);
+                            message.success(data.msg);
+                            _this.props.history.push('/Index');
+                        } else {
+                            alert(data.msg)
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     constructor(props) {
         super(props);
         this.username = CoojiePage.getCoojie('username');
+        this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
         this.state = {
             jbxx: {
@@ -32,92 +76,91 @@ class InformationPage extends Component {
                 "sfzh": '',
                 "sfz": '',
                 "shwts": '',
-
             },
             jynr: [],
             loading: false,
             iconLoading: false,
-        }
-    }
+            info: {
+                username: '',
+                level: ``,
 
-    handleSubmit = (e) => {
-        const _this = this;
-        e.preventDefault();
-        let checkboxs = [];
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                for (let i = 1; i < 15; i++) {
-                    if (values[i]) {
-                        checkboxs.push(i);
-                    }
-                }
-
-                if (checkboxs.length === 0) {
-                    alert('至少选择一个经营范围！');
-                    return
-                }
-                this.setState({loading: true});
-                checkboxs = JSON.stringify(checkboxs);
-                // console.log(values.contacts)
-                $.ajax({
-                    url: InterfaceUtil.getUrl(60),
-                    type: "post",
-                    data: {
-                        "username": _this.username, "token": _this.token, 'shr': values.userName,
-                        'shdz': values.address, 'shdh': values.phonenumber, 'shyb': values.zipCode,
-                        'jynr': checkboxs, yljgxkzbh: values.yljgxkzbh, yyzzh: values.yyzzh, sfzh: values.sfzh,
-                        dwmc: values.dwmc,lxr:values.contacts,
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        // console.log(data);
-                        if (data.status === 1) {
-                            window.scrollTo(0, 0);
-                            _this.props.history.push('/Index');
-                        } else {
-                            alert(data.info)
-                        }
-                    }
-                });
             }
-        });
+        }
     }
 
     componentDidMount() {
         const that = this;
-        //我的收藏
-        // $.ajax({
-        //     url: InterfaceUtil.getUrl(40),
-        //     type: "post",
-        //     data: {
-        //         "username": that.username, "token": that.token
-        //     },
-        //     dataType: "json",
-        //     success: function (data) {
-        //         var obj = data.data;
-        //         var keys = [];//定义一个数组用来接受key
-        //         var values = [];//定义一个数组用来接受value
-        //         for (let key in obj) {
-        //             keys.push(key);
-        //             values.push(obj[key]);//取得value
-        //             if (obj[key] === 'null' || obj[key] === null) {
-        //                 obj[key] = ''
-        //             }
-        //         }
-        //         if (data.status === 1) {
-        //             if (data.data.shzt === '审核通过') {
-        //                 that.props.history.push('/Index');
-        //                 return;
-        //             }
-        //             that.setState({
-        //                 jbxx: obj,
-        //                 jynr: obj.jynr1,
-        //             });
-        //         } else {
-        //             that.props.history.push('/Denglu');
-        //         }
-        //     }
-        // });
+        //我的基本信息
+        $.ajax({
+            url: InterfaceUtil.getUrl(34),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "user_id": that.user_id, "token": that.token
+            }),
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data.code === 1) {
+                    let datas= that.state.jbxx;
+                    datas[`dwmc`]=data.data.enterprise;
+                    datas[`lxr`]=data.data.username;
+                    that.setState({
+                        info: data.data,
+                        jbxx:datas
+                    })
+                }
+
+                // var obj = data.data;
+                // var keys = [];//定义一个数组用来接受key
+                // var values = [];//定义一个数组用来接受value
+                // for (let key in obj) {
+                //     keys.push(key);
+                //     values.push(obj[key]);//取得value
+                //     if (obj[key] === 'null' || obj[key] === null) {
+                //         obj[key] = ''
+                //     }
+                // }
+                // if (data.code === 1) {
+                //     if (data.data.shzt === '审核通过') {
+                //         that.props.history.push('/Index');
+                //         return;
+                //     }
+                //     that.setState({
+                //         jbxx: obj,
+                //         jynr: obj.jynr1,
+                //     });
+                // } else {
+                //     that.props.history.push('/Denglu');
+                // }
+            }
+        });
+
+
+        $.ajax({
+            url: InterfaceUtil.getUrl(56),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "user_id": that.user_id, "token": that.token
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    console.log(JSON.stringify(data))
+                    let datas= that.state.jbxx;
+                    datas[`shdz`]=data.data.user_address.address;
+                    datas[`shr`]=data.data.user_address.name;
+                    datas[`shdh`]=data.data.user_address.tel;
+                    // let jynrs=that.state.jynr;
+                    // jynrs= data.data.shop_operate;
+                    that.setState({
+                        jynr: data.data.shop_operate,
+                        jbxx:datas
+                    })
+                }
+
+
+            }
+        });
     }
 
     shangchuan(e) {
@@ -128,26 +171,29 @@ class InformationPage extends Component {
 
         let formData = new FormData();
         formData.append("file", files[0]);
+        console.log(formData.get('file'))
         formData.append("user_id", user_id);
         formData.append("token", token);
         formData.append("type_img", aabb);
 
-        $.ajax({
-            url: InterfaceUtil.getUrl(56),
-            type: "post",
-            cache: false,
-            traditional: true,
-            contentType: false,
-            processData: false,
-            data: formData,
-            dataType: "json",
-            success: function (data) {
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(56),
+        //     type: "post",
+        //     cache: false,
+        //     traditional: true,
+        //     contentType: false,
+        //     processData: false,
+        //     data: formData,
+        //     dataType: "json",
+        //     success: function (data) {
+        //
+        //     },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //
+        //     }
+        // });
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
 
-            }
-        });
     }
 
     render() {
@@ -160,7 +206,7 @@ class InformationPage extends Component {
                     valuePropName: 'checked',
                     initialValue: status
                 })(
-                    <Checkbox key={item.id + item.title} className='ifmtpCheck'>{item.title}</Checkbox>
+                    <Checkbox key={item.id + item.name} className='ifmtpCheck'>{item.name}</Checkbox>
                 )}
             </Col>
         }) : null;
@@ -188,10 +234,10 @@ class InformationPage extends Component {
                                 <p className='personal_Jibenxinxi_title_p1'>
                                     <span>会员账号：</span>
                                     <span className='personal_Jibenxinxi_title_span'>
-                    {this.state.jbxx.username}
+                    {this.state.info.username}
                 </span>
                                     <span className='marginLeft10'>
-                {this.state.jbxx.shzt}
+                {this.state.info.level}
                 </span>
                                 </p>
                                 <p className='personal_Jibenxinxi_title_p1'><span>会员类型：
@@ -227,7 +273,7 @@ class InformationPage extends Component {
                                     <div className='personal_Jibenxinxi_title_span'>
                                         <FormItem>
                                             {getFieldDecorator('contacts', {
-                                                rules: [{ required: true,message: '请输入联系人!'}],
+                                                rules: [{required: true, message: '请输入联系人!'}],
                                                 initialValue: `${contacts}`
                                             })(
                                                 <Input placeholder="联系人"/>

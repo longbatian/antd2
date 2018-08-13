@@ -33,44 +33,44 @@ class Jiesuan1 extends React.Component {
             }
         }
 
-        let token = CoojiePage.getCoojie('token');
-        let user_id = CoojiePage.getCoojie('user_id');
-        let cart_id = CoojiePage.getCoojie('cart_id');
-        let coupon_id = CoojiePage.getCoojie('coupon_id');
-        let traded_goods_id = CoojiePage.getCoojie('traded_goods_id');
+        // let token = CoojiePage.getCoojie('token');
+        // let user_id = CoojiePage.getCoojie('user_id');
+        // let cart_id = CoojiePage.getCoojie('cart_id');
+        // let coupon_id = CoojiePage.getCoojie('coupon_id');
+        // let traded_goods_id = CoojiePage.getCoojie('traded_goods_id');
+        //
+        // const that = this;
+        // let datas = {};
+        // if (cart_id) {
+        //     datas = {
+        //         "user_id": user_id,
+        //         "token": token,
+        //         "cart_id": cart_id,
+        //         traded_goods_id: traded_goods_id
+        //
+        //     }
+        // } else {
+        //     datas = {"user_id": user_id, "token": token, "coupon_id": coupon_id}
+        // }
 
-        const that = this;
-        let datas = {};
-        if (cart_id) {
-            datas = {
-                "user_id": user_id,
-                "token": token,
-                "cart_id": cart_id,
-                traded_goods_id:traded_goods_id
-
-            }
-        }else {
-            datas = { "user_id": user_id, "token": token, "coupon_id": coupon_id}
-        }
-
-        $.ajax({
-            url: InterfaceUtil.getUrl(29),
-            type: "post",
-            data: InterfaceUtil.addTime(datas),
-            dataType: "json",
-            success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        feiyong1: data.data
-                    });
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-            }
-        });
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(29),
+        //     type: "post",
+        //     data: InterfaceUtil.addTime(datas),
+        //     dataType: "json",
+        //     success: function (data) {
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 feiyong1: data.data
+        //             });
+        //         }
+        //     },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //
+        //     }
+        // });
     }
 
     componentWillUnmount() {
@@ -93,8 +93,8 @@ class Jiesuan1 extends React.Component {
                 "user_id": that.member_id,
                 "cart_id": cart_id,
                 "user_remark": bz,
-                 user_coupon_id: b,
-                traded_id:traded_goods_id
+                user_coupon_id: b,
+                traded_id: traded_goods_id
             }
         } else {
             datas = {
@@ -130,7 +130,7 @@ class Jiesuan1 extends React.Component {
     }
 
     render() {
-        const data = this.state.feiyong1;
+        let data=this.props;
         return (
             <div className=' jiesuan_sousuo marginBottom20'>
                 <div>
@@ -141,10 +141,10 @@ class Jiesuan1 extends React.Component {
                     </div>
                     <div className=' jiesuan_sousuo_div'>
                         <div className='font20 jiesuan_sousuo_div_div'>应付总额：
-                            <span className='red font20 jiesuan_shifu'>￥{data.price}</span></div>
+                            <span className='red font20 jiesuan_shifu'>￥0</span></div>
                         <div className=''>
              <span className='marginRight20'>
-             商品总价：￥{data.price}
+             商品总价：￥{data.feiyong}
              </span>
                             <span className='marginRight20'>
                运费：￥{data.freight_price}</span><span

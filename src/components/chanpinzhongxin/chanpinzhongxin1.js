@@ -1570,7 +1570,7 @@ class Chanpinzhongxin extends React.Component {
                         {/*商品信息*/}
                         <ul className='chanpinzhongxin_right_con_ul'>
                             {this.state.splist.map(function (item) {
-                                let islimit = item.activity_num > 99999 ? `` : item.activity_num;
+                                let islimit = item.activity_max_num === 0 ? `不限购` :`限购`+item.activity_max_num;
                                 let hprice = item.activity_price ?
                                     <div>价格：<span
                                         className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
@@ -1578,7 +1578,7 @@ class Chanpinzhongxin extends React.Component {
                                                     </span>
                                         活动：<span className='red fontS1'>{item.activity_price}</span>
                                         <span
-                                            className='red font13 bold'>( `限购` {islimit} )</span>
+                                            className='red font13 bold'>( {islimit} )</span>
                                     </div> :
                                     <div>价格：<span className='red fontS1'>{item.price}</span></div>;
                                 let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
@@ -1589,6 +1589,7 @@ class Chanpinzhongxin extends React.Component {
                                 </div> : null;
 
                                 let times = InterfaceUtil.fmtDate(item.validity_time);
+
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.min_buy} data={item.id}/>

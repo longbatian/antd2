@@ -158,7 +158,7 @@ class Dingdan extends React.Component {
                 }),
                 dataType: "json",
                 success: function (data, status) {
-
+                    console.log(data)
                     if (data.code === 1) {
                         // let modal;
                         clearInterval(timesOut);

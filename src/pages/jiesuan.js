@@ -14,7 +14,7 @@ class Index1 extends React.Component {
         {/*购物车头部*/}
         <Jiesuan/>
         {/*搜索*/}
-        <Jiesuan1/>
+        {/*<Jiesuan1/>*/}
         <Footer/>
       </div>
     );

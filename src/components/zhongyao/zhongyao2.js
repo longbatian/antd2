@@ -152,31 +152,31 @@ class Zhongyao2 extends React.Component {
                                 )
                             }, this)
                         }
-                        {
-                            this.state.rank1.map(function (item, i) {
-                                return (
-                                    <li key={item.id + 'zhYrank2'} className='zhongyao_rank_ul_li'
-                                        onMouseOver={(e) => {
-                                            this.rank(e)
-                                        }}
-                                        onMouseOut={(e) => {
-                                            this.rank1(e)
-                                        }} data={item.id}
-                                        onClick={(e) => {
-                                            this.xiangqing1(e, item.id)
-                                        }}>
-                                        {/*<Link to={'/Shangpinxiangqing?&id='+item.id}>*/}
-                                        <div className='zhongyao_rank_ul_yuan floatleft'>{i + 4}</div>
-                                        <img src={this.state.lujin + item.image} alt=""
-                                             className='zhongyao_rank_ul_img_current display floatleft'/>
-                                        <span className='floatleft width165 hid'>{item.name}</span>
-                                        <div className='clear'/>
-                                        {/*</Link>*/}
+                        {/*{*/}
+                            {/*this.state.rank1.map(function (item, i) {*/}
+                                {/*return (*/}
+                                    {/*<li key={item.id + 'zhYrank2'} className='zhongyao_rank_ul_li'*/}
+                                        {/*onMouseOver={(e) => {*/}
+                                            {/*this.rank(e)*/}
+                                        {/*}}*/}
+                                        {/*onMouseOut={(e) => {*/}
+                                            {/*this.rank1(e)*/}
+                                        {/*}} data={item.id}*/}
+                                        {/*onClick={(e) => {*/}
+                                            {/*this.xiangqing1(e, item.id)*/}
+                                        {/*}}>*/}
+                                        {/*/!*<Link to={'/Shangpinxiangqing?&id='+item.id}>*!/*/}
+                                        {/*<div className='zhongyao_rank_ul_yuan floatleft'>{i + 4}</div>*/}
+                                        {/*<img src={this.state.lujin + item.image} alt=""*/}
+                                             {/*className='zhongyao_rank_ul_img_current display floatleft'/>*/}
+                                        {/*<span className='floatleft width165 hid'>{item.name}</span>*/}
+                                        {/*<div className='clear'/>*/}
+                                        {/*/!*</Link>*!/*/}
 
-                                    </li>
-                                )
-                            }, this)
-                        }
+                                    {/*</li>*/}
+                                {/*)*/}
+                            {/*}, this)*/}
+                        {/*}*/}
                         {/*<li className='zhongyao_rank_ul_li 'onMouseOver={(e)=>{this.rank(e)}} onMouseOut={(e)=>{this.rank1(e)}}>*/}
                         {/*<div className='zhongyao_rank_ul_yuan floatleft'>5</div>*/}
                         {/*<img src="../../images/zhongyao/pingzhuang_main_b.png" alt="" className='zhongyao_rank_ul_img_current display floatleft'/>*/}
@@ -232,27 +232,27 @@ class Zhongyao2 extends React.Component {
                                 )
                             }, this)
                         }
-                        {
-                            this.state.rank2.map(function (item, i) {
-                                return (
-                                    <li key={item.id + 'zhYrank4'} className='zhongyao_rank_ul_li'
-                                        onMouseOver={(e) => {
-                                            this.rank(e)
-                                        }} onMouseOut={(e) => {
-                                        this.rank1(e)
-                                    }} key={i} data={item.id}
-                                        onClick={(e) => {
-                                            this.xiangqing1(e, item.id)
-                                        }}>
-                                        <div className='zhongyao_rank_ul_yuan floatleft'>{i + 5}</div>
-                                        <img src={this.state.lujin + item.image} alt=""
-                                             className='zhongyao_rank_ul_img_current display floatleft'/>
-                                        <span className='floatleft width165 hid'>{item.name}</span>
-                                        <div className='clear'></div>
-                                    </li>
-                                )
-                            }, this)
-                        }
+                        {/*{*/}
+                            {/*this.state.rank2.map(function (item, i) {*/}
+                                {/*return (*/}
+                                    {/*<li key={item.id + 'zhYrank4'} className='zhongyao_rank_ul_li'*/}
+                                        {/*onMouseOver={(e) => {*/}
+                                            {/*this.rank(e)*/}
+                                        {/*}} onMouseOut={(e) => {*/}
+                                        {/*this.rank1(e)*/}
+                                    {/*}} key={i} data={item.id}*/}
+                                        {/*onClick={(e) => {*/}
+                                            {/*this.xiangqing1(e, item.id)*/}
+                                        {/*}}>*/}
+                                        {/*<div className='zhongyao_rank_ul_yuan floatleft'>{i + 5}</div>*/}
+                                        {/*<img src={this.state.lujin + item.image} alt=""*/}
+                                             {/*className='zhongyao_rank_ul_img_current display floatleft'/>*/}
+                                        {/*<span className='floatleft width165 hid'>{item.name}</span>*/}
+                                        {/*<div className='clear'></div>*/}
+                                    {/*</li>*/}
+                                {/*)*/}
+                            {/*}, this)*/}
+                        {/*}*/}
 
                     </ul>
                     {/*<div className='zhongyao_rank_title marginTop20 aaa'>*/}

@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {Link, withRouter} from 'react-router-dom';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-
+import Jiesuan1 from './sousuo'
 
 class Jiesuan extends React.Component {
     constructor(props) {
@@ -86,11 +86,11 @@ class Jiesuan extends React.Component {
                 "user_id": user_id,
                 "token": token,
                 "cart_id": cart_id,
-                traded_id:traded_goods_id
+                traded_id: traded_goods_id
 
             }
-        }else {
-            datas = { "user_id": user_id, "token": token, "coupon_id": coupon_id}
+        } else {
+            datas = {"user_id": user_id, "token": token, "coupon_id": coupon_id}
         }
         $.ajax({
             url: InterfaceUtil.getUrl(29),
@@ -98,7 +98,6 @@ class Jiesuan extends React.Component {
             data: InterfaceUtil.addTime(datas),
             dataType: "json",
             success: function (data) {
-
                 if (data.code !== 1) {
                     alert(data.msg);
                     that.props.history.push('/Buycar');
@@ -111,6 +110,8 @@ class Jiesuan extends React.Component {
                     freight_price: data.data.freight_price,
                     coupon: data.data.coupon_list,
                     sp: data.data.goods_list,
+                }, () => {
+                    that.youhuiquan()
                 });
                 if (data.data.goods_list.length < 11) {
                     var a = document.getElementsByClassName('jiesuan_div_div3_div');
@@ -123,7 +124,7 @@ class Jiesuan extends React.Component {
 
     render() {
         const data = this.state;
-        const datas=this.props;
+        const datas = this.props;
         return (
             <div className='container'>
                 {/*进度条*/}
@@ -241,9 +242,12 @@ class Jiesuan extends React.Component {
                     <div className='jiesuan_div_div4'>
                         <div className='jiesuan_div_div4_div'>使用优惠券</div>
                         <div className='marginBottom20 marginTop20 marginLeft20'>
-                            <select className='jiesuan_sel' onChange={(e) => {
-                                this.youhuiquan(e)
-                            }}>
+                            <select
+                                className='jiesuan_sel'
+                                onChange={(e) => {
+                                    this.youhuiquan(e)
+                                }}>
+
                                 <option
                                     value='0'
                                     data="0"
@@ -251,14 +255,18 @@ class Jiesuan extends React.Component {
                                 </option>
                                 {
                                     data.coupon.map(function (item, i) {
+                                        let sele = i === 0 ? true : false;
                                         return (
                                             <option
+                                                selected={sele}
                                                 key={item.user_coupon_id + "coupon"}
-                                                value={item.user_coupon_id} data={item.coupon_price}
+                                                value={item.user_coupon_id}
+                                                data={item.coupon_price}
                                                 className='jiesuan_sel_opt'>{item.name}</option>
                                         )
                                     }, this)
                                 }
+
                             </select>
                             <span className='red marginLeft20'>单个优惠券一次性使用不找零</span>
                         </div>
@@ -266,6 +274,7 @@ class Jiesuan extends React.Component {
                     </div>
                     <div className='clear'/>
                 </div>
+                <Jiesuan1 {...data}/>
             </div>
         )
     }
