@@ -88,7 +88,7 @@ class Gouwuche2 extends React.Component {
                 if (it.goods_id === id) {
                     it.goods_num = num;
                     datas[`goods_id`] = id;
-                    if (num <= it.activity_max_num - it.activity_user_num || activity_max_num === 0) {
+                    if (num <= it.activity_max_num - it.activity_user_num || it.activity_max_num === 0) {
                         let price_counts = num * it.activity_price;
                         it.price_count = price_counts.toFixed(2);
                     } else {
