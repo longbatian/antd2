@@ -342,7 +342,7 @@ class Shangpinxiangqing extends React.Component {
             },
             dataType: "json",
             success: function (data) {
-                // console.log(data);
+
                 if (data.status === 1) {
                     CoojiePage.setBuyCarOk();
                 } else {

@@ -13,6 +13,7 @@ class PersonalJibenxinxi extends Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
         this.username = CoojiePage.getCoojie('username');
+        this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
         this.state = {
             jbxx: [],
@@ -20,6 +21,10 @@ class PersonalJibenxinxi extends Component {
             jynr: [],
             loading: false,
             visible: false,
+            info:{
+                username:'',
+                level: ``,
+            }
         }
     }
 
@@ -100,11 +105,11 @@ class PersonalJibenxinxi extends Component {
                 }),
                 dataType: "json",
                 success: function (data) {
-                    if (data.status === 0) {
+                    if (data.code === 0) {
                         tishi[0].className = 'xiugaimima_div_p3 red'
                         tishi[0].innerText = '旧密码错误'
                     } else {
-                        alert(data.info);
+                        alert(data.msg);
                         let a = document.getElementsByClassName('xiugaimima')
                         let b = document.getElementsByClassName('xiugaimima_div')
                         a[0].className = 'xiugaimima display'
@@ -124,28 +129,52 @@ class PersonalJibenxinxi extends Component {
     ajaxJibenXinX() {
 
         const that = this;
-        //我的收藏
         $.ajax({
-            url: InterfaceUtil.getUrl(40),
+            url: InterfaceUtil.getUrl(34),
             type: "post",
-            data: {
-                "username": that.username, "token": that.token
-            },
+            data: InterfaceUtil.addTime({
+                "user_id": that.user_id, "token": that.token
+            }),
             dataType: "json",
             success: function (data) {
-                // if(data.data.shzt=)
-                if (data.data.length == 0) {
 
-                } else {
-                    if (data.data.shzt !== '审核通过') {
-                        that.props.history.push('/InformationPage');
-                        return;
-                    }
+                if (data.code === 1) {
+                    let datas = that.state.jbxx;
+                    datas[`dwmc`] = data.data.enterprise;
+                    datas[`lxr`] = data.data.username;
                     that.setState({
-                        jbxx: data.data,
-                        jynr: data.data.jynr,
-                    });
+                        info: data.data,
+                        jbxx: datas,
+
+                    })
                 }
+
+            }
+        });
+
+        $.ajax({
+            url: InterfaceUtil.getUrl(56),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                "user_id": that.user_id, "token": that.token
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    let datas = that.state.jbxx;
+                    datas[`shdz`] = data.data.user_address.address;
+                    datas[`shr`] = data.data.user_address.name;
+                    datas[`shdh`] = data.data.user_address.tel;
+                    // let jynrs=that.state.jynr;
+                    // jynrs= data.data.shop_operate;
+                    that.setState({
+                        jynr: data.data.shop_operate,
+                        jbxx: datas,
+                        user_shop_operate: data.data.user_shop_operate,
+                    })
+                }
+
+
             }
         });
     }
@@ -155,28 +184,26 @@ class PersonalJibenxinxi extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             this.setState({loading: true});
-            // if (!err) {
-            //     console.log('Received values of form: ', values);
-            // }
+
+            let checkboxs=_this.state.user_shop_operate.join(',');
             $.ajax({
                 url: InterfaceUtil.getUrl(60),
                 type: "post",
-                data: {
-                    "username": _this.username, "token": _this.token, 'shr': values.username,
-                    'shdz': values.address, 'shdh': values.phonenumber, 'shyb': values.zipCode,
+                data: InterfaceUtil.addTime({
+                    "user_id": _this.user_id, "token": _this.token, 'name': values.username,
+                    'address': values.address, 'tel': values.phonenumber,
+                    'shop_operate': checkboxs
+                }),
 
-                },
                 dataType: "json",
                 success: function (data) {
-
-                    //     this.handleSubmit();
-                    if (data.status === 1) {
+                    if (data.code === 1) {
                         setTimeout(() => {
                             _this.setState({loading: false, visible: false});
                         }, 2000);
                         _this.ajaxJibenXinX();
                     } else {
-                        alert(data.info)
+                        alert(data.msg)
                     }
                 }
             });
@@ -189,6 +216,8 @@ class PersonalJibenxinxi extends Component {
         const {visible, loading} = this.state;
         const {getFieldDecorator} = this.props.form;
         let data = this.state.jbxx;
+        let datas=this.state;
+        let isChec = this.state.user_shop_operate;
         return (
             <div className=' width988 floatRight'>
                 {/*最近订单标题*/}
@@ -205,11 +234,11 @@ class PersonalJibenxinxi extends Component {
                     <div className='personal_Jibenxinxi_title_con4'>
                         <p className='personal_Jibenxinxi_title_p1'>
                             <span>会员账号：</span>
-                            <span className='personal_Jibenxinxi_title_span'>{data.username}</span>
+                            <span className='personal_Jibenxinxi_title_span'>{datas.info.username}</span>
                             <span className='marginLeft10'>{data.shzt}</span>
                         </p>
                         <p className='personal_Jibenxinxi_title_p1'><span>会员类型：</span><span
-                            className='personal_Jibenxinxi_title_span'>{data.mjtp}</span></p>
+                            className='personal_Jibenxinxi_title_span'>{datas.info.level}</span></p>
                         <p className='personal_Jibenxinxi_title_p1'>
                             <span>会员密码：</span>
                             <input type="password"
@@ -344,10 +373,20 @@ class PersonalJibenxinxi extends Component {
                         <div className='personal_Jibenxinxi_title_con_p2 marginLeft10'>
                             {
                                 this.state.jynr.map(function (item, i) {
+                                    let status = false;
+                                    if (isChec.length > 0) {
+                                        isChec.map((it, i) => {
+                                            if (item.id == it) {
+                                                status = true;
+                                                false
+                                            }
+                                            // status = item.id == it ? true : false;
+                                        })
+                                    }
                                     return (
-                                        <div key={item.title + i}
+                                        <div key={item.id + i}
                                              className='personal_Jibenxinxi_title_con_p2_span'>
-                                            <input type="checkbox" disabled checked/>{item.title}</div>
+                                            <input type="checkbox" disabled checked={status}/>{item.name}</div>
                                     )
                                 }, this)
                             }

@@ -5,7 +5,7 @@ import CoojiePage from '../../util/CoojiePage';
 import Head from '../../pages/Header1';
 import InterfaceUtil from "../../util/InterfaceUtil";
 import './informationPage.css'
-import {Button, Checkbox, Col, Form, Input, Row,message} from 'antd';
+import {Button, Checkbox, Col, Form, Input, message, Row} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -27,7 +27,7 @@ class InformationPage extends Component {
                     return
                 }
                 this.setState({loading: true});
-                checkboxs =checkboxs.join(',');
+                checkboxs = checkboxs.join(',');
                 $.ajax({
                     url: InterfaceUtil.getUrl(60),
                     type: "post",
@@ -43,7 +43,7 @@ class InformationPage extends Component {
                         if (data.code === 1) {
                             window.scrollTo(0, 0);
                             message.success(data.msg);
-                            _this.props.history.push('/Index');
+                            // _this.props.history.push('/Index');
                         } else {
                             alert(data.msg)
                         }
@@ -80,6 +80,7 @@ class InformationPage extends Component {
             jynr: [],
             loading: false,
             iconLoading: false,
+            user_shop_operate: [],
             info: {
                 username: '',
                 level: ``,
@@ -99,14 +100,14 @@ class InformationPage extends Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data);
+
                 if (data.code === 1) {
-                    let datas= that.state.jbxx;
-                    datas[`dwmc`]=data.data.enterprise;
-                    datas[`lxr`]=data.data.username;
+                    // let datas = that.state.jbxx;
+                    // datas[`dwmc`] = data.data.enterprise;
+                    // datas[`lxr`] = data.data.username;
                     that.setState({
                         info: data.data,
-                        jbxx:datas
+                        // jbxx: datas,
                     })
                 }
 
@@ -145,16 +146,27 @@ class InformationPage extends Component {
             dataType: "json",
             success: function (data) {
                 if (data.code === 1) {
-                    console.log(JSON.stringify(data))
-                    let datas= that.state.jbxx;
-                    datas[`shdz`]=data.data.user_address.address;
-                    datas[`shr`]=data.data.user_address.name;
-                    datas[`shdh`]=data.data.user_address.tel;
-                    // let jynrs=that.state.jynr;
+                    console.log(data)
+                    let datas = that.state.jbxx;
+                    datas[`shdz`] = data.data.user_address.address;
+                    datas[`shr`] = data.data.user_address.name;
+                    datas[`shdh`] = data.data.user_address.tel;
+                    datas[`lxr`] = data.data.user_info.real_name;
+                    datas[`dwmc`] = data.data.user_info.enterprise;
+                    // let jynrs=that.state.jynr;user_info
+                    // :
+                    // enterprise
+                    // :
+                    // "wdw"
+                    // real_name
+                    // :
+                    // "隆洋"
                     // jynrs= data.data.shop_operate;
                     that.setState({
                         jynr: data.data.shop_operate,
-                        jbxx:datas
+                        jbxx: datas,
+                        user_shop_operate: data.data.user_shop_operate,
+
                     })
                 }
 
@@ -171,7 +183,6 @@ class InformationPage extends Component {
 
         let formData = new FormData();
         formData.append("file", files[0]);
-        console.log(formData.get('file'))
         formData.append("user_id", user_id);
         formData.append("token", token);
         formData.append("type_img", aabb);
@@ -198,9 +209,19 @@ class InformationPage extends Component {
 
     render() {
         let data = this.state.jbxx;
+        let isChec = this.state.user_shop_operate;
         const {getFieldDecorator} = this.props.form;
         let checkbox = this.state.jynr.length > 0 ? this.state.jynr.map((item, i) => {
-            let status = item.status === 1 ? true : false;
+            let status = false;
+            if (isChec.length > 0) {
+                isChec.map((it, i) => {
+                    if (item.id == it) {
+                        status = true;
+                        false
+                    }
+                    // status = item.id == it ? true : false;
+                })
+            }
             return <Col span={4} key={i}>
                 {getFieldDecorator(`${item.id}`, {
                     valuePropName: 'checked',

@@ -55,6 +55,7 @@ class Jiesuan extends React.Component {
                 youhui = parseFloat(youhui);
                 zongjia = parseFloat(zongjia);
                 var shifu = zongjia - youhui;
+                shifu=shifu.toFixed(2)
                 $('.jiesuan_shifu').text('￥' + shifu);
             }
         }
