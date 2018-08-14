@@ -94,7 +94,8 @@ class Headcon extends React.Component {
                 if(data.data[2].search_default){
                      var a = data.data[2].search_default.split('|'); // [ab, c, de]
                     that.setState({
-                        top:a
+                        top:a,
+                        qqnum:data.data[8].online_qq,
                     });
                 }
 
@@ -213,7 +214,7 @@ class Headcon extends React.Component {
                     {/*在线客服*/}
 
                     <div className='head_tel floatleft'>
-                        <a href="http://sighttp.qq.com/msgrd?v=1&uin=2885052533">
+                        <a href={"http://sighttp.qq.com/msgrd?v=1&uin="+this.state.qqnum}>
                             <img src={require("../../images/head/erji.png")} className='floatleft head_tel_img' alt=""/>
                             <div className='floatleft marginLeft5'>
                                 <p>欢迎使用</p>

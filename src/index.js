@@ -41,6 +41,7 @@ import Footer from './pages/footer'; //尾部
 import Header from './pages/Header1';//头部
 import Balance from "./pages/balance/Balance";
 import Spikeactivity from "./pages/spikeactivity/Spikeactivity";
+import Zhijun from "./pages/zhijun/Zhijun";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 ReactDOM.render((
@@ -79,7 +80,8 @@ ReactDOM.render((
                     <Route  path="/all/Redemption" component={Redemption}/>
                     <Route  path="/all/Bundle" component={Bundle}/>
                     <Route  path="/all/Questionnaire" component={Questionnaire}/>
-                    <Route  path="/all/Spikeactivity" component={Spikeactivity}/>
+                    <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
+                    <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
                     <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>

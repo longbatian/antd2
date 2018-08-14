@@ -80,10 +80,11 @@ class Lingqu extends Component {
 
                 } else {
                     let arr = [];
-                    let j = 0;
+                    // let j = 0;
                     for (let i in data.data) {
-                        j++;
-                        arr[j] = data.data[i]
+                        // j++;
+                        arr.push(data.data[i]);
+                        // arr[j] = data.data[i]
                     }
                     $.ajax({
                         url: InterfaceUtil.getUrl(66),
@@ -239,7 +240,7 @@ class Lingqu extends Component {
                     let time1 = InterfaceUtil.fmtDate(item.start_time)
                     let time2 = InterfaceUtil.fmtDate(item.end_time)
                     return (
-                        <li key={item.id + 'lin1'} className={isYes} data={item.id} data-index={item.type}
+                        <li key={j + 'lin1'} className={isYes} data={item.id} data-index={item.type}
                             data-a={item.is_lq}>
                             <div className='personal_Youhuiquan_title_div1_p'>
                                 {numbers}
@@ -264,7 +265,7 @@ class Lingqu extends Component {
                 listTitClass = `youhuiquan_con_title display`;
             }
             return (
-                <div className="youhuiquan_con">
+                <div key={i+'lin2'} className="youhuiquan_con">
                     <div className={listTitClass}>{listTit}</div>
                     <ul>
                         {listEle}

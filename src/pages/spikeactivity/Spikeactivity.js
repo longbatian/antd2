@@ -41,7 +41,7 @@ class Spikeactivity extends React.Component {
                 user_id: _this.user_id,
                 token: _this.token,
                 page: _this.state.page,
-                pageSize: 12,
+                pageSize: 20,
                 group_id: ids
 
             }),
@@ -458,7 +458,7 @@ class Spikeactivity extends React.Component {
             </div>
             <div className="paginationboxs ">
                 <Pagination showQuickJumper
-                            defaultPageSize={12}
+                            defaultPageSize={20}
                             defaultCurrent={1} current={data.page} total={data.nums}
                             onChange={(e) => this.changesPage(e)}
                 />

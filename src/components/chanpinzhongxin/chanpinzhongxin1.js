@@ -325,53 +325,61 @@ class Chanpinzhongxin extends React.Component {
         // for (var j=0;j<a.length;j++){
         //   a[j].className='display chanpinzhongxin_right_head_ul_li_current bbb';
         // }
+        // let pid = data.fenleiID,
+        //     jx = data.jixingID,
+        //     xq = data.xiaoqiID,
+        //     // sid = data.zileiID,
+        //     title = data.title,
+        //     // scqy = data.scqy,
+        //     page = data.page,
+        //     zjzx = data.zjzx,
+        //     pxnum = data.pxnum,
+        //     is_kc = data.is_kc;
         this.setState({
-            title_fenlei: '',
-            title_zilei: '',
-            title_xiaoqi: '',
-            title_jixing: '',
             fenleiID: '',
-            zileiID: '',
-            xiaoqiID: '',
             jixingID: '',
+            xiaoqiID: '',
+            zileiID: '',
             title: '',
             scqy: '',
+            zjzx: '',
+            is_kc: '',
             page: 1,
         }, () => {
             this.ajaxProductLists();
         });
         this.removeBlue()
 
-        //发起ajax
-
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var ddzt = CoojiePage.getCoojie('ddzt');
-        const that = this;
-        //订单ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(9),
-            type: "post",
-            data: {
-                'username': username,
-                'token': token
-            },
-            dataType: "json",
-            success: function (data) {
-                //callback;
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        class: data.data.class,
-                        jx: data.data.jx,
-                        class_z: data.data.class_z,
-                        xq: data.data.xq
-                    });
-                }
-            }
-        });
+        // //发起ajax
+        //
+        // var username = CoojiePage.getCoojie('username');
+        // var token = CoojiePage.getCoojie('token');
+        // var user_id = CoojiePage.getCoojie('user_id');
+        // var ddzt = CoojiePage.getCoojie('ddzt');
+        // const that = this;
+        // //订单ajax
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(9),
+        //     type: "post",
+        //     data: {
+        //         'username': username,
+        //         'token': token
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //         //callback;
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 class: data.data.class,
+        //                 jx: data.data.jx,
+        //                 class_z: data.data.class_z,
+        //                 xq: data.data.xq
+        //             });
+        //         }
+        //     }
+        // });
     }
 
     /**
@@ -483,7 +491,7 @@ class Chanpinzhongxin extends React.Component {
         // });
     }
 
-    blue1(e) {
+    blue1(e,id) {
         var a = document.getElementsByClassName('zilei1');
         $('.zilei').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -492,19 +500,20 @@ class Chanpinzhongxin extends React.Component {
         e.target.className = 'zilei1 blue';
         var b = e.target.getAttribute('data');
         //将点击的内容显示在筛选
-        if (e.target.innerText == '不限') {
-            this.setState({
-                title_zilei: ''
-            });
-        } else {
-            this.setState({
-                title_zilei: e.target.innerText,
-                zileiID: b,
-                page: 1
-            }, () => {
-                this.ajaxProductLists();
-            });
-        }
+        // if (e.target.innerText == '不限') {
+        //     this.setState({
+        //         fenleiID: ''
+        //     });
+        // } else {
+        //
+        // }
+        this.setState({
+            title_zilei: e.target.innerText,
+            fenleiID: b,
+            page: 1
+        }, () => {
+            this.ajaxProductLists();
+        });
     }
 
     blue2(e, jxs) {
@@ -522,7 +531,7 @@ class Chanpinzhongxin extends React.Component {
         } else {
             this.setState({
                 title_jixing: e.target.innerText,
-                jixingID: e.target.innerText,
+                jixingID: jxs,
                 page: 1,
             }, () => {
                 this.ajaxProductLists()
@@ -530,7 +539,7 @@ class Chanpinzhongxin extends React.Component {
         }
     }
 
-    blue3(e) {
+    blue3(e,id) {
         var a = document.getElementsByClassName('xiaoqi1');
         $('.xiaoqi').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -539,62 +548,20 @@ class Chanpinzhongxin extends React.Component {
 
         e.target.className = 'xiaoqi1 blue';
         var b = e.target.getAttribute('data');
-
-        if (e.target.innerText == '不限') {
-            this.setState({
-                title_xiaoqi: ''
-            });
-        } else {
-            this.setState({
-                title_xiaoqi: e.target.innerText,
-                xiaoqiID: b,
-                page: 1
-            }, () => {
-                var a = $('.fenlei').eq(1).attr('data');
-                var b = $('.zilei').attr('data');
-                var c = $('.jixing').attr('data');
-                var d = this.state.xiaoqiID;
-
-                var username = CoojiePage.getCoojie('username');
-                var token = CoojiePage.getCoojie('token');
-                var jylx = CoojiePage.getCoojie('jylx');
-                const that = this;
-                //商品列表
-                $.ajax({
-                    url: InterfaceUtil.getUrl(8),
-                    type: "post",
-                    data: {
-                        'username': username, 'token': token,
-                        'page': 1, 'limit': 20, 'jylx': jylx,
-                        'pid': a, 'jx': c, 'xq': d, 'sid=': b
-
-                    },
-                    dataType: "json",
-                    success: function (data) {
-
-                    }
-                });
-                $.ajax({
-                    url: InterfaceUtil.getUrl(8),
-                    type: "post",
-                    data: {
-                        'username': username, 'token': token, 'page': 1, 'limit': 20, 'jylx':
-                        jylx, 'pid': a, 'jx': c, 'xq': d, 'sid': b
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.data.length == 0) {
-
-                        } else {
-                            that.setState({
-                                splist: data.data.list,
-                                cons: data.data.cons
-                            });
-                        }
-                    }
-                });
-            });
-        }
+        this.setState({
+            title_xiaoqi: e.target.innerText,
+            xiaoqiID: id,
+            page: 1
+        }, () => {
+            this.ajaxProductLists()
+        });
+        // if (e.target.innerText == '不限') {
+        //     this.setState({
+        //         title_xiaoqi: ''
+        //     });
+        // } else {
+        //
+        // }
     }
 
     //更多
@@ -769,9 +736,9 @@ class Chanpinzhongxin extends React.Component {
         let pid = data.fenleiID,
             jx = data.jixingID,
             xq = data.xiaoqiID,
-            sid = data.zileiID,
+            // sid = data.zileiID,
             title = data.title,
-            scqy = data.scqy,
+            // scqy = data.scqy,
             page = data.page,
             zjzx = data.zjzx,
             pxnum = data.pxnum,
@@ -791,8 +758,9 @@ class Chanpinzhongxin extends React.Component {
             type: "post",
             data: InterfaceUtil.addTime({
                 'user_id': user_id, 'token': token, 'page': page, 'pageSize': 20,
-                type: zjzx, search: title, type_id: pid, is_stock: is_kc,
-                sort_order: pxtype, sort_type: pxnum
+                type: zjzx, search: title, type_id: pid, is_stock: is_kc,agent_id:jx,
+                sort_order: pxtype, sort_type: pxnum,
+                valid_time:xq
             }),
             // {
             //     'username': username, 'token': token, 'page': page, 'limit': 20, 'jylx': jylx,
@@ -805,7 +773,6 @@ class Chanpinzhongxin extends React.Component {
                 if (data.data.length == 0) {
 
                 } else {
-
                     that.setState({
                         splist: data.data.goods_list,
                         cons: data.data.goods_count,
@@ -1423,7 +1390,7 @@ class Chanpinzhongxin extends React.Component {
                                         data.class_z.map(function (item) {
                                             return (
                                                 <li key={item.id + 'class_z'} className='zilei1' onClick={(e) => {
-                                                    this.blue1(e)
+                                                    this.blue1(e,item.id)
                                                 }} data={item.id}>{item.name}</li>
                                             )
                                         }, this)
@@ -1454,13 +1421,17 @@ class Chanpinzhongxin extends React.Component {
                             <li>
                                 <span className='floatleft'>效期：</span>
                                 <ul className='chanpinzhongxin_right_head_li_ul'>
+                                    <li className="xiaoqi1" data="3" onClick={(e) => {
+                                        this.blue3(e, 0)
+                                    }}>不限
+                                    </li>
                                     <li className="xiaoqi1" data="2" onClick={(e) => {
-                                        this.blue3(e, 2)
+                                        this.blue3(e, 1)
                                     }}>常规效期
                                     </li>
                                     <li className="xiaoqi1" data="1"
                                         onClick={(e) => {
-                                            this.blue3(e, 1)
+                                            this.blue3(e, 2)
                                         }}>近效期
                                     </li>
 
