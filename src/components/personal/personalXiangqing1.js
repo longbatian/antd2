@@ -20,12 +20,12 @@ class PersonalXiangqing extends React.Component {
             checked: '',
             cons: 1,
             orderno: [],
-            e:1,
+            e: 1,
         }
     }
 
 
-    BuyCar(e,id) {
+    BuyCar(e, id) {
 
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
@@ -46,7 +46,7 @@ class PersonalXiangqing extends React.Component {
                 if (data.code === 1) {
                     PubSub.publish('PubSubmessage', data.status);
                     CoojiePage.setBuyCarOk()
-                }else {
+                } else {
                     if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
@@ -73,12 +73,12 @@ class PersonalXiangqing extends React.Component {
             url: InterfaceUtil.getUrl(11),
             type: "post",
             data: InterfaceUtil.addTime({
-                 "token": token, "user_id": user_id, "goods_id": id, "goods_num": num
+                "token": token, "user_id": user_id, "goods_id": id, "goods_num": num
             }),
             dataType: "json",
             success: function (data) {
                 if (data.code == '1') {
-                   CoojiePage.setBuyCarOk();
+                    CoojiePage.setBuyCarOk();
                 } else {
                     if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
@@ -105,7 +105,7 @@ class PersonalXiangqing extends React.Component {
         //     }),
         //     dataType: "json",
         //     success: function (data) {
-        //         // console.log(data)
+        //
         //         if (data.data.length == 0) {
         //
         //         } else {
@@ -119,7 +119,8 @@ class PersonalXiangqing extends React.Component {
         // });
 
     }
-    startAjax(){
+
+    startAjax() {
         let user_id = CoojiePage.getCoojie('user_id');
         let token = CoojiePage.getCoojie('token');
         let order_id = CoojiePage.getCoojie('order_id');
@@ -154,10 +155,11 @@ class PersonalXiangqing extends React.Component {
             }
         });
     }
+
     //分页
     fenye(e) {
         this.setState({
-            e:e
+            e: e
         })
         this.startAjax();
 
@@ -170,10 +172,12 @@ class PersonalXiangqing extends React.Component {
 
     render() {
         let item = this.state.ddsj;
+        let moneyss = parseFloat(item.price) + parseFloat(item.coupon_price);
+        moneyss.toFixed(2)
         let times = null;
         let address = item.address ? item.address : {};
-        let connum=item.goods_list ?item.goods_list.length+1:1;
-            times = InterfaceUtil.fmtDate(item.created_time);
+        let connum = item.goods_list ? item.goods_list.length + 1 : 1;
+        times = InterfaceUtil.fmtDate(item.created_time);
 
         return (
             <div className=' width988 floatRight'>
@@ -289,7 +293,7 @@ class PersonalXiangqing extends React.Component {
                             <br/>
                             <div className='personal_xiangqing_title_div2_div orange1'>实付金额：</div>
                             <div className='personal_xiangqing_title_div2_div1 orange1'>￥<span
-                                className='orange1'>{item.price}</span></div>
+                                className='orange1'>{moneyss}</span></div>
                             <div className='clear'/>
                         </div>
                     </div>
@@ -305,7 +309,7 @@ class PersonalXiangqing extends React.Component {
                             <span className='floatleft personal_xiangqing_title_div3_span1'>订单商品</span>
                             <span className='floatRight marginRight20 personal_xiangqing_title_div3_span2'
                                   onClick={(e) => {
-                                      this.BuyCar(e,item.id)
+                                      this.BuyCar(e, item.id)
                                   }}>全部加入购物车</span>
                             <div className='clear'/>
                         </div>
@@ -329,6 +333,7 @@ class PersonalXiangqing extends React.Component {
                             {
                                 this.state.ddxq.map(function (item) {
                                     let moneys = null;
+
                                     if (item.goods_num && item.goods_price) {
                                         moneys = parseFloat(item.goods_price) / parseFloat(item.goods_num);
                                     }
@@ -347,7 +352,8 @@ class PersonalXiangqing extends React.Component {
                                             <td className='personalCon1_table_tr'>￥{moneys}</td>
                                             <td>{item.goods_num}</td>
                                             <td>￥{item.goods_price}</td>
-                                            <td><span className='personal_xiangqing_title_div3_span' data={item.goods_id}
+                                            <td><span className='personal_xiangqing_title_div3_span'
+                                                      data={item.goods_id}
                                                       data-index={item.goods_num} onClick={(e) => {
                                                 this.BuyCar8(e)
                                             }}>加入购物车</span></td>
@@ -388,13 +394,7 @@ class PersonalXiangqing extends React.Component {
         );
     }
 
-    componentDidUpdate() {
-        // var ZWwlxx = document.getElementsByClassName('ZWwlxx');
-        // var wlxx = document.getElementsByClassName('wlxx');
-        // if ($('.wlxx').children.length == 0) {
-        //     ZWwlxx[0].className = 'ant-timeline ZWwlxx '
-        // }
-    }
+
 }
 
 

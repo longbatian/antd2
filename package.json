@@ -4,11 +4,8 @@
   "private": true,
   "dependencies": {
     "antd": "^3.5.3",
-    "jquery": "^1.9.1",
+    "jquery": "^3.3.1",
     "less": "^3.8.1",
-    "less-loader": "^4.1.0",
-    "less-plugin-clean-css": "^1.5.1",
-    "node-forge": "^0.7.5",
     "pubsub-js": "^1.6.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

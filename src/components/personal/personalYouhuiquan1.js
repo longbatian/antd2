@@ -50,7 +50,6 @@ class PersonalYouhuiquan extends React.Component {
 
     //分页
     fenye(e) {
-
         this.setState({
             page: e
         },()=>this.startAjax())
@@ -233,38 +232,7 @@ class PersonalYouhuiquan extends React.Component {
     }
 
     componentDidUpdate() {
-        // var a = document.getElementsByClassName('personal_Youhuiquan_li');
-        // for (var i = 0; i < a.length; i++) {
-        //     var b = a[i].getAttribute('data-index');
-        //     var c = a[i].getAttribute('data');
-        //     var d = a[i].getAttribute('data-a');
-        //     if (b == '1') {
-        //         a[i].className = 'youhuiquan_img personal_Youhuiquan_li'
-        //         var yishiyong = document.getElementsByClassName('youhuiquan_yishiyong');
-        //         yishiyong[i].className = 'youhuiquan_yishiyong personal_Youhuiquan_title_div1_p_img2';
-        //     } else {
-        //         a[i].className = 'personal_Youhuiquan_li'
-        //         if (c == '2') {
-        //             var jijiangguoqi = document.getElementsByClassName('youhuiquan_jijiangguoqi');
-        //             jijiangguoqi[i].className = 'personal_Youhuiquan_title_div1_p_img youhuiquan_jijiangguoqi'
-        //         } else if (c == '3') {
-        //             a[i].className = 'youhuiquan_img personal_Youhuiquan_li'
-        //             var yiguoqi = document.getElementsByClassName('youhuiquan_yiguoqi');
-        //             yiguoqi[i].className = 'personal_Youhuiquan_title_div1_p_img2 youhuiquan_yiguoqi'
-        //         }
-        //         if (d == '4') {
-        //             var danwei = document.getElementsByClassName('personal_Youhuiquan_title_div1_p_span');
-        //             var zhekou = document.getElementsByClassName('youhuiquan_span');
-        //             var jiage = document.getElementsByClassName('personal_Youhuiquan_title_div1_p_span1');
-        //             var zhe = document.getElementsByClassName('personal_Youhuiquan_title_div1_p_img6');
-        //             danwei[i].className = 'personal_Youhuiquan_title_div1_p_span youhuiquan_display';
-        //             zhekou[i].className = 'youhuiquan_span';
-        //             jiage[i].className = 'personal_Youhuiquan_title_div1_p_span1 youhuiquan_zhe';
-        //             zhe[i].className = 'personal_Youhuiquan_title_div1_p_img6';
-        //         }
-        //     }
-        //
-        // }
+
     }
 }
 

@@ -160,6 +160,7 @@ class personalBox extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (!data.data) return;
                 var data=data.data;
                 that.setState({
@@ -172,7 +173,7 @@ class personalBox extends React.Component {
                     ddzt1: data.pay_order,
                     ddzt3: data.send_order,
                     znx: data.message_count,
-                    coupons: data.integral,
+                    coupons: data.coupon_count,
                     // zzxq: data.data[0],
                     // url: data.data[0].user_photo,
                 });

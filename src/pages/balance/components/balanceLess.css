@@ -345,7 +345,51 @@
   text-align: center;
   background: #fff;
 }
-.saBoxs {
-  background: #59CEFF;
+.zjBox {
+  background: #000;
+}
+.zjBox .img1 {
+  width: 100%;
+}
+.zjBox .zjBoxs {
+  width: 1200px;
+  padding: 20px 0;
+  margin: auto;
+}
+.zjBox .zjimg1 {
+  width: 100%;
+}
+.zjBox .zjimg2 {
+  overflow: hidden;
+  padding: 20px 0;
+}
+.zjBox .zjimg2 a {
+  display: block;
+  width: 48%;
+  float: left;
+}
+.zjBox .zjimg2 img {
+  width: 100%;
+}
+.zjBox .zjimg2 a:last-child {
+  float: right;
+}
+.zjBox .zjimg3 {
+  overflow: hidden;
+}
+.zjBox .zjimg3 a {
+  display: block;
+  float: left;
+  width: 33%;
+}
+.zjBox .zjimg3 a img {
+  padding-top: 10px;
+  width: 100%;
+}
+.zjBox .zjimg3 a:nth-child(3n) {
+  float: right;
+}
+.zjBox .zjimg4 {
+  text-align: center;
 }
 /*# sourceMappingURL=balanceLess.css.map */
