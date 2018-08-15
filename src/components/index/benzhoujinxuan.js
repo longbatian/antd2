@@ -332,7 +332,7 @@ class Benzhoujinxuan extends React.Component {
                                                        className='jingxuan_div_ul_li_input'/>
                                                 {item.title}
                                                 <span className='marginLeft10 mingzi'>已结束</span>
-                                                <div className='blue timeDiv display'>
+                                                <div className='blue timeDiv '>
                                                     {/*<span className='blue display time'></span>*/}
                                                     <span className='days'>{data.days}</span>
                                                     <span>天</span><span className='hours'>{data.hours}</span>

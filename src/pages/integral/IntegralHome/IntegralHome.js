@@ -98,7 +98,7 @@ class IntegralHome extends Component {
                     <div className="ithconshopping">
                         <h2>购物</h2>
                         <p>成功下单并收货可获得积分奖励</p>
-                        <Link to="/Integral/home">
+                        <Link to="/Chanpinzhongxin?&zjzx=1">
                             去购物 <span>></span>
                         </Link>
                     </div>
