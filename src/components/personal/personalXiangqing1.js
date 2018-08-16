@@ -281,10 +281,15 @@ class PersonalXiangqing extends React.Component {
                         <div className='marginTop20 personal_xiangqing_title_div2'>
                             <p className='personal_xiangqing_title_div2_p1'>费用总计</p>
                             <div className='personal_xiangqing_title_div2_div2'>商品金额：</div>
-                            <div className='personal_xiangqing_title_div2_div1'>{item.price}</div>
+                            <div
+                                className='personal_xiangqing_title_div2_div1'>
+                                {moneyss}
+                            </div>
                             <br/>
                             <div className='personal_xiangqing_title_div2_div'>+运费：</div>
-                            <div className='personal_xiangqing_title_div2_div1'>￥<span>{item.freight_price}</span>
+                            <div
+                                className='personal_xiangqing_title_div2_div1'>
+                                ￥<span>{item.freight_price}</span>
                             </div>
                             <br/>
                             <div className='personal_xiangqing_title_div2_div'>-优惠：</div>
@@ -293,7 +298,7 @@ class PersonalXiangqing extends React.Component {
                             <br/>
                             <div className='personal_xiangqing_title_div2_div orange1'>实付金额：</div>
                             <div className='personal_xiangqing_title_div2_div1 orange1'>￥<span
-                                className='orange1'>{moneyss}</span></div>
+                                className='orange1'>{item.price}</span></div>
                             <div className='clear'/>
                         </div>
                     </div>
@@ -336,6 +341,7 @@ class PersonalXiangqing extends React.Component {
 
                                     if (item.goods_num && item.goods_price) {
                                         moneys = parseFloat(item.goods_price) / parseFloat(item.goods_num);
+                                        moneys=moneys.toFixed(2);
                                     }
 
                                     return (
@@ -371,7 +377,7 @@ class PersonalXiangqing extends React.Component {
                         <div className='width988 marginTop20 '>
                             <div className='floatRight personal_zhanneixin_title_div3_span3'>
                                 <Pagination
-                                    showQuickJumper={true} defaultCurrent={1} defaultPageSize={5}
+                                    showQuickJumper={true} defaultCurrent={1} defaultPageSize={10}
                                     total={connum} onChange={(e) => {
                                     this.fenye(e)
                                 }}/></div>

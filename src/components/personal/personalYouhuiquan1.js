@@ -136,6 +136,7 @@ class PersonalYouhuiquan extends React.Component {
                         <ul>
                             {
                                 this.state.yhq.map(function (item) {
+                                    console.log(item)
                                     let isUsed = item.use_status == 1 ?
                                         <Link to={'/Chanpinzhongxin'} className='personal_Youhuiquan_title_div1_p_a'>
                                             立即使用</Link> : null;
@@ -169,7 +170,7 @@ class PersonalYouhuiquan extends React.Component {
                                                 <span className='personal_Youhuiquan_title_div1_p_span3'>
                                                     优惠券
                                                     <span
-                                                        className='white1'>【满{item.describe}元可以使用】</span>
+                                                        className='white1'>【满{item.use_condition}元可以使用】</span>
                                                 </span>
                                                 <span
                                                     className='personal_Youhuiquan_title_div1_p_span4'>{item.describe}可用</span>

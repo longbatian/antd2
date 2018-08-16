@@ -34,7 +34,7 @@ class Louceng2 extends React.Component {
       dataType: 'json',
       data:  InterfaceUtil.addTime({
 
-      }),
+                       }),
       beforeSend: function (xhr) {
       },
       success: function (data, textStatus, jqXHR) {

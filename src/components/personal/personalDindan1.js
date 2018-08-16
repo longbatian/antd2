@@ -481,6 +481,8 @@ class PersonalDindan extends React.Component {
                                     let dingdanState = '再次购买';
                                     let dingdanClassName = 'dingdan_goumai orange';
                                     let personalCon1_table = <span className='nulls'></span>;
+                                    let moneyss = parseFloat(item.price) + parseFloat(item.coupon_price);
+                                    moneyss.toFixed(2);
                                     if (item.order_status === `2`) {
                                         dingdanState = '收货';
                                     } else if (item.order_status === `1`) {
@@ -504,7 +506,7 @@ class PersonalDindan extends React.Component {
                                             <td className='orange hid width130'>{item.order_number}</td>
                                             <td>{times}</td>
                                             <td>{item.name}</td>
-                                            <td>{item.price}</td>
+                                            <td>{moneyss}</td>
                                             <td>{item.price}</td>
                                             <td className='red'>/</td>
                                             <td className='personalCon1_table_tr'>

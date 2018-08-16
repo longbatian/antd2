@@ -409,9 +409,7 @@ class Benzhoujinxuan extends React.Component {
         )
     }
 
-    componentDidUpdate() {
 
-    }
 }
 
 export default Benzhoujinxuan;

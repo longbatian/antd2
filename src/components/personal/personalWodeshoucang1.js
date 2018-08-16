@@ -97,7 +97,7 @@ class PersonalWodejifen extends React.Component {
         this.loginPage = new LoginPage();
         this.state = {
             jylx: [],
-            lujin: 'http://www.scjuchuang.com/',
+            lujin: '',
             checked: ''
         }
 
