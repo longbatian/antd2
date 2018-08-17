@@ -31,6 +31,9 @@
   width: 115px;
   text-align: center;
   float: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .car_title_div4{
   width: 170px;

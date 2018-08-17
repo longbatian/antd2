@@ -48,7 +48,8 @@ class Spikeactivity extends React.Component {
             dataType: "json",
             success: function (data) {
                 if (data.code == 1) {
-                    let datas = data.data
+                    let datas = data.data;
+
                     _this.setState({
                         goods_list: datas.goods_list,
                         nums: datas.goods_count,
@@ -76,7 +77,11 @@ class Spikeactivity extends React.Component {
                 var countDownTime = '';
                 var endTime = end;
                 var nowTime = new Date();
-                var t = nowTime.getTime() - start;
+                var t = start-nowTime.getTime();
+                if(t===0) {
+                    clearInterval(timesI);
+                    return
+                };
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);
@@ -121,6 +126,10 @@ class Spikeactivity extends React.Component {
                 var endTime = end;
                 var nowTime = new Date();
                 var t = endTime - nowTime.getTime();
+                if(t===0) {
+                    clearInterval(timesI);
+                    return
+                };
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);
@@ -303,7 +312,7 @@ class Spikeactivity extends React.Component {
      * 分页
      */
     changesPage(e) {
-        console.log(e)
+
         this.setState({
             page: e
         }, () => this.startAjax())

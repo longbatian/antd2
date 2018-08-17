@@ -643,7 +643,7 @@ class Zhuce extends React.Component {
                             <span className='floatleft zhuce_con_form_p_span1 '>企业名称：</span>
                             <input type="text" name='dwmc' value={this.state.dwmc}
                                    onChange={this.handleChange.bind(this, 'dwmc')}
-                                   onBlur={(e) => this.userNameIsOk(e, 'dwmc')}
+                                   onBlur={(e) => this.userNameIsOk(e, 'enterprise')}
                                    className='zhuce_con_form_inp' placeholder='请填写与营业执照上名称一致，以便尽快通过审核'/>
                             {/*<span className='red1 font18 fontWeight xingxing'>*</span>*/}
                             <span className={this.state.tishiUserClass.dwmcC}>

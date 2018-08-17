@@ -103,6 +103,7 @@
 }
 .index_lunbo_div .ant-carousel .slick-dots li button{
   width: 30px;
+  opacity: .6;
 }
 .index_lunbo_div .ant-carousel .slick-dots li.slick-active button{
   width: 35px;

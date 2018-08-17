@@ -10,7 +10,8 @@ class FooterCon1 extends React.Component {
           {/*<p><span className='color3'>蜀ICP备15031161号-1</span>*/}
           <p>
             {/*<span className='color3'>川B 20160006</span>*/}
-            版权所有：四川聚创医药有限公司</p>
+            版权所有：四川聚创医药有限公司  蜀ICP备15031161号-1</p>
+
           <p>公司地址：成都市金牛区金府路799号金府国际大厦6楼</p>
           <p>Copyright www.scjuchuang.com 2014 All Rights Reserved</p>
           <p>本网站不从事麻醉药品、精神药品、医疗用毒性药品、放射性药品、戒毒药品和医疗机构制剂的产品的交易。</p>

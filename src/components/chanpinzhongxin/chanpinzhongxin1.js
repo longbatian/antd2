@@ -40,7 +40,7 @@ class Chanpinzhongxin extends React.Component {
             jiage: 1,
             pingming: 1,
             changjia: 1,
-            pxtype: '1',//排序名称
+            pxtype: '0',//排序名称
             title: 0,//商品名称
             scqy: 0,//生产企业
             page: 1,//页数
@@ -1259,7 +1259,7 @@ class Chanpinzhongxin extends React.Component {
             data: InterfaceUtil.addTime({
                 'user_id': user_id, 'token': token, 'page': 1, 'pageSize': 20,
                 type: zjzx, search: e, type_id: pid, is_stock: is_kc,
-                sort_order: 1, sort_type: pxnum
+                sort_order:0, sort_type: pxnum
             }),
             // 'user_id': user_id, 'token': token, 'page': 1, 'pageSize': 20,
             // 'type_id': pid, 'did': did, 'sid': sid,
