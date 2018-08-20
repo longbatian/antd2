@@ -377,7 +377,7 @@ class PersonalXiangqing extends React.Component {
                         <div className='width988 marginTop20 '>
                             <div className='floatRight personal_zhanneixin_title_div3_span3'>
                                 <Pagination
-                                    showQuickJumper={true} defaultCurrent={1} defaultPageSize={10}
+                                    showQuickJumper={true} defaultCurrent={1} defaultPageSize={100}
                                     total={connum} onChange={(e) => {
                                     this.fenye(e)
                                 }}/></div>
