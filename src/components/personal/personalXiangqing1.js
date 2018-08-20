@@ -160,8 +160,8 @@ class PersonalXiangqing extends React.Component {
     fenye(e) {
         this.setState({
             e: e
-        })
-        this.startAjax();
+        },()=>this.startAjax())
+
 
     }
 

@@ -78,7 +78,7 @@ ReactDOM.render((
                     <Route component={Header}/>
                     <Route  path="/all/Allactivity" component={Activitycollection}/>
                     <Route  path="/all/Redemption" component={Redemption}/>
-                    <Route  path="/all/Bundle" component={Bundle}/>
+                    <Route  path="/all/Bundle" component={Bundle}/> {/*套餐*/}
                     <Route  path="/all/Questionnaire" component={Questionnaire}/>
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}

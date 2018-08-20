@@ -520,7 +520,7 @@ class Gouwuche2 extends React.Component {
                                 </div>
                             </div>
                         }) : null;
-                        // console.log(item)
+
                         let maxnums=item.activity_max_num? <div
                             className='car_content_div orange '>
                             本品限购{item.activity_max_num}{item.unit}，

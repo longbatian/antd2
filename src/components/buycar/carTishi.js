@@ -283,7 +283,6 @@ class Gouwuche3 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                // console.log(data)
                 if (data.code === 1) {
                     _this.setState({
                         minMoey: data.data[9].initial_amount,

@@ -43,7 +43,7 @@ class InformationPage extends Component {
                         if (data.code === 1) {
                             window.scrollTo(0, 0);
                             message.success(data.msg);
-                            // _this.props.history.push('/Index');
+                            _this.props.history.push('/Index');
                         } else {
                             alert(data.msg)
                         }
@@ -146,7 +146,7 @@ class InformationPage extends Component {
             dataType: "json",
             success: function (data) {
                 if (data.code === 1) {
-                    console.log(data)
+
                     let datas = that.state.jbxx;
                     datas[`shdz`] = data.data.user_address.address;
                     datas[`shr`] = data.data.user_address.name;

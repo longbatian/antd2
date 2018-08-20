@@ -16,7 +16,7 @@ class Zhuce extends React.Component {
             username: '',
             userpass: '',
             password1: '',
-            dwmc: '',
+            enterprise: '',
             lxr: '',
             lxdh: '',
             yx: '',
@@ -26,13 +26,13 @@ class Zhuce extends React.Component {
             tjr: '',
             tishiUser: {
                 usernameT: '*',
-                dwmcT: '*',
+                enterpriseT: '*',
                 usernameClicks: false,
-                dwmcClicks: false,
+                enterpriseClicks: false,
             },
             tishiUserClass: {
                 usernameC: 'red1 font18 fontWeight xingxing',
-                dwmcC: 'red1 font18 fontWeight xingxing',
+                enterpriseC: 'red1 font18 fontWeight xingxing',
             },
             clicks: true,
         };
@@ -118,7 +118,7 @@ class Zhuce extends React.Component {
                 }
             ]
         },
-        dwmc: {
+        enterprise: {
             value: '',
             validata: [
                 {
@@ -131,7 +131,7 @@ class Zhuce extends React.Component {
                 //   errMessage:'企业名称格式不正确',
                 //   test:(value) => {
                 //     var patrn=/[\u4e00-\u9fa5]/;
-                //     console.log(patrn.test(value));
+
                 //     if(patrn.test(value)){
                 //       return value;
                 //     }else {
@@ -274,9 +274,7 @@ class Zhuce extends React.Component {
                         let a = $('.province').val();
                         let b = $('.city').val();
                         let c = $('.county').val();
-                        // console.log(a[0].val());
-                        // console.log(a[1].val());
-                        // console.log(a[2].val());
+
 
                         if (!c || c == -1) return false;
                         if (a != -1 && b != -1 && c != -1) {
@@ -397,7 +395,7 @@ class Zhuce extends React.Component {
     handleChange = (name, event) => {
         var checkbox = document.getElementsByName('checkbox')[0]
         var newState = {};
-        // console.log(name,event.target);
+
         // event.target.checked?newState[name] = event.target.checked:newState[name] = event.target.value;
         if (name == 'checkboxs') {
             if (event.target.checked) {
@@ -423,7 +421,7 @@ class Zhuce extends React.Component {
     };
     valiForm = () => {
         for (let key in this.query) {
-            // console.log(this.query[key]);
+
             let item = this.query[key];
             let valiItem = item.validata;
             if (valiItem !== undefined) {
@@ -459,7 +457,7 @@ class Zhuce extends React.Component {
                 username: this.state.username,
                 password: this.state.userpass,
                 type: this.state.jylx,
-                enterprise: this.state.dwmc,
+                enterprise: this.state.enterprise,
                 real_name: this.state.lxr,
                 tel: this.state.lxdh,
                 qq_number: qq,
@@ -467,23 +465,10 @@ class Zhuce extends React.Component {
                 email: yx,
                 address_id: c
             }),
-            // data: {
-            //     username: this.state.username,
-            //     userpass: this.state.userpass,
-            //     jylx: this.state.jylx,
-            //     dwmc: this.state.dwmc,
-            //     lxr: this.state.lxr,
-            //     lxdh: this.state.lxdh,
-            //     qq: this.state.qq,
-            //     tjr: this.state.tjr,
-            //     yx: this.state.yx,
-            //     address_id: c
-            //
-            // },
             beforeSend: function (xhr) {
             },
             success: function (data, textStatus, jqXHR) {
-                console.log(data)
+
                 if (data.code == 1) {
                     alert('注册成功');
                     _this.props.history.push('/Denglu');
@@ -512,6 +497,7 @@ class Zhuce extends React.Component {
         var _this = this;
         let tishiUser = _this.state.tishiUser;
         let tishiUserClass = _this.state.tishiUserClass;
+
         $.ajax({
             url: InterfaceUtil.getUrl(57),
             type: 'post',
@@ -521,6 +507,7 @@ class Zhuce extends React.Component {
                 value: val
             }),
             success: function (data, status) {
+
                 if (data.code === 0) {
                     tishiUser[flag + 'T'] = data.msg;
                     tishiUserClass[flag + 'C'] = "red1 font14 fontWeight xingxing";
@@ -532,6 +519,7 @@ class Zhuce extends React.Component {
                         _this.changeClicks();
                     })
                 } else {
+
                     tishiUser[flag + 'T'] = "√";
                     tishiUserClass[flag + 'C'] = "blue font14 fontWeight xingxing";
                     tishiUser[flag + 'Clicks'] = true;
@@ -555,7 +543,7 @@ class Zhuce extends React.Component {
 
     changeClicks() {
         let data = this.state;
-        if (data.tishiUser.usernameClicks && data.tishiUser.dwmcClicks) {
+        if (data.tishiUser.usernameClicks && data.tishiUser.enterpriseClicks) {
             this.setState({
                 clicks: false
             })
@@ -641,13 +629,13 @@ class Zhuce extends React.Component {
                         </div>
                         <div className='zhuce_con_form_p'>
                             <span className='floatleft zhuce_con_form_p_span1 '>企业名称：</span>
-                            <input type="text" name='dwmc' value={this.state.dwmc}
-                                   onChange={this.handleChange.bind(this, 'dwmc')}
+                            <input type="text" name='enterprise' value={this.state.enterprise}
+                                   onChange={this.handleChange.bind(this, 'enterprise')}
                                    onBlur={(e) => this.userNameIsOk(e, 'enterprise')}
                                    className='zhuce_con_form_inp' placeholder='请填写与营业执照上名称一致，以便尽快通过审核'/>
                             {/*<span className='red1 font18 fontWeight xingxing'>*</span>*/}
-                            <span className={this.state.tishiUserClass.dwmcC}>
-                  {this.state.tishiUser.dwmcT}
+                            <span className={this.state.tishiUserClass.enterpriseC}>
+                  {this.state.tishiUser.enterpriseT}
                   </span>
                             <span className='red1 font14  tishi'/>
                             <div className='clear'/>
@@ -743,7 +731,7 @@ class Zhuce extends React.Component {
                 {/*尾部*/}
                 <div className='contain'>
                     <p className='center marginTop20 denglu_banquan1'>《互联网药品信息服务资格证》证书号：（川）-非经营性2015-0039
-                        |《互联网药品交易服务资格证》
+                        |《互联网药品交易服务资格证》企业名称：
                         证书号：蜀ICP备15031161号</p>
                     <p className='center denglu_banquan'>版权所有：四川聚创医药有限公司</p>
                     <p className='center denglu_banquan'>本网站不从事麻醉药品、精神药品、医疗用毒性药品、放射性药品、戒毒药品和医疗机构制剂的产品的交易。</p>
