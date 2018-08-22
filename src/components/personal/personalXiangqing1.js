@@ -374,15 +374,15 @@ class PersonalXiangqing extends React.Component {
                         </table>
 
                         {/*分页*/}
-                        <div className='width988 marginTop20 '>
-                            <div className='floatRight personal_zhanneixin_title_div3_span3'>
-                                <Pagination
-                                    showQuickJumper={true} defaultCurrent={1} defaultPageSize={100}
-                                    total={connum} onChange={(e) => {
-                                    this.fenye(e)
-                                }}/></div>
-                            <div className='clear'/>
-                        </div>
+                        {/*<div className='width988 marginTop20 '>*/}
+                            {/*<div className='floatRight personal_zhanneixin_title_div3_span3'>*/}
+                                {/*<Pagination*/}
+                                    {/*showQuickJumper={true} defaultCurrent={1} defaultPageSize={100}*/}
+                                    {/*total={connum} onChange={(e) => {*/}
+                                    {/*this.fenye(e)*/}
+                                {/*}}/></div>*/}
+                            {/*<div className='clear'/>*/}
+                        {/*</div>*/}
                     </div>
                     {/*商品合计*/}
                     <div className='marginTop10'>

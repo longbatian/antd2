@@ -366,6 +366,20 @@ class personalBox extends React.Component {
                                             this.qufukuan1(e, item.order_number)
                                         }}>去付款</span> : <span className='nulls'></span>
                                     let times=InterfaceUtil.fmtDate(item.created_time);
+                                    let order_status='';
+                                    if(item.order_status==='5'){
+                                        order_status='交易关闭'
+                                    }else if(item.order_status==='1'){
+                                        order_status='未付款'
+                                    }else if(item.order_status==='2'){
+                                        order_status='待发货'
+                                    }else if(item.order_status==='3'){
+                                        order_status='待收货'
+                                    }else if(item.order_status==='4'){
+                                        order_status='交易完成'
+                                    }else if(item.order_status==='6'){
+                                        order_status='退款中'
+                                    }
                                     return (
                                         <tr key={i}>
                                             <td className='orange hid'>{item.order_number}</td>
@@ -382,7 +396,7 @@ class personalBox extends React.Component {
                                                       {/*onMouseOut={(e) => {*/}
                                                           {/*this.dingdangenzong1(e)*/}
                                                       {/*}}>*/}
-                                                      订单跟踪
+                                                      {/*订单跟踪*/}
                                                 {/*</span>*/}
                                                 {/*订单跟踪*/}
                                                 {/*<div className='personalCon1_xuanfu display'>*/}
@@ -397,7 +411,7 @@ class personalBox extends React.Component {
                                                                 {/*)*/}
                                                             {/*}, this)*/}
                                                         {/*}*/}
-
+                                                {order_status}
                                                     {/*</Timeline>*/}
                                                     {/*<Timeline className='ZWwlxx display'>*/}
                                                         {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}

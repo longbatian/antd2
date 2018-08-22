@@ -1233,6 +1233,9 @@ class Chanpinzhongxin extends React.Component {
                 title_fenlei = arr[i].title;
             }
         }
+        if(sid){
+            pid=sid;
+        }
         this.setState({
             fenleiID: pid,
             xiaoqiID: d,

@@ -48,12 +48,13 @@ class Dingdan extends React.Component {
     }
 
     zhifu(e) {
+        console.log(e.target)
         $('.ddcon>div').removeClass().addClass('dingdan_div_p_span2 marginLeft20');
         $(e.target).parent().removeClass().addClass('dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3');
 
-        this.setState({
-                    zhifu: $(e.target).parent().index()+1
-                })
+        // this.setState({
+        //             zhifu: $(e.target).parent().index()+1
+        //         })
         // if (e.target.children.length == 1) {
         //     e.target.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
         //     e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
@@ -70,21 +71,6 @@ class Dingdan extends React.Component {
         // }
     }
 
-    zhifu1(e) {
-        if (e.target.children.length == 1) {
-            e.target.previousSibling.className = 'dingdan_div_p_span1 marginLeft20';
-            e.target.className = 'dingdan_div_p_span2 marginLeft20 dingdan_div_p_span3'
-            this.setState({
-                zhifu: 2
-            })
-        } else {
-            e.target.previousSibling.className = 'dingdan_div_p_span1 marginLeft20';
-            e.target.parentNode.className = 'dingdan_div_p_span2 marginLeft20 dingdan_div_p_span3';
-            this.setState({
-                zhifu: 2
-            })
-        }
-    }
 
     componentDidMount() {
         let token = CoojiePage.getCoojie('token');
@@ -102,7 +88,7 @@ class Dingdan extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-
+                console.log(data)
                 if (data.code !== 1) {
                     alert(data.msg);
                     that.props.history.push('/Buycar');
@@ -295,7 +281,7 @@ class Dingdan extends React.Component {
                         <span className='dingdan_div_p_span'>
                             商品总金额：
                          </span>
-                        <span className='red'>￥{data.price}</span></p>
+                        <span className='red'>￥{data.origin_price}</span></p>
                     <p className='marginLeft20'>
                         <span className='dingdan_div_p_span'>应付金额：</span>
                         <span className='red'>￥{data.price}
@@ -316,29 +302,43 @@ class Dingdan extends React.Component {
                     <div className='marginLeft20'>
                         <span className='dingdan_div_p_span'>选择支付方式：</span>
                         <div className="ddcon">
-                            <div className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' >
-                                <img src={require("../../images/buycar/zfb.png")}
-                                     className='marginRight10 dingdan_div_p_span1_img'
-                                     alt=""/>
-                                <span onClick={(e) => {
-                                    this.zhifu(e)
-                                }}>支付宝</span>
+                            <div
+
+                                className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' >
+                                {/*<img src={require("../../images/buycar/zfb.png")}*/}
+                                     {/*className='marginRight10 dingdan_div_p_span1_img'*/}
+                                     {/*alt=""/>*/}
+                                <div
+                                    onClick={(e) => {
+                                        this.zhifu(e)
+                                    }}
+                                    className="dingdan_div_p_span2Img1">支付宝</div>
+
                             </div>
-                            <div className='dingdan_div_p_span2 marginLeft20' >
-                                <img src={require("../../images/buycar/weixin.png")}
-                                     className='marginRight10 dingdan_div_p_span1_img'
-                                     alt=""/>
-                            <span onClick={(e) => {
-                                this.zhifu(e)
-                            }}>微信支付</span>
+                            <div
+
+                                className='dingdan_div_p_span2 marginLeft20' >
+                                {/*<img src={require("../../images/buycar/weixin.png")}*/}
+                                     {/*className='marginRight10 dingdan_div_p_span1_img'*/}
+                                     {/*alt=""/>*/}
+                                <div
+                                    onClick={(e) => {
+                                        this.zhifu(e)
+                                    }}
+                                    className="dingdan_div_p_span2Img2">微信支付</div>
+                            {/*微信支付*/}
                             </div>
-                            <div className='dingdan_div_p_span2 marginLeft20' >
-                                <img src={require("../../images/buycar/003.png")}
-                                     className='marginRight0 dingdan_div_p_span1_img'
-                                     alt=""/>
-                                <span onClick={(e) => {
-                                    this.zhifu(e)
-                                }}>余额支付</span>
+                            <div
+
+                                className='dingdan_div_p_span2 marginLeft20' >
+                                {/*<img src={require("../../images/buycar/003.png")}*/}
+                                     {/*className='marginRight0 dingdan_div_p_span1_img'*/}
+                                     {/*alt=""/>*/}
+                                <div
+                                    onClick={(e) => {
+                                        this.zhifu(e)
+                                    }}
+                                    className="dingdan_div_p_span2Img3">余额支付</div>
                             </div>
                         </div>
 
@@ -365,9 +365,7 @@ class Dingdan extends React.Component {
         )
     }
 
-    componentDidUpdate() {
 
-    }
 }
 
 export default withRouter(Dingdan);

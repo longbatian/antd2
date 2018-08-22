@@ -501,6 +501,20 @@ class PersonalDindan extends React.Component {
 
                                     }
                                     let times = InterfaceUtil.fmtDate(item.created_time);
+                                    let order_status='';
+                                    if(item.order_status==='5'){
+                                        order_status='交易关闭'
+                                    }else if(item.order_status==='1'){
+                                        order_status='未付款'
+                                    }else if(item.order_status==='2'){
+                                        order_status='待发货'
+                                    }else if(item.order_status==='3'){
+                                        order_status='待收货'
+                                    }else if(item.order_status==='4'){
+                                        order_status='交易完成'
+                                    }else if(item.order_status==='6'){
+                                        order_status='退款中'
+                                    }
                                     return (
                                         <tr key={item.id}>
                                             <td className='orange hid width130'>{item.order_number}</td>
@@ -517,7 +531,7 @@ class PersonalDindan extends React.Component {
                                                 {/*this.dingdangenzong1(e)*/}
                                                 {/*}}>订单跟踪</span>*/}
 
-                                                订单跟踪
+                                                {order_status}
                                                 {/*订单跟踪*/}
                                                 {/*<div className='personalCon1_xuanfu1 display'>*/}
                                                 {/*<Timeline className='wlxx'>*/}

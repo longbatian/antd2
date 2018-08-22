@@ -8,7 +8,7 @@ import $ from "jquery";
 // let u='http://jc.cx5201314.com/';
 // let u='http://192.168.1.49/';
 let rl = 'apis/index.php/index/';
-let u = 'http://api.tyaow.com';
+let u = 'http://api.scjuchuang.com';
 // let imgu='http://www.scjuchuang.com/';
 let imgu = 'http://web.tyaow.com';
 // let urls=[
@@ -103,6 +103,7 @@ let urls = [
     '/index/activity_group',//73
     '/goods/traded_goods',//74
     '/goods/package_goods',//75
+    '/orders/wechat_pay_h5',//76微信支付
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil {
