@@ -98,7 +98,7 @@
   height: 500px;
 }
 .index_lunbo_div .slick-dots li button{
-  background-color: #b3b3b3;
+  background-color: #188ae7;
   height: 20px;
 }
 .index_lunbo_div .ant-carousel .slick-dots li button{
@@ -112,7 +112,7 @@
   bottom: 22px;
 }
 .index_lunbo_div .slick-active button{
-  background-color: #188ae7!important;
+  background-color: #b3b3b3!important;
 }
 .index_lunbo_div_img{
   display: block;
