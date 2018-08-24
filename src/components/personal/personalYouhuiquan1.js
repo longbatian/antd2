@@ -137,7 +137,7 @@ class PersonalYouhuiquan extends React.Component {
                             {
                                 this.state.yhq.map(function (item) {
                                     let isUsed = item.use_status == 1 ?
-                                        <Link to={'/Chanpinzhongxin'} className='personal_Youhuiquan_title_div1_p_a'>
+                                        <Link to={'/Chanpinzhongxin'} classNapersonal_Youhuiquan_title_div1_pme='personal_Youhuiquan_title_div1_p_a'>
                                             立即使用</Link> : null;
                                     // let isUsed = item.is_time == 3 ? null : isUsed2;
                                     // if()
