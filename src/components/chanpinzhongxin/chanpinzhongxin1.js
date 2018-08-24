@@ -491,7 +491,7 @@ class Chanpinzhongxin extends React.Component {
         // });
     }
 
-    blue1(e,id) {
+    blue1(e, id) {
         var a = document.getElementsByClassName('zilei1');
         $('.zilei').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -539,7 +539,7 @@ class Chanpinzhongxin extends React.Component {
         }
     }
 
-    blue3(e,id) {
+    blue3(e, id) {
         var a = document.getElementsByClassName('xiaoqi1');
         $('.xiaoqi').removeClass('display');
         for (var i = 0; i < a.length; i++) {
@@ -758,9 +758,9 @@ class Chanpinzhongxin extends React.Component {
             type: "post",
             data: InterfaceUtil.addTime({
                 'user_id': user_id, 'token': token, 'page': page, 'pageSize': 20,
-                type: zjzx, search: title, type_id: pid, is_stock: is_kc,agent_id:jx,
+                type: zjzx, search: title, type_id: pid, is_stock: is_kc, agent_id: jx,
                 sort_order: pxtype, sort_type: pxnum,
-                valid_time:xq
+                valid_time: xq
             }),
             // {
             //     'username': username, 'token': token, 'page': page, 'limit': 20, 'jylx': jylx,
@@ -1218,13 +1218,13 @@ class Chanpinzhongxin extends React.Component {
             f = 0;
         }
         if (e == null || e == undefined) {
-            e =0;
+            e = 0;
         }
         if (pxnum = '' || pxnum == undefined || !pxnum) {
             pxnum = 1;
         }
         if (zjzx == null || zjzx == undefined) {
-            zjzx =0;
+            zjzx = 0;
         }
         let arr = this.state.class,
             title_fenlei = '';
@@ -1233,8 +1233,8 @@ class Chanpinzhongxin extends React.Component {
                 title_fenlei = arr[i].title;
             }
         }
-        if(sid){
-            pid=sid;
+        if (sid) {
+            pid = sid;
         }
         this.setState({
             fenleiID: pid,
@@ -1262,7 +1262,7 @@ class Chanpinzhongxin extends React.Component {
             data: InterfaceUtil.addTime({
                 'user_id': user_id, 'token': token, 'page': 1, 'pageSize': 20,
                 type: zjzx, search: e, type_id: pid, is_stock: is_kc,
-                sort_order:0, sort_type: pxnum
+                sort_order: 0, sort_type: pxnum
             }),
             // 'user_id': user_id, 'token': token, 'page': 1, 'pageSize': 20,
             // 'type_id': pid, 'did': did, 'sid': sid,
@@ -1393,7 +1393,7 @@ class Chanpinzhongxin extends React.Component {
                                         data.class_z.map(function (item) {
                                             return (
                                                 <li key={item.id + 'class_z'} className='zilei1' onClick={(e) => {
-                                                    this.blue1(e,item.id)
+                                                    this.blue1(e, item.id)
                                                 }} data={item.id}>{item.name}</li>
                                             )
                                         }, this)
@@ -1544,7 +1544,7 @@ class Chanpinzhongxin extends React.Component {
                         {/*商品信息*/}
                         <ul className='chanpinzhongxin_right_con_ul'>
                             {this.state.splist.map(function (item) {
-                                let islimit = item.activity_max_num === 0 ? `不限购` :`限购`+item.activity_max_num;
+                                let islimit = item.activity_max_num === 0 ? `不限购` : `限购` + item.activity_max_num;
                                 let hprice = item.activity_price ?
                                     <div>价格：<span
                                         className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
@@ -1562,13 +1562,21 @@ class Chanpinzhongxin extends React.Component {
                                     <img src={this.state.lujin + item.hot_img} alt=""/>
                                 </div> : null;
 
-                                let times = InterfaceUtil.fmtDate(item.validity_time);
+                                let timesClass = item.validity_time * 1000 - new Date().getTime() >
+                                365 * 24 * 3600 * 1000 ? `` : 'red';
 
+                                let times = InterfaceUtil.fmtDate(item.validity_time);
+                                times = item.stock_num === 0 ? null : times;
+
+                                let spread = item.is_spread === `0` ? null : <div className="hotImg">
+                                    <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
+                                </div>;
                                 return (
                                     <li key={item.id + 'cp1'}>
                                         <input type="hidden" value={item.min_buy} data={item.id}/>
                                         <div className='chanpinzhongxin_right_con_ul_div relative'>
                                             {hot_img}
+                                            {spread} {/*挂网*/}
                                             <img src={this.state.lujin + item.image} alt=""
                                                  className='chanpinzhongxin_right_con_ul_img'
                                                  onMouseMove={(e) => {
@@ -1600,7 +1608,7 @@ class Chanpinzhongxin extends React.Component {
                                             <div className='clear'/>
                                         </div>
                                         {hprice}
-                                        <p>效期：{times}</p>
+                                        <p className={timesClass}>效期：{times}</p>
                                         <div>
                                             {/*<InputNumber min={2} value={3} onChange={onChange} className='floatleft' id='num' />*/}
                                             <input type="text" id='num'

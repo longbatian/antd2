@@ -322,9 +322,7 @@ class Lingqu extends Component {
         )
     }
 
-    componentDidUpdate() {
 
-    }
 }
 
 export default withRouter(Lingqu);

@@ -358,6 +358,8 @@ class Spikeactivity extends React.Component {
                 </div>
             }
             let limits=it.activity_max_num===0?`不限购`:it.activity_max_num;
+            let stock_num=it.stock_num>999?'充裕':it.stock_num;
+
             return <li key={it.id} className="skali">
                 <Link to={'/Shangpinxiangqing?&id='+it.id}>
                     <img src={it.image}/>
@@ -369,6 +371,7 @@ class Spikeactivity extends React.Component {
                     <p>规格：{it.standard}</p>
                     <p className="colred">效期：{time}</p>
                     <p>限购：{limits}</p>
+                    <p>库存：{stock_num}</p>
                     <p>价格：
                         <span className="acbigs colred">{it.activity_price}</span>
                         <span className="acYuan">原价：{it.price}</span>
@@ -382,7 +385,7 @@ class Spikeactivity extends React.Component {
                                        () => this.setDown(
                                            it.min_buy,
                                            it.min_buy_,
-                                           it.activity_max_num,
+                                           it.stock_num,
                                            it.id,
                                            `goods_list`)}
                                >-</span>
@@ -391,7 +394,7 @@ class Spikeactivity extends React.Component {
                                         () => this.setUp(
                                             it.min_buy,
                                             it.min_buy_,
-                                            it.activity_max_num,
+                                            it.stock_num,
                                             it.id,
                                             `goods_list`)}
                                 >+</span>
@@ -403,7 +406,7 @@ class Spikeactivity extends React.Component {
                                     (value) => this.onChange2(value, it.id, `goods_list`)
                                 }
                                 onBlur={
-                                    (e) => this.onChange(e, it.min_buy_, it.activity_max_num, it.id, `goods_list`)}
+                                    (e) => this.onChange(e, it.min_buy_, it.stock_num, it.id, `goods_list`)}
                             />
                         </div>
                         {button}

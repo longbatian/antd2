@@ -48,13 +48,13 @@ class Dingdan extends React.Component {
     }
 
     zhifu(e) {
-        console.log(e.target)
+        // console.log(e.target)
         $('.ddcon>div').removeClass().addClass('dingdan_div_p_span2 marginLeft20');
         $(e.target).parent().removeClass().addClass('dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3');
 
-        // this.setState({
-        //             zhifu: $(e.target).parent().index()+1
-        //         })
+        this.setState({
+                    zhifu: $(e.target).parent().index()+1
+        })
         // if (e.target.children.length == 1) {
         //     e.target.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
         //     e.target.nextSibling.className = 'dingdan_div_p_span2 marginLeft20'
