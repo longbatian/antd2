@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {Link, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-import {Button, Modal,message} from 'antd';
+import {Button, Modal, message} from 'antd';
 import '../../styles/dingdan/dingdan.css';
 
 class Dingdan extends React.Component {
@@ -53,7 +53,7 @@ class Dingdan extends React.Component {
         $(e.target).parent().removeClass().addClass('dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3');
 
         this.setState({
-                    zhifu: $(e.target).parent().index()+1
+            zhifu: $(e.target).parent().index() + 1
         })
         // if (e.target.children.length == 1) {
         //     e.target.className = 'dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'
@@ -73,12 +73,17 @@ class Dingdan extends React.Component {
 
 
     componentDidMount() {
+
         let token = CoojiePage.getCoojie('token');
         // let user_id=CoojiePage.getCoojie('user_id');
         let user_id = CoojiePage.getCoojie('user_id');
         window.scrollTo(0, 0);
         let orderno = sessionStorage.getItem("orderno");
         const that = this;
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            document.cookie = "orderno=" + orderno;
+            window.location.href = "http://www.scjuchuang.com/wap/compents/paymentdetails.html"
+        }
         //智能采购
         $.ajax({
             url: InterfaceUtil.getUrl(18),
@@ -164,15 +169,15 @@ class Dingdan extends React.Component {
                 dataType: "json",
                 success: function (data, status) {
                     if (data.code === 1) {
-                        var openwin=window.open('http://' + data.data.url);
-                        if(openwin==null){
-                           window.location.href='http://' + data.data.url;
+                        var openwin = window.open('http://' + data.data.url);
+                        if (openwin == null) {
+                            window.location.href = 'http://' + data.data.url;
                         }
 
                     }
                 }
             });
-        }else if (_payId === 3) {
+        } else if (_payId === 3) {
             // window.open('http://www.scjuchuang.com/apis/index.php/index/order/alipay?orderno=' + orderno);
             $.ajax({
                 type: "post",
@@ -187,7 +192,7 @@ class Dingdan extends React.Component {
                     if (data.code === 1) {
                         message.success(data.msg);
                         _this.props.history.push('/Personal');
-                    }else {
+                    } else {
                         message.error(data.msg)
                     }
                 }
@@ -304,41 +309,44 @@ class Dingdan extends React.Component {
                         <div className="ddcon">
                             <div
 
-                                className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3' >
+                                className='dingdan_div_p_span1 marginLeft20 dingdan_div_p_span3'>
                                 {/*<img src={require("../../images/buycar/zfb.png")}*/}
-                                     {/*className='marginRight10 dingdan_div_p_span1_img'*/}
-                                     {/*alt=""/>*/}
+                                {/*className='marginRight10 dingdan_div_p_span1_img'*/}
+                                {/*alt=""/>*/}
                                 <div
                                     onClick={(e) => {
                                         this.zhifu(e)
                                     }}
-                                    className="dingdan_div_p_span2Img1">支付宝</div>
+                                    className="dingdan_div_p_span2Img1">支付宝
+                                </div>
 
                             </div>
                             <div
 
-                                className='dingdan_div_p_span2 marginLeft20' >
+                                className='dingdan_div_p_span2 marginLeft20'>
                                 {/*<img src={require("../../images/buycar/weixin.png")}*/}
-                                     {/*className='marginRight10 dingdan_div_p_span1_img'*/}
-                                     {/*alt=""/>*/}
+                                {/*className='marginRight10 dingdan_div_p_span1_img'*/}
+                                {/*alt=""/>*/}
                                 <div
                                     onClick={(e) => {
                                         this.zhifu(e)
                                     }}
-                                    className="dingdan_div_p_span2Img2">微信支付</div>
-                            {/*微信支付*/}
+                                    className="dingdan_div_p_span2Img2">微信支付
+                                </div>
+                                {/*微信支付*/}
                             </div>
                             <div
 
-                                className='dingdan_div_p_span2 marginLeft20' >
+                                className='dingdan_div_p_span2 marginLeft20'>
                                 {/*<img src={require("../../images/buycar/003.png")}*/}
-                                     {/*className='marginRight0 dingdan_div_p_span1_img'*/}
-                                     {/*alt=""/>*/}
+                                {/*className='marginRight0 dingdan_div_p_span1_img'*/}
+                                {/*alt=""/>*/}
                                 <div
                                     onClick={(e) => {
                                         this.zhifu(e)
                                     }}
-                                    className="dingdan_div_p_span2Img3">余额支付</div>
+                                    className="dingdan_div_p_span2Img3">余额支付
+                                </div>
                             </div>
                         </div>
 

@@ -26,7 +26,7 @@ class BalancePage1 extends Component {
         if (price !== `` &&  account_info!== `` && account_number !== `` &&  account_number!== ``) {
             $.ajax({
                 type: "post",
-                url: InterfaceUtil.getUrl(34),
+                url: InterfaceUtil.getUrl(27),
                 data: InterfaceUtil.addTime({
                     "token": _this.token,
                     "user_id": _this.user_id,
@@ -43,6 +43,8 @@ class BalancePage1 extends Component {
                         $('.bl3InputTit').val(``)
                         $('.bl3InputNameNum').val(``)
                         $('.bl3InputName').val(``);
+                    }else {
+                        message.warning(data.msg)
                     }
                 }
             })

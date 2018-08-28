@@ -47,19 +47,19 @@ class BalancePage1 extends Component {
                         >100</span>
                         <span
                             onClick={this.onChange}
-                        >200</span>
+                        >500</span>
                         <span
                             onClick={this.onChange}
-                        >400</span>
+                        >1000</span>
                         <span
                             onClick={this.onChange}
-                        >600</span>
+                        >10000</span>
                         <span
                             onClick={this.onChange}
-                        >800</span>
+                        >30000</span>
                         <span
                             onClick={this.onChange}
-                            className="bl2drigspanact">1000</span>
+                            className="bl2drigspanact">50000</span>
                         <Input
                             onBlur={
                                 (e) => this.onBlur(e)
@@ -90,7 +90,7 @@ class BalancePage1 extends Component {
                 </div>
                 <div className="bl2drig">
                     <span className='bl2drigSpan'>
-                         ￥<span className="bl2drigspanpar">500</span>
+                         ￥<span className="bl2drigspanpar">50000</span>
                     </span>
 
                 </div>

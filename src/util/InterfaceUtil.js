@@ -54,7 +54,7 @@ let urls = [
     '/goods/goods_recom', //24
     '/index/hierarchy',//25
     '/index/adv_brand',//26
-    'index/news',//27
+    '/users/cash_deposit',//27
     '/index/get_banner',//28
     '/orders/build_order', //29
     '/index/news_detail',//30
@@ -104,6 +104,7 @@ let urls = [
     '/goods/traded_goods',//74
     '/goods/package_goods',//75
     '/orders/wechat_pay_h5',//76微信支付
+    '/orders/wechat_pay_js',//77微信公众号支付
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil {

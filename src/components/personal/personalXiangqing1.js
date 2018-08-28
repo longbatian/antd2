@@ -130,10 +130,11 @@ class PersonalXiangqing extends React.Component {
             url: InterfaceUtil.getUrl(43),
             type: "post",
             data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "order_id": order_id, "page": that.state.e, "pageSize": 10
+                "user_id": user_id, "token": token, "order_id": order_id, "page": that.state.e, "pageSize": 100
             }),
             dataType: "json",
             success: function (data) {
+                console.log(data)
                 if (data.data.length == 0) {
 
                 } else {
@@ -202,7 +203,7 @@ class PersonalXiangqing extends React.Component {
                                     &nbsp;&nbsp;&nbsp;订单号:<span
                                     className='fontFamily xiangqing_ddh'>&nbsp;{item.order_number}</span>
                                     &nbsp;&nbsp;&nbsp;状态：<span
-                                    className='orange fontFamily xiangqing_ddzt'>{item.order_type}</span>
+                                    className='orange fontFamily xiangqing_ddzt'>{item.order_status}</span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                     <span

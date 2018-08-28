@@ -42,6 +42,10 @@ class BalancePage1 extends Component {
 
 
     }
+    clickTitle(e){
+
+        $('.bl1ul').find('li').eq(e).click();
+    }
 
     render() {
         let data = this.props;
@@ -62,8 +66,12 @@ class BalancePage1 extends Component {
                         <p>赠送余额:0</p>
                     </div>
                     <div className="bl1HeadRigrig">
-                        <button>充值</button>
-                        <button>提现</button>
+                        <button
+                            onClick={()=>this.clickTitle(1)}
+                        >充值</button>
+                        <button
+                            onClick={()=>this.clickTitle(2)}
+                        >提现</button>
                     </div>
                 </div>
             </div>

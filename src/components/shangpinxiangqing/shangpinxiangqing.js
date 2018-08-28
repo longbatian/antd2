@@ -43,7 +43,7 @@ class Shangpinxiangqing extends React.Component {
     //收藏的切换
     colorOrder(e, flag,i) {
         const that = this;
-        let flags=flag !== 1 ? 10 : 5;
+        let flags=flag !== 1 ? 5 :10 ;
 
         let spid = InterfaceUtil.getHashParameters().id;
         $.ajax({
@@ -524,8 +524,8 @@ class Shangpinxiangqing extends React.Component {
                <img src={require("../../images/shangpingxiangqing/che.png")}
                     className='shangpinxiangqing_sp_kehu_car_img' alt=""/>
                <div className='shangpinxiangqing_sp_kehu_car_xiadan'>
-                 <span className='font18 white1'>满500元包邮</span>
-                  <span className='white1'>满200即可下单</span>
+                 {/*<span className='font18 white1'>满500元包邮</span>*/}
+                  {/*<span className='white1'>满200即可下单</span>*/}
                </div>
                <div className='clear'/>
              </span>
