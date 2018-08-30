@@ -384,7 +384,7 @@ class personalBox extends React.Component {
                                         <tr key={i}>
                                             <td className='orange hid'>{item.order_number}</td>
                                             <td>{times}</td>
-                                            <td>{item.price}</td>
+                                            <td>{item.origin_price}</td>
                                             <td>{item.price}</td>
                                             <td>/</td>
                                             <td className='personalCon1_table_tr'>

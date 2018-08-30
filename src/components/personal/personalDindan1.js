@@ -515,12 +515,13 @@ class PersonalDindan extends React.Component {
                                     }else if(item.order_status==='6'){
                                         order_status='退款中'
                                     }
+
                                     return (
                                         <tr key={item.id}>
                                             <td className='orange hid width130'>{item.order_number}</td>
                                             <td>{times}</td>
                                             <td>{item.name}</td>
-                                            <td>{moneyss}</td>
+                                            <td>{item.origin_price}</td>
                                             <td>{item.price}</td>
                                             <td className='red'>/</td>
                                             <td className='personalCon1_table_tr'>

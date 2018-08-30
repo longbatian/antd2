@@ -266,7 +266,7 @@
   position: absolute;
   left: 0;
   top: 0;
-
+  z-index: 1;
 }
 .chanpinzhongxin_right_con_ul_span1 {
   background-image: url("../../images/chanpinzhongxin/jia.png");

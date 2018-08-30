@@ -79,7 +79,7 @@ class Fenlei11 extends React.Component {
     //    pid = pid
     //
       // .log('1'+pid)
-    this.props.history.push('/Chanpinzhongxin?&zjzx=2?&pid=' + pid)
+    this.props.history.push('/Chanpinzhongxin?&zjzx=1?&pid=' + pid)
     //   // window.location.href = '#/Chanpinzhongxin?pid=' + pid;
     // } else {
     //   // var pid = e.target.parentNode.getAttribute('data-pid');
@@ -90,14 +90,14 @@ class Fenlei11 extends React.Component {
   chaxun1(e,sid) {
     let index=e.target.parentNode.parentNode.getAttribute('data');
       let pid = $('.aaa1').eq(index).attr('data-class');
-    this.props.history.push('/Chanpinzhongxin?&zjzx=2&pid=' + pid + '&sid=' + sid)
+    this.props.history.push('/Chanpinzhongxin?&zjzx=1&pid=' + pid + '&sid=' + sid)
   }
 
   chaxun2(e,did) {
       let index = e.target.parentNode.parentNode.parentNode.getAttribute('data');
       let sid = e.target.parentNode.parentNode.firstChild.getAttribute('data-sid');
       let pid = $('.aaa1').eq(index).attr('data-class');
-    this.props.history.push( '/Chanpinzhongxin?&zjzx=2&pid=' + pid + '&sid=' + sid + '&did=' + did)
+    this.props.history.push( '/Chanpinzhongxin?&zjzx=1&pid=' + pid + '&sid=' + sid + '&did=' + did)
   }
 
 

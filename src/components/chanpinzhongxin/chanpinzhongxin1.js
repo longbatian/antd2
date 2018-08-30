@@ -947,7 +947,7 @@ class Chanpinzhongxin extends React.Component {
             },
             dataType: "json",
             success: function (data) {
-                alert(data.info);
+                alert(data.msg);
             }
         });
 
@@ -1007,7 +1007,7 @@ class Chanpinzhongxin extends React.Component {
                         $('.buycar_ok').eq(0).attr('class', 'buycar_ok display')
                     }, 2500);
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';
@@ -1052,7 +1052,7 @@ class Chanpinzhongxin extends React.Component {
                         ok[0].className = 'buycar_ok display';
                     }, 3000);
                 } else {
-                    if (data.info != 'token过期') {
+                    if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
                         no[0].className = 'buycar_no';

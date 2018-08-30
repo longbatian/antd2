@@ -415,12 +415,20 @@ class Shangpinxiangqing extends React.Component {
                             : 'chanpinzhongxin_sp_img_shoucang';
                         let isKcs=item.stock_num>1000?`充裕`:item.stock_num;
                         let times = InterfaceUtil.fmtDate(item.validity_time);
+
+                        let spread = item.is_spread === `0` ? null : <div className="hotImg">
+                            <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
+                        </div>;
+                        console.log(item.is_spread)
                         return (
                             <div className='contain marginTop20' key={item.goods_id + '_isActivity'}>
 
                                 {/*商品图片*/}
                                 <div className='shangpinxiangqing_sp_img marginRight20 floatleft relative'
                                      data={item.is_collect}>
+                                    {/*挂网*/}
+                                    {spread}
+
                                     <BigorSmallPage {...this.state.spxq[i]}/>
 
                                     <div className={Collection2} data={item.is_collect} onClick={(e) => {

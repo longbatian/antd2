@@ -403,9 +403,6 @@ class PersonalZhanneixin extends React.Component {
     }
 
 
-    componentDidUpdate() {
-
-    }
 }
 
 

@@ -44,6 +44,8 @@ import Spikeactivity from "./pages/spikeactivity/Spikeactivity";
 import Zhijun from "./pages/zhijun/Zhijun";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
+import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
+
 ReactDOM.render((
     <HashRouter>
         <div>
@@ -82,6 +84,7 @@ ReactDOM.render((
                     <Route  path="/all/Questionnaire" component={Questionnaire}/>
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
+                    <Route  path="/all/ActivityPage2" component={ActivityPage2}/> {/*中秋活动*/}
                     <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>
