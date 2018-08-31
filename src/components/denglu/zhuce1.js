@@ -175,7 +175,7 @@ class Zhuce extends React.Component {
                 {
                     errMessage: '手机号格式不正确',
                     test: (value) => {
-                        let myreg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+                        let myreg = /^[1][0-9]{10}$/;
                         if (!myreg.test(value)) {
                             return false;
                         } else {
