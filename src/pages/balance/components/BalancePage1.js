@@ -11,8 +11,8 @@ class BalancePage1 extends Component {
         super(props);
         this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
-        this.state={
-            list:[]
+        this.state = {
+            list: []
         }
     }
 
@@ -22,17 +22,17 @@ class BalancePage1 extends Component {
             url: InterfaceUtil.getUrl(41),
             type: "post",
             data: InterfaceUtil.addTime({
-                user_id:_this.user_id,
-                token:_this.token,
-                page:1,
-                pageSize:10
+                user_id: _this.user_id,
+                token: _this.token,
+                page: 1,
+                pageSize: 10
             }),
             dataType: "json",
             success: function (data) {
-
+                // console.log(data);
                 if (data.code === 1) {
                     _this.setState({
-                        list:data.data.list,
+                        list: data.data.list,
                     })
                 } else {
                     message.error(data.msg)
@@ -42,13 +42,35 @@ class BalancePage1 extends Component {
 
 
     }
-    clickTitle(e){
+
+    clickTitle(e) {
 
         $('.bl1ul').find('li').eq(e).click();
     }
 
     render() {
         let data = this.props;
+        let list = this.state.list;
+        let arry = list.length > 0 ? list.map((item, i) => {
+            let type = 1;
+            if (item.type === `1`) {
+                type = `消费`
+            } else if (item.type === `2`) {
+                type = `充值`
+            } else if (item.type === `3`) {
+                type = `退款`
+            } else if (item.type === `4`) {
+                type = `提现`
+            }
+            let times = InterfaceUtil.fmtDate(item.created_time)
+            return <tr key={item.stream_number+i}>
+                <td>{type}</td>
+                <td>{times}</td>
+                <td>{item.stream_number}</td>
+                <td>{item.price}</td>
+                <td></td>
+            </tr>
+        }) : null;
         return <div className="">
             <div className="bl1Head">
                 <div className="bl1Headlef">
@@ -67,11 +89,13 @@ class BalancePage1 extends Component {
                     </div>
                     <div className="bl1HeadRigrig">
                         <button
-                            onClick={()=>this.clickTitle(1)}
-                        >充值</button>
+                            onClick={() => this.clickTitle(1)}
+                        >充值
+                        </button>
                         <button
-                            onClick={()=>this.clickTitle(2)}
-                        >提现</button>
+                            onClick={() => this.clickTitle(2)}
+                        >提现
+                        </button>
                     </div>
                 </div>
             </div>
@@ -80,23 +104,24 @@ class BalancePage1 extends Component {
                 <tr>
                     <th>类型</th>
                     <th>时间</th>
+                    <th>支付流水号</th>
                     <th>金额</th>
-                    <th>余额</th>
                     <th>备注信息</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    {/*<td>退款</td>*/}
-                    {/*<td>201811111</td>*/}
-                    {/*<td>+金额</td>*/}
-                    {/*<td>5555</td>*/}
-                    {/*<td>啦啦啦啦啦</td>*/}
-                </tr>
+                {arry}
+                {/*<tr>*/}
+                {/*<td>退款</td>*/}
+                {/*<td>201811111</td>*/}
+                {/*<td>+金额</td>*/}
+                {/*<td>5555</td>*/}
+                {/*<td>啦啦啦啦啦</td>*/}
+                {/*</tr>*/}
                 </tbody>
             </table>
             <div className='paginationbox'>
-                <Pagination showQuickJumper defaultCurrent={2} total={10}/>
+                <Pagination showQuickJumper defaultCurrent={100} total={1}/>
             </div>
 
         </div>

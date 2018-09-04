@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Radio, Modal} from 'antd';
+import {Radio, Modal,message} from 'antd';
 import {withRouter, Link} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CityPage from './CityPage';
@@ -489,7 +489,7 @@ class Zhuce extends React.Component {
     userNameIsOk(e, flag) {
         let val = e.target.value;
         if (!val || val == '') {
-            alert('输入不能为空');
+            message.warning('输入不能为空');
             return;
         }
         // let data = {};
