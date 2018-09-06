@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {message} from 'antd';
 import $ from 'jquery';
 import CoojiePage from "../../util/CoojiePage";
 import InterfaceUtil from "../../util/InterfaceUtil";
@@ -29,8 +30,8 @@ class RowItem extends Component {
 class Integralpage extends React.Component {
     constructor() {
         super();
-        this.user_id=CoojiePage.getCoojie('user_id');
-        this.token=CoojiePage.getCoojie('token');
+        this.user_id = CoojiePage.getCoojie('user_id');
+        this.token = CoojiePage.getCoojie('token');
         this.state = {
             // 九宫格内容list
             list: [
@@ -102,36 +103,42 @@ class Integralpage extends React.Component {
     }
 
     handleBegin() {
-        const _this=this
+        const _this = this
         // this.state.isRolling为false的时候才能开始抽，不然会重复抽取，造成无法预知的后果
         if (!this.state.isRolling) {
             // 点击抽奖之后，我个人做法是将于九宫格有关的状态都还原默认
-            this.setState({
-                activedId: '',
-                prizeId: null,
-                times: 0,
-                actTimes: 0,
-                isRolling: true
-            }, () => {
-                $.ajax({
-                    url: InterfaceUtil.getUrl(70),
-                    type: "post",
-                    data: InterfaceUtil.addTime({
-                        "token": _this.token, "user_id": _this.user_id
-                    }),
-                    dataType: "json",
-                    success: function (data) {
+            $.ajax({
+                url: InterfaceUtil.getUrl(70),
+                type: "post",
+                data: InterfaceUtil.addTime({
+                    "token": _this.token, "user_id": _this.user_id
+                }),
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    if (data.code === 1) {
+                        // 状态还原之后才能开始真正的抽奖
+                        this.setState({
+                            activedId: '',
+                            prizeId: null,
+                            times: 0,
+                            actTimes: 0,
+                            isRolling: true
+                        }, () => {
+                            _this.handlePlay(data.data.id)
+                        })
 
-                        if(data.code===1){
-                            // 状态还原之后才能开始真正的抽奖
-                            _this.handlePlay( data.data.id)
-                        }else {
+                    } else {
+                        if (data.msg == '积分不足') {
+                            message.warning(data.msg)
+                        } else {
                             _this.handlePlay(0)
                         }
-                    }
-                })
 
+                    }
+                }
             })
+
         }
     }
 
@@ -187,8 +194,9 @@ class Integralpage extends React.Component {
 
         }, 40)
     }
-    componentDidMount(){
-        const _this=this;
+
+    componentDidMount() {
+        const _this = this;
         $.ajax({
             url: InterfaceUtil.getUrl(69),
             type: "post",
@@ -198,18 +206,19 @@ class Integralpage extends React.Component {
             dataType: "json",
             success: function (data) {
                 console.log(data)
-                if(data.code===1){
-                    let list=_this.state.list;
-                    data.data.map((it,i)=>{
-                        list[i].imgUrl=it.image
+                if (data.code === 1) {
+                    let list = _this.state.list;
+                    data.data.map((it, i) => {
+                        list[i].imgUrl = it.image
                     });
                     _this.setState({
-                        list:list
+                        list: list
                     })
                 }
             }
         })
     }
+
     render() {
         const {list, activedId} = this.state;
         return (
