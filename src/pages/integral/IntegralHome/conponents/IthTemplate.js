@@ -47,7 +47,9 @@ class Greatvaluecoupon extends Component {
                             <p>{item.name}</p>
                         </div>
                         <div className='ithboxUlRigcon'>
-                            <p>参考价: <span className='ithxie'>￥12.56</span></p>
+                            <p>参考价: /
+                                {/*<span className='ithxie'>￥12.56</span>*/}
+                            </p>
                             <p>积分数：<span className='ithboxUlRigconspan'>{item.integral}积分</span></p>
                             <p>已有<span>{item.user_max}</span>人兑换</p>
                         </div>

@@ -76,6 +76,7 @@ class PersonalWodejifen extends React.Component {
     state = {
         loading: false,
         visible: false,
+
     }
     showModal = () => {
         this.setState({
@@ -98,7 +99,8 @@ class PersonalWodejifen extends React.Component {
         this.state = {
             jylx: [],
             lujin: '',
-            checked: ''
+            checked: '',
+            page: 1,
         }
 
     }
@@ -214,7 +216,7 @@ class PersonalWodejifen extends React.Component {
             dataType: "json",
             success: function (data) {
                 if (data.code == '1') {
-                   CoojiePage.setBuyCarOk()
+                    CoojiePage.setBuyCarOk()
                 } else {
                     if (data.msg != 'token过期') {
                         var no = document.getElementsByClassName('buycar_no');
@@ -359,32 +361,37 @@ class PersonalWodejifen extends React.Component {
 
     //分页
     fenye(e) {
+        this.setState({
+            page: e
+        }, () => {
+            this.ajax2();
+        })
 
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        var jylx = CoojiePage.getCoojie('jylx');
-        const that = this;
-        //订单ajax
-        $.ajax({
-            url: InterfaceUtil.getUrl(36),
-            type: "post",
-            data: {
-                "username": username, "token": token, "page": e, "limit": 10, "user_id": user_id, "jylx": jylx
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        jylx: data.data.list,
-                        cons: data.data.cons,
-                    });
-                    that.refs.dingdan.className = 'display'
-                }
-            }
-        });
+        // var username = CoojiePage.getCoojie('username');
+        // var token = CoojiePage.getCoojie('token');
+        // var user_id = CoojiePage.getCoojie('user_id');
+        // var jylx = CoojiePage.getCoojie('jylx');
+        // const that = this;
+        // //订单ajax
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(36),
+        //     type: "post",
+        //     data: {
+        //         "username": username, "token": token, "page": e, "limit": 10, "user_id": user_id, "jylx": jylx
+        //     },
+        //     dataType: "json",
+        //     success: function (data) {
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 jylx: data.data.list,
+        //                 cons: data.data.cons,
+        //             });
+        //             that.refs.dingdan.className = 'display'
+        //         }
+        //     }
+        // });
         // ajax.open('post',"http://192.168.1.49/index.php/index/user/collection_goods",false);
         // ajax.open('post',InterfaceUtil.getUrl(36),false);
         // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -400,6 +407,7 @@ class PersonalWodejifen extends React.Component {
     }
 
     componentDidMount() {
+
         this.ajax2();
         //我的收藏
 
@@ -415,7 +423,7 @@ class PersonalWodejifen extends React.Component {
             url: InterfaceUtil.getUrl(36),
             type: "post",
             data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token, "page": 1, "pageSize": 10
+                "user_id": user_id, "token": token, "page": that.state.page, "pageSize": 10
             }),
             dataType: "json",
             success: function (data) {

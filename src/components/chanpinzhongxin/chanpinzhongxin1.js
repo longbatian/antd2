@@ -122,6 +122,7 @@ class Chanpinzhongxin extends React.Component {
                 show = !show;
             }
         }
+
         if (show) {
             this.setState({splist: arr});
         }
@@ -977,9 +978,9 @@ class Chanpinzhongxin extends React.Component {
     }
 
     //加入购物车
-    buycar(e) {
-        var shuliang = e.target.parentNode.firstChild.getAttribute('value');
-        var id = e.target.parentNode.parentNode.firstChild.getAttribute('data');
+    buycar(e,shuliang,id) {
+        // var shuliang = e.target.parentNode.firstChild.getAttribute('value');
+        // var id = e.target.parentNode.parentNode.firstChild.getAttribute('data');
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
         var user_id = CoojiePage.getCoojie('user_id');
@@ -1616,7 +1617,8 @@ class Chanpinzhongxin extends React.Component {
                                                    value={item.min_buy_}
                                                    onBlur={(e) => {
                                                        this.shuliang(e, item.min_buy_, item.id)
-                                                   }} onChange={(e) => this.changeVal(e, item.id)}
+                                                   }}
+                                                   onChange={(e) => this.changeVal(e, item.id)}
                                             />
                                             <span className='chanpinzhongxin_right_con_ul_span floatleft'>
                       <button className='floatleft chanpinzhongxin_right_con_ul_span1' onClick={(e) => {
@@ -1630,16 +1632,17 @@ class Chanpinzhongxin extends React.Component {
                     </span>
                                             <button className='chanpinzhongxin_right_con_ul_btn floatleft'
                                                     onClick={(e) => {
-                                                        this.buycar(e)
-                                                    }}><i className='shoppingCart'></i>加入购物车
+                                                        this.buycar(e,item.min_buy_,item.id)
+                                                    }}>
+                                                <i className='shoppingCart'/>加入购物车
                                             </button>
-                                            <div className='clear'></div>
+                                            <div className='clear'/>
                                         </div>
                                     </li>
                                 )
                             }, this)
                             }
-                            <div className='clear'></div>
+                            <div className='clear'/>
                         </ul>
                         {/*商品信息2*/}
                         <table className='chanpinzhongxin_con1_table display'>
@@ -1704,7 +1707,7 @@ class Chanpinzhongxin extends React.Component {
                                             </td>
                                             <td>
                         <span className='chanpinzhongxin_con1_table_span' onClick={(e) => {
-                            this.buycar1(e)
+                            this.buycar(e,item.min_buy_,item.id)
                         }}>加入购物车</span>
                                                 <span
                                                     className={Collection}

@@ -56,8 +56,8 @@ class ComInfoPage extends Component {
                                 <img src={require('../../../images/interl/intergraldatepicker/02.png')} alt=""/>
                                 <div className="ipdHeaddiv2rig">
                                     <h2>四川聚创医药有限公司</h2>
-                                    <p>已经累计签到 <span>0</span>天</p>
-                                    <p>连续签到 <span>0</span>天</p>
+                                    {/*<p>已经累计签到 <span>0</span>天</p>*/}
+                                    {/*<p>连续签到 <span>0</span>天</p>*/}
                                 </div>
                             </div>
                             <button
