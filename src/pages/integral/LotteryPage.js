@@ -197,7 +197,7 @@ class Integralpage extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(JSON.stringify(data))
+                console.log(data)
                 if(data.code===1){
                     let list=_this.state.list;
                     data.data.map((it,i)=>{

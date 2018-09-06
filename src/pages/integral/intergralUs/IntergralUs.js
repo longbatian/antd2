@@ -21,8 +21,8 @@ class IntergralUs extends Component {
                 {id: 2, title: '积分流水', isTrue: false},
                 {id: 3, title: '抽奖记录', isTrue: false}
             ],
-            integral:0,
-            consume_integral:0
+            integral: 0,
+            consume_integral: 0
         }
     }
 
@@ -49,6 +49,7 @@ class IntergralUs extends Component {
             }
         })
     }
+
     /**
      *积分记录
      */
@@ -63,7 +64,6 @@ class IntergralUs extends Component {
             }),
             dataType: "json",
             success: function (data) {
-
                 if (data.code === 1) {
                     if (_this.state.page === 1) {
 
@@ -96,7 +96,7 @@ class IntergralUs extends Component {
         });
         this.setState({
             type: e,
-            page:1,
+            page: 1,
             arry: arrys
         }, () => this.startAjax())
     }
@@ -105,19 +105,29 @@ class IntergralUs extends Component {
         const data = this.state;
         let tr = null;
         tr = data.con.length > 0 ? data.con.map((item, i) => {
-            let times = InterfaceUtil.fmtDate(item.created_time)
+            let times = InterfaceUtil.fmtDate(item.created_time);
+            let type = ``;
+            let integral = item.integral > 0 ? `${`+` + item.integral}` : `${`-` + item.integral}`;
+            if (item.integral_type === `1`) {
+                type = `兑换成功`;
+            }
             return <tr key={i}>
                 <td>{item.describe}</td>
                 <td>{times}</td>
-                <td></td>
-                <td></td>
-                <td>已兑换</td>
+                <td>{integral}</td>
+                <td>{item.surplus_integral}</td>
+                <td>{type}</td>
                 <td></td>
             </tr>
         }) : null;
         let list = data.arry.map((item) => {
             let listClass = item.isTrue ? `itg_act` : null;
-            return <li key={item.id} className={listClass} onClick={() => this.onChanges(item.id)}>{item.title}</li>
+            return <li
+                key={item.id}
+                className={listClass}
+                onClick={() =>
+                    this.onChanges(item.id)}
+            >{item.title}</li>
         })
         return <div>
             <div className="itgBoxs">

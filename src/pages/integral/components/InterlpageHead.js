@@ -40,7 +40,7 @@ class Integralpage extends React.Component {
                     {/*<Link to={'/Integral/pay'}>积分购券</Link>*/}
                     {/*</li>*/}
                     <li>
-                        <Link to={'/Integral/IntergralPay'}>积分攻略</Link>
+                        <Link to={'/Integral/Instructionmanual'}>积分攻略</Link>
                     </li>
                 </ul>
             </div>

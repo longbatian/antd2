@@ -45,6 +45,7 @@ import Zhijun from "./pages/zhijun/Zhijun";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
+import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
 
 ReactDOM.render((
     <HashRouter>
@@ -105,6 +106,7 @@ ReactDOM.render((
                     <Route path="/Integral/Info" component={ComInfoPage}/>
                     <Route path="/Integral/pay" component={IntergralPay}/>
                     <Route path="/Integral/data" component={Intergraldatepicker}/>
+                    <Route path="/Integral/Instructionmanual" component={IntergralInstructionManual}/>
                     <Route component={Footer}/>
                 </div>
 
