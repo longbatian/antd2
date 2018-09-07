@@ -76,6 +76,20 @@ ReactDOM.render((
             <Route  path="/InformationPage" component={InformationPage}/>
             <Route  path="/NewXq" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
+            <Route  path="/Integral" >
+                <div>
+                    <Route component={InterlpageHead}/>
+                    <Route path="/Integral/lottery" component={Integralpage}/>
+                    <Route path="/Integral/Home" component={IntegralHome}/>
+                    <Route path="/Integral/Us" component={IntergralUs}/>
+                    <Route path="/Integral/Info" component={ComInfoPage}/>
+                    <Route path="/Integral/pay" component={IntergralPay}/>
+                    <Route path="/Integral/data" component={Intergraldatepicker}/>
+                    <Route path="/Integral/Instructionmanual" component={IntergralInstructionManual}/>
+                    <Route component={Footer}/>
+                </div>
+
+            </Route>
             <Route  path="/all">
                 <div>
                     <Route component={Header}/>
@@ -97,20 +111,7 @@ ReactDOM.render((
                     <Route component={Footer}/>
                 </div>
             </Route>
-            <Route  path="/Integral" >
-                <div>
-                    <Route component={InterlpageHead}/>
-                    <Route path="/Integral/lottery" component={Integralpage}/>
-                    <Route path="/Integral/Home" component={IntegralHome}/>
-                    <Route path="/Integral/Us" component={IntergralUs}/>
-                    <Route path="/Integral/Info" component={ComInfoPage}/>
-                    <Route path="/Integral/pay" component={IntergralPay}/>
-                    <Route path="/Integral/data" component={Intergraldatepicker}/>
-                    <Route path="/Integral/Instructionmanual" component={IntergralInstructionManual}/>
-                    <Route component={Footer}/>
-                </div>
 
-            </Route>
         </div>
     </HashRouter>
 ), document.getElementById('root'));
