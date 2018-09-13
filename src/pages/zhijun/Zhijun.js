@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Link,withRouter} from 'react-router-dom';
+import InterfaceUtil from "../../util/InterfaceUtil";
 
 class Zhijun extends Component {
     constructor(props){
@@ -7,6 +8,11 @@ class Zhijun extends Component {
     }
     handleClick(){
         window.scrollTo(0,0);
+    }
+    componentDidMount(){
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/zhijun.html"
+        }
     }
     render(){
         return <div className='zjBox'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {Link,withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Input, message, Pagination} from 'antd';
 import CoojiePage from './../../util/CoojiePage';
 import InterfaceUtil from "../../util/InterfaceUtil";
@@ -14,20 +14,26 @@ class Spikeactivity extends React.Component {
         super(props);
         this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
-        this.loginPage=new LoginPage();
+        this.loginPage = new LoginPage();
         this.state = {
             goods_list: [],
             page: 1,
             nums: 1,
             activity_name: ``,
             isStart: false,
-            imgs:null,
+            imgs: null,
             // end_time:
         }
     }
 
     componentDidMount() {
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl() +
+                "/wap/compents/generaldrugs.html?&id=" +
+                InterfaceUtil.getHashParameters().id;
+        }
         this.startAjax();
+
     }
 
     startAjax() {
@@ -56,10 +62,10 @@ class Spikeactivity extends React.Component {
                         start_time: datas.start_time,
                         end_time: datas.end_time,
                         activity_name: datas.activity_name,
-                        imgs:datas.image
+                        imgs: datas.image
                     })
-                }else {
-                    _this.loginPage.ajaxLogin(data.code,_this.props);
+                } else {
+                    _this.loginPage.ajaxLogin(data.code, _this.props);
                 }
             }
         })
@@ -67,29 +73,30 @@ class Spikeactivity extends React.Component {
 
     suanshijian(start, end) {
         // const _this=this;
-        var timesI=null;
+        var timesI = null;
         var start = start * 1000;
         var end = end * 1000;
 
         var timestamp = Date.parse(new Date());
         if (timestamp < start) {
-            timesI= setInterval(function () {
+            timesI = setInterval(function () {
                 var countDownTime = '';
                 var endTime = end;
                 var nowTime = new Date();
-                var t = start-nowTime.getTime();
-                if(t===0) {
+                var t = start - nowTime.getTime();
+                if (t === 0) {
                     clearInterval(timesI);
                     return
-                };
+                }
+                ;
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);
                 var sec = Math.floor(t / 1000 % 60);
-                d=Math.abs(d);
-                hour=Math.abs(hour);
-                min=Math.abs(min);
-                sec=Math.abs(sec);
+                d = Math.abs(d);
+                hour = Math.abs(hour);
+                min = Math.abs(min);
+                sec = Math.abs(sec);
                 if (d < 10) {
                     d = "0" + d;
                 }
@@ -118,18 +125,19 @@ class Spikeactivity extends React.Component {
                 <span className="saTitRigTimeSpan">0 </span>
                 分
                 <span className="saTitRigTimeSpan"> 0</span>
-                秒  开始
+                秒 开始
             </div>;
         } else if (start < timestamp && timestamp < end) {
-            timesI=setInterval(function () {
+            timesI = setInterval(function () {
                 var countDownTime = '';
                 var endTime = end;
                 var nowTime = new Date();
                 var t = endTime - nowTime.getTime();
-                if(t===0) {
+                if (t === 0) {
                     clearInterval(timesI);
                     return
-                };
+                }
+                ;
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);
@@ -357,11 +365,11 @@ class Spikeactivity extends React.Component {
                     已结束
                 </div>
             }
-            let limits=it.activity_max_num===0?`不限购`:it.activity_max_num;
-            let stock_num=it.stock_num>999?'充裕':it.stock_num;
+            let limits = it.activity_max_num === 0 ? `不限购` : it.activity_max_num;
+            let stock_num = it.stock_num > 999 ? '充裕' : it.stock_num;
 
             return <li key={it.id} className="skali">
-                <Link to={'/Shangpinxiangqing?&id='+it.id}>
+                <Link to={'/Shangpinxiangqing?&id=' + it.id}>
                     <img src={it.image}/>
                 </Link>
 

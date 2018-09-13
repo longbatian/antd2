@@ -1246,7 +1246,7 @@ class Chanpinzhongxin extends React.Component {
             zileiID: sid,
             title_fenlei: title_fenlei,
             zjzx: zjzx,
-            page: 1,
+            // page: this.state.page,
             is_kc: '',
         }, () => {
             if (e != null || !e) {
@@ -1261,7 +1261,7 @@ class Chanpinzhongxin extends React.Component {
             url: InterfaceUtil.getUrl(8),
             type: "post",
             data: InterfaceUtil.addTime({
-                'user_id': user_id, 'token': token, 'page': 1, 'pageSize': 20,
+                'user_id': user_id, 'token': token, 'page': that.state.page, 'pageSize': 20,
                 type: zjzx, search: e, type_id: pid, is_stock: is_kc,
                 sort_order: 0, sort_type: pxnum
             }),

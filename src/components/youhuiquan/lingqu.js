@@ -64,6 +64,9 @@ class Lingqu extends Component {
 
     componentDidMount() {
         window.scrollTo(0,0);
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/receivecoupons.html"
+        }
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
         const that = this;

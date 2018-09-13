@@ -41,9 +41,9 @@ class Shangpinxiangqing extends React.Component {
     }
 
     //收藏的切换
-    colorOrder(e, flag,i) {
+    colorOrder(e, flag, i) {
         const that = this;
-        let flags=flag !== 1 ? 5 :10 ;
+        let flags = flag !== 1 ? 5 : 10;
 
         let spid = InterfaceUtil.getHashParameters().id;
         $.ajax({
@@ -60,7 +60,7 @@ class Shangpinxiangqing extends React.Component {
                     if (datas[i].is_collect == 1) {
                         datas[i].is_collect = 0;
                     } else {
-                        datas[i].is_collect =1;
+                        datas[i].is_collect = 1;
                     }
                     that.setState({
                         spxq: datas,
@@ -70,7 +70,6 @@ class Shangpinxiangqing extends React.Component {
         });
 
     }
-
 
 
     //改变输入框的值
@@ -139,7 +138,7 @@ class Shangpinxiangqing extends React.Component {
             url: InterfaceUtil.getUrl(11),
             type: "post",
             data: InterfaceUtil.addTime({
-               "token": token, "user_id": user_id, "goods_id": id, "goods_num": shuliang
+                "token": token, "user_id": user_id, "goods_id": id, "goods_num": shuliang
             }),
             dataType: "json",
             success: function (data) {
@@ -176,7 +175,7 @@ class Shangpinxiangqing extends React.Component {
             url: InterfaceUtil.getUrl(11),
             type: "post",
             data: InterfaceUtil.addTime({
-                "user_id": user_id, "token": token,  "goods_id": id, "goods_num": shuliang
+                "user_id": user_id, "token": token, "goods_id": id, "goods_num": shuliang
             }),
             dataType: "json",
             success: function (data) {
@@ -211,7 +210,13 @@ class Shangpinxiangqing extends React.Component {
     componentDidMount() {
         this.ajaxSpXq();
         window.scrollTo(0, 0)
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl() +
+                "/wap/compents/details.html?&id="
+                + InterfaceUtil.getHashParameters().id;
+        }
     }
+
     componentWillReceiveProps(nextProps) {
         this.ajaxSpXq()
         window.scrollTo(0, 0)
@@ -233,9 +238,9 @@ class Shangpinxiangqing extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                if(data.code===1){
-                    let spxqs=[];
-                    spxqs[0]=data.data;
+                if (data.code === 1) {
+                    let spxqs = [];
+                    spxqs[0] = data.data;
                     that.setState({
                         spxq: spxqs
                         // arrTilte: [],
@@ -372,7 +377,8 @@ class Shangpinxiangqing extends React.Component {
         let _combination = _data.map((item, i) => {
             let _prices = item.hprice ? item.hprice : item.prices;
             return <div key={item.goods_id + "_prices"}>
-                <Checkbox onChange={(e) => this.onChanges(e, item.title, i, item.goods_id)} defaultChecked value={_prices}>
+                <Checkbox onChange={(e) => this.onChanges(e, item.title, i, item.goods_id)} defaultChecked
+                          value={_prices}>
                     <img src={this.state.lujin + item.image} alt="" className='spxq_dd_img1'/>
                     <p className='spxq_dd_p hid'>{item.title}</p>
                     <p className='spxq_dd_p hid'>{item.scqy}</p>
@@ -404,7 +410,7 @@ class Shangpinxiangqing extends React.Component {
                 {
                     datas.spxq.map(function (item, i) {
 
-                        let islimit = item.activity_max_num === 0 ? `不限购` :`限购`+item.activity_max_num;
+                        let islimit = item.activity_max_num === 0 ? `不限购` : `限购` + item.activity_max_num;
                         let isActivity = item.activity_price ? <span key={i + 'isActivity'}>
                           <span className='font20 orange'>{item.activity_price}</span>
                           <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.price}</span>
@@ -413,7 +419,7 @@ class Shangpinxiangqing extends React.Component {
                             <span className='font20 orange'>{item.price}</span>;
                         let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                             : 'chanpinzhongxin_sp_img_shoucang';
-                        let isKcs=item.stock_num>1000?`充裕`:item.stock_num;
+                        let isKcs = item.stock_num > 1000 ? `充裕` : item.stock_num;
                         let times = InterfaceUtil.fmtDate(item.validity_time);
 
                         let spread = item.is_spread === `0` ? null : <div className="hotImg">
@@ -432,7 +438,7 @@ class Shangpinxiangqing extends React.Component {
                                     <BigorSmallPage {...this.state.spxq[i]}/>
 
                                     <div className={Collection2} data={item.is_collect} onClick={(e) => {
-                                        this.colorOrder(e, item.is_collect,i)
+                                        this.colorOrder(e, item.is_collect, i)
                                     }}>
                                         <img src={require("../../images/shangpingxiangqing/xinBai.png")}
                                              className='marginRight10' alt=""/>收藏
@@ -533,7 +539,7 @@ class Shangpinxiangqing extends React.Component {
                     className='shangpinxiangqing_sp_kehu_car_img' alt=""/>
                <div className='shangpinxiangqing_sp_kehu_car_xiadan'>
                  {/*<span className='font18 white1'>满500元包邮</span>*/}
-                  {/*<span className='white1'>满200即可下单</span>*/}
+                   {/*<span className='white1'>满200即可下单</span>*/}
                </div>
                <div className='clear'/>
              </span>

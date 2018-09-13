@@ -238,4 +238,12 @@ export default class InterfaceUtil {
 
     }
 
+    /**
+     * pc跳转移动端前排路径
+     * @returns {string}
+     */
+    static wapUrl(){
+        return 'http://www.scjuchuang.com'
+    }
+
 }

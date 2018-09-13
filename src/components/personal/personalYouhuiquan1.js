@@ -166,10 +166,13 @@ class PersonalYouhuiquan extends React.Component {
                                                     className='personal_Youhuiquan_title_div1_p_span2'>
 
                                                 </span>
-                                                <span className='personal_Youhuiquan_title_div1_p_span3'>
+                                                <span
+                                                    className='personal_Youhuiquan_title_div1_p_span3'>
                                                     优惠券
                                                     <span
-                                                        className='white1'>【满{item.use_condition}元可以使用】</span>
+                                                        className='white1'>
+                                                        【满{item.use_condition}元可以使用】
+                                                    </span>
                                                 </span>
                                                 <span
                                                     className='personal_Youhuiquan_title_div1_p_span4'>{item.describe}可用</span>

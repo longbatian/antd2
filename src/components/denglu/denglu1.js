@@ -21,7 +21,9 @@ class Denglu1 extends React.Component {
     }
 
     componentDidMount() {
-
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/index.html"
+        }
     }
 
     post() {

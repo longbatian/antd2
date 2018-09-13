@@ -52,33 +52,9 @@ class Lunbo extends React.Component {
     let user_id = CoojiePage.getCoojie('user_id')
     var jylx = CoojiePage.getCoojie('jylx');
     const that = this;
-    //搜索条件ajax
-    // $.ajax({
-    //   // url:'http://192.168.1.49/index.php/index/user/user_reg',
-    //   url: InterfaceUtil.getUrl(23),
-    //   type: 'post',
-    //   dataType: 'json',
-    //   data: InterfaceUtil.addTime({
-    //       user_id:user_id,
-    //       token:token
-    //   }),
-    //   beforeSend: function (xhr) {
-    //   },
-    //   success: function (data, textStatus, jqXHR) {
-    //     var data = data;
-    //     console.log(data)
-    //     // data = JSON.parse(data);
-    //     if (data.data.length == 0) {
-    //
-    //     } else {
-    //       that.setState({
-    //         fenlei: data.data
-    //       });
-    //     }
-    //
-    //   }
-    //
-    // })
+      if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+          window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/home.html"
+      }
 
     //  banner
     $.ajax({
@@ -189,7 +165,6 @@ class Lunbo extends React.Component {
                     return (
                       <li
                         onClick={(e)=>this.getNews(item.id)}
-
                         key={item.id+'lunBoXin'}
                         className='hid'
                       >{item.title}</li>
