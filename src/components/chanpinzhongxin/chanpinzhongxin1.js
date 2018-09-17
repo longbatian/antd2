@@ -1112,7 +1112,9 @@ class Chanpinzhongxin extends React.Component {
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
         const that = this;
-
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/products.html?&zjzx=1"
+        }
         $.ajax({
             url: InterfaceUtil.getUrl(23),
             type: "post",
@@ -1130,26 +1132,7 @@ class Chanpinzhongxin extends React.Component {
 
                         //     xq: data.data.xq
                     });
-                    // //隐藏分类
-                    // if (data.data.class.length < 8) {
-                    //     // var e = document.getElementsByClassName('chanpinzhongxin_right_head_span');
-                    //     // e[0].className = 'floatRight chanpinzhongxin_right_head_span display'
-                    //     $('.chanpinzhongxin_right_head_span').eq(0).attr('class', 'floatRight chanpinzhongxin_right_head_span display');
-                    //     // document.getElementsByClassName('chanpinzhongxin_right_head_span').className='floatRight chanpinzhongxin_right_head_span display'
-                    // }
-                    // //隐藏子类
-                    // if (data.data.class_z.length < 8) {
-                    //     $('.chanpinzhongxin_right_head_span1').eq(0).attr('class', 'floatRight chanpinzhongxin_right_head_span1 display');
-                    //     // var e = document.getElementsByClassName('chanpinzhongxin_right_head_span1');
-                    //     // e[0].className = 'floatRight chanpinzhongxin_right_head_span1 display'
-                    // }
-                    // //隐藏剂型
-                    // if (data.data.jx.length < 8) {
-                    //     $('.chanpinzhongxin_right_head_span2').eq(0).attr('class', 'floatRight chanpinzhongxin_right_head_span2 display');
-                    //
-                    //     // var e = document.getElementsByClassName('chanpinzhongxin_right_head_span2');
-                    //     // e[0].className = 'floatRight chanpinzhongxin_right_head_span2 display'
-                    // }
+
                 }
             }
         });
@@ -1199,6 +1182,9 @@ class Chanpinzhongxin extends React.Component {
             $('.header_cd').find('li').eq(2).addClass('btn_Header');
         } else {
             $('.header_cd').find('li').eq(1).addClass('btn_Header');
+        }
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/products.html?&zjzx="+zjzx
         }
         if (did == undefined) {
             did = '';

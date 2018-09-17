@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Form, Icon, Input, Pagination, Row,message} from 'antd';
+import {Button, Col, Form, Icon, Input, Pagination, Row, message} from 'antd';
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
 import $ from 'jquery';
@@ -13,22 +13,28 @@ class Shoppinglist extends Component {
         e.preventDefault();
         const _this = this;
         this.props.form.validateFields((err, values) => {
-            var data = values;
-            data[`user_id`] = _this.user_id;
-            data[`token`] = _this.token;
-            $.ajax({
-                url: InterfaceUtil.getUrl(40),
-                type: "post",
-                data: InterfaceUtil.addTime(data),
-                dataType: "json",
-                success: function (data) {
-                    if(data.code===1){
-                        message.success(data.msg)
-                    }else {
-                        message.error(data.msg)
+            if (!err) {
+                var data = values;
+                data[`user_id`] = _this.user_id;
+                data[`token`] = _this.token;
+                console.log(data)
+                $.ajax({
+                    url: InterfaceUtil.getUrl(40),
+                    type: "post",
+                    data: InterfaceUtil.addTime(data),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code === 1) {
+                            message.success(data.msg)
+                        } else {
+                            message.error(data.msg)
+                        }
                     }
-                }
-            })
+                })
+            } else {
+                message.warning('请填写全部必填项！')
+            }
+
         });
 
     }
@@ -71,6 +77,9 @@ class Shoppinglist extends Component {
                 name: `联系电话`,
                 id: `tel`,
             }],
+            arry: [],
+            cons: 1,
+            page:1,
         }
     }
 
@@ -98,8 +107,72 @@ class Shoppinglist extends Component {
         return children;
     }
 
+    componentDidMount() {
+        this.twoAjax()
+    }
+
+    twoAjax() {
+        const _this = this;
+        $.ajax({
+            url: InterfaceUtil.getUrl(78),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                user_id: _this.user_id,
+                token: _this.token,
+                page: _this.state.page,
+                pageSize: 10
+
+            }),
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.code === 1) {
+                    data = data.data;
+                    _this.setState({
+                        arry: data.list,
+                        cons: data.count,
+                    })
+                } else {
+                    message.error(data.msg)
+                }
+            }
+        })
+    }
+    changeHandle(e){
+        this.setState({
+            page:e
+        },()=>{
+            this.twoAjax()
+        })
+    }
     render() {
         const {getFieldDecorator} = this.props.form;
+        const data = this.state;
+        let arrys = data.arry.length > 0 ? data.arry.map((item, i) => {
+            let time=InterfaceUtil.fmtDate(item.created_time);
+            return <li key={item.id}>
+                <span className="znConulTit">药品名称：</span>
+                <span className="znConulCon">{item.buy_name}</span>
+                <span className="znConulTit">联系人：</span>
+                <span className="znConulCon">{item.name}</span>
+                <span className="znConulTit">电话：</span>
+                <span className="znConulCon">{item.tel}</span>
+                <span className="znConulTit">生产厂家：</span>
+                <span className="znConulCon">{item.produce}</span>
+                <span className="znConulTit">规格：</span>
+                <span className="znConulCon">{item.standard}</span>
+                <span className="znConulTit">留言：</span>
+                <span className="znConulCon">{item.content}</span>
+                <span className="znConulTit">数量：</span>
+                <span className="znConulCon">{item.buy_num}</span>
+                <span className="znConulTit">价格：</span>
+                <span className="znConulCon">{item.price}</span>
+                <span className="znConulTit">有效期：</span>
+                <span className="znConulCon">{item.valid_time}</span>
+                <span className="znConulTit">创建时间：</span>
+                <span className="znConulCon">{time}</span>
+            </li>
+        }) : null;
         return <div className="blBoxs">
             <div className="blCons">
                 <div className="bods">
@@ -114,7 +187,7 @@ class Shoppinglist extends Component {
                             <Row gutter={24}>{this.getFields()}</Row>
                             <Row gutter={24}>
                                 <FormItem>
-                                    {getFieldDecorator('contacts', {
+                                    {getFieldDecorator('content', {
                                         rules: [{message: '备注!'}],
                                         initialValue: ``
                                     })(
@@ -145,6 +218,7 @@ class Shoppinglist extends Component {
                     </div>
                     <div className="znCon">
                         <ul className="znConul">
+                            {arrys}
                             {/*<li>*/}
                             {/*<span className="znConulTit">药品名称：</span>*/}
                             {/*<span className="znConulCon">药品名称</span>*/}
@@ -152,7 +226,12 @@ class Shoppinglist extends Component {
                         </ul>
                     </div>
                     <div className="paginationbox">
-                        <Pagination showQuickJumper defaultCurrent={1} total={1}/>
+                        <Pagination
+                            showQuickJumper
+                            defaultCurrent={1}
+                            total={data.cons}
+                            onChange={(e)=>this.changeHandle(e)}
+                        />
                     </div>
                 </div>
             </div>

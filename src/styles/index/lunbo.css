@@ -77,10 +77,10 @@
   font-size: 13px;
   line-height: 25px;
 }
-.index_lunbo_div_guanggao_con_ul li:hover{
+.index_lunbo_div_guanggao_con_ul li:hover a{
   color: #ff8601;
 }
-.index_lunbo_div_guanggao_con_ul li:first-child{
+.index_lunbo_div_guanggao_con_ul li:first-child a{
   color: #ff8601;
 }
 .index_lunbo_div_guanggao_con_div{
@@ -191,8 +191,9 @@
   margin-right: 10px;
   cursor: pointer;
 }
-.index_lunbo_div_guanggao_con_ul li{
-  cursor: pointer;
+
+.index_lunbo_div_guanggao_con_ul li a{
+  color: #333;
 }
 .guanggao{
   cursor: pointer;

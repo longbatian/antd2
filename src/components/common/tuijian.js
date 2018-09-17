@@ -73,7 +73,7 @@ class Tuijian extends React.Component{
                 </div>
                 <p>{item.name}</p>
                 <p>{item.enterprise}</p>
-                <p className='orange'>￥{item.goods_price}</p>
+                <p className='orange'>￥{item.price}</p>
             </td>
         });
     return(

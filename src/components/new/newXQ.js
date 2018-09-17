@@ -90,7 +90,6 @@ class NewXq2 extends React.Component {
         document.cookie = "nid=" + a;
 
 
-
         var nid = CoojiePage.getCoojie('nid');
         const that = this;
         //  广告位
@@ -141,14 +140,22 @@ class NewXq2 extends React.Component {
     }
 
     componentDidMount() {
+        this.startAjax()
 
-        var pid = CoojiePage.getCoojie('nid');
+    }
+    componentWillReceiveProps(){
+        this.startAjax()
+    }
+    startAjax() {
+        // console.log(this.props.match.params.id)
+        InterfaceUtil.goTop();
+        let pid = this.props.match.params.id;
         const that = this;
         //  广告位
         $.ajax({
             url: InterfaceUtil.getUrl(30),
             type: "post",
-            data:  InterfaceUtil.addTime({
+            data: InterfaceUtil.addTime({
                 'id': pid
             }),
             dataType: "json",
@@ -209,7 +216,6 @@ class NewXq2 extends React.Component {
 
             }
         });
-
     }
 
     render() {
@@ -262,14 +268,26 @@ class NewXq2 extends React.Component {
                         </div>
                     </div>
                     <div className='news_you floatRight marginTop10'>
-                        <p className='marginBottom10 news_pre cursor' data={this.state.pre.id} onClick={(e) => {
-                            this.huanye(e)
-                        }}>
-                            上一篇:{this.state.pre.title}</p>
-                        <p className='news_next cursor' data={this.state.next.id} onClick={(e) => {
-                            this.huanye(e)
-                        }}>
-                            下一篇:{this.state.next.title}</p>
+                        <Link to={'/NewXq/' + this.state.pre.id}>
+
+
+                            <p style={{color: '#333'}} className='marginBottom10 news_pre cursor'
+                               data={this.state.pre.id}
+                                //    onClick={(e) => {
+                                //     this.huanye(e)
+                                // }}
+                            >
+
+                                上一篇:{this.state.pre.title}</p>
+                        </Link>
+                        <Link to={'/NewXq/' + this.state.next.id}>
+                            <p style={{color: '#333'}} className='news_next cursor' data={this.state.next.id}
+                                //    onClick={(e) => {
+                                //     // this.huanye(e)
+                                // }}
+                            >
+                                下一篇:{this.state.next.title}</p>
+                        </Link>
                     </div>
                     <div className='clear'></div>
                 </div>

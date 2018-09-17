@@ -74,7 +74,7 @@ ReactDOM.render((
             <Route  path="/HelpZx" component={HelpZx} />
             <Route  path="/Xiangqing" component={Xiangqing} />
             <Route  path="/InformationPage" component={InformationPage}/>
-            <Route  path="/NewXq" component={NewXq} />
+            <Route  path="/NewXq/:id" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
             <Route  path="/Integral" >
                 <div>

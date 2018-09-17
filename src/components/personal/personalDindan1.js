@@ -36,137 +36,20 @@ class PersonalDindan extends React.Component {
     /**
      *传值订单id
      */
-    xiangqing(e,a) {
+    xiangqing(e, a) {
         document.cookie = "order_id=" + a;
     }
 
     //切换颜色
-    color(e) {
+    color(e,id) {
         $('.shoucang_head').removeClass('orange');
         e.target.className = 'shoucang_head orange cursor';
         var a = e.target.innerText;
         var zhongwen = /[\u4e00-\u9fa5]/g;
         var b = a.match(zhongwen).join('');
-        if (b == '待付款') {
-            document.cookie = "ddzt=" + '1';
+        document.cookie='ddzt='+id;
+        this.ajaxPersonDingDan();
 
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var user_id = CoojiePage.getCoojie('user_id');
-            const that = this;
-            //订单ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(35),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 1
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            dingdan: data.data.list,
-                            cons: data.data.cons,
-                        });
-                        that.refs.dingdan.className = 'display'
-                    }
-                }
-            });
-            // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);
-
-        }
-        else if (b == '待收货') {
-            document.cookie = "ddzt=" + '3';
-
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var user_id = CoojiePage.getCoojie('user_id');
-            const that = this;
-            //订单ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(35),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 3
-                    // "username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id+"&ddzt=3"
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            dingdan: data.data.list,
-                            cons: data.data.cons,
-                        });
-                        that.refs.dingdan.className = 'display'
-                    }
-                }
-            });
-
-
-        }
-        else if (b == '已完成') {
-            document.cookie = "ddzt=" + '4';
-
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var user_id = CoojiePage.getCoojie('user_id');
-            const that = this;
-            //订单ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(35),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id, "ddzt": 4
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            dingdan: data.data.list,
-                            cons: data.data.cons,
-                        });
-                        that.refs.dingdan.className = 'display'
-                    }
-                }
-            });
-            // ajax.send("username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id+"&ddzt=4");
-        }
-        else if (b == '全部') {
-            document.cookie = "ddzt=" + '';
-
-            var username = CoojiePage.getCoojie('username');
-            var token = CoojiePage.getCoojie('token');
-            var user_id = CoojiePage.getCoojie('user_id');
-            const that = this;
-            //订单ajax
-            $.ajax({
-                url: InterfaceUtil.getUrl(35),
-                type: "post",
-                data: {
-                    "username": username, "token": token, "page": 1, "limit": 5, "user_id": user_id
-                    // "username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.data.length == 0) {
-
-                    } else {
-                        that.setState({
-                            dingdan: data.data.list,
-                            cons: data.data.cons,
-                        });
-                        that.refs.dingdan.className = 'display'
-                    }
-                }
-            });
-            // ajax.send("username="+username+"&token="+token+"&page=1&limit=5&user_id="+user_id);
-        }
     }
 
     //查看时间
@@ -287,7 +170,7 @@ class PersonalDindan extends React.Component {
     }
 
     //取消订单
-    quxiaoDD(e,id) {
+    quxiaoDD(e, id) {
         var zhi = e.target.innerText;
         // var id = e.target.parentNode.firstChild.value;
         if (zhi == '取消订单') {
@@ -298,7 +181,7 @@ class PersonalDindan extends React.Component {
             $.ajax({
                 url: InterfaceUtil.getUrl(37),
                 type: "post",
-                data:InterfaceUtil.addTime( {
+                data: InterfaceUtil.addTime({
                     "user_id": user_id, "token": token, "order_id": id
                 }),
                 dataType: "json",
@@ -320,13 +203,13 @@ class PersonalDindan extends React.Component {
                 url: InterfaceUtil.getUrl(38),
                 type: "post",
                 data: InterfaceUtil.addTime({
-                   "token": token, "user_id": user_id, "order_id": id
+                    "token": token, "user_id": user_id, "order_id": id
                 }),
                 dataType: "json",
                 success: function (data) {
 
                     if (data.code == '1') {
-                       CoojiePage.setBuyCarOk();
+                        CoojiePage.setBuyCarOk();
                     } else {
                         var no = document.getElementsByClassName('buycar_no');
                         var no_span = document.getElementsByClassName('buycar_no_con_span');
@@ -407,47 +290,47 @@ class PersonalDindan extends React.Component {
                     <p className='marginLeft20 fontFamily fontWeight floatleft'>所有订单</p>
                     <ul>
                         <li className='shoucang_head cursor orange' onClick={(e) => {
-                            this.color(e)
+                            this.color(e,0)
                         }}>全部
                         </li>
-                        <div className='shu floatleft'/>
+
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e)
+                            this.color(e,1)
                         }}>待付款&nbsp;&nbsp;&nbsp;{this.state.ddzt0}</li>
-                        <div className='shu floatleft'/>
+
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e)
+                            this.color(e,3)
                         }}>待收货&nbsp;&nbsp;&nbsp;{this.state.ddzt1}</li>
-                        <div className='shu floatleft'/>
+
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e)
+                            this.color(e,4)
                         }}>已完成&nbsp;&nbsp;&nbsp;{this.state.ddzt2}</li>
                         <div className='clear'/>
                     </ul>
                 </div>
                 <div className='bgWhite'>
                     {/*编号查询*/}
-                    <div className='width988 white'>
-                        {/*输入框*/}
-                        <div className='personal_Dindan_con_inp'>
-                            <div className="example-input floatRight marginRight20">
-                                <Input placeholder="订单编号" className='dingdanbianhao'/>
-                                <Select defaultValue='全部' style={{width: 200}}>
-                                    <Option value="全部">全部</Option>
-                                    <Option value="近一周">近一周</Option>
-                                    <Option value="近一月">近一月</Option>
-                                    <Option value="近三月">近三月</Option>
-                                    <Option value="近半年">近半年</Option>
-                                    <Option value="近一年">近一年</Option>
-                                    <Option value="一年以前">一年以前</Option>
-                                </Select>
-                                <Button icon="search" style={{marginLeft: 10}} onClick={(e) => {
-                                    this.time1(e)
-                                }}>查询</Button>
-                            </div>
-                            <div className='clear'></div>
-                        </div>
-                    </div>
+                    {/*<div className='width988 white'>*/}
+                    {/*/!*输入框*!/*/}
+                    {/*//     <div className='personal_Dindan_con_inp'>*/}
+                    {/*//         <div className="example-input floatRight marginRight20">*/}
+                    {/*/!*<Input placeholder="订单编号" className='dingdanbianhao'/>*!/*/}
+                    {/*/!*<Select defaultValue='全部' style={{width: 200}}>*!/*/}
+                    {/*/!*<Option value="全部">全部</Option>*!/*/}
+                    {/*/!*<Option value="1">近一周</Option>*!/*/}
+                    {/*/!*<Option value="2">近一月</Option>*!/*/}
+                    {/*//                 <Option value="3">近三月</Option>*/}
+                    {/*//                 <Option value="4">近半年</Option>*/}
+                    {/*//                 <Option value="近一年">近一年</Option>*/}
+                    {/*<Option value="一年以前">一年以前</Option>*/}
+                    {/*</Select>*/}
+                    {/*/!*<Button icon="search" style={{marginLeft: 10}} onClick={(e) => {*!/*/}
+                    {/*/!*this.time1(e)*!/*/}
+                    {/*/!*}}>查询</Button>*!/*/}
+                    {/*</div>*/}
+                    {/*<div className='clear'></div>*/}
+                    {/*</div>*/}
+                    {/*</div>*/}
                     {/*订单详情*/}
                     <div className='width988 bgWhite'>
                         <table className='personal_Dindan_con1_table'>
@@ -501,19 +384,19 @@ class PersonalDindan extends React.Component {
 
                                     }
                                     let times = InterfaceUtil.fmtDate(item.created_time);
-                                    let order_status='';
-                                    if(item.order_status==='5'){
-                                        order_status='交易关闭'
-                                    }else if(item.order_status==='1'){
-                                        order_status='未付款'
-                                    }else if(item.order_status==='2'){
-                                        order_status='待发货'
-                                    }else if(item.order_status==='3'){
-                                        order_status='待收货'
-                                    }else if(item.order_status==='4'){
-                                        order_status='交易完成'
-                                    }else if(item.order_status==='6'){
-                                        order_status='退款中'
+                                    let order_status = '';
+                                    if (item.order_status === '5') {
+                                        order_status = '交易关闭'
+                                    } else if (item.order_status === '1') {
+                                        order_status = '未付款'
+                                    } else if (item.order_status === '2') {
+                                        order_status = '待发货'
+                                    } else if (item.order_status === '3') {
+                                        order_status = '待收货'
+                                    } else if (item.order_status === '4') {
+                                        order_status = '交易完成'
+                                    } else if (item.order_status === '6') {
+                                        order_status = '退款中'
                                     }
 
                                     return (
@@ -564,10 +447,10 @@ class PersonalDindan extends React.Component {
                                                 &nbsp;
                                                 <Link to="/Xiangqing" className='black'><span className='orange'
                                                                                               onClick={(e) => {
-                                                                                                  this.xiangqing(e,item.id)
+                                                                                                  this.xiangqing(e, item.id)
                                                                                               }}>查看订单</span></Link>&nbsp;
                                                 <span className={dingdanClassName} onClick={(e) => {
-                                                    this.quxiaoDD(e,item.id)
+                                                    this.quxiaoDD(e, item.id)
                                                 }}>{dingdanState}</span>
                                             </td>
                                         </tr>

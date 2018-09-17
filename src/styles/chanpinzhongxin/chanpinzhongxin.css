@@ -317,6 +317,9 @@
   margin:0 0 0 10px;
   font-size: 12px;
   min-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chanpinzhongxin_right_con_ul {

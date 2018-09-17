@@ -13,7 +13,7 @@ import $ from 'jquery';
 import '../../styles/personal/personalCaigou.css'
 // import $ from "../../js/jquery.min";
 const confirm = Modal.confirm;
-
+const Option = Select.Option;
 //查询事件
 function handleChange(value) {
 
@@ -49,6 +49,7 @@ class PersonalCaigou extends React.Component {
             checked: '',
             cons: '',
             page: 1,
+            time:1,
         }
     }
 
@@ -141,19 +142,7 @@ class PersonalCaigou extends React.Component {
 
             }
         });
-        // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/addcartall",false);
-        // ajax.open('post',InterfaceUtil.getUrl(32),false);
-        // ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-        // ajax.onreadystatechange = function() {
-        //   if (ajax.readyState == 4 && ajax.status == 200 || ajax.status == 304) { // readyState == 4说明请求已完成
-        //     var data=ajax.responseText;
-        //     data=JSON.parse(data);
 
-        //   }
-        // };
-
-
-        // ajax.send("username="+username+"&token="+token+"&goods_id="+id+"&goods_sl="+num);
     }
 
     buycar4(e) {
@@ -215,16 +204,17 @@ class PersonalCaigou extends React.Component {
             url: InterfaceUtil.getUrl(33),
             type: "post",
             data: InterfaceUtil.addTime({
-                "token": token, "user_id": user_id, "page": that.state.page, "pageSize": 10
+                "token": token, "user_id": user_id, "page": that.state.page, "pageSize": 10,
+                time: that.state.time
             }),
             dataType: "json",
             success: function (data) {
-
+                console.log(data)
                 if (data.code == 1) {
-                    // that.setState({
-                    //     zncg: data.data.list,
-                    //     cons: data.data.cons
-                    // });
+                    that.setState({
+                        zncg: data.data.list,
+                        cons: data.data.count
+                    });
                     that.refs.shoucang.className = 'display'
                 }
             },
@@ -239,6 +229,13 @@ class PersonalCaigou extends React.Component {
         let index=$(e.target).attr('data-class');
         $('.zcB').hide();
         $('.'+index).show();
+    }
+    handleChange(e){
+        this.setState({
+            time:e
+        },()=>{
+            this.startAjax()
+        })
     }
     render() {
         return (
@@ -275,34 +272,36 @@ class PersonalCaigou extends React.Component {
                         {/*输入框*/}
                         <div className='personal_Dindan_con_inp'>
                             <div className="example-input floatRight marginRight20 ">
-                                <Select defaultValue='全部' style={{width: 200}} onChange={handleChange}>
-                                    <option value="全部">全部</option>
-                                    <option value="近一周">近一周</option>
-                                    <option value="近一月">近一月</option>
-                                    <option value="近三月">近三月</option>
-                                    <option value="近半年">近半年</option>
-                                    <option value="近一年">近一年</option>
-                                    <option value="一年以前">一年以前</option>
+                                <span>筛选: </span>
+                                <Select defaultValue='近一周'
+                                        style={{width: 200}}
+                                        onChange={(e)=>this.handleChange(e)}>
+                                    <Option value="1">近一周</Option>
+                                    <Option value="2">近一月</Option>
+                                    <Option value="3">近三月</Option>
+                                    <Option value="4">近半年</Option>
+                                    <Option value="5">近一年</Option>
+                                    <Option value="6">一年以前</Option>
                                 </Select>
-                                <Button icon="search" style={{marginLeft: 10}}>查询</Button>
+                                {/*<Button icon="search" style={{marginLeft: 10}}>查询</Button>*/}
                             </div>
                             <div className='clear'></div>
                         </div>
                         {/*全选删除*/}
-                        <div className='personal_zhanneixin_top marginLeft20'>
-                            <p>
-                            <span className='personal_wodechoucang_top_span marginRight5'><
-                                input type="checkbox"
-                                      onClick={(e) => {
-                                          this.quanxuan(e)
-                                      }}
-                                      className='quanxuan'/></span>
-                                <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-                                <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
-                                    this.buycar3(e)
-                                }}>加入购物车</span>
-                            </p>
-                        </div>
+                        {/*<div className='personal_zhanneixin_top marginLeft20'>*/}
+                            {/*<p>*/}
+                            {/*<span className='personal_wodechoucang_top_span marginRight5'><*/}
+                                {/*input type="checkbox"*/}
+                                      {/*onClick={(e) => {*/}
+                                          {/*this.quanxuan(e)*/}
+                                      {/*}}*/}
+                                      {/*className='quanxuan'/></span>*/}
+                                {/*<span className='personal_zhanneixin_top_span1 cursor'>全选</span>*/}
+                                {/*<span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {*/}
+                                    {/*this.buycar3(e)*/}
+                                {/*}}>加入购物车</span>*/}
+                            {/*</p>*/}
+                        {/*</div>*/}
                         {/*输入框*/}
                         <table className='personal_Caigou_table marginTop20'>
                             <thead>
@@ -355,26 +354,31 @@ class PersonalCaigou extends React.Component {
                             </tr>
                             </tbody>
                         </table>
-                        <div className='personal_zhanneixin_top marginTop20 marginLeft20'>
-                            <p>
-                            <span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"
-                                                                                                 className='quanxuan1'
-                                                                                                 onClick={(e) => {
-                                                                                                     this.quanxuan1(e)
-                                                                                                 }}/></span>
-                                <span className='personal_zhanneixin_top_span1 cursor'>全选</span>
-                                <span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {
-                                    this.buycar3(e)
-                                }}>加入购物车</span>
-                            </p>
-                        </div>
+                        {/*<div className='personal_zhanneixin_top marginTop20 marginLeft20'>*/}
+                            {/*<p>*/}
+                            {/*<span className='personal_wodechoucang_top_span marginRight5'><input type="checkbox"*/}
+                                                                                                 {/*className='quanxuan1'*/}
+                                                                                                 {/*onClick={(e) => {*/}
+                                                                                                     {/*this.quanxuan1(e)*/}
+                                                                                                 {/*}}/></span>*/}
+                                {/*<span className='personal_zhanneixin_top_span1 cursor'>全选</span>*/}
+                                {/*<span className='personal_zhanneixin_top_span4 cursor' onClick={(e) => {*/}
+                                    {/*this.buycar3(e)*/}
+                                {/*}}>加入购物车</span>*/}
+                            {/*</p>*/}
+                        {/*</div>*/}
                         {/*分页*/}
                         <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
-                        <span className='floatRight personal_zhanneixin_title_div3_span3'><Pagination
-                            showQuickJumper={true} defaultCurrent={1} defaultPageSize={12} total={this.state.cons}
+                        <span className='floatRight personal_zhanneixin_title_div3_span3'>
+                            <Pagination
+                            showQuickJumper={true}
+                            defaultCurrent={1}
+                            defaultPageSize={10}
+                            total={this.state.cons}
                             onChange={(e) => {
                                 this.fenye(e)
-                            }}/></span>
+                            }}/>
+                        </span>
                             <div className='clear'></div>
                         </div>
                         <div className='xian'></div>
@@ -395,9 +399,7 @@ class PersonalCaigou extends React.Component {
         );
     }
 
-    componentDidUpdate() {
 
-    }
 }
 
 

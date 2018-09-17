@@ -257,9 +257,12 @@
 }
 .znConul li .znConulTit {
   margin-left: 5px;
+  margin-top: 5px;
 }
 .znConul li .znConulCon {
   color: #FE8502;
+  margin-right: 20px;
+  margin-top: 5px;
 }
 .znbox2 {
   padding: 0 0 20px;

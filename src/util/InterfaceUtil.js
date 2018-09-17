@@ -105,6 +105,7 @@ let urls = [
     '/goods/package_goods',//75
     '/orders/wechat_pay_h5',//76微信支付
     '/orders/wechat_pay_js',//77微信公众号支付
+    '/users/want_buy_list',//78求购列表
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil {
@@ -244,6 +245,10 @@ export default class InterfaceUtil {
      */
     static wapUrl(){
         return 'http://www.scjuchuang.com'
+    }
+
+    static goTop(){
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
 
 }

@@ -75,12 +75,14 @@
   white-space: nowrap;
   font-size: 16px;
   margin-top: 10px;
+  color: #333;
 }
 .news_you_li_p_span1{
   display:inline-block;
   margin-top: 10px;
   width: 200px;
   text-align: right;
+  color: #333;
 }
 .news_you_li_p{
   width: 730px;
