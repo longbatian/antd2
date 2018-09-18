@@ -45,6 +45,7 @@ import Zhijun from "./pages/zhijun/Zhijun";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
+import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
 import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
 
 ReactDOM.render((
@@ -53,7 +54,7 @@ ReactDOM.render((
             <Route path="/Denglu" component={Denglu}/>
             <Route exact path="/" component={Index1}/>
             <Route exact path="/Index" component={Index1}/>
-            <Route path="/Chanpinzhongxin" component={Chanpinzhongxin} />
+            <Route path="/Chanpinzhongxin" component={Chanpinzhongxin}/>
             <Route path="/Shangpinxiangqing" component={Shangpinxiangqing} />
             <Route path="/Zhuce" component={Zhuce} />
             <Route  path="/Zhaohui" component={Zhaohui} />
@@ -100,6 +101,7 @@ ReactDOM.render((
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
                     <Route  path="/all/ActivityPage2" component={ActivityPage2}/> {/*中秋活动*/}
+                    <Route  path="/all/ActivityPage3" component={ActivityPage3}/> {/*中秋活动2*/}
                     <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>
