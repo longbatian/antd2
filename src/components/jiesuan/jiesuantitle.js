@@ -55,7 +55,7 @@ class Jiesuan extends React.Component {
                 youhui = parseFloat(youhui);
                 zongjia = parseFloat(zongjia);
                 var shifu = zongjia - youhui;
-                shifu=shifu.toFixed(2)
+                shifu = shifu.toFixed(2)
                 $('.jiesuan_shifu').text('￥' + shifu);
             }
         }
@@ -159,17 +159,19 @@ class Jiesuan extends React.Component {
                     {
                         this.state.sp.map(function (item, i) {
                             let activity_price = item.activity_price ? item.activity_price : item.price;
-
+                            let times=item.validity_time===0?null:InterfaceUtil.fmtDate(item.validity_time)
                             return (
                                 <div key={item.id + `sp` + i} className='jiesuan_div_div2'>
-                                    <div className='jiesuan_div_div1_div'><img src={this.state.lujin + item.image}
-                                                                               className='jiesuan_div_div1_div_img'
-                                                                               alt=""/></div>
+                                    <div className='jiesuan_div_div1_div'>
+                                        <img src={this.state.lujin + item.image}
+                                             className='jiesuan_div_div1_div_img'
+                                             alt=""/>
+                                    </div>
                                     <div className='jiesuan_div_div1_div1 hid'>{item.name}</div>
                                     <div className='jiesuan_div_div1_div2 hid'>{item.standard}</div>
                                     <div className='jiesuan_div_div1_div3 hid'>{item.enterprise}</div>
                                     <div className='jiesuan_div_div1_div4'>{item.unit}</div>
-                                    <div className='jiesuan_div_div1_div5'>{item.validity_time}</div>
+                                    <div className='jiesuan_div_div1_div5'>{times}</div>
                                     <div className='jiesuan_div_div1_div6'>{activity_price}</div>
                                     <div className='jiesuan_div_div1_div7'>{item.goods_num}</div>
                                     <div className='jiesuan_div_div1_div8'>{item.price_count}</div>

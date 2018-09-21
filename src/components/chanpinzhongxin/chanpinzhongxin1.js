@@ -978,7 +978,7 @@ class Chanpinzhongxin extends React.Component {
     }
 
     //加入购物车
-    buycar(e,shuliang,id) {
+    buycar(e, shuliang, id) {
         // var shuliang = e.target.parentNode.firstChild.getAttribute('value');
         // var id = e.target.parentNode.parentNode.firstChild.getAttribute('data');
         var username = CoojiePage.getCoojie('username');
@@ -1112,8 +1112,8 @@ class Chanpinzhongxin extends React.Component {
         var username = CoojiePage.getCoojie('username');
         var token = CoojiePage.getCoojie('token');
         const that = this;
-        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/products.html?&zjzx=1"
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl() + "/wap/compents/products.html?&zjzx=1"
         }
         $.ajax({
             url: InterfaceUtil.getUrl(23),
@@ -1183,8 +1183,8 @@ class Chanpinzhongxin extends React.Component {
         } else {
             $('.header_cd').find('li').eq(1).addClass('btn_Header');
         }
-        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            window.location.href = InterfaceUtil.wapUrl()+"/wap/compents/products.html?&zjzx="+zjzx
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = InterfaceUtil.wapUrl() + "/wap/compents/products.html?&zjzx=" + zjzx
         }
         if (did == undefined) {
             did = '';
@@ -1552,9 +1552,8 @@ class Chanpinzhongxin extends React.Component {
                                 let timesClass = item.validity_time * 1000 - new Date().getTime() >
                                 365 * 24 * 3600 * 1000 ? `` : 'red';
 
-                                let times = InterfaceUtil.fmtDate(item.validity_time);
-                                times = item.stock_num === 0 ? null : times;
-
+                                let times = item.validity_time === 0 ?
+                                    null : InterfaceUtil.fmtDate(item.validity_time);
                                 let spread = item.is_spread === `0` ? null : <div className="hotImg">
                                     <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
                                 </div>;
@@ -1618,7 +1617,7 @@ class Chanpinzhongxin extends React.Component {
                     </span>
                                             <button className='chanpinzhongxin_right_con_ul_btn floatleft'
                                                     onClick={(e) => {
-                                                        this.buycar(e,item.min_buy_,item.id)
+                                                        this.buycar(e, item.min_buy_, item.id)
                                                     }}>
                                                 <i className='shoppingCart'/>加入购物车
                                             </button>
@@ -1693,7 +1692,7 @@ class Chanpinzhongxin extends React.Component {
                                             </td>
                                             <td>
                         <span className='chanpinzhongxin_con1_table_span' onClick={(e) => {
-                            this.buycar(e,item.min_buy_,item.id)
+                            this.buycar(e, item.min_buy_, item.id)
                         }}>加入购物车</span>
                                                 <span
                                                     className={Collection}

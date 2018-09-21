@@ -172,7 +172,7 @@ class Yincanglan extends React.Component{
        <ul className='xuanxiang'>
          {/*<li className='xuanxiang_li' onMouseOver={(e)=>{this.color4(e)}} onMouseOut={(e)=>{this.color5(e)}}>*/}
          <li className='xuanxiang_li'>
-           <a href="http://sighttp.qq.com/msgrd?v=1&uin=2885052533" target='_target'>
+           <a href="http://sighttp.qq.com/msgrd?v=1&uin=2880123033" target='_target'>
              <img src={require("../../images/index/kefu.png")} alt=""/>
              <span className='xuanxiang1_li display'>
               客服咨询

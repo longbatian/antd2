@@ -17,6 +17,7 @@ class NewXq2 extends React.Component {
             pre: '',
             next: '',
             lujin: InterfaceUtil.getImgUrl(),
+            isS:false,
         }
     }
 
@@ -141,13 +142,15 @@ class NewXq2 extends React.Component {
 
     componentDidMount() {
         this.startAjax()
-
     }
     componentWillReceiveProps(){
-        this.startAjax()
+        this.setState({
+            isS:!this.state.isS
+        },()=>{
+            this.startAjax()
+        })
     }
     startAjax() {
-        // console.log(this.props.match.params.id)
         InterfaceUtil.goTop();
         let pid = this.props.match.params.id;
         const that = this;
@@ -296,9 +299,6 @@ class NewXq2 extends React.Component {
         )
     }
 
-    componentDidUpdate() {
-
-    }
 }
 
 export default withRouter(NewXq2);

@@ -101,7 +101,7 @@ ReactDOM.render((
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
                     <Route  path="/all/ActivityPage2" component={ActivityPage2}/> {/*中秋活动*/}
-                    <Route  path="/all/ActivityPage3" component={ActivityPage3}/> {/*中秋活动2*/}
+                    <Route  path="/all/ActivityPage3" component={ActivityPage3}/> {/*中秋活动*/}
                     <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>

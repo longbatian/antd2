@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import InterfaceUtil from './../../../util/InterfaceUtil';
 import Greatvaluecoupon from './conponents/Greatvaluecoupon';
 import IthTemplate from './conponents/IthTemplate';
@@ -38,6 +38,8 @@ class IntegralHome extends Component {
                         integralArray: datas.coupon_list,
                         con: datas.goods_list
                     })
+                }else {
+
                 }
             }
         })
@@ -56,6 +58,8 @@ class IntegralHome extends Component {
                         username: data.data.username,
                         integral: data.data.integral
                     })
+                }else {
+                    InterfaceUtil.isTokenLast(data.code,_this.props)
                 }
 
             }
@@ -163,4 +167,4 @@ class IntegralHome extends Component {
     }
 }
 
-export default IntegralHome;
+export default withRouter(IntegralHome);

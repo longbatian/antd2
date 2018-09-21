@@ -247,8 +247,17 @@ export default class InterfaceUtil {
         return 'http://www.scjuchuang.com'
     }
 
+    /**
+     *
+     */
     static goTop(){
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
+
+    static isTokenLast(flag,prop){
+        if(flag!=1){
+            prop.history.push('/Denglu')
+        }
     }
 
 }
