@@ -414,7 +414,7 @@ class Shangpinxiangqing extends React.Component {
                         let isActivity = item.activity_price ? <span key={i + 'isActivity'}>
                           <span className='font20 orange'>{item.activity_price}</span>
                           <span className='shangpinxiangqing_sp_xinxi_jiage_span'>￥{item.price}</span>
-                            <span className='red font13 bold'>( {islimit})</span>
+                            <span className='red font13 bold'>({islimit})</span>
                         </span> :
                             <span className='font20 orange'>{item.price}</span>;
                         let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
