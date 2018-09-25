@@ -12,11 +12,16 @@ class BalancePage1 extends Component {
         this.user_id = CoojiePage.getCoojie('user_id');
         this.token = CoojiePage.getCoojie('token');
         this.state = {
-            list: []
+            list: [],
+            page: 1,
+            nums: 1,
         }
     }
 
     componentDidMount() {
+        this.startAjax()
+    }
+    startAjax(){
         const _this = this;
         $.ajax({
             url: InterfaceUtil.getUrl(41),
@@ -24,33 +29,36 @@ class BalancePage1 extends Component {
             data: InterfaceUtil.addTime({
                 user_id: _this.user_id,
                 token: _this.token,
-                page: 1,
+                page: _this.state.page,
                 pageSize: 10
             }),
             dataType: "json",
             success: function (data) {
-                // console.log(data);
                 if (data.code === 1) {
                     _this.setState({
                         list: data.data.list,
+                        nums:data.data.count,
                     })
                 } else {
                     message.error(data.msg)
                 }
             }
         })
-
-
     }
-
     clickTitle(e) {
-
         $('.bl1ul').find('li').eq(e).click();
     }
-
+    changesPage(e){
+        this.setState({
+            page:e
+        },()=>{
+            InterfaceUtil.goTop();
+            this.startAjax()})
+    }
     render() {
         let data = this.props;
         let list = this.state.list;
+        const datas=this.state;
         let arry = list.length > 0 ? list.map((item, i) => {
             let type = 1;
             if (item.type === `1`) {
@@ -121,7 +129,10 @@ class BalancePage1 extends Component {
                 </tbody>
             </table>
             <div className='paginationbox'>
-                <Pagination showQuickJumper defaultCurrent={100} total={1}/>
+                <Pagination showQuickJumper defaultPageSize={10}
+                            defaultCurrent={1} current={datas.page} total={datas.nums}
+                            onChange={(e) => this.changesPage(e)}
+                />
             </div>
 
         </div>
