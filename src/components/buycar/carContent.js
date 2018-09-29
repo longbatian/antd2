@@ -130,15 +130,16 @@ class Gouwuche2 extends React.Component {
     }
 
     showJieSuan(heji) {
-        var minM = this.state.minMoey;
-        // parseInt
-        heji = parseInt(heji)
+        var minM = parseInt(this.state.minMoey);
+        heji=parseInt(heji);
         if (heji >= minM) {
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu').show();
         } else {
+            let chaMoey=minM-heji;
             $('.tishi_anniu1,.tishi_anniu').hide();
             $('.tishi_anniu1').show();
+            $('.tishi_jiage').text(chaMoey)
         }
     }
 

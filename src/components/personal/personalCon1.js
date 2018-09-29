@@ -57,7 +57,7 @@ class personalBox extends React.Component {
     }
 
     //查看订单
-    xiangqing1(e,id) {
+    xiangqing1(e, id) {
         // var a = e.target.parentNode.parentNode.parentNode.firstChild.innerText;
         // var order_id = a;
         sessionStorage.setItem("orderno", id);
@@ -77,7 +77,7 @@ class personalBox extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(10),
             type: "post",
-            data:  InterfaceUtil.addTime({
+            data: InterfaceUtil.addTime({
                 "token": token, "user_id": user_id, "goods_id": id
             }),
             dataType: "json",
@@ -109,8 +109,8 @@ class personalBox extends React.Component {
         // }
 
         var username = CoojiePage.getCoojie('username');
-        var token =  CoojiePage.getCoojie('token');
-        var user_id =  CoojiePage.getCoojie('user_id');
+        var token = CoojiePage.getCoojie('token');
+        var user_id = CoojiePage.getCoojie('user_id');
         const that = this;
         //搜索条件ajax
 
@@ -125,8 +125,8 @@ class personalBox extends React.Component {
                 if (data.code == '1') {
                     var ok = $('.buycar_ok');
                     ok[0].className = 'buycar_ok';
-                    var timer1 =setTimeout(function () {
-                        ok.eq(0).attr('class','buycar_ok display')
+                    var timer1 = setTimeout(function () {
+                        ok.eq(0).attr('class', 'buycar_ok display')
                         // ok[0].className = 'buycar_ok display';
                     }, 3000);
                 } else {
@@ -160,45 +160,27 @@ class personalBox extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
-                if (!data.data) return;
-                var data=data.data;
-                that.setState({
-                    username: data.username,
-                    dwmc: data.enterprise,
-                    jfye: data.integral,
-                    // zzyxq: data.data[0].zzyxq,
-                    hydj: data.level,
-                    // shzt: data.data[0].shzt,
-                    ddzt1: data.pay_order,
-                    ddzt3: data.send_order,
-                    znx: data.message_count,
-                    coupons: data.coupon_count,
-                    // zzxq: data.data[0],
-                    // url: data.data[0].user_photo,
-                });
-                // var xq = document.getElementsByClassName('a');
-                // let xqs=$('.a');
-                // if (data.data[0].z1 != 1) {
-                //     xqs.eq(0).attr('class','zizhixiaoqi_span1 a red')
-                //     // xq[0].className = 'zizhixiaoqi_span1 a red'
-                // }
-                // if (data.data[0].z2 != 1) {
-                //     xqs.eq(1).attr('class','zizhixiaoqi_span2 a red')
-                //     // xq[1].className = 'zizhixiaoqi_span2 a red'
-                // }
-                // if (data.data[0].z3 != 1) {
-                //      xqs.eq(2).attr('class','zizhixiaoqi_span2 a red')
-                //     // xq[2].className = 'zizhixiaoqi_span2 a red'
-                // }
-                // if (data.data[0].z4 != 1) {
-                //      xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
-                //     // xq[3].className = 'zizhixiaoqi_span2 a red'
-                // }
-                // if (data.data[0].z5 != 1) {
-                //      xqs.eq(3).attr('class','zizhixiaoqi_span2 a red')
-                //     // xq[4].className = 'zizhixiaoqi_span2 a red'
-                // }
+                if (data.code === 1) {
+                    if (!data.data) return;
+                    var data = data.data;
+                    that.setState({
+                        username: data.username,
+                        dwmc: data.enterprise,
+                        jfye: data.integral,
+                        // zzyxq: data.data[0].zzyxq,
+                        hydj: data.level,
+                        // shzt: data.data[0].shzt,
+                        ddzt1: data.pay_order,
+                        ddzt3: data.send_order,
+                        znx: data.message_count,
+                        coupons: data.coupon_count,
+                        // zzxq: data.data[0],
+                        // url: data.data[0].user_photo,
+                    });
+                }else {
+                    that.props.history.push('./Denglu')
+                }
+
 
             }
         });
@@ -239,7 +221,7 @@ class personalBox extends React.Component {
         $.ajax({
             url: InterfaceUtil.getUrl(36),
             type: "post",
-            data: InterfaceUtil.addTime( {
+            data: InterfaceUtil.addTime({
                 "user_id": user_id, "token": token, "page": 1, "pageSize": 3
             }),
             dataType: "json",
@@ -365,20 +347,20 @@ class personalBox extends React.Component {
                                         <span className='personalCon1_current' onClick={(e) => {
                                             this.qufukuan1(e, item.order_number)
                                         }}>去付款</span> : <span className='nulls'></span>
-                                    let times=InterfaceUtil.fmtDate(item.created_time);
-                                    let order_status='';
-                                    if(item.order_status==='5'){
-                                        order_status='交易关闭'
-                                    }else if(item.order_status==='1'){
-                                        order_status='未付款'
-                                    }else if(item.order_status==='2'){
-                                        order_status='待发货'
-                                    }else if(item.order_status==='3'){
-                                        order_status='待收货'
-                                    }else if(item.order_status==='4'){
-                                        order_status='交易完成'
-                                    }else if(item.order_status==='6'){
-                                        order_status='退款中'
+                                    let times = InterfaceUtil.fmtDate(item.created_time);
+                                    let order_status = '';
+                                    if (item.order_status === '5') {
+                                        order_status = '交易关闭'
+                                    } else if (item.order_status === '1') {
+                                        order_status = '未付款'
+                                    } else if (item.order_status === '2') {
+                                        order_status = '待发货'
+                                    } else if (item.order_status === '3') {
+                                        order_status = '待收货'
+                                    } else if (item.order_status === '4') {
+                                        order_status = '交易完成'
+                                    } else if (item.order_status === '6') {
+                                        order_status = '退款中'
                                     }
                                     return (
                                         <tr key={i}>
@@ -390,32 +372,32 @@ class personalBox extends React.Component {
                                             <td className='personalCon1_table_tr'>
                                                 {/*<span className='orange'>{item.ddzt} </span>*/}
                                                 {/*<span className='marginLeft5 blue'*/}
-                                                      {/*onMouseOver={(e) => {*/}
-                                                          {/*this.dingdangenzong(e)*/}
-                                                      {/*}}*/}
-                                                      {/*onMouseOut={(e) => {*/}
-                                                          {/*this.dingdangenzong1(e)*/}
-                                                      {/*}}>*/}
-                                                      {/*订单跟踪*/}
+                                                {/*onMouseOver={(e) => {*/}
+                                                {/*this.dingdangenzong(e)*/}
+                                                {/*}}*/}
+                                                {/*onMouseOut={(e) => {*/}
+                                                {/*this.dingdangenzong1(e)*/}
+                                                {/*}}>*/}
+                                                {/*订单跟踪*/}
                                                 {/*</span>*/}
                                                 {/*订单跟踪*/}
                                                 {/*<div className='personalCon1_xuanfu display'>*/}
-                                                    {/*/!*订单跟踪*!/*/}
-                                                    {/*<Timeline className='wlxx'>*/}
-                                                        {/*{*/}
-                                                            {/*this.state.dingdan9[i].wl.map(function (item, i) {*/}
-                                                                {/*return (*/}
-                                                                    {/*<Timeline.Item*/}
-                                                                        {/*key={i}>*/}
-                                                                        {/*<span> {item.createtime} {item.wldw}</span></Timeline.Item>*/}
-                                                                {/*)*/}
-                                                            {/*}, this)*/}
-                                                        {/*}*/}
+                                                {/*/!*订单跟踪*!/*/}
+                                                {/*<Timeline className='wlxx'>*/}
+                                                {/*{*/}
+                                                {/*this.state.dingdan9[i].wl.map(function (item, i) {*/}
+                                                {/*return (*/}
+                                                {/*<Timeline.Item*/}
+                                                {/*key={i}>*/}
+                                                {/*<span> {item.createtime} {item.wldw}</span></Timeline.Item>*/}
+                                                {/*)*/}
+                                                {/*}, this)*/}
+                                                {/*}*/}
                                                 {order_status}
-                                                    {/*</Timeline>*/}
-                                                    {/*<Timeline className='ZWwlxx display'>*/}
-                                                        {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
-                                                    {/*</Timeline>*/}
+                                                {/*</Timeline>*/}
+                                                {/*<Timeline className='ZWwlxx display'>*/}
+                                                {/*<Timeline.Item><span> 暂无物流信息</span></Timeline.Item>*/}
+                                                {/*</Timeline>*/}
 
 
                                                 {/*</div>*/}
@@ -424,7 +406,7 @@ class personalBox extends React.Component {
                                             <td data={item.order_number}>
                                                 {orderState}
                                                 <Link to="/Xiangqing" className='black'><span onClick={(e) => {
-                                                    this.xiangqing1(e,item.id)
+                                                    this.xiangqing1(e, item.id)
                                                 }}> 查看订单</span></Link>
                                             </td>
                                         </tr>
@@ -470,7 +452,8 @@ class personalBox extends React.Component {
                                 this.state.jylx.map(function (item) {
                                     if (this.state.jylx.length != []) {
                                         return (
-                                            <tr key={item.goods_id + 'perConJy'} data={item.goods_id} data-index={item.min_buy}
+                                            <tr key={item.goods_id + 'perConJy'} data={item.goods_id}
+                                                data-index={item.min_buy}
                                                 data-a={item.goods_id}>
                                                 <td><img className='collectionImg' src={this.state.lujin + item.image}/>
                                                 </td>

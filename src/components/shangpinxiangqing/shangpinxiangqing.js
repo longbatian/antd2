@@ -467,7 +467,7 @@ class Shangpinxiangqing extends React.Component {
                                             <span
                                                 className='shangpinxiangqing_sp_xinxi_ziliao_kuan hid'>商品规格：{item.standard}</span>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>批准文号：{item.pzwh}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>批准文号：{item.approval_number}</span>
 
                                         </div>
                                         {/*厂家*/}

@@ -73,22 +73,20 @@ class Spikeactivity extends React.Component {
 
     suanshijian(start, end) {
         // const _this=this;
-        var timesI = null;
+        // var timesI = null;
         var start = start * 1000;
         var end = end * 1000;
 
         var timestamp = Date.parse(new Date());
         if (timestamp < start) {
-            timesI = setInterval(function () {
+            var timesI = setInterval(function () {
                 var countDownTime = '';
                 var endTime = end;
                 var nowTime = new Date();
                 var t = start - nowTime.getTime();
-                if (t === 0) {
+                if (t < 0) {
                     clearInterval(timesI);
-                    return
                 }
-                ;
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);
@@ -128,16 +126,14 @@ class Spikeactivity extends React.Component {
                 秒 开始
             </div>;
         } else if (start < timestamp && timestamp < end) {
-            timesI = setInterval(function () {
+            var timesI = setInterval(function () {
                 var countDownTime = '';
                 var endTime = end;
                 var nowTime = new Date();
                 var t = endTime - nowTime.getTime();
-                if (t === 0) {
+                if (t < 0) {
                     clearInterval(timesI);
-                    return
                 }
-                ;
                 var d = Math.floor(t / 1000 / 60 / 60 / 24);
                 var hour = Math.floor(t / 1000 / 60 / 60 % 24);
                 var min = Math.floor(t / 1000 / 60 % 60);

@@ -53,6 +53,7 @@ class BalancePage1 extends Component {
             page:e
         },()=>{
             InterfaceUtil.goTop();
+
             this.startAjax()})
     }
     render() {

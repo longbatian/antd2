@@ -20,7 +20,7 @@ class BalancePage1 extends Component {
     buttons() {
         const _this=this;
         let price=$('.bl3InputNum').val();
-        let account_info=$('.bl3InputNum').val();
+        let account_info=$('.bl3InputTit').val();
         let account_number=$('.bl3InputNameNum').val();
         let account_name=$('.bl3InputName').val();
         if (price !== `` &&  account_info!== `` && account_number !== `` &&  account_number!== ``) {
@@ -39,9 +39,9 @@ class BalancePage1 extends Component {
                 success: function (data, status) {
                     if (data.code===1){
                         message.success('提交成功，正在为您处理');
-                        $('.bl3InputNum').val(``)
-                        $('.bl3InputTit').val(``)
-                        $('.bl3InputNameNum').val(``)
+                        $('.bl3InputNum').val(``);
+                        $('.bl3InputTit').val(``);
+                        $('.bl3InputNameNum').val(``);
                         $('.bl3InputName').val(``);
                     }else {
                         message.warning(data.msg)

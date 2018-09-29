@@ -179,7 +179,22 @@ class PersonalXiangqing extends React.Component {
         let address = item.address ? item.address : {};
         let connum = item.goods_list ? item.goods_list.length + 1 : 1;
         times = InterfaceUtil.fmtDate(item.created_time);
-
+        let status='';
+        if(item.order_status==1){
+            status='未付款'
+        }else if(item.order_status==2){
+            status='待发货'
+        }else if(item.order_status==3){
+            status='待收货'
+        }else if(item.order_status==4){
+            status='交易完成'
+        }else if(item.order_status==5){
+            status='交易关闭'
+        }else if(item.order_status==6){
+            status='退款中'
+        }else if(item.order_status==7){
+            status='已退款'
+        }
         return (
             <div className=' width988 floatRight'>
                 {/*最近订单标题*/}
@@ -203,7 +218,7 @@ class PersonalXiangqing extends React.Component {
                                     &nbsp;&nbsp;&nbsp;订单号:<span
                                     className='fontFamily xiangqing_ddh'>&nbsp;{item.order_number}</span>
                                     &nbsp;&nbsp;&nbsp;状态：<span
-                                    className='orange fontFamily xiangqing_ddzt'>{item.order_status}</span>
+                                    className='orange fontFamily xiangqing_ddzt'>{status}</span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                     <span

@@ -10,7 +10,7 @@ import LoginPage from '../../util/LoginPage';
 import '../../styles/personal/personalZhanneixin.css'
 
 const confirm = Modal.confirm;
-
+const Option = Select.Option;
 class PersonalZhanneixin extends React.Component {
 
     handleCancel = () => {
@@ -73,42 +73,43 @@ class PersonalZhanneixin extends React.Component {
     }
 
     //未读已读
-    value1() {
-        var a = $('.ant-select-selection-selected-value').attr('title');
-        if (a == '全部信息') {
-            var a = ''
-        } else if (a == '已读信息') {
-            var a = '2'
-        } else if (a == '未读信息') {
-            var a = '1'
-        }
-
-        var username = CoojiePage.getCoojie('username');
-        var token = CoojiePage.getCoojie('token');
-        var user_id = CoojiePage.getCoojie('user_id');
-        const that = this;
-        //站内信
-        $.ajax({
-            url: InterfaceUtil.getUrl(48),
-            type: "post",
-            data: InterfaceUtil.addTime({
-                user_id: user_id,
-                token: token,
-                page: 1,
-                pageSize: 10
-            }),
-            dataType: "json",
-            success: function (data) {
-
-                if (data.data.length == 0) {
-
-                } else {
-                    that.setState({
-                        znx: data.data.list,
-                    });
-                }
-            }
-        });
+    value1(e) {
+        console.log(e)
+        // var a = $('.ant-select-selection-selected-value').attr('title');
+        // if (a == '全部信息') {
+        //     var a = ''
+        // } else if (a == '已读信息') {
+        //     var a = '2'
+        // } else if (a == '未读信息') {
+        //     var a = '1'
+        // }
+        //
+        // var username = CoojiePage.getCoojie('username');
+        // var token = CoojiePage.getCoojie('token');
+        // var user_id = CoojiePage.getCoojie('user_id');
+        // const that = this;
+        // //站内信
+        // $.ajax({
+        //     url: InterfaceUtil.getUrl(48),
+        //     type: "post",
+        //     data: InterfaceUtil.addTime({
+        //         user_id: user_id,
+        //         token: token,
+        //         page: 1,
+        //         pageSize: 10
+        //     }),
+        //     dataType: "json",
+        //     success: function (data) {
+        //
+        //         if (data.data.length == 0) {
+        //
+        //         } else {
+        //             that.setState({
+        //                 znx: data.data.list,
+        //             });
+        //         }
+        //     }
+        // });
 
     }
 
@@ -125,9 +126,9 @@ class PersonalZhanneixin extends React.Component {
     fenye(e) {
         this.setState({
             page: e
-        });
+        },()=>this.startAjax());
         // this.startAjax()
-        this.refs.dingdan.className = 'display'
+        // this.refs.dingdan.className = 'display'
 
     }
 
@@ -136,6 +137,7 @@ class PersonalZhanneixin extends React.Component {
     }
 
     startAjax() {
+        InterfaceUtil.goTop();
         let token = CoojiePage.getCoojie('token');
         let user_id = CoojiePage.getCoojie('user_id');
         const that = this;
@@ -205,6 +207,7 @@ class PersonalZhanneixin extends React.Component {
 
     showConfirm() {
         let id = [];
+        const _this=this;
         confirm({
             title: '温馨提示',
             content: '你确认删除该条留言',
@@ -223,8 +226,7 @@ class PersonalZhanneixin extends React.Component {
                 if (id.length === 0) {
                     message.warning('请至少选择一个删除');
                     return;
-                }
-                ;
+                };
                 let ids = id.join(',');
                 let user_id = CoojiePage.getCoojie('user_id');
                 let token = CoojiePage.getCoojie('token');
@@ -240,7 +242,7 @@ class PersonalZhanneixin extends React.Component {
                     success: function (data) {
 
                         if (data.code === 1) {
-
+                            _this.startAjax()
                         }
                     }
                 });
@@ -272,14 +274,18 @@ class PersonalZhanneixin extends React.Component {
                     {/*输入框*/}
                     <div className='personal_Dindan_con_inp'>
                         <div className="example-input floatRight marginRight20">
-                            <Select defaultValue='全部信息' style={{width: 200}} className='select_value'>
-                                <option value="全部信息">全部信息</option>
-                                <option value="未读信息">未读信息</option>
-                                <option value="已读信息">已读信息</option>
+                            <Select defaultValue='全部信息'
+                                    style={{width: 200}}
+                                    className='select_value'
+                                    onChange={(e)=>this.value1(e)}
+                            >
+                                <Option value="1">全部信息</Option>
+                                <Option value="2">未读信息</Option>
+                                <Option value="3">已读信息</Option>
                             </Select>
-                            <Button icon="search" style={{marginLeft: 10}} onClick={(e) => {
-                                this.value1(e)
-                            }}>查询</Button>
+                            {/*<Button icon="search" style={{marginLeft: 10}} onClick={(e) => {*/}
+                                {/*this.value1(e)*/}
+                            {/*}}>查询</Button>*/}
                         </div>
                         <div className='clear'/>
                     </div>
@@ -310,7 +316,7 @@ class PersonalZhanneixin extends React.Component {
                                         stationLetterClass = 'zhanneixin_li2';
                                         stationLetterText = '已读'
                                     }
-
+                                    let times=InterfaceUtil.fmtDate(item.created_time);
                                     return (
                                         <li key={item.id} data={item.id} className={stationLetterClass}>
                                             <div className='personal_zhanneixin_top_div display'/>
@@ -342,7 +348,7 @@ class PersonalZhanneixin extends React.Component {
                                                 </div>
                                                 <div
                                                     className='personal_zhanneixin_top_span3 floatRight'>
-                                                    [<span>{item.created_time}</span>]
+                                                    [<span>{times}</span>]
                                                 </div>
                                                 <br/>
                                                 <div className='width930 cursor'
@@ -388,7 +394,9 @@ class PersonalZhanneixin extends React.Component {
                     <div className='width988 marginTop20 marginBottom20 paddingBtm20'>
                         <span className='floatRight personal_zhanneixin_title_div3_span3'>
                             <Pagination
-                                showQuickJumper={true} defaultCurrent={1} defaultPageSize={5} total={data.cons}
+                                showQuickJumper={true}
+                                defaultCurrent={1} defaultPageSize={10}
+                                total={data.cons}
                                 onChange={(e) => {
                                     this.fenye(e)
                                 }}/></span>
