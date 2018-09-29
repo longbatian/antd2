@@ -41,11 +41,12 @@ import Footer from './pages/footer'; //尾部
 import Header from './pages/Header1';//头部
 import Balance from "./pages/balance/Balance";
 import Spikeactivity from "./pages/spikeactivity/Spikeactivity";
+import Spikeactivity2 from "./pages/spikeactivity/Spikeactivity2";
 import Zhijun from "./pages/zhijun/Zhijun";
 import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
-import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
-import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
+// import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
+// import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
 import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
 
 ReactDOM.render((
@@ -99,9 +100,10 @@ ReactDOM.render((
                     <Route  path="/all/Bundle" component={Bundle}/> {/*套餐*/}
                     <Route  path="/all/Questionnaire" component={Questionnaire}/>
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
+                    <Route  path="/all/Spikeactivity2/:id" component={Spikeactivity2}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
-                    <Route  path="/all/ActivityPage2" component={ActivityPage2}/> {/*中秋活动*/}
-                    <Route  path="/all/ActivityPage3" component={ActivityPage3}/> {/*中秋活动*/}
+                    {/*<Route  path="/all/ActivityPage2" component={ActivityPage2}/> /!*中秋活动*!/*/}
+                    {/*<Route  path="/all/ActivityPage3" component={ActivityPage3}/> /!*中秋活动*!/*/}
                     <Route  path="/all/person" >
                         <div className='ncontain'>
                             <div>
