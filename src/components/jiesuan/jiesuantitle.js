@@ -29,7 +29,7 @@ class Jiesuan extends React.Component {
                 more: true,
             });
             $('.jiesuan_div_div3_div').text('收起清单')
-            $('.jiesuan_div_div3_divImg')[0].src = '../../images/buycar/showOrderup.png';
+            $('.jiesuan_div_div3_divImg')[0].src = 'http://www.scjuchuang.com/images/antd/showOrderup.png';
         }
         else {
 
@@ -37,7 +37,7 @@ class Jiesuan extends React.Component {
                 more: false,
             });
             $('.jiesuan_div_div3_div').text('查看完整清单');
-            $('.jiesuan_div_div3_divImg')[0].src = '../../images/buycar/showOrdersDown.png';
+            $('.jiesuan_div_div3_divImg')[0].src = 'http://www.scjuchuang.com/images/antd/showOrdersDown.png';
         }
     }
 
@@ -186,7 +186,7 @@ class Jiesuan extends React.Component {
                         }}>
                             <div className='jiesuan_div_div3_div'>查看完整清单</div>
                             <img className='jiesuan_div_div3_divImg'
-                                 src={require('../../images/buycar/showOrdersDown.png')}/>
+                                 src={'http://www.scjuchuang.com/images/antd/showOrdersDown.png'}/>
                         </div>
                         <div className='jiesuan_div_div3_div1'>商品总价：<span
                             className='red'>￥{data.feiyong}</span></div>

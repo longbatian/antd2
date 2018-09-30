@@ -162,9 +162,10 @@ class PersonalJibenxinxi extends Component {
             success: function (data) {
                 if (data.code === 1) {
                     let datas = that.state.jbxx;
-                    datas[`shdz`] = data.data.user_address.address;
-                    datas[`shr`] = data.data.user_address.name;
-                    datas[`shdh`] = data.data.user_address.tel;
+                    datas[`shdz`] = data.data.user_address.address||``;
+                    datas[`shr`] = data.data.user_address.name||``;
+                    datas[`shdh`] = data.data.user_address.tel||``;
+                    datas[`shyb`] = data.data.user_address.shyb||``;
                     // let jynrs=that.state.jynr;
                     // jynrs= data.data.shop_operate;
                     that.setState({

@@ -148,11 +148,11 @@ class InformationPage extends Component {
                 if (data.code === 1) {
 
                     let datas = that.state.jbxx;
-                    datas[`shdz`] = data.data.user_address.address;
-                    datas[`shr`] = data.data.user_address.name;
-                    datas[`shdh`] = data.data.user_address.tel;
-                    datas[`lxr`] = data.data.user_info.real_name;
-                    datas[`dwmc`] = data.data.user_info.enterprise;
+                    datas[`shdz`] = data.data.user_address.address || ``;
+                    datas[`shr`] = data.data.user_address.name || ``;
+                    datas[`shdh`] = data.data.user_address.tel || ``;
+                    datas[`lxr`] = data.data.user_info.real_name || ``;
+                    datas[`dwmc`] = data.data.user_info.enterprise || ``;
                     // let jynrs=that.state.jynr;user_info
                     // :
                     // enterprise
