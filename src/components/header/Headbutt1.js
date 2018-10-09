@@ -55,7 +55,7 @@ class Headbutt extends React.Component{
         {/*聚创社区*/}
         <div className='floatRight header_allfenlei'>
             <a href='http://new.scjuchuang.com/guanyuwomen.html' target='_target'>
-                <img src={require("../../images/head/juchuangshequ.png")} className='header_allfenlei_img' alt=""/>
+                <img src={"http://www.scjuchuang.com/images/antd/juchuangshequ.png"} className='header_allfenlei_img' alt=""/>
             </a>
 
         </div>

@@ -3,47 +3,65 @@ import {Link} from 'react-router-dom';
 import Fenlei from '../../../components/index/fenlei1';
 import $ from 'jquery';
 
-class Headbutt extends React.Component{
-    constructor(props){
+require('./newHome.css');
+
+class Headbutt extends React.Component {
+    constructor(props) {
         super(props); //调用父类的构造方法；
 
-        this.state={
-            fenlei:true,
+        this.state = {
+            fenlei: true,
         }
     }
-    fenlei(e){
-        if(this.state.fenlei){
+
+    fenlei(e) {
+        if (this.state.fenlei) {
             $('.fenlei').addClass('display');
             this.setState({
-                fenlei:false,
+                fenlei: false,
             })
-        }else{
+        } else {
             $('.fenlei').removeClass('display');
             this.setState({
-                fenlei:true,
+                fenlei: true,
             })
         }
     }
-    render(){
-        return(
-            <div className='container container_btn'>
-                <div className='contain relative header_fenlei' data={this.props.data}>
+
+    render() {
+        let props = this.state.props;
+        console.log(props)
+        return (
+            <div className='container newHomes'>
+                <div className='contain relative header_fenlei'>
                     {/*药品分类*/}
                     <div className='floatleft header_allfenlei'>
-                        <div className='header_allfenlei_div'onClick={(e)=>{this.fenlei(e)}}>全部商品分类</div>
+                        <div
+                            className='header_allfenlei_div'
+                            onClick={(e) => {
+                                this.fenlei(e)
+                            }}>全部商品分类
+                        </div>
                     </div>
                     {/*菜单栏*/}
-                    <div className="header_cd floatleft">
+                    <div className="newHomescd floatleft">
                         <ul>
                             <li>
-                                <Link to="/Index">
-                                    首页
+                                <Link to="/NewIndex">
+                                    聚创首页
                                 </Link>
                             </li>
-                            <li><Link to="/Chanpinzhongxin?&zjzx=1">药店专区</Link></li>
-                            <li><Link to="/Chanpinzhongxin?&zjzx=2">诊所专区</Link></li>
-                            <li><Link to="/Chanpinzhongxin">采购直通车</Link></li>
-                            <li><Link to="/Integral/home">积分商城</Link></li>
+                            <li><Link to="/Chanpinzhongxin?&zjzx=1">医院专享</Link></li>
+                            <li><Link to="/Chanpinzhongxin?&zjzx=2">药店专享</Link></li>
+                            <li><Link to="/Chanpinzhongxin">诊所专享</Link></li>
+                            <li><Link to="/Integral/home">采购直通车</Link></li>
+                            <li>
+                                <a href='http://new.scjuchuang.com/guanyuwomen.html' target='_target'>
+                                    聚创社区
+                                    {/*<img src={"http://www.scjuchuang.com/images/antd/juchuangshequ.png"}*/}
+                                         {/*className='header_allfenlei_img' alt=""/>*/}
+                                </a>
+                            </li>
                             {/*<li>聚创金融</li>*/}
                             {/*<li>特惠专区</li>*/}
                             {/*<li>积分商城</li>*/}
@@ -51,12 +69,12 @@ class Headbutt extends React.Component{
                         </ul>
                     </div>
                     {/*聚创社区*/}
-                    <div className='floatRight header_allfenlei'>
-                        <a href='http://new.scjuchuang.com/guanyuwomen.html' target='_target'>
-                            <img src={"http://www.scjuchuang.com/images/antd/juchuangshequ.png"} className='header_allfenlei_img' alt=""/>
-                        </a>
+                    {/*<div className='floatRight header_allfenlei'>*/}
+                    {/*<a href='http://new.scjuchuang.com/guanyuwomen.html' target='_target'>*/}
+                    {/*<img src={"http://www.scjuchuang.com/images/antd/juchuangshequ.png"} className='header_allfenlei_img' alt=""/>*/}
+                    {/*</a>*/}
 
-                    </div>
+                    {/*</div>*/}
                     {/*分类*/}
                     <Fenlei/>
                     <div className="clear"/>
@@ -64,5 +82,9 @@ class Headbutt extends React.Component{
             </div>
         )
     }
+    componentDidMount(){
+        $('.fenlei').show();
+    }
 }
+
 export default Headbutt

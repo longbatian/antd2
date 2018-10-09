@@ -1554,6 +1554,7 @@ class Chanpinzhongxin extends React.Component {
 
                                 let times = item.validity_time === 0 ?
                                     null : InterfaceUtil.fmtDate(item.validity_time);
+                                times = item.stock_num === 0 ? null : times;
                                 let spread = item.is_spread === `0` ? null : <div className="hotImg">
                                     <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
                                 </div>;

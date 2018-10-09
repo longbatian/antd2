@@ -61,11 +61,13 @@
   position: absolute;
   top: 10px;
   right: 0px;
+  z-index: 9;
 }
 .index_lunbo_div_guanggao_con{
   margin-left: 5px;
   margin-top: 5px;
   width: 190px;
+  text-align: left;
 }
 .index_lunbo_div_guanggao_con_img{
   width: 190px;

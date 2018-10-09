@@ -366,6 +366,7 @@ class Benzhoujinxuan extends React.Component {
                                     <ul className='jingxuan_div_ul1 ' key={i}>
                                         {
                                             data.jingxuan[i].goods_list.map(function (item, i) {
+                                                let price=item.activity_price||item.price;
                                                 return (
                                                     <li key={i}
                                                         className='jingxuan_div_ul1_li display'
@@ -382,7 +383,7 @@ class Benzhoujinxuan extends React.Component {
                                                                 />
                                                             </Link>
                                                         </div>
-                                                        <p className='jingxuan_div_ul1_p'>{item.price}</p>
+                                                        <p className='jingxuan_div_ul1_p'>{price}</p>
                                                         <p className='hid font16 oneWeekgive'>{item.name}</p>
                                                         <p className='hid oneWeekgiveP'>{item.standard}</p>
                                                         <p className='hid oneWeekgiveP'>{item.enterprise}</p>
@@ -396,12 +397,12 @@ class Benzhoujinxuan extends React.Component {
                         }
                         {/*18个*/}
                         <div className='relative display'>
-                            <div className='jingxuan_tu1'></div>
-                            <div className='jingxuan_tu2'></div>
-                            <div className='jingxuan_tu3'></div>
-                            <div className='jingxuan_tu4'></div>
-                            <div className='jingxuan_tu5'></div>
-                            <div className='jingxuan_tu6'></div>
+                            <div className='jingxuan_tu1'/>
+                            <div className='jingxuan_tu2'/>
+                            <div className='jingxuan_tu3'/>
+                            <div className='jingxuan_tu4'/>
+                            <div className='jingxuan_tu5'/>
+                            <div className='jingxuan_tu6'/>
                         </div>
                     </div>
                 </div>

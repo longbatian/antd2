@@ -48,12 +48,14 @@ import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 // import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
 // import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
 import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
+import NewHomePage from './pages/newHome/NewHomePage';
 
 ReactDOM.render((
     <HashRouter>
         <div>
             <Route path="/Denglu" component={Denglu}/>
             <Route exact path="/" component={Index1}/>
+            <Route exact path="/NewIndex" component={NewHomePage}/>
             <Route exact path="/Index" component={Index1}/>
             <Route path="/Chanpinzhongxin" component={Chanpinzhongxin}/>
             <Route path="/Shangpinxiangqing" component={Shangpinxiangqing} />
