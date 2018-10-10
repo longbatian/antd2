@@ -11,6 +11,9 @@ import NewHeadBut from './compents/NewHeadBut'
 import NewLunboRigPage from './compents/NewLunboRigPage'
 import NewHomeDailySelection from './compents/NewHomeDailySelection'
 import NewHomePage2 from './compents/NewHomePage2'
+import NewHomePage3 from './compents/NewHomePage3'
+import NewHomePage4 from './compents/NewHomePage4'
+import NewHomePage5 from './compents/NewHomePage5'
 
 class NewHomePage extends React.Component {
     constructor(props) {
@@ -28,7 +31,8 @@ class NewHomePage extends React.Component {
             </div>
             <div className="nhlon">
                 <div className="nhlunbox">
-                    <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1536887387466.jpg"
+                    <img
+                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1536887387466.jpg"
                          alt=""
                     className='nhlunboximg1'
                     />
@@ -49,6 +53,9 @@ class NewHomePage extends React.Component {
 
             <NewHomeDailySelection/>
             <NewHomePage2/>
+            <NewHomePage3/>
+            <NewHomePage4/>
+            <NewHomePage5/>
             <Footer/>
         </div>
     }

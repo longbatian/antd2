@@ -420,12 +420,12 @@ class Shangpinxiangqing extends React.Component {
                         let Collection2 = item.is_collect !== 0 ? 'chanpinzhongxin_sp_img_shoucang chanpinzhongxin_sp_img_shoucang_current'
                             : 'chanpinzhongxin_sp_img_shoucang';
                         let isKcs = item.stock_num > 1000 ? `充裕` : item.stock_num;
-                        let times = InterfaceUtil.fmtDate(item.validity_time);
-
+                        let times = item.validity_time===0?null:InterfaceUtil.fmtDate(item.validity_time);
+                        times=item.stock_num===0?null:times;
+                        console.log(item.validity_time)
                         let spread = item.is_spread === `0` ? null : <div className="hotImg">
                             <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
                         </div>;
-                        console.log(item.is_spread)
                         return (
                             <div className='contain marginTop20' key={item.goods_id + '_isActivity'}>
 
@@ -490,7 +490,9 @@ class Shangpinxiangqing extends React.Component {
                                             <span
                                                 className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>库存数量：{isKcs}</span>
                                             <span
-                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>效期：{times}</span>
+                                                className='shangpinxiangqing_sp_xinxi_ziliao_kuan'>
+                                                效期：{times}
+                                                </span>
                                         </div>
                                         {/*加入购物车*/}
                                         <div className='inStockBox'>
