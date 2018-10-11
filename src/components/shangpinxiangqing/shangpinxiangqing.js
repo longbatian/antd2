@@ -422,7 +422,6 @@ class Shangpinxiangqing extends React.Component {
                         let isKcs = item.stock_num > 1000 ? `充裕` : item.stock_num;
                         let times = item.validity_time===0?null:InterfaceUtil.fmtDate(item.validity_time);
                         times=item.stock_num===0?null:times;
-                        console.log(item.validity_time)
                         let spread = item.is_spread === `0` ? null : <div className="hotImg">
                             <img src={require('../../images/chanpinzhongxin/001.png')} alt=""/>
                         </div>;

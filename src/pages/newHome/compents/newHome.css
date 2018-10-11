@@ -21,7 +21,6 @@
 }
 .nhlon {
   text-align: center;
-  background: #FFE2BB;
 }
 .nhlon img {
   max-width: 800px;
@@ -33,7 +32,7 @@
 }
 .nhlunfot {
   width: 800px;
-  margin: auto;
+  margin: 9px auto 0;
 }
 .nhlunfot img {
   width: 255px;
@@ -341,5 +340,83 @@
 }
 .nhboxcon3 .nhboxul4 li:nth-child(3) {
   border-right: 1px solid #ddd;
+}
+.nhhead {
+  text-align: center;
+  margin: 10px 0;
+}
+.nhhead h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.nhhead p {
+  width: 200px;
+  margin: auto;
+  position: relative;
+}
+.nhul5 {
+  overflow: hidden;
+}
+.nhul5 li {
+  float: left;
+  width: 32.3%;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+.nhul5 li .nhul5Tit {
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+}
+.nhul5 li .nhul5Tit a {
+  float: right;
+  display: block;
+  padding: 5px 8px;
+  border: 1px dashed #999;
+  color: #999;
+  margin-right: 20px;
+  margin-top: 25px;
+}
+.nhul5 li .nhul5Tit img {
+  display: block;
+  margin-left: 30px ;
+}
+.nhul5 li .nhul5conli6 {
+  float: left;
+  width: 50%;
+}
+.nhul5 li .nhul5conli6 img {
+  width: 160px;
+  height: 160px;
+  margin: 0;
+}
+.nhul5 li .nhul5con {
+  overflow: hidden;
+  text-align: center;
+}
+.nhul5 li:nth-child(2) {
+  margin: 0 1.5%;
+}
+.nhul5 li:last-child {
+  float: right;
+  margin-right: 0;
+}
+.nllbimgbox {
+  background: #364D79;
+}
+.nllbimgbox .nllbimgboxcarousel {
+  width: 800px;
+  margin: auto;
+  position: relative;
+}
+.nllbimgbox .nllbimgboxcarousel .index_lunbo_div_guanggao {
+  right: -200px;
+  border: 1px solid #ddd;
+}
+.nllbimgbox .ant-carousel .slick-slide {
+  text-align: center;
+  height: 350px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
 }
 /*# sourceMappingURL=newHome.css.map */

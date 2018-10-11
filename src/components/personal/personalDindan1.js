@@ -1,7 +1,7 @@
 // import $ from "../../js/jquery.min";
 import $ from 'jquery';
 import React from 'react';
-import {Button, Input, Pagination, Select,} from 'antd';
+import {Button, Input, Pagination, Select,message} from 'antd';
 import {Link, withRouter} from 'react-router-dom';
 import Tuijian from '../common/tuijian';
 import InterfaceUtil from '../../util/InterfaceUtil';
@@ -41,13 +41,13 @@ class PersonalDindan extends React.Component {
     }
 
     //切换颜色
-    color(e,id) {
+    color(e, id) {
         $('.shoucang_head').removeClass('orange');
         e.target.className = 'shoucang_head orange cursor';
         var a = e.target.innerText;
         var zhongwen = /[\u4e00-\u9fa5]/g;
         var b = a.match(zhongwen).join('');
-        document.cookie='ddzt='+id;
+        document.cookie = 'ddzt=' + id;
         this.ajaxPersonDingDan();
 
     }
@@ -281,7 +281,10 @@ class PersonalDindan extends React.Component {
         // ajax.open('post',"http://192.168.1.49/index.php/index/user_order/getorder",false);
 
     }
-
+    shouhuo(){
+        console.log(1)
+        // message.warning('')
+    }
     render() {
         return (
             <div className=' width988 floatRight'>
@@ -290,20 +293,20 @@ class PersonalDindan extends React.Component {
                     <p className='marginLeft20 fontFamily fontWeight floatleft'>所有订单</p>
                     <ul>
                         <li className='shoucang_head cursor orange' onClick={(e) => {
-                            this.color(e,0)
+                            this.color(e, 0)
                         }}>全部
                         </li>
 
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e,1)
+                            this.color(e, 1)
                         }}>待付款&nbsp;&nbsp;&nbsp;{this.state.ddzt0}</li>
 
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e,3)
+                            this.color(e, 3)
                         }}>待收货&nbsp;&nbsp;&nbsp;{this.state.ddzt1}</li>
 
                         <li className='shoucang_head cursor' onClick={(e) => {
-                            this.color(e,4)
+                            this.color(e, 4)
                         }}>已完成&nbsp;&nbsp;&nbsp;{this.state.ddzt2}</li>
                         <div className='clear'/>
                     </ul>
@@ -377,10 +380,12 @@ class PersonalDindan extends React.Component {
                                                                        this.qufukuan(e, item.order_number)
                                                                    }}>去付款</span>
                                     } else if (item.order_status === `3`) {
-                                        personalCon1_table = <span className='personalCon1_table_tr_span1'
-                                                                   onClick={(e) => {
-                                                                       this.qufukuan(e, item.order_number)
-                                                                   }}>收货</span>;
+                                        personalCon1_table = <span
+                                            className='nulls'
+                                            onClick={(e) => {
+                                                this.shouhuo()
+                                            }}
+                                        ></span>;
 
                                     }
                                     let times = InterfaceUtil.fmtDate(item.created_time);

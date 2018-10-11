@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {Link, Redirect, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-import {Button, Modal} from 'antd';
+import { Modal,Carousel } from 'antd';
 import Footer from '../footer'; //尾部
 import Headcon from '../../components/header/Headcon';
 import HeaderTop from '../../components/header/HeadTop';
@@ -14,6 +14,7 @@ import NewHomePage2 from './compents/NewHomePage2'
 import NewHomePage3 from './compents/NewHomePage3'
 import NewHomePage4 from './compents/NewHomePage4'
 import NewHomePage5 from './compents/NewHomePage5'
+import NewHomePage6 from './compents/NewHomePage6'
 
 class NewHomePage extends React.Component {
     constructor(props) {
@@ -30,13 +31,21 @@ class NewHomePage extends React.Component {
                 <NewHeadBut/>
             </div>
             <div className="nhlon">
+                <div className="nllbimgbox">
+                    <div className="nllbimgboxcarousel">
+                        <Carousel autoplay>
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                        </Carousel>
+                        <NewLunboRigPage/>
+                    </div>
+
+                </div>
                 <div className="nhlunbox">
-                    <img
-                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1536887387466.jpg"
-                         alt=""
-                    className='nhlunboximg1'
-                    />
-                    <NewLunboRigPage/>
+
+
                     <div className="nhlunfot">
                         <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1534904292964.png" alt=""/>
                         <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1534904292964.png" alt=""/>
@@ -56,6 +65,7 @@ class NewHomePage extends React.Component {
             <NewHomePage3/>
             <NewHomePage4/>
             <NewHomePage5/>
+            <NewHomePage6/>
             <Footer/>
         </div>
     }

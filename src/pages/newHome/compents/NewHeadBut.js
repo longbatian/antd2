@@ -51,10 +51,10 @@ class Headbutt extends React.Component {
                                     聚创首页
                                 </Link>
                             </li>
-                            <li><Link to="/Chanpinzhongxin?&zjzx=1">医院专享</Link></li>
-                            <li><Link to="/Chanpinzhongxin?&zjzx=2">药店专享</Link></li>
-                            <li><Link to="/Chanpinzhongxin">诊所专享</Link></li>
-                            <li><Link to="/Integral/home">采购直通车</Link></li>
+                            <li><Link to="/Index">医院专享</Link></li>
+                            <li><Link to="/Index">药店专享</Link></li>
+                            <li><Link to="/Index">诊所专享</Link></li>
+                            <li><Link to="/Chanpinzhongxin?&zjzx=1">采购直通车</Link></li>
                             <li>
                                 <a href='http://new.scjuchuang.com/guanyuwomen.html' target='_target'>
                                     聚创社区
@@ -65,7 +65,7 @@ class Headbutt extends React.Component {
                             {/*<li>聚创金融</li>*/}
                             {/*<li>特惠专区</li>*/}
                             {/*<li>积分商城</li>*/}
-                            <div className='clear'></div>
+                            <div className='clear'/>
                         </ul>
                     </div>
                     {/*聚创社区*/}
