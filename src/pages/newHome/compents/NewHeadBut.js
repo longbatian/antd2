@@ -30,7 +30,6 @@ class Headbutt extends React.Component {
 
     render() {
         let props = this.state.props;
-        console.log(props)
         return (
             <div className='container newHomes'>
                 <div className='contain relative header_fenlei'>

@@ -3,7 +3,7 @@ import $ from 'jquery';
 import {Link, Redirect, withRouter} from "react-router-dom";
 import InterfaceUtil from '../../util/InterfaceUtil';
 import CoojiePage from '../../util/CoojiePage';
-import { Modal,Carousel } from 'antd';
+import {Modal, Carousel} from 'antd';
 import Footer from '../footer'; //尾部
 import Headcon from '../../components/header/Headcon';
 import HeaderTop from '../../components/header/HeadTop';
@@ -19,11 +19,89 @@ import NewHomePage6 from './compents/NewHomePage6'
 class NewHomePage extends React.Component {
     constructor(props) {
         super(props); //调用父类的构造方法；
+        this.state = {
+            banner: null,
+            spcarea: null,
+            spcadv: null,
+            dayrecom:null,
+            necessary:null,
+            newrecom:null,
+            traded:null,
+            giveup:null,
+        }
 
     }
 
-    render() {
+    componentDidMount() {
+        let username = CoojiePage.getCoojie('username');
+        let token = CoojiePage.getCoojie('token');
+        const _this = this;
+        $.ajax({
+            url: InterfaceUtil.getUrl(79),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                username: username,
+                token: token,
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    data = data.data;
+                    _this.setState({
+                        banner: data.banner,
+                        spcarea: data.spcarea,
+                        adv: data.adv,
+                        spcadv: data.spcadv,
 
+                    })
+                }
+            }
+        })
+        $.ajax({
+            url: InterfaceUtil.getUrl(80),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                username: username,
+                token: token,
+            }),
+            dataType: "json",
+            success: function (data) {
+
+                if (data.code === 1) {
+                    data=data.data;
+                    console.log(data)
+                    _this.setState({
+                        dayrecom:data.dayrecom,
+                        necessary:data.necessary,
+                        newrecom:data.newrecom,
+                        traded:data.traded,
+                        giveup:data.giveup,
+                    })
+                }
+            }
+        })
+    }
+
+    render() {
+        const data = this.state;
+        let banner = data.banner ? data.banner.map((item, i) => {
+            return <div key={i}>
+                <Link to={item.url}>
+                    <img src={item.image} alt=""/>
+                </Link>
+            </div>
+        }) : null;
+        let spcarea = data.spcarea ? data.spcarea.map((item, i) => {
+            if (i < 3) {
+                return <Link key={i} to={item.url}>
+                    <img src={item.image} alt=""/>
+                </Link>
+            }
+        }) : null;
+        // let spcadv
+        let spcadv = data.spcadv ? <Link to={data.spcadv[0].url}>
+            <img src={data.spcadv[0].image}/>
+        </Link> : null;
         return <div>
             <div className='container' id='header'>
                 <HeaderTop/>
@@ -34,12 +112,9 @@ class NewHomePage extends React.Component {
                 <div className="nllbimgbox">
                     <div className="nllbimgboxcarousel">
                         <Carousel autoplay>
-                            <div><h3>1</h3></div>
-                            <div><h3>2</h3></div>
-                            <div><h3>3</h3></div>
-                            <div><h3>4</h3></div>
+                            {banner}
                         </Carousel>
-                        <NewLunboRigPage/>
+                        <NewLunboRigPage {...data.adv}/>
                     </div>
 
                 </div>
@@ -47,23 +122,20 @@ class NewHomePage extends React.Component {
 
 
                     <div className="nhlunfot">
-                        <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1534904292964.png" alt=""/>
-                        <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1534904292964.png" alt=""/>
-                        <img src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1534904292964.png" alt=""/>
+                        {spcarea}
 
                     </div>
                 </div>
 
             </div>
             <div className="nhimg1">
-                <img
-                    src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png" alt=""/>
+                {spcadv}
             </div>
 
-            <NewHomeDailySelection/>
-            <NewHomePage2/>
-            <NewHomePage3/>
-            <NewHomePage4/>
+            <NewHomeDailySelection dayrecom={data.dayrecom}/>
+            <NewHomePage2 necessary={data.necessary}/>
+            <NewHomePage3 newrecom={data.newrecom} traded={data.traded}/>
+            <NewHomePage4 giveup={data.giveup}/>
             <NewHomePage5/>
             <NewHomePage6/>
             <Footer/>

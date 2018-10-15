@@ -28,13 +28,12 @@ class Spikeactivity2 extends React.Component {
     }
 
     componentDidMount() {
-        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            window.location.href = InterfaceUtil.wapUrl() +
-                "/wap/compents/generaldrugs.html?&id=" +
-                InterfaceUtil.getHashParameters().id;
-        }
+        // if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        //     window.location.href = InterfaceUtil.wapUrl() +
+        //         "/wap/compents/generaldrugs.html?&id=" +
+        //         InterfaceUtil.getHashParameters().id;
+        // }
         this.startAjax();
-
     }
 
     startAjax() {
@@ -55,19 +54,10 @@ class Spikeactivity2 extends React.Component {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
                 if (data.code == 1) {
-
                     let datas = data.data;
-                    console.log(datas)
                     _this.setState({
                         arry: datas,
-                        // goods_list: datas.goods_list,
-                        // nums: datas.goods_count,
-                        // start_time: datas.start_time,
-                        // end_time: datas.end_time,
-                        // activity_name: datas.activity_name,
-                        // imgs: datas.image
                     })
                 } else {
                     _this.loginPage.ajaxLogin(data.code, _this.props);
@@ -77,106 +67,7 @@ class Spikeactivity2 extends React.Component {
     }
 
     suanshijian(start, end) {
-        // // const _this=this;
-        // // var timesI = null;
-        // var start = start * 1000;
-        // var end = end * 1000;
-        //
-        // var timestamp = Date.parse(new Date());
-        // if (timestamp < start) {
-        //     var timesI = setInterval(function () {
-        //         var countDownTime = '';
-        //         var endTime = end;
-        //         var nowTime = new Date();
-        //         var t = start - nowTime.getTime();
-        //         if (t < 0) {
-        //             clearInterval(timesI);
-        //         }
-        //         var d = Math.floor(t / 1000 / 60 / 60 / 24);
-        //         var hour = Math.floor(t / 1000 / 60 / 60 % 24);
-        //         var min = Math.floor(t / 1000 / 60 % 60);
-        //         var sec = Math.floor(t / 1000 % 60);
-        //         d = Math.abs(d);
-        //         hour = Math.abs(hour);
-        //         min = Math.abs(min);
-        //         sec = Math.abs(sec);
-        //         if (d < 10) {
-        //             d = "0" + d;
-        //         }
-        //         if (hour < 10) {
-        //             hour = "0" + hour;
-        //         }
-        //         if (min < 10) {
-        //             min = "0" + min;
-        //         }
-        //         if (sec < 10) {
-        //             sec = "0" + sec;
-        //         }
-        //         // countDownTime =
-        //         // $('.saTitRig').html(countDownTime)
-        //         $('.saTitRigTimeSpan').eq(0).text(d)
-        //         $('.saTitRigTimeSpan').eq(1).text(hour)
-        //         $('.saTitRigTimeSpan').eq(2).text(min)
-        //         $('.saTitRigTimeSpan').eq(3).text(sec)
-        //     }, 1000);
-        //     return <div className='saTitRigTime'>
-        //         <span className="saTitRigSta">还有</span>
-        //         <span className="saTitRigTimeSpan">  0</span>
-        //         天
-        //         <span className="saTitRigTimeSpan"> 0 </span>
-        //         时
-        //         <span className="saTitRigTimeSpan">0 </span>
-        //         分
-        //         <span className="saTitRigTimeSpan"> 0</span>
-        //         秒 开始
-        //     </div>;
-        // } else if (start < timestamp && timestamp < end) {
-        //     var timesI = setInterval(function () {
-        //         var countDownTime = '';
-        //         var endTime = end;
-        //         var nowTime = new Date();
-        //         var t = endTime - nowTime.getTime();
-        //         if (t < 0) {
-        //             clearInterval(timesI);
-        //         }
-        //         var d = Math.floor(t / 1000 / 60 / 60 / 24);
-        //         var hour = Math.floor(t / 1000 / 60 / 60 % 24);
-        //         var min = Math.floor(t / 1000 / 60 % 60);
-        //         var sec = Math.floor(t / 1000 % 60);
-        //         if (d < 10) {
-        //             d = "0" + d;
-        //         }
-        //         if (hour < 10) {
-        //             hour = "0" + hour;
-        //         }
-        //         if (min < 10) {
-        //             min = "0" + min;
-        //         }
-        //         if (sec < 10) {
-        //             sec = "0" + sec;
-        //         }
-        //         // countDownTime =
-        //         // $('.saTitRig').html(countDownTime)
-        //         $('.saTitRigTimeSpan').eq(0).text(d)
-        //         $('.saTitRigTimeSpan').eq(1).text(hour)
-        //         $('.saTitRigTimeSpan').eq(2).text(min)
-        //         $('.saTitRigTimeSpan').eq(3).text(sec)
-        //     }, 1000);
-        //     return <div className='saTitRigTime'>
-        //         <span className="saTitRigSta">仅剩</span>
-        //         <span className="saTitRigTimeSpan">  0</span>
-        //         天
-        //         <span className="saTitRigTimeSpan"> 0 </span>
-        //         时
-        //         <span className="saTitRigTimeSpan">0 </span>
-        //         分
-        //         <span className="saTitRigTimeSpan"> 0</span>
-        //         秒
-        //     </div>
-        // } else {
-        //     return '已结束'
-        //
-        // }
+
 
     }
 
@@ -258,7 +149,7 @@ class Spikeactivity2 extends React.Component {
     setStateList(num, id) {
         let list = this.state.arry;
         list.map((item) => {
-            item.goods_list.map((it)=>{
+            item.goods_list.map((it) => {
                 if (it.goods_id) {
                     if (it.goods_id === id) {
                         it.goods.min_buy = num
@@ -275,7 +166,7 @@ class Spikeactivity2 extends React.Component {
         // let arr = {};
         // arr[lists] = list;
         this.setState({
-            arry:list
+            arry: list
         });
     }
 
@@ -336,7 +227,10 @@ class Spikeactivity2 extends React.Component {
     componentWillReceiveProps() {
         window.location.reload();
     }
-
+    onGoScoll(e){
+        let X = $('.saTit').eq(e).offset().top;
+        window.scrollTo(0,X)
+    }
     render() {
         const data = this.state;
         let ntimes = null;
@@ -344,35 +238,18 @@ class Spikeactivity2 extends React.Component {
         if (data.start_time) {
             ntimes = this.suanshijian(data.start_time, data.end_time, this);
         }
+        var imgs = data.arry.length > 0 ? data.arry[0].image : null;
+        let titles = data.arry.length > 0 ? data.arry.map((item, i) => {
+            return <li onClick={()=>this.onGoScoll(i)}>
+                {item.activity_name}
+            </li>
+            }):null;
         let boxs = data.arry.length > 0 ? data.arry.map((item, j) => {
+
             let period_activity = item.goods_list.length > 0 ?
                 item.goods_list.map((it, i) => {
                     let time = InterfaceUtil.fmtDate(it.validity_time);
-                    // var start = data.start_time * 1000;
-                    // var end = data.end_time * 1000;
-                    // var timestamp = Date.parse(new Date());
-                    // if (timestamp < start) {
-                    //     button = <div
-                    //         className="acul2ConFotbut"
-                    //
-                    //     >
-                    //         未开始
-                    //     </div>
-                    // } else if (start < timestamp && timestamp < end) {
-                    //     button = <div
-                    //         className="acul2ConFotbut"
-                    //         onClick={() => this.joinCar(it.min_buy, it.id)}
-                    //     >
-                    //         加入购物车
-                    //     </div>
-                    // } else {
-                    //     button = <div
-                    //         className="acul2ConFotbut"
-                    //
-                    //     >
-                    //         已结束
-                    //     </div>
-                    // }
+
                     let limits = it.activity_max_num === 0 ? `不限购` : it.activity_max_num;
                     let stock_num = it.stock_num > 999 ? '充裕' : it.stock_num;
 
@@ -440,67 +317,28 @@ class Spikeactivity2 extends React.Component {
                 <div className="acbox acbox2">
                     <div className="saTit">
                         <h2>{item.activity_name}</h2>
-                        {/*<div className="saTitRig">*/}
-                        {/*{ntimes}*/}
-                        {/*/!*{()=>this.suanshijian(data.data.start_time,data.data.end_time)}*!/*/}
-                        {/*/!*<div className="saTitRigSta">活动未开始</div>*!/*/}
-                        {/*/!*<div className="saTitRigTime">*!/*/}
-                        {/*/!*<span className="saTitRigTimeSpan">02</span>*!/*/}
-                        {/*/!*<span>天</span>*!/*/}
-                        {/*/!*<span className="saTitRigTimeSpan">02</span>*!/*/}
-                        {/*/!*<span>时</span>*!/*/}
-                        {/*/!*<span className="saTitRigTimeSpan">02</span>*!/*/}
-                        {/*/!*<span>秒</span>*!/*/}
-                        {/*/!*</div>*!/*/}
-                        {/*</div>*/}
+
                     </div>
 
                     <ul className="acUl2">
-                        {/*<li>*/}
-                        {/*<img src={require('../../images/activitycollection/05.png')}/>*/}
-                        {/*<div className="acul2Con">*/}
-                        {/*<p className="acul2ConTit">感冒灵颗粒感冒灵颗粒感冒灵颗粒</p>*/}
-                        {/*<p>公司公司公司公司公司</p>*/}
-                        {/*<p>规格：232</p>*/}
-                        {/*<p className="colred">效期：12121212121</p>*/}
-                        {/*<p>价格：*/}
-                        {/*<span className="acbigs colred">5000.00</span>*/}
-                        {/*<span className="acYuan">原价：150.00</span>*/}
-                        {/*</p>*/}
-                        {/*<div className="acul2ConFot">*/}
-                        {/*<div className="acul2ConFotLef">*/}
-                        {/*<div className="acul2ConFotLefspan">*/}
-                        {/*<span>-</span>*/}
-                        {/*<span>+</span>*/}
-                        {/*</div>*/}
-                        {/*<input type="text"/>*/}
-                        {/*</div>*/}
-                        {/*<div className="acul2ConFotbut">*/}
-                        {/*加入购物车*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
-                        {/*</li>*/}
+
                         {period_activity}
-
-
                     </ul>
 
                 </div>
             </div>
-        }) : null
-
-
+        }) : null;
         return <div className='saBoxs'>
-
-            {/*<div className="paginationboxs ">*/}
-            {/*<Pagination showQuickJumper*/}
-            {/*defaultPageSize={20}*/}
-            {/*defaultCurrent={1} current={data.page} total={data.nums}*/}
-            {/*onChange={(e) => this.changesPage(e)}*/}
-            {/*/>*/}
-            {/*</div>*/}
+            <img src={imgs} className='saBoxsimg1' alt=""/>
             {boxs}
+            <div className="saboxrig">
+                <ul>
+                    {titles}
+                </ul>
+                <div
+                    onClick={()=>InterfaceUtil.goTop()}
+                >置顶</div>
+            </div>
             <Buyok/>
         </div>
     }

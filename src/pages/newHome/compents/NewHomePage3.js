@@ -10,6 +10,42 @@ class NewHomePage2 extends React.Component {
 
 
     render() {
+
+        const data = this.props.newrecom;
+        const traded = this.props.traded;
+        let imgs = data ? <Link to={data.url}>
+            <img src={data.image} alt=""/>
+        </Link> : null;
+        let list = data ? data.goods_list.map((item, i) => {
+            return <li key={i + item.id}>
+                <Link to={item.url}>
+                    <img
+                        src={item.image}/>
+                </Link>
+                <p>{item.name}</p>
+                <p className={'red'}>
+                    {item.price}
+                </p>
+            </li>
+        }) : null;
+        let listtraded = traded ? traded.map((item, i) => {
+            let price = item.traded_price || item.price;
+            return <li key={item.id}>
+                <p className={'bhul3tit'}>{item.goods_name}</p>
+                <p className={'red'}>
+                    {price}
+                </p>
+                <div
+                    title={`购买` + item.traded_goods_num + `需要` + item.traded_price}
+                    className={'bhul3Tishi'}>
+                    换购信息>
+                </div>
+                <Link to={'/Shangpinxiangqing?&id=' + item.traded_goods_id}>
+                    <img
+                        src={item.goods_image}/>
+                </Link>
+            </li>
+        }) : null;
         return (
             <div className='nhbox1'>
                 <div className="nhbox3lef">
@@ -22,42 +58,10 @@ class NewHomePage2 extends React.Component {
                     </div>
                     <div className="nhbox3lefcon">
                         <div className="nhbox3lefcondiv">
-
+                            {imgs}
                         </div>
                         <ul className="bhul2">
-                            <li>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-
-                                <p>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                            </li>
-                            <li>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-
-                                <p>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                            </li>
-                            <li>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-
-                                <p>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                            </li>
+                            {list}
                         </ul>
                     </div>
                 </div>
@@ -71,58 +75,20 @@ class NewHomePage2 extends React.Component {
                     </div>
                     <div className="nhbox3lefcon">
                         <ul className="bhul3">
-                            <li>
-                                <p className={'bhul3tit'}>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                                <div title={"我是提示信息"} className={'bhul3Tishi'}>
-                                    换购信息>
-                                </div>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-                            </li>
-                            <li>
-                                <p className={'bhul3tit'}>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                                <div title={"我是提示信息"} className={'bhul3Tishi'}>
-                                    换购信息>
-                                </div>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-                            </li>
-                            <li>
-                                <p className={'bhul3tit'}>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                                <div title={"我是提示信息"} className={'bhul3Tishi'}>
-                                    换购信息>
-                                </div>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-                            </li>
-                            <li>
-                                <p className={'bhul3tit'}>克林名字</p>
-                                <p className={'red'}>
-                                    会员可见
-                                </p>
-                                <div title={"我是提示信息"} className={'bhul3Tishi'}>
-                                    换购信息>
-                                </div>
-                                <Link to={''}>
-                                    <img
-                                        src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>
-                                </Link>
-                            </li>
+                            {/*// <li>*/}
+                                {/*<p className={'bhul3tit'}>克林名字</p>*/}
+                                {/*<p className={'red'}>*/}
+                                    {/*会员可见*/}
+                                {/*</p>*/}
+                                {/*<div title={"我是提示信息"} className={'bhul3Tishi'}>*/}
+                                    {/*换购信息>*/}
+                                {/*</div>*/}
+                                {/*<Link to={''}>*/}
+                                    {/*<img*/}
+                                        {/*src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>*/}
+                                {/*</Link>*/}
+                            {/*</li>*/}
+                            {listtraded}
 
                         </ul>
                     </div>

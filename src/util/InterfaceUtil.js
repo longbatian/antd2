@@ -106,6 +106,9 @@ let urls = [
     '/orders/wechat_pay_h5',//76微信支付
     '/orders/wechat_pay_js',//77微信公众号支付
     '/users/want_buy_list',//78求购列表
+    '/home/get_top',//79新首页上
+    '/home/get_middle',//79新首页中
+    '/home/get_bottom',//79新首页下
 ];
 // http://192.168.1.49/index.php/index/index/search
 export default class InterfaceUtil {

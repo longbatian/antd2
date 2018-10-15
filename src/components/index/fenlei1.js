@@ -79,7 +79,7 @@ class Fenlei11 extends React.Component {
     //    pid = pid
     //
       // .log('1'+pid)
-    this.props.history.push('/Chanpinzhongxin?&zjzx=1?&pid=' + pid)
+    this.props.history.push('/Chanpinzhongxin?&zjzx=1&pid=' + pid)
     //   // window.location.href = '#/Chanpinzhongxin?pid=' + pid;
     // } else {
     //   // var pid = e.target.parentNode.getAttribute('data-pid');

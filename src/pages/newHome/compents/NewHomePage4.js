@@ -10,6 +10,24 @@ class NewHomePage4 extends React.Component {
 
 
     render() {
+        const data=this.props.giveup;
+        let list=data?data.map((item,i)=>{
+            return <li key={item.id}>
+                <Link to={'/Shangpinxiangqing?&id='+item.goods_id}>
+                    <img
+                        src={item.image}
+                        alt=""/>
+                </Link>
+
+                <div className="bhul4div">
+                    <span>活动</span>
+                    <p>{item.content}</p>
+                </div>
+                <p>{item.name}</p>
+                <p>{item.min_buy}*{item.unit}</p>
+                <p className="red">{item.price}</p>
+            </li>
+        }):null
         return (
             <div className='nhbox1'>
                 <div className="nhconhead">
@@ -20,66 +38,7 @@ class NewHomePage4 extends React.Component {
                     <span>为您定制的甄选品种</span>
                 </div>
                 <ul className="bhul4">
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                        <div className="bhul4div">
-                            <span>活动</span>
-                            <p>单次购买本品20呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵</p>
-                        </div>
-                        <p>止痒名称</p>
-                        <p>0.32*12</p>
-                        <p className="red">会员可见</p>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                        <div className="bhul4div">
-                            <span>活动</span>
-                            <p>单次购买本品20呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵</p>
-                        </div>
-                        <p>止痒名称</p>
-                        <p>0.32*12</p>
-                        <p className="red">会员可见</p>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                        <div className="bhul4div">
-                            <span>活动</span>
-                            <p>单次购买本品20呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵</p>
-                        </div>
-                        <p>止痒名称</p>
-                        <p>0.32*12</p>
-                        <p className="red">会员可见</p>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                        <div className="bhul4div">
-                            <span>活动</span>
-                            <p>单次购买本品20呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵</p>
-                        </div>
-                        <p>止痒名称</p>
-                        <p>0.32*12</p>
-                        <p className="red">会员可见</p>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                        <div className="bhul4div">
-                            <span>活动</span>
-                            <p>单次购买本品20呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵</p>
-                        </div>
-                        <p>止痒名称</p>
-                        <p>0.32*12</p>
-                        <p className="red">会员可见</p>
-                    </li>
+                    {list}
                 </ul>
             </div>
         )

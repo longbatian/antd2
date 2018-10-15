@@ -66,7 +66,6 @@ class NewLunboRigPage extends Component {
             },
             success: function (data, textStatus, jqXHR) {
                 var data = data;
-                // console.log(data.data.industry)
                 if (data.code === 1) {
                     that.setState({
                         banner: data.data.banner,
@@ -100,17 +99,11 @@ class NewLunboRigPage extends Component {
         if (this.state.redirect) {
             return <Redirect push to="/NewXq"/>; //or <Redirect push to="/sample?a=xxx&b=yyy" /> 传递更多参数
         }
-
-        let adv = _state.adv.length > 0 ? _state.adv.map((item, i) => {
-            let list;
-            if(i===0){
-                list = <Link key={i} to={item.url}>
-                   <img src={_state.lujin + item.image}
-                        className='index_lunbo_div_guanggao_con_img'/>
-               </Link>
-            }
-            return list
-        }) : null;
+        const props=this.props[0]
+        let adv=this.props[0]? <Link  to={props.url}>
+            <img src={ props.image}
+                 className='index_lunbo_div_guanggao_con_img'/>
+        </Link>:null;
         return <div className='index_lunbo_div_guanggao'>
             <div className='index_lunbo_div_guanggao_con'>
                 <div className="nlbhead">
@@ -132,8 +125,6 @@ class NewLunboRigPage extends Component {
                     </p>
                 </div>
                 {adv}
-                {/*<a href={this.state.adv1.url}><img src={this.state.lujin + this.state.adv1.image}*/}
-                {/*className='marginTop5 index_lunbo_div_guanggao_con_img' alt=""/></a>*/}
                 <div className='marginTop10 index_lunbo_div_guanggao_con_div'>
                 <span className='guanggao_current guanggao' onClick={(e) => {
                     this.guanggao(e)

@@ -37,7 +37,7 @@
 .nhlunfot img {
   width: 255px;
 }
-.nhlunfot img:nth-child(2) {
+.nhlunfot a:nth-child(2) img {
   margin: 0 10px;
 }
 .nlbhead {
@@ -100,7 +100,6 @@
 }
 .nhimg1 img {
   width: 100%;
-  max-height: 100px;
 }
 .nhbox1 {
   width: 1200px;
@@ -161,6 +160,9 @@
   background: #364d79;
   overflow: hidden;
 }
+.nhbox2lefcon .ant-carousel .slick-slide img {
+  height: 300px;
+}
 .nhbox2lefcon .ant-carousel .slick-slide h3 {
   color: #fff;
 }
@@ -171,6 +173,7 @@
 }
 .nhbox2rig .nhbox2lefcon img {
   width: 100%;
+  height: 300px;
 }
 .nhbox3lef {
   width: 590px;
@@ -400,13 +403,13 @@
   float: right;
   margin-right: 0;
 }
-.nllbimgbox {
-  background: #364D79;
-}
 .nllbimgbox .nllbimgboxcarousel {
   width: 800px;
   margin: auto;
   position: relative;
+}
+.nllbimgbox .nllbimgboxcarousel .slick-list img {
+  height: 360px;
 }
 .nllbimgbox .nllbimgboxcarousel .index_lunbo_div_guanggao {
   right: -200px;

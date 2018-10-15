@@ -9,6 +9,17 @@ class NewHomeDailySelection extends React.Component {
 
 
     render() {
+        const data=this.props.dayrecom;
+        let list=data?data.map((item,i)=>{
+            return<li key={i}>
+                <Link to={item.url}>
+                    <img
+                        src={item.image}
+                        alt=""/>
+                </Link>
+
+            </li>
+        }):null;
         return (
             <div className='nhbox1'>
                 <div className="nhconhead">
@@ -19,36 +30,8 @@ class NewHomeDailySelection extends React.Component {
                     <span>为您定制的甄选品种</span>
                 </div>
                 <ul className="bhul1">
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
-                    <li>
-                        <img
-                            src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/pl593fc1692bf5d.jpg"
-                            alt=""/>
-                    </li>
+                    {list}
+
                 </ul>
             </div>
         )

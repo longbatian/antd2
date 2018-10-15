@@ -348,6 +348,9 @@
   text-align: center;
   background: #fff;
 }
+.saBoxsimg1 {
+  width: 100%;
+}
 .zjBox {
   background: #000;
 }
@@ -408,5 +411,31 @@
 }
 .act2img2 {
   margin: 0 20px ;
+}
+.saboxrig {
+  position: fixed;
+  right: 100px;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 10px ;
+  display: inline-block;
+  max-height: 178px;
+  margin: auto;
+  background: #C2EDFE;
+}
+.saboxrig ul li {
+  background: #006BFF;
+  color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.saboxrig div {
+  background: #006BFF;
+  color: #fff;
+  padding: 5px 10px;
+  text-align: center;
+  cursor: pointer;
 }
 /*# sourceMappingURL=balanceLess.css.map */

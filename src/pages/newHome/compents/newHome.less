@@ -41,8 +41,10 @@
   img{
     width: 255px;
   }
-  img:nth-child(2){
-    margin: 0 10px;
+  a:nth-child(2) {
+    img{
+      margin: 0 10px;
+    }
   }
 }
 .nlbhead{
@@ -103,7 +105,7 @@
   padding: 10px 0;
   img{
     width: 100%;
-    max-height: 100px;
+    //max-height: 180px;
   }
 }
 .nhbox1{
@@ -162,6 +164,9 @@
     line-height: 300px;
     background: #364d79;
     overflow: hidden;
+    img{
+      height: 300px;
+    }
   }
 
   .ant-carousel .slick-slide h3 {
@@ -175,6 +180,7 @@
   .nhbox2lefcon{
     img{
       width: 100%;
+      height: 300px;
     }
   }
 
@@ -416,11 +422,17 @@
   }
 }
 .nllbimgbox{
-  background: #364D79;
+  //background: #364D79;
   .nllbimgboxcarousel{
     width: 800px;
     margin: auto;
     position: relative;
+    .slick-list{
+      img{
+        height: 360px;
+      }
+    }
+
     .index_lunbo_div_guanggao{
       right: -200px;
       border:1px solid #ddd;
