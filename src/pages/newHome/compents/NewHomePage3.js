@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Carousel} from 'antd';
+import InterfaceUtil from "../../../util/InterfaceUtil";
 
 class NewHomePage2 extends React.Component {
     constructor(props) {
@@ -30,13 +31,20 @@ class NewHomePage2 extends React.Component {
         }) : null;
         let listtraded = traded ? traded.map((item, i) => {
             let price = item.traded_price || item.price;
+            let times=InterfaceUtil.fmtDate(item.end_time);
+            console.log(item)
             return <li key={item.id}>
                 <p className={'bhul3tit'}>{item.goods_name}</p>
                 <p className={'red'}>
                     {price}
                 </p>
                 <div
-                    title={`购买` + item.traded_goods_num + `需要` + item.traded_price}
+                    title={
+                        `本次购进本品` +
+                        item.goods_num + item.unit + `+`
+                        + item.traded_price + `换购本品` +item.traded_goods_num+ item.unit+`活动时间`+
+                         times   +`送完截止`
+                    }
                     className={'bhul3Tishi'}>
                     换购信息>
                 </div>
@@ -76,17 +84,17 @@ class NewHomePage2 extends React.Component {
                     <div className="nhbox3lefcon">
                         <ul className="bhul3">
                             {/*// <li>*/}
-                                {/*<p className={'bhul3tit'}>克林名字</p>*/}
-                                {/*<p className={'red'}>*/}
-                                    {/*会员可见*/}
-                                {/*</p>*/}
-                                {/*<div title={"我是提示信息"} className={'bhul3Tishi'}>*/}
-                                    {/*换购信息>*/}
-                                {/*</div>*/}
-                                {/*<Link to={''}>*/}
-                                    {/*<img*/}
-                                        {/*src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>*/}
-                                {/*</Link>*/}
+                            {/*<p className={'bhul3tit'}>克林名字</p>*/}
+                            {/*<p className={'red'}>*/}
+                            {/*会员可见*/}
+                            {/*</p>*/}
+                            {/*<div title={"我是提示信息"} className={'bhul3Tishi'}>*/}
+                            {/*换购信息>*/}
+                            {/*</div>*/}
+                            {/*<Link to={''}>*/}
+                            {/*<img*/}
+                            {/*src="https://public-scjuchuang.oss-cn-shenzhen.aliyuncs.com/image/1538304958687.png"/>*/}
+                            {/*</Link>*/}
                             {/*</li>*/}
                             {listtraded}
 

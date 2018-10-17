@@ -21,10 +21,13 @@ class NewHomePage2 extends React.Component {
         let rig1 = data ? <Link to={data.banner_right[0].url}>
             <img src={data.banner_right[0].image} alt=""/>
         </Link> : null;
-        // let rig2 = data ? <Link to={data.banner_right[1].url}>
-        //     <img src={data.banner_right[1].image} alt=""/>
-        // </Link> : null;
-        let rig2 = null;
+        let rig2;
+        if (data) {
+            rig2 = data.banner_right[1] ? <Link to={data.banner_right[1].url}>
+                <img src={data.banner_right[1].image} alt=""/>
+            </Link> : null;
+        }
+        // let rig2 = null;
         return (
             <div className='nhbox1'>
                 <div className="nhbox2lef">

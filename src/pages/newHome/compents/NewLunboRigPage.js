@@ -99,31 +99,45 @@ class NewLunboRigPage extends Component {
         if (this.state.redirect) {
             return <Redirect push to="/NewXq"/>; //or <Redirect push to="/sample?a=xxx&b=yyy" /> 传递更多参数
         }
-        const props=this.props[0]
-        let adv=this.props[0]? <Link  to={props.url}>
-            <img src={ props.image}
+        const props = this.props[0]
+        let adv = this.props[0] ? <Link to={props.url}>
+            <img src={props.image}
                  className='index_lunbo_div_guanggao_con_img'/>
-        </Link>:null;
+        </Link> : null;
+        let head = CoojiePage.getCoojie('username') ? <div className="nlbhead">
+            <img
+                src="http://www.scjuchuang.com/images/antd/morenhead.png"
+                className='nlbheadimg1'
+            />
+            <p>HI，<span>{CoojiePage.getCoojie('username')}您好！</span></p>
+            <p>欢迎来到淘药网</p>
+            <p>
+                <Link to={'./Personal'}>
+                <i className="nlbheadimg3"/>
+                <span>我的淘药中心</span>
+                </Link>
+            </p>
+        </div> : <div className="nlbhead">
+            <img
+                src="http://www.scjuchuang.com/images/antd/morenhead.png"
+                className='nlbheadimg1'
+            />
+            <p>HI，<span>您好！</span></p>
+            <p>欢迎来到淘药网</p>
+            <p>
+                <Link to={'./Denglu'}>
+                    <i className="nlbheadimg2"/>
+                    <span>立即登录</span>
+                </Link>
+                <Link to={'./Zhuce'}>
+                    <i className="nlbheadimg3"/>
+                    <span>免费注册</span>
+                </Link>
+            </p>
+        </div>;
         return <div className='index_lunbo_div_guanggao'>
             <div className='index_lunbo_div_guanggao_con'>
-                <div className="nlbhead">
-                    <img
-                        src="http://www.scjuchuang.com/images/antd/morenhead.png"
-                        className='nlbheadimg1'
-                    />
-                    <p>HI，<span>您好！</span></p>
-                    <p>欢迎来到淘药网</p>
-                    <p>
-                        <Link to={'./Denglu'}>
-                            <i className="nlbheadimg2"/>
-                            <span>立即登录</span>
-                        </Link>
-                        <Link to={'./Zhuce'} >
-                            <i className="nlbheadimg3"/>
-                            <span>免费注册</span>
-                        </Link>
-                    </p>
-                </div>
+                {head}
                 {adv}
                 <div className='marginTop10 index_lunbo_div_guanggao_con_div'>
                 <span className='guanggao_current guanggao' onClick={(e) => {

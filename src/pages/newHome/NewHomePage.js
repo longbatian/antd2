@@ -28,19 +28,21 @@ class NewHomePage extends React.Component {
             newrecom:null,
             traded:null,
             giveup:null,
+            hierarchy:null,
+            produce:null,
         }
 
     }
 
     componentDidMount() {
-        let username = CoojiePage.getCoojie('username');
+        let user_id = CoojiePage.getCoojie('user_id');
         let token = CoojiePage.getCoojie('token');
         const _this = this;
         $.ajax({
             url: InterfaceUtil.getUrl(79),
             type: "post",
             data: InterfaceUtil.addTime({
-                username: username,
+                user_id: user_id,
                 token: token,
             }),
             dataType: "json",
@@ -61,7 +63,28 @@ class NewHomePage extends React.Component {
             url: InterfaceUtil.getUrl(80),
             type: "post",
             data: InterfaceUtil.addTime({
-                username: username,
+                user_id: user_id,
+                token: token,
+            }),
+            dataType: "json",
+            success: function (data) {
+                if (data.code === 1) {
+                    data=data.data;
+                    _this.setState({
+                        dayrecom:data.dayrecom,
+                        necessary:data.necessary,
+                        newrecom:data.newrecom,
+                        traded:data.traded,
+                        giveup:data.giveup,
+                    })
+                }
+            }
+        })
+        $.ajax({
+            url: InterfaceUtil.getUrl(81),
+            type: "post",
+            data: InterfaceUtil.addTime({
+                user_id: user_id,
                 token: token,
             }),
             dataType: "json",
@@ -69,13 +92,9 @@ class NewHomePage extends React.Component {
 
                 if (data.code === 1) {
                     data=data.data;
-                    console.log(data)
                     _this.setState({
-                        dayrecom:data.dayrecom,
-                        necessary:data.necessary,
-                        newrecom:data.newrecom,
-                        traded:data.traded,
-                        giveup:data.giveup,
+                        hierarchy:data.hierarchy,
+                        produce:data.produce,
                     })
                 }
             }
@@ -136,8 +155,8 @@ class NewHomePage extends React.Component {
             <NewHomePage2 necessary={data.necessary}/>
             <NewHomePage3 newrecom={data.newrecom} traded={data.traded}/>
             <NewHomePage4 giveup={data.giveup}/>
-            <NewHomePage5/>
-            <NewHomePage6/>
+            <NewHomePage5 hierarchy={data.hierarchy}/>
+            <NewHomePage6 produce={data.produce}/>
             <Footer/>
         </div>
     }

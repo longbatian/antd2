@@ -187,6 +187,10 @@
   height: 250px;
   background: #D4E7EB;
 }
+.nhbox3lefcondiv img {
+  width: 100%;
+  height: 100%;
+}
 .nhbox3lefcon {
   padding: 10px;
   border: 1px solid #ddd;
@@ -243,7 +247,7 @@
   background: #FF8601;
   line-height: 2;
   padding: 0 5px;
-  margin: 5px 0 ;
+  margin: 5px 0;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -311,6 +315,10 @@
   height: 380px;
   background: #D4E7EB;
 }
+.nhboxcon3 .nhboxcon3lef img {
+  width: 100%;
+  height: 100%;
+}
 .nhboxcon3 .nhboxul4 {
   float: right;
   width: 790px;
@@ -357,6 +365,11 @@
   margin: auto;
   position: relative;
 }
+.overh {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .nhul5 {
   overflow: hidden;
 }
@@ -365,6 +378,7 @@
   width: 32.3%;
   border: 1px solid #ddd;
   padding: 20px;
+  height: 547px;
 }
 .nhul5 li .nhul5Tit {
   border-bottom: 1px solid #ddd;
@@ -381,11 +395,18 @@
 }
 .nhul5 li .nhul5Tit img {
   display: block;
-  margin-left: 30px ;
+  margin-left: 30px;
+  max-width: 200px;
+  max-height: 100px;
 }
 .nhul5 li .nhul5conli6 {
   float: left;
   width: 50%;
+}
+.nhul5 li .nhul5conli6 p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .nhul5 li .nhul5conli6 img {
   width: 160px;
@@ -421,5 +442,36 @@
   line-height: 160px;
   background: #364d79;
   overflow: hidden;
+}
+.footlayer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  margin: auto;
+}
+.footlayer .footlayerimg1 {
+  width: 100%;
+}
+.footlayer .footlayerimg2 {
+  width: 1200px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  text-align: right;
+}
+.footlayer .footlayerimg2 img {
+  cursor: pointer;
+}
+.riglayr {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 92px;
+  margin: auto;
 }
 /*# sourceMappingURL=newHome.css.map */
