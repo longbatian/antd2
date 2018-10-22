@@ -114,10 +114,19 @@ class HeadTop extends React.Component {
                         <li className='cursor' onClick={(e) => {
                             this.huiyuan(e)
                         }}>会员中心&nbsp;<span>|</span>&nbsp;</li>
-                        <li className='gray blue cursor'>
-                            <a href='http://scjcyy.e-fapiao.cc:91/Account/Login' target='_target'>
-                                电子发票查询&nbsp;<span>|</span>&nbsp;
-                            </a>
+                        <li className='gray blue cursor newTopbox'>
+                            {/*<a href='http://220.167.89.32:9627/cxpt/' target='_target'>*/}
+                                {/*电子发票查询&nbsp;<span>|</span>&nbsp;*/}
+                            {/*</a>*/}
+                            电子发票查询&nbsp;<span>|</span>&nbsp;
+                            <p className={'newTop'}>
+                                <a href='http://scjcyy.e-fapiao.cc:91/Account/Login' target='_target'>
+                                    (10月16日前)电子发票查询
+                                </a>
+                                <a href='http://220.167.89.32:9627/cxpt/' target='_target'>
+                                    (10月16日后)电子发票查询
+                                </a>
+                            </p>
                         </li>
                         <li className='gray blue cursor'>
                             <a href={'http://www.51yywd.com/User/jsapi?business_id=29603&dwid=' + this.erp_id}
