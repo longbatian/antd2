@@ -166,6 +166,10 @@
 .nhbox2lefcon .ant-carousel .slick-slide h3 {
   color: #fff;
 }
+.nhbox2lefcon .ant-carousel .slick-dots li button {
+  height: 10px;
+  background: #188ae7;
+}
 .nhbox2rig {
   float: right;
   margin-left: 10px;
@@ -435,6 +439,14 @@
 .nllbimgbox .nllbimgboxcarousel .index_lunbo_div_guanggao {
   right: -200px;
   border: 1px solid #ddd;
+}
+.nllbimgbox .nllbimgboxcarousel .ant-carousel .slick-dots li button {
+  height: 20px;
+  width: 30px;
+  background: #188ae7;
+}
+.nllbimgbox .nllbimgboxcarousel .ant-carousel .slick-dots {
+  bottom: 25px;
 }
 .nllbimgbox .ant-carousel .slick-slide {
   text-align: center;

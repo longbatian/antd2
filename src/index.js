@@ -47,6 +47,7 @@ import PersonalCon from "./components/personal/personalCon";
 import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 // import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
 // import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
+import ActivityPage4 from './pages/spikeactivity/ActivityPage4'//双11活动
 import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
 import NewHomePage from './pages/newHome/NewHomePage';
 
@@ -80,6 +81,8 @@ ReactDOM.render((
             <Route  path="/InformationPage" component={InformationPage}/>
             <Route  path="/NewXq/:id" component={NewXq} />
             <Route  path="/NewZX" component={NewZX} />
+            <Route  path="/ActivityPage4" component={ActivityPage4} />
+
             <Route  path="/Integral" >
                 <div>
                     <Route component={InterlpageHead}/>

@@ -32,7 +32,6 @@ class NewHomePage2 extends React.Component {
         let listtraded = traded ? traded.map((item, i) => {
             let price = item.traded_price || item.price;
             let times=InterfaceUtil.fmtDate(item.end_time);
-            console.log(item)
             return <li key={item.id}>
                 <p className={'bhul3tit'}>{item.goods_name}</p>
                 <p className={'red'}>

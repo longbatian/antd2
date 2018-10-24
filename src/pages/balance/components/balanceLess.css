@@ -410,7 +410,7 @@
   background-size: 100% 100%;
 }
 .act2img2 {
-  margin: 0 20px ;
+  margin: 0 20px;
 }
 .saboxrig {
   position: fixed;
@@ -418,7 +418,7 @@
   top: 0;
   bottom: 0;
   z-index: 3;
-  padding: 10px ;
+  padding: 10px;
   display: inline-block;
   max-height: 178px;
   margin: auto;
@@ -437,5 +437,84 @@
   padding: 5px 10px;
   text-align: center;
   cursor: pointer;
+}
+.athead {
+  max-width: 1980px;
+  background: url("http://www.scjuchuang.com/images/antd/004.png") center;
+  height: 100px;
+}
+.athead ul {
+  overflow: hidden;
+  width: 1200px;
+  margin: auto;
+  padding-left: 392px;
+  height: 100px;
+  color: #fff;
+  padding-top: 28px;
+  font-size: 18px;
+}
+.athead ul li {
+  width: 129px;
+  float: left;
+  text-align: center;
+  padding: 0 22px;
+  line-height: 1.3;
+}
+.athead ul a {
+  color: #fff;
+}
+.atimg1 {
+  display: block;
+  width: 100%;
+}
+.atbox1 {
+  height: 3271px;
+  background: url("http://www.scjuchuang.com/images/antd/014.png") no-repeat center;
+}
+.atbox1 > div {
+  width: 1000px;
+  margin: auto;
+  position: relative;
+}
+.atbox1 .atcon1 {
+  position: absolute;
+  top: 145px;
+  left: 216px;
+}
+.atbox1 .atcon1 img {
+  margin-right: 15px;
+}
+.atbox1 .atcon2 {
+  position: absolute;
+  top: 985px;
+  left: 0;
+  right: 0;
+}
+.atbox1 .atcon2 li {
+  width: 25%;
+  float: left;
+  text-align: right;
+  padding-right: 20px;
+}
+.atbox1 .atcon2 li:first-child {
+  padding-right: 25px;
+}
+.atbox1 .atcon2 li:last-child {
+  padding-right: 15px;
+}
+.atbox1 .atcon3 {
+  position: absolute;
+  top: 2080px;
+  left: 300px;
+}
+.atbox1 .atcon4 {
+  position: absolute;
+  top: 2080px;
+  left: 700px;
+}
+.atbox1 .atcon5 {
+  position: absolute;
+  top: 2770px;
+  left: 625px;
 }
 /*# sourceMappingURL=balanceLess.css.map */
