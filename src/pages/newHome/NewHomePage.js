@@ -138,19 +138,14 @@ class NewHomePage extends React.Component {
 
                 </div>
                 <div className="nhlunbox">
-
-
                     <div className="nhlunfot">
                         {spcarea}
-
                     </div>
                 </div>
-
             </div>
             <div className="nhimg1">
                 {spcadv}
             </div>
-
             <NewHomeDailySelection dayrecom={data.dayrecom}/>
             <NewHomePage2 necessary={data.necessary}/>
             <NewHomePage3 newrecom={data.newrecom} traded={data.traded}/>
