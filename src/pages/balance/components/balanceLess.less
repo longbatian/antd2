@@ -511,6 +511,9 @@
 
     a {
       color: #fff;
+      &:hover{
+        color: #FFDC00;
+      }
     }
   }
 }
@@ -529,12 +532,33 @@
     margin: auto;
     position: relative;
   }
+  img{
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+  }
+  img:hover{
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
   .atcon1 {
     position: absolute;
     top: 145px;
     left: 216px;
-    img {
+    img{
       margin-right: 15px;
+      &:hover{
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        transform: scale(1.05);
+      }
     }
   }
   .atcon2 {
@@ -571,5 +595,72 @@
     top: 2770px;
     left: 625px;
   }
+  .atcon6 {
+    position: absolute;
+    top: 1520px;
+    left: 577px;
+  }
 }
+.atrig{
+  height: 333px;
+  width: 106px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 100px;
+  margin: auto;
+  background: url("http://www.scjuchuang.com/images/antd/005.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  text-align: center;
+  ul{
+    margin-top:95px ;
+    padding:0 5px;
+  }
+  li{
+    background: #951718;
+    line-height: 24px;
+    margin-bottom: 5px;
+    a{
+      color: #fff;
+      &:hover{
+        color:#FFDC00;
+      }
+    }
+  }
+}
+.agobox{
+  width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  background: url("http://www.scjuchuang.com/images/antd/018.png") no-repeat;
+  background-size: 100% 100%;
+  .agoboxtit{
+    height: 80px;
 
+  }
+  .agoboxlef{
+    float: left;
+    width:50%;
+    height: 400px;
+    .agoboxlefCarousel{
+      background: url("http://www.scjuchuang.com/images/antd/016.png") no-repeat center;
+      //background-size: 100% ;
+      -ms-background-position-y: 200px;
+      background-position-y: 200px;
+    }
+    .ant-carousel .slick-slide{
+      background:none;
+      height: 400px;
+    }
+    .ant-carousel .slick-slide img{
+      width: auto;
+      height: auto;
+      display: inline-block;
+      margin-top: 50px;
+      cursor: pointer;
+
+    }
+  }
+}

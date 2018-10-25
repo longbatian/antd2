@@ -48,6 +48,7 @@ import Questionnaire from './pages/questionnaire/Questionnaire';//问卷调查
 // import ActivityPage2 from './pages/spikeactivity/ActivityPage2'//中秋活动
 // import ActivityPage3 from './pages/spikeactivity/ActivityPage3'//中秋活动
 import ActivityPage4 from './pages/spikeactivity/ActivityPage4'//双11活动
+import ActivityGoldPage from './pages/spikeactivity/ActivityGoldPage'//砸金蛋
 import IntergralInstructionManual from './pages/integral/IntergralInstructionManual'//积分攻略
 import NewHomePage from './pages/newHome/NewHomePage';
 
@@ -107,6 +108,7 @@ ReactDOM.render((
                     <Route  path="/all/Spikeactivity" component={Spikeactivity}/> {/*秒杀活动*/}
                     <Route  path="/all/Spikeactivity2/:id" component={Spikeactivity2}/> {/*秒杀活动*/}
                     <Route  path="/all/Zhijun" component={Zhijun}/> {/*致君*/}
+                    <Route  path="/all/ActivityGold" component={ActivityGoldPage}/> {/*致君*/}
                     {/*<Route  path="/all/ActivityPage2" component={ActivityPage2}/> /!*中秋活动*!/*/}
                     {/*<Route  path="/all/ActivityPage3" component={ActivityPage3}/> /!*中秋活动*!/*/}
                     <Route  path="/all/person" >

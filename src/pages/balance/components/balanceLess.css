@@ -463,6 +463,9 @@
 .athead ul a {
   color: #fff;
 }
+.athead ul a:hover {
+  color: #FFDC00;
+}
 .atimg1 {
   display: block;
   width: 100%;
@@ -476,6 +479,20 @@
   margin: auto;
   position: relative;
 }
+.atbox1 img {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.atbox1 img:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
 .atbox1 .atcon1 {
   position: absolute;
   top: 145px;
@@ -483,6 +500,13 @@
 }
 .atbox1 .atcon1 img {
   margin-right: 15px;
+}
+.atbox1 .atcon1 img:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
 }
 .atbox1 .atcon2 {
   position: absolute;
@@ -516,5 +540,70 @@
   position: absolute;
   top: 2770px;
   left: 625px;
+}
+.atbox1 .atcon6 {
+  position: absolute;
+  top: 1520px;
+  left: 577px;
+}
+.atrig {
+  height: 333px;
+  width: 106px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 100px;
+  margin: auto;
+  background: url("http://www.scjuchuang.com/images/antd/005.png") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  text-align: center;
+}
+.atrig ul {
+  margin-top: 95px ;
+  padding: 0 5px;
+}
+.atrig li {
+  background: #951718;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+.atrig li a {
+  color: #fff;
+}
+.atrig li a:hover {
+  color: #FFDC00;
+}
+.agobox {
+  width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  background: url("http://www.scjuchuang.com/images/antd/018.png") no-repeat;
+  background-size: 100% 100%;
+}
+.agobox .agoboxtit {
+  height: 80px;
+}
+.agobox .agoboxlef {
+  float: left;
+  width: 50%;
+  height: 400px;
+}
+.agobox .agoboxlef .agoboxlefCarousel {
+  background: url("http://www.scjuchuang.com/images/antd/016.png") no-repeat center;
+  -ms-background-position-y: 200px;
+  background-position-y: 200px;
+}
+.agobox .agoboxlef .ant-carousel .slick-slide {
+  background: none;
+  height: 400px;
+}
+.agobox .agoboxlef .ant-carousel .slick-slide img {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-top: 50px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=balanceLess.css.map */

@@ -1537,7 +1537,7 @@ class Chanpinzhongxin extends React.Component {
                                         className='shangpinxiangqing_personal_Dindan_con1_tablesp_xinxi_jiage_span'>
                                                     {item.price}
                                                     </span>
-                                        活动：<span className='red fontS1'>{item.activity_price}</span>
+                                         <span> | 活动：</span><span className='red fontS1'>{item.activity_price}</span>
                                         <span
                                             className='red font13 bold'>( {islimit} )</span>
                                     </div> :
