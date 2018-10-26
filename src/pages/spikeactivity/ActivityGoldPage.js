@@ -8,6 +8,9 @@ class ActivityGoldPage extends React.Component {
         this.state = {
             isTrue:true,
             isZhong:false,
+
+
+
         }
     }
 
